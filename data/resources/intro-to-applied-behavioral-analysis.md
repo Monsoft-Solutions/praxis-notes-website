@@ -5,7 +5,7 @@ title: "Applied Behavior Analysis (ABA): Principles, Techniques, and Application
 description: "Discover the fundamentals of Applied Behavior Analysis (ABA), its core techniques, and broad applications beyond clinical settings."
 date: "April 8, 2025"
 readingTime: "8 min read"
-image: /images/resources/ABA Principles, Techniques, and Applications.png
+image: /public/ABA-principles-Techniques-and-pplications.png
 tags:
   - "ABA"
   - "Behavioral Science"
