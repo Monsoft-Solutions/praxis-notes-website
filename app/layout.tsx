@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "website/components/layout/header";
 import Footer from "website/components/layout/footer";
 import { ThemeProvider } from "../components/ui/design-system/theme-provider";
+import { GoogleAnalytics } from "../components/ui/analytics/google-analytics";
+import { AnalyticsProvider } from "../components/ui/analytics/analytics-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +30,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
   return (
     <html lang="en" className="scroll-smooth w-full">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        {GA_MEASUREMENT_ID && <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />}
+        <AnalyticsProvider />
         <ThemeProvider defaultTheme="system">
           <Header />
           <main className="flex-grow">{children}</main>

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "postbuild": "next-sitemap && node scripts/notifyGoogle.js",
-    "postbuild:local": "next-sitemap && env-cmd node scripts/notifyGoogle.js",
+    "sitemap": "next-sitemap && node scripts/notifyGoogle.js",
+    "sitemap:local": "next-sitemap && env-cmd node scripts/notifyGoogle.js",
     "start": "next start",
     "lint": "next lint"
   },
