@@ -99,58 +99,6 @@ const featuresData = [
     ],
     color: "amber",
   },
-  {
-    icon: <Clock className="h-12 w-12 text-orange-500" />,
-    iconBg: "bg-orange-100 dark:bg-orange-900/20",
-    title: "Session Timer & Tracking",
-    description:
-      "Track session duration, breaks, and billable time with built-in timers and automatic calculations.",
-    benefits: [
-      "Accurate billing records",
-      "Automatic time tracking",
-      "Reduce administrative errors",
-    ],
-    color: "orange",
-  },
-  {
-    icon: <Calendar className="h-12 w-12 text-pink-500" />,
-    iconBg: "bg-pink-100 dark:bg-pink-900/20",
-    title: "Data Collection & SOAP Note Options",
-    description:
-      "Multiple note formats with easy data collection to track progress and outcomes.",
-    benefits: [
-      "Track progress over time",
-      "Multiple note formats",
-      "Simplified data collection",
-    ],
-    color: "pink",
-  },
-  {
-    icon: <Lock className="h-12 w-12 text-red-500" />,
-    iconBg: "bg-red-100 dark:bg-red-900/20",
-    title: "HIPAA Compliance & Secure Storage",
-    description:
-      "Bank-level encryption and HIPAA-compliant security to protect sensitive client information.",
-    benefits: [
-      "End-to-end encryption",
-      "Secure cloud storage",
-      "HIPAA compliance built-in",
-    ],
-    color: "red",
-  },
-  {
-    icon: <Zap className="h-12 w-12 text-yellow-500" />,
-    iconBg: "bg-yellow-100 dark:bg-yellow-900/20",
-    title: "Goal & Intervention Library",
-    description:
-      "Access an extensive library of evidence-based goals, interventions, and behavioral strategies.",
-    benefits: [
-      "Research-backed approaches",
-      "Quick implementation options",
-      "Customizable intervention plans",
-    ],
-    color: "yellow",
-  },
 ];
 
 const Features = () => {
