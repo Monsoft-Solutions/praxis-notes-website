@@ -6,6 +6,7 @@ import Footer from "website/components/layout/footer";
 import { ThemeProvider } from "../components/ui/design-system/theme-provider";
 import { GoogleAnalytics } from "../components/ui/analytics/google-analytics";
 import { AnalyticsProvider } from "../components/ui/analytics/analytics-provider";
+import { Toaster } from "website/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
