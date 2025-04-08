@@ -113,12 +113,6 @@ const Header = () => {
           >
             Contact
           </Link>
-          <Link
-            href="/design-system"
-            className="text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors px-3 py-2"
-          >
-            Design System
-          </Link>
         </nav>
 
         <div className="hidden md:flex md:items-center md:space-x-3">
