@@ -32,13 +32,13 @@ const Hero = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
-              <Link href="/auth?signup=true">
+              <Link href="/waitlist">
                 <Button
                   variant="gradient"
                   size="xl"
                   className="w-full sm:w-auto font-medium"
                 >
-                  Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+                  Join Waitlist <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="#how-it-works">

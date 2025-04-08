@@ -14,7 +14,7 @@ const resources = [
   { name: "Features", href: "/features" },
   { name: "Pricing", href: "/pricing" },
   { name: "Login", href: "/auth" },
-  { name: "Sign Up", href: "/auth?signup=true" },
+  { name: "Sign Up", href: "/waitlist" },
 ];
 
 const company = [

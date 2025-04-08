@@ -169,7 +169,7 @@ const HowItWorks = () => {
             </p>
 
             <div className="pt-2">
-              <Link href="/auth?signup=true">
+              <Link href="/waitlist">
                 <Button variant="gradient" size="lg" className="font-medium">
                   Try It Yourself <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

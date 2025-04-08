@@ -117,21 +117,14 @@ const Header = () => {
 
         <div className="hidden md:flex md:items-center md:space-x-3">
           <ThemeToggle />
-          {/* 
-          <Link href="/auth">
+          <Link href="/waitlist">
             <Button
-              variant="outline"
-              className="h-10 px-4 border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500"
+              variant="gradient"
+              className="h-10 px-5 font-medium"
             >
-              Log In
+              Join Waitlist
             </Button>
           </Link>
-          <Link href="/auth?signup=true">
-            <Button variant="gradient" className="h-10 px-5 font-medium">
-              Sign Up Free
-            </Button>
-          </Link>
-          */}
         </div>
 
         {/* Mobile menu button */}
@@ -227,17 +220,9 @@ const Header = () => {
               <ThemeToggle />
             </div>
             <div className="pt-4 flex flex-col space-y-3">
-              <Link href="/auth" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="outline" className="w-full">
-                  Log In
-                </Button>
-              </Link>
-              <Link
-                href="/auth?signup=true"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
                 <Button variant="gradient" className="w-full">
-                  Sign Up Free
+                  Join Waitlist
                 </Button>
               </Link>
             </div>

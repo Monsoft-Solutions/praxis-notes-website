@@ -67,7 +67,7 @@ const CTA = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <Link href="/auth?signup=true">
+                    <Link href="/waitlist">
                       <Button
                         size="xl"
                         className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold"

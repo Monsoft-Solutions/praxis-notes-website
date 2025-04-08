@@ -142,7 +142,9 @@ const Pricing = () => {
 
           <div className="flex items-center justify-center gap-4 mt-6">
             <span
-              className={`text-sm font-medium ${!isAnnual ? "text-primary" : "text-muted-foreground"}`}
+              className={`text-sm font-medium ${
+                !isAnnual ? "text-primary" : "text-muted-foreground"
+              }`}
             >
               Monthly
             </span>
@@ -158,7 +160,9 @@ const Pricing = () => {
             </div>
             <div className="flex items-center">
               <span
-                className={`text-sm font-medium ${isAnnual ? "text-primary" : "text-muted-foreground"}`}
+                className={`text-sm font-medium ${
+                  isAnnual ? "text-primary" : "text-muted-foreground"
+                }`}
               >
                 Annual
               </span>
@@ -233,7 +237,7 @@ const Pricing = () => {
               </CardContent>
               <CardFooter>
                 <Link
-                  href={index === 3 ? "/contact" : "/auth?signup=true"}
+                  href={index === 3 ? "/contact" : "/waitlist"}
                   className="w-full"
                 >
                   <Button

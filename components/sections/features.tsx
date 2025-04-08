@@ -1,16 +1,12 @@
 import {
   Brain,
-  Calendar,
   FileText,
-  Lock,
   MessageSquareText,
   Smartphone,
   Check,
   Sparkles,
   SearchCheck,
   BarChart3,
-  Clock,
-  Zap,
 } from "lucide-react";
 import {
   Card,
