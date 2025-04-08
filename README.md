@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PraxisNote - AI-Powered ABA Session Notes
 
-## Getting Started
+![PraxisNote](public/favicon.ico)
 
-First, run the development server:
+PraxisNote is an advanced AI-powered platform designed specifically for ABA (Applied Behavior Analysis) professionals to streamline session documentation, reduce administrative burden, and ensure compliance with insurance requirements.
+
+## About
+
+PraxisNote was developed by [Monsoft Solutions](https://www.monsoftsolutions.com) to help ABA professionals save time on documentation while maintaining high clinical standards. Our mission is to give therapists more time to focus on what matters most - their clients.
+
+Visit [PraxisNote.com](https://www.praxisnote.com) to learn more or start your free trial.
+
+## Key Features
+
+- **AI-Powered Note Generation** - Generate detailed, insurance-ready session notes in seconds, supporting CPT codes 97153-97158
+- **Note Review & Enhancement** - Upload existing notes for AI analysis and improvement suggestions
+- **Customizable Templates** - Configurable templates for BCBAs and RBTs to match clinic requirements
+- **Progress Tracking & Reporting** - Monitor client goals and generate comprehensive progress reports
+- **Mobile-Friendly Access** - Access notes from any device, perfect for in-clinic and remote sessions
+- **Billing-Compliant Formatting** - Insurance-ready notes to reduce claim rejections
+- **Session Timer & Tracking** - Track session duration, breaks, and billable time
+- **Multiple Note Formats** - Support for various note styles including SOAP notes
+- **HIPAA Compliance** - Bank-level encryption and secure storage for client information
+- **Goal & Intervention Library** - Access to evidence-based goals and intervention strategies
+
+## Technology Stack
+
+PraxisNote is built with modern web technologies:
+
+- [Next.js 15](https://nextjs.org/) - React framework with app router
+- [React 19](https://react.dev/) - UI library
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- [TailwindCSS 4](https://tailwindcss.com/) - Utility-first CSS framework
+- [Radix UI](https://www.radix-ui.com/) - Accessible component primitives
+- [Lucide Icons](https://lucide.dev/) - Beautiful open-source icons
+- [PNPM](https://pnpm.io/) - Fast, disk space efficient package manager
+
+## Development
+
+### Prerequisites
+
+- Node.js 18.17 or later
+- PNPM 9.15.4 or later
+
+### Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Run the development server:
+   ```bash
+   pnpm dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Build
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Start Production Server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## License
 
-## Learn More
+PraxisNote is licensed under the [Apache License 2.0](LICENSE).
 
-To learn more about Next.js, take a look at the following resources:
+Copyright © 2024 Monsoft Solutions. All rights reserved.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For more information, visit:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [PraxisNote.com](https://www.praxisnote.com)
+- [Monsoft Solutions](https://www.monsoftsolutions.com)
