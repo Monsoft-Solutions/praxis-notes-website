@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { Button } from "website/components/ui/button";
 import {
   Mail,
   MapPin,
@@ -10,6 +9,7 @@ import {
   Clock4,
 } from "lucide-react";
 import FAQ from "website/components/sections/faq";
+import ContactForm from "website/components/forms/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact Us | Praxis Note",
@@ -58,124 +58,7 @@ export default function ContactPage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <form className="p-8 border border-blue-100 dark:border-blue-900/50 rounded-xl shadow-lg bg-white dark:bg-gray-900 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="Your name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="your.email@example.com"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="organization"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Organization (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="Your company or organization"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="How can we help you?"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background resize-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="Tell us about your question or concern..."
-                    required
-                  />
-                </div>
-
-                <div className="flex items-start px-4 py-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    name="newsletter"
-                    className="mt-1 mr-2"
-                  />
-                  <label htmlFor="newsletter" className="text-sm">
-                    Subscribe to our newsletter for product updates and
-                    resources for ABA professionals
-                  </label>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    type="submit"
-                    variant="gradient"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                  >
-                    Send Message
-                  </Button>
-                  <Button
-                    type="reset"
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                  >
-                    Clear Form
-                  </Button>
-                </div>
-              </form>
+              <ContactForm />
             </div>
 
             <div className="p-1 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { Button } from "website/components/ui/button";
-import { Users, CheckCircle, ArrowRight, Clock } from "lucide-react";
+import { Users, CheckCircle, Clock } from "lucide-react";
+import WaitlistForm from "website/components/forms/waitlist-form";
 
 export const metadata: Metadata = {
   title: "Join Our Waitlist | Praxis Note",
@@ -45,139 +45,7 @@ export default function WaitlistPage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <form className="p-8 border border-blue-100 dark:border-blue-900/50 rounded-xl shadow-lg bg-white dark:bg-gray-900 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="firstName"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="Your first name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                      placeholder="Your last name"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="organization"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Organization (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="Your company or organization"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="role"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Your Role
-                  </label>
-                  <select
-                    id="role"
-                    name="role"
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    required
-                  >
-                    <option value="">Select your role</option>
-                    <option value="BCBA">BCBA/BCaBA</option>
-                    <option value="RBT">RBT</option>
-                    <option value="Clinic Owner">ABA Clinic Owner</option>
-                    <option value="Administrator">Administrator</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="interest"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Why are you interested in Praxis Note?
-                  </label>
-                  <textarea
-                    id="interest"
-                    name="interest"
-                    rows={4}
-                    className="w-full px-4 py-2 rounded-md border border-input bg-background resize-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
-                    placeholder="Tell us about your needs and how Praxis Note could help you..."
-                    required
-                  />
-                </div>
-
-                <div className="flex items-start px-4 py-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    name="newsletter"
-                    className="mt-1 mr-2"
-                    defaultChecked
-                  />
-                  <label htmlFor="newsletter" className="text-sm">
-                    Subscribe to our newsletter for product updates and
-                    resources for ABA professionals
-                  </label>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    type="submit"
-                    variant="gradient"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                  >
-                    Join Waitlist <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
-              </form>
+              <WaitlistForm />
             </div>
 
             <div className="p-1 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">

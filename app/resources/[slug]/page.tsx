@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "website/components/ui/button";
 import { getResourceBySlug } from "website/lib/resources";
 import ReactMarkdown from "react-markdown";
@@ -41,7 +42,7 @@ export default async function ResourcePage({
 
   return (
     <>
-      <section className="pt-16 md:py-24 bg-gradient-to-b from-blue-50/70 to-transparent dark:from-blue-950/10 dark:to-transparent">
+      <section className="pt-16 md:pt-24 bg-gradient-to-b from-blue-50/70 to-transparent dark:from-blue-950/10 dark:to-transparent">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mx-auto max-w-4xl">
             <Link
@@ -99,6 +100,26 @@ export default async function ResourcePage({
           </div>
         </div>
       </section>
+
+      {resource.image && (
+        <section className="pb-12">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="mx-auto max-w-4xl">
+              <div className="relative w-full rounded-xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.01] border border-gray-200 dark:border-gray-800">
+                <Image
+                  src={resource.image}
+                  alt={resource.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                  className="object-cover object-center transition-opacity duration-300 hover:opacity-95"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-50 dark:from-black/30"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-16 pt-2">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">

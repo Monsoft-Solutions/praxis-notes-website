@@ -5,11 +5,10 @@ title: "Writing Effective ABA Session Notes for CPT Code 97153"
 description: "Learn how to create comprehensive and compliant ABA session notes for CPT code 97153 that support quality care and streamline billing."
 date: "April 12, 2025"
 readingTime: "8 min read"
-image: "/images/resources/session-notes-hero.jpg"
+image: "/images/resources/ABA-principles-Techniques-and-pplications.png"
 author:
   name: "Dr. Sarah Johnson"
   title: "BCBA-D, Clinical Director"
-  image: "/images/team/sarah-johnson.jpg"
 tags:
   - "ABA Therapy"
   - "Documentation"
