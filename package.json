@@ -1,8 +1,11 @@
 {
-  "name": "website",
+  "name": "praxis-note-website",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
+  "owner": "Monsoft Solutions, LLC (https://monsoft.io)",
+  "license": "Apache-2.0",
+  "description": "Praxis Note Website (https://praxisnote.com)",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
