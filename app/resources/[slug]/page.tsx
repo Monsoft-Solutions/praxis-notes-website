@@ -8,13 +8,17 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ChevronLeft, ArrowRight, Calendar, Clock, Share } from "lucide-react";
 
+type ResourceParams = {
+  slug: string;
+};
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<ResourceParams>;
 }): Promise<Metadata> {
-  const pageParams = await params;
-  const resource = getResourceBySlug(pageParams.slug);
+  const slug = (await params).slug;
+  const resource = await getResourceBySlug(slug);
 
   if (!resource) {
     return {
@@ -31,10 +35,10 @@ export async function generateMetadata({
 export default async function ResourcePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<ResourceParams>;
 }) {
-  const pageParams = await params;
-  const resource = getResourceBySlug(pageParams.slug);
+  const slug = (await params).slug;
+  const resource = await getResourceBySlug(slug);
 
   if (!resource) {
     notFound();
