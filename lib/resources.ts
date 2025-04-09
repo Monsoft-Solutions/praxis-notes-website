@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import { db } from "website/db/config";
+import { resources } from "website/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 export interface Resource {
   id: string;
@@ -15,66 +15,59 @@ export interface Resource {
     content: string;
     buttonText: string;
     buttonLink: string;
-  };
+  } | null;
   author?: {
     name: string;
     title?: string;
     image?: string;
-  };
-  tags?: string[];
-  image?: string;
+  } | null;
+  tags?: string[] | null;
+  image?: string | null;
 }
 
-const resourcesDirectory = path.join(process.cwd(), "data/resources");
-
 /**
- * Loads all resource markdown files from the resources directory
+ * Loads all resources from the database
  */
-export function getAllResources(): Resource[] {
-  // Check if directory exists
-  if (!fs.existsSync(resourcesDirectory)) {
+export async function getAllResources(): Promise<Resource[]> {
+  try {
+    const result = await db.query.resources.findMany({
+      orderBy: (resources) => [desc(resources.date)],
+    });
+
+    return result.map((resource) => ({
+      ...resource,
+      readingTime: resource.readingTime || "",
+    }));
+  } catch (error) {
+    console.error("Error fetching resources:", error);
     return [];
   }
-
-  // Get all .md files from the resources directory
-  const fileNames = fs
-    .readdirSync(resourcesDirectory)
-    .filter((fileName) => fileName.endsWith(".md"));
-
-  const resources = fileNames.map((fileName) => {
-    // Read file content
-    const filePath = path.join(resourcesDirectory, fileName);
-    const fileContent = fs.readFileSync(filePath, "utf8");
-
-    // Parse frontmatter and content
-    const { data, content } = matter(fileContent);
-
-    // Convert to Resource type
-    return {
-      id: data.id || fileName.replace(/\.md$/, ""),
-      slug: data.slug || fileName.replace(/\.md$/, ""),
-      title: data.title || "",
-      description: data.description || "",
-      date: data.date || "",
-      readingTime: data.readingTime || "",
-      content: content,
-      cta: data.cta || undefined,
-      author: data.author || undefined,
-      tags: data.tags || undefined,
-      image: data.image || undefined,
-    } as Resource;
-  });
-
-  // Sort by date (newest first) if available
-  return resources.sort((a, b) => {
-    if (!a.date || !b.date) return 0;
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
 }
 
 /**
  * Gets a resource by its slug
  */
-export function getResourceBySlug(slug: string): Resource | undefined {
-  return getAllResources().find((resource) => resource.slug === slug);
+export async function getResourceBySlug(
+  slug: string | string[] | undefined
+): Promise<Resource | undefined> {
+  if (!slug) return undefined;
+
+  // Handle if slug is an array (for backward compatibility)
+  const slugValue = Array.isArray(slug) ? slug[0] : slug;
+
+  try {
+    const resource = await db.query.resources.findFirst({
+      where: eq(resources.slug, slugValue),
+    });
+
+    if (!resource) return undefined;
+
+    return {
+      ...resource,
+      readingTime: resource.readingTime || "",
+    };
+  } catch (error) {
+    console.error(`Error fetching resource with slug ${slugValue}:`, error);
+    return undefined;
+  }
 }

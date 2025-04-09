@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     "Learn more about ABA therapy, terms, and best practices in our resources section.",
 };
 
-export default function ResourcesPage() {
-  const resources = getAllResources();
+export default async function ResourcesPage() {
+  const resources = await getAllResources();
 
   return (
     <>
