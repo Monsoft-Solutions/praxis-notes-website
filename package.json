@@ -20,6 +20,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx db/seed.ts",
     "db:seed:resources": "tsx db/seed-resources.ts",
+    "db:seed:categories": "tsx db/seed-categories.ts",
     "db:setup": "pnpm db:generate && pnpm db:migrate && pnpm db:seed",
     "update-google-index": "env-cmd node scripts/update-google-index.js"
   },
