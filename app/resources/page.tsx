@@ -5,7 +5,6 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "website/components/ui/card";
 import { getPaginatedResources } from "website/lib/resources";
 import { Button } from "website/components/ui/button";
-import { cn } from "website/lib/utils";
 
 export const metadata: Metadata = {
   title: "Resources | PraxisNote",
