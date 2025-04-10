@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { Button } from 'website/components/ui/button';
-import { submitContact } from 'website/app/actions/contact';
-import { useRouter } from 'next/navigation';
-import { toast } from 'website/components/ui/use-toast';
+import { useState, useRef } from "react";
+import { Button } from "website/components/ui/button";
+import { submitContact } from "website/app/actions/contact";
+import { useRouter } from "next/navigation";
+import { toast } from "website/components/ui/use-toast";
+import { FORM } from "website/components/ui/design-system/design-tokens";
+import { cn } from "website/lib/utils";
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -12,40 +14,44 @@ export default function ContactForm() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    message: "",
   });
   const router = useRouter();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormValues(prev => ({
+    setFormValues((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const resetForm = () => {
     setFormValues({
-      name: '',
-      email: '',
-      company: '',
-      message: ''
+      name: "",
+      email: "",
+      company: "",
+      message: "",
     });
-    
+
     // Also manually clear form inputs
     if (formRef.current) {
-      const inputs = formRef.current.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
-        'input[type="text"], input[type="email"], textarea'
-      );
-      inputs.forEach(input => {
-        input.value = '';
+      const inputs = formRef.current.querySelectorAll<
+        HTMLInputElement | HTMLTextAreaElement
+      >('input[type="text"], input[type="email"], textarea');
+      inputs.forEach((input) => {
+        input.value = "";
       });
-      
+
       // Reset checkbox if it exists
-      const newsletter = formRef.current.querySelector<HTMLInputElement>('input[type="checkbox"]');
+      const newsletter = formRef.current.querySelector<HTMLInputElement>(
+        'input[type="checkbox"]'
+      );
       if (newsletter) {
         newsletter.checked = false;
       }
@@ -66,14 +72,18 @@ export default function ContactForm() {
         resetForm();
         toast({
           title: "Message sent!",
-          description: "We&apos;ve received your message and will get back to you soon.",
+          description:
+            "We've received your message and will get back to you soon.",
           variant: "success",
         });
       } else {
-        setFormError(response.error || "Something went wrong. Please try again.");
+        setFormError(
+          response.error || "Something went wrong. Please try again."
+        );
         toast({
           title: "Error",
-          description: response.error || "Something went wrong. Please try again.",
+          description:
+            response.error || "Something went wrong. Please try again.",
           variant: "destructive",
         });
       }
@@ -92,26 +102,38 @@ export default function ContactForm() {
   };
 
   return (
-    <form 
+    <form
       ref={formRef}
-      className="p-8 border border-blue-100 dark:border-blue-900/50 rounded-xl shadow-lg bg-white dark:bg-gray-900 space-y-6"
+      className="p-8 rounded-xl space-y-6 transition-all duration-200 
+                 bg-white border border-gray-200 dark:bg-slate-800 dark:border-slate-700"
       onSubmit={handleSubmit}
     >
       {formError && (
-        <div className="p-4 mb-4 text-red-700 bg-red-100 dark:bg-red-900/20 dark:text-red-400 rounded-lg">
+        <div
+          className="p-4 mb-4 rounded-lg transition-colors duration-200
+                        bg-red-50 border border-red-200 text-red-600
+                        dark:bg-red-900/20 dark:border-red-800 dark:text-red-300"
+        >
           {formError}
         </div>
       )}
 
       {formSuccess && (
-        <div className="p-4 mb-4 text-green-700 bg-green-100 dark:bg-green-900/20 dark:text-green-400 rounded-lg">
+        <div
+          className="p-4 mb-4 rounded-lg transition-colors duration-200
+                        bg-green-50 border border-green-200 text-green-700
+                        dark:bg-green-900/20 dark:border-green-800 dark:text-green-300"
+        >
           Thank you for your message! We&apos;ll get back to you soon.
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2">
+          <label
+            htmlFor="name"
+            className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+          >
             Name
           </label>
           <input
@@ -120,13 +142,23 @@ export default function ContactForm() {
             name="name"
             value={formValues.name}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+            className={cn(
+              FORM.INPUT,
+              "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
+              "focus:ring-blue-500 focus:border-blue-500",
+              "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
+              "dark:focus:ring-blue-500 dark:focus:border-blue-500",
+              "transition-colors duration-200"
+            )}
             placeholder="Your name"
             required
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2">
+          <label
+            htmlFor="email"
+            className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+          >
             Email
           </label>
           <input
@@ -135,7 +167,14 @@ export default function ContactForm() {
             name="email"
             value={formValues.email}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+            className={cn(
+              FORM.INPUT,
+              "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
+              "focus:ring-blue-500 focus:border-blue-500",
+              "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
+              "dark:focus:ring-blue-500 dark:focus:border-blue-500",
+              "transition-colors duration-200"
+            )}
             placeholder="your.email@example.com"
             required
           />
@@ -143,7 +182,10 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="company" className="block text-sm font-medium mb-2">
+        <label
+          htmlFor="company"
+          className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+        >
           Organization (Optional)
         </label>
         <input
@@ -152,13 +194,23 @@ export default function ContactForm() {
           name="company"
           value={formValues.company}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+          className={cn(
+            FORM.INPUT,
+            "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
+            "focus:ring-blue-500 focus:border-blue-500",
+            "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
+            "dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            "transition-colors duration-200"
+          )}
           placeholder="Your company or organization"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
+        <label
+          htmlFor="message"
+          className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+        >
           Message
         </label>
         <textarea
@@ -167,34 +219,65 @@ export default function ContactForm() {
           rows={6}
           value={formValues.message}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 rounded-md border border-input bg-background resize-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+          className={cn(
+            FORM.INPUT,
+            "resize-none bg-white border-gray-300 text-gray-900 placeholder-gray-500",
+            "focus:ring-blue-500 focus:border-blue-500",
+            "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
+            "dark:focus:ring-blue-500 dark:focus:border-blue-500",
+            "transition-colors duration-200"
+          )}
           placeholder="Tell us about your question or concern..."
           required
         />
       </div>
 
-      <div className="flex items-start px-4 py-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
-        <input type="checkbox" id="newsletter" name="newsletter" className="mt-1 mr-2" />
-        <label htmlFor="newsletter" className="text-sm">
-          Subscribe to our newsletter for product updates and resources for ABA professionals
+      <div
+        className="flex items-start p-4 rounded-lg transition-colors duration-200
+                      bg-blue-50 border border-blue-200 
+                      dark:bg-blue-900/20 dark:border-blue-800"
+      >
+        <input
+          type="checkbox"
+          id="newsletter"
+          name="newsletter"
+          className={cn(
+            FORM.CHECKBOX,
+            "mt-1 mr-2 border-gray-300 text-blue-600",
+            "dark:border-slate-600 dark:bg-slate-900 dark:checked:bg-blue-600",
+            "transition-colors duration-200"
+          )}
+        />
+        <label
+          htmlFor="newsletter"
+          className="text-sm text-gray-800 dark:text-slate-200"
+        >
+          Subscribe to our newsletter for product updates and resources for ABA
+          professionals
         </label>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <Button
           type="submit"
-          variant="gradient"
+          variant="default"
           size="lg"
-          className="w-full sm:w-auto"
+          className="bg-blue-600 text-white hover:bg-blue-700 
+                     dark:bg-blue-700 dark:hover:bg-blue-800 
+                     w-full sm:w-auto transition-colors duration-200"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
-        <Button 
-          type="button" 
-          variant="outline" 
-          size="lg" 
-          className="w-full sm:w-auto"
+        <Button
+          type="button"
+          variant="outline"
+          size="lg"
+          className="w-full sm:w-auto border border-gray-400 text-gray-700
+                     hover:bg-gray-100 hover:text-gray-900
+                     dark:border-slate-600 dark:text-slate-200
+                     dark:hover:bg-slate-700 dark:hover:text-white
+                     transition-colors duration-200"
           onClick={resetForm}
         >
           Clear Form

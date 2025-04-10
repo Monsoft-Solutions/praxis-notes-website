@@ -9,12 +9,12 @@ import {
 } from "lucide-react";
 import CTAPlain from "website/components/sections/cta-plain";
 import {
-  DarkComparisonBox,
-  DarkInfoBox,
-  DarkSection,
-  DarkTeamCard,
-  DarkValueCard,
-} from "website/components/sections/dark-cards";
+  ComparisonBox,
+  InfoBox,
+  Section,
+  TeamCard,
+  ValueCard,
+} from "website/components/sections/cards";
 
 export const metadata: Metadata = {
   title: "Dark Theme Example | Praxis Notes",
@@ -43,56 +43,58 @@ export default function DarkThemeExamplePage() {
       </section>
 
       {/* Dark Info Boxes */}
-      <DarkSection
+      <Section
         title="Dark Info Boxes"
         subtitle="Clean, modern information boxes with dark theme styling"
+        dark={true}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <DarkInfoBox title="Key Documentation Features">
+          <InfoBox title="Key Documentation Features">
             <p className="mb-0">
               Our AI-assisted documentation helps ABA therapists complete their
               notes in minutes, not hours, with smart templates and automatic
               data integration.
             </p>
-          </DarkInfoBox>
+          </InfoBox>
 
-          <DarkInfoBox textCenter>
+          <InfoBox textCenter>
             <p className="text-xl font-semibold italic mb-4">
               &ldquo;Praxis Notes has transformed how we document ABA therapy
               sessions. It&apos;s been a game-changer for our practice.&rdquo;
             </p>
-            <p className="text-white/60">- Sarah Johnson, BCBA</p>
-          </DarkInfoBox>
+            <p className="text-slate-400">- Sarah Johnson, BCBA</p>
+          </InfoBox>
         </div>
-      </DarkSection>
+      </Section>
 
       {/* Dark Team Cards */}
-      <DarkSection
+      <Section
         title="Our Team"
         subtitle="Meet the experts behind Praxis Notes"
+        dark={true}
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              icon: <Brain className="w-8 h-8 text-blue-400" />,
+              icon: <Brain className="w-8 h-8 text-soft-blue" />,
               title: "Behavioral Expertise",
               description:
                 "Our team includes BCBAs and RBTs who understand the daily challenges of ABA documentation.",
             },
             {
-              icon: <PencilRuler className="w-8 h-8 text-purple-400" />,
+              icon: <PencilRuler className="w-8 h-8 text-lavender" />,
               title: "Design Focus",
               description:
                 "We create calming, intuitive interfaces that reduce cognitive load for busy practitioners.",
             },
             {
-              icon: <Puzzle className="w-8 h-8 text-green-400" />,
+              icon: <Puzzle className="w-8 h-8 text-mint-green" />,
               title: "Innovation Mindset",
               description:
                 "We're constantly exploring new ways to solve the documentation challenges in ABA.",
             },
           ].map((item, index) => (
-            <DarkTeamCard
+            <TeamCard
               key={index}
               icon={item.icon}
               title={item.title}
@@ -100,15 +102,16 @@ export default function DarkThemeExamplePage() {
             />
           ))}
         </div>
-      </DarkSection>
+      </Section>
 
       {/* Dark Comparison Boxes */}
-      <DarkSection
+      <Section
         title="The Praxis Difference"
         subtitle="See how our approach compares to traditional methods"
+        dark={true}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <DarkComparisonBox
+          <ComparisonBox
             title="Traditional Documentation"
             items={[
               {
@@ -126,9 +129,9 @@ export default function DarkThemeExamplePage() {
             ]}
           />
 
-          <DarkComparisonBox
+          <ComparisonBox
             title="The Praxis Way"
-            bgColor="bg-blue-900/30"
+            bgColor="bg-steel-blue/30"
             items={[
               {
                 text: "ABA-specific templates with smart completion",
@@ -145,17 +148,18 @@ export default function DarkThemeExamplePage() {
             ]}
           />
         </div>
-      </DarkSection>
+      </Section>
 
       {/* Dark Value Cards */}
-      <DarkSection
+      <Section
         title="Our Core Values"
         subtitle="The principles that guide everything we build"
+        dark={true}
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              icon: <Heart className="w-8 h-8 text-red-400" />,
+              icon: <Heart className="w-8 h-8 text-light-pink" />,
               title: "Client-Centered",
               description:
                 "We build tools that help therapists spend more time with clients and less time on paperwork.",
@@ -165,21 +169,21 @@ export default function DarkThemeExamplePage() {
               ],
             },
             {
-              icon: <LineChart className="w-8 h-8 text-blue-400" />,
+              icon: <LineChart className="w-8 h-8 text-soft-blue" />,
               title: "Data-Driven",
               description:
                 "We believe in the power of data to inform treatment decisions and demonstrate progress.",
               points: ["Automatic data analysis", "Visual progress tracking"],
             },
             {
-              icon: <BookOpenText className="w-8 h-8 text-purple-400" />,
+              icon: <BookOpenText className="w-8 h-8 text-lavender" />,
               title: "Continuous Learning",
               description:
                 "We're constantly learning from our users and the latest research in behavioral science.",
               points: ["Regular feature updates", "Evidence-based approach"],
             },
           ].map((value, index) => (
-            <DarkValueCard
+            <ValueCard
               key={index}
               icon={value.icon}
               title={value.title}
@@ -188,7 +192,7 @@ export default function DarkThemeExamplePage() {
             />
           ))}
         </div>
-      </DarkSection>
+      </Section>
 
       {/* CTA section */}
       <CTAPlain
