@@ -61,7 +61,7 @@ async function associateResourceCategories() {
         // Check if any keywords are in the title, description, or content
         const contentToCheck = [
           resource.title.toLowerCase(),
-          resource.description.toLowerCase(),
+          resource.metaDescription.toLowerCase(),
           resource.content.toLowerCase(),
           ...resourceTags.map((tag) => tag.toLowerCase()),
         ].join(" ");

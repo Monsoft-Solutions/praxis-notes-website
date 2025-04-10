@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   return {
     title: `${resource.title} | PraxisNote Resources`,
-    description: resource.description,
+    description: resource.metaDescription,
   };
 }
 
@@ -64,7 +64,7 @@ export default async function ResourcePage({
                       key={tag.toString()}
                       className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
                     >
-                      {tag.name}
+                      {typeof tag === "string" ? tag : tag.name}
                     </span>
                   ))}
                 </div>

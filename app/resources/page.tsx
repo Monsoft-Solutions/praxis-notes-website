@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 export default async function ResourcesPage({
   searchParams,
 }: {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const currentPage = Number((await searchParams).page) || 1;
   const pageSize = 6; // Number of resources per page
 
   const { resources, totalPages } = await getPaginatedResources(
@@ -81,7 +81,7 @@ export default async function ResourcesPage({
                       {resource.title}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 mb-5 flex-1">
-                      {resource.description}
+                      {resource.metaDescription}
                     </p>
                     <div className="mt-auto flex justify-between items-center">
                       <span className="text-sm text-gray-500 dark:text-gray-400">

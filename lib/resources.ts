@@ -6,7 +6,7 @@ export interface Resource {
   id: string;
   slug: string;
   title: string;
-  description: string;
+  metaDescription: string;
   date: string;
   readingTime: string;
   content: string;

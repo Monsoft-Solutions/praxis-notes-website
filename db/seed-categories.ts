@@ -75,6 +75,7 @@ async function seedCategories() {
       await db.insert(categories).values({
         name: category.name,
         description: category.description,
+        slug: category.name.toLowerCase().replace(/ /g, "-"),
       });
 
       console.log(`Inserted category: ${category.name}`);
