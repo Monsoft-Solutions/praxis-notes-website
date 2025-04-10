@@ -27,22 +27,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero section with mission statement */}
-      <section className="relative py-20 md:py-28 overflow-hidden bg-ivory dark:bg-deep-navy">
+      <section className="relative pt-20 md:pt-28 overflow-hidden bg-ivory dark:bg-deep-navy">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-soft-blue/10 blur-3xl" />
           <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-lavender/10 blur-3xl" />
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              About Praxis Notes
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Our Story</h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed mb-10">
               A story of tools and the future of ABA documentation
             </p>
-            <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-soft-blue/20 flex items-center justify-center">
-              <FileText className="w-10 h-10 text-soft-blue" />
-            </div>
           </div>
         </div>
       </section>
@@ -51,7 +46,6 @@ export default function AboutPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6">
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <h2 className="text-4xl font-bold mb-6">Our Story</h2>
             <p className="mb-4">
               Praxis Notes was born from our team&apos;s 30+ years of combined
               experience in ABA therapy. We&apos;ve felt the pain of
@@ -69,7 +63,7 @@ export default function AboutPage() {
                 src="/images/illustrations/aba-specilist-illustration.jpg"
                 alt="ABA professional working on documentation"
                 fill
-                className="object-cover"
+                className="object-cover m-0"
               />
             </div>
 
@@ -85,14 +79,21 @@ export default function AboutPage() {
               the 1960s.
             </p>
 
-            <InfoBox title="The Documentation Problem" className="my-12">
-              <p className="mb-0">
-                As ABA therapy became more widely adopted, documentation
-                requirements grew exponentially. Therapists found themselves
-                spending 1-2 hours writing notes for each hour of therapy
-                provided.
-              </p>
-            </InfoBox>
+            <div className="my-12 relative aspect-square rounded-xl overflow-hidden shadow-md border border-soft-blue/20">
+              <Image
+                src="/images/illustrations/professional-too-much-work.jpg"
+                alt="Professional too much work"
+                fill
+                className="object-cover m-0"
+              />
+            </div>
+
+            <p className="mb-0">
+              As ABA therapy became more widely adopted, documentation
+              requirements grew exponentially. Therapists found themselves
+              spending 1-2 hours writing notes for each hour of therapy
+              provided.
+            </p>
 
             <p>Then something magical happened in recent years!</p>
 
@@ -127,6 +128,15 @@ export default function AboutPage() {
               At Praxis Notes, we&apos;re designing for what ABA documentation
               <em>should</em> be—not just digitizing what it has been.
             </p>
+
+            <div className="my-12 relative aspect-square rounded-xl overflow-hidden shadow-md border border-soft-blue/20">
+              <Image
+                src="/images/illustrations/an-aba-specialist-wokring-with-smart-solutions.jpg"
+                alt="An ABA specialist working with smart solutions"
+                fill
+                className="object-cover m-0"
+              />
+            </div>
 
             <p>
               As a first step, we are blending clinical knowledge, behavioral

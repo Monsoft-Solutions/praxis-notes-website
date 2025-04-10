@@ -40,9 +40,6 @@ export default function ContactPage() {
               Our support team is here to help with any questions about Praxis
               Note.
             </p>
-            <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-soft-blue/20 flex items-center justify-center">
-              <MessageSquare className="w-10 h-10 text-soft-blue" />
-            </div>
           </div>
         </div>
       </section>
