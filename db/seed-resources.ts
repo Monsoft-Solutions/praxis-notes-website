@@ -8,7 +8,7 @@ async function seedResources() {
   console.log("Starting resources seeding...");
 
   const resourcesDirectory = path.join(process.cwd(), "data/resources");
-  
+
   // Check if directory exists
   if (!fs.existsSync(resourcesDirectory)) {
     console.log("Resources directory not found");
@@ -33,11 +33,14 @@ async function seedResources() {
 
       // Check if resource already exists
       const existingResource = await db.query.resources.findFirst({
-        where: (resources, { eq }) => eq(resources.slug, data.slug || fileName.replace(/\.md$/, "")),
+        where: (resources, { eq }) =>
+          eq(resources.slug, data.slug || fileName.replace(/\.md$/, "")),
       });
 
       if (existingResource) {
-        console.log(`Resource ${data.slug || fileName} already exists, skipping`);
+        console.log(
+          `Resource ${data.slug || fileName} already exists, skipping`
+        );
         continue;
       }
 
@@ -46,7 +49,7 @@ async function seedResources() {
         id: data.id || fileName.replace(/\.md$/, ""),
         slug: data.slug || fileName.replace(/\.md$/, ""),
         title: data.title || "",
-        description: data.description || "",
+        metaDescription: data.description || "",
         date: data.date || "",
         readingTime: data.readingTime || "",
         content: content,

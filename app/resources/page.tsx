@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card } from "website/components/ui/card";
-import { getAllResources } from "website/lib/resources";
+import { getPaginatedResources } from "website/lib/resources";
+import { Button } from "website/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Resources | PraxisNote",
@@ -11,8 +12,18 @@ export const metadata: Metadata = {
     "Learn more about ABA therapy, terms, and best practices in our resources section.",
 };
 
-export default async function ResourcesPage() {
-  const resources = await getAllResources();
+export default async function ResourcesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const currentPage = Number((await searchParams).page) || 1;
+  const pageSize = 6; // Number of resources per page
+
+  const { resources, totalPages } = await getPaginatedResources(
+    currentPage,
+    pageSize
+  );
 
   return (
     <>
@@ -55,7 +66,11 @@ export default async function ResourcesPage() {
                       {resource.tags && resource.tags.length > 0 && (
                         <div className="absolute top-4 right-4 z-20">
                           <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-xs font-medium">
-                            {resource.tags[0]}
+                            {typeof resource.tags[0] === "string"
+                              ? resource.tags[0]
+                              : resource.tags[0] && "name" in resource.tags[0]
+                              ? resource.tags[0].name
+                              : "Tag"}
                           </span>
                         </div>
                       )}
@@ -66,7 +81,7 @@ export default async function ResourcesPage() {
                       {resource.title}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 mb-5 flex-1">
-                      {resource.description}
+                      {resource.metaDescription}
                     </p>
                     <div className="mt-auto flex justify-between items-center">
                       <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -82,8 +97,127 @@ export default async function ResourcesPage() {
               </Link>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex justify-center items-center gap-2">
+              {/* Previous Page Button */}
+              {currentPage > 1 ? (
+                <Link
+                  href={`/resources?page=${currentPage - 1}`}
+                  aria-label="Previous page"
+                >
+                  <Button variant="outline" size="sm">
+                    <ChevronLeft className="h-4 w-4 mr-1" />
+                    Prev
+                  </Button>
+                </Link>
+              ) : (
+                <Button variant="outline" size="sm" disabled>
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Prev
+                </Button>
+              )}
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-1 mx-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => {
+                    // For many pages, show a limited range
+                    if (totalPages > 7) {
+                      // Always show first, last, current, and pages adjacent to current
+                      if (
+                        page === 1 ||
+                        page === totalPages ||
+                        (page >= currentPage - 1 && page <= currentPage + 1)
+                      ) {
+                        return (
+                          <PaginationNumber
+                            key={page}
+                            page={page}
+                            currentPage={currentPage}
+                          />
+                        );
+                      }
+                      // Show ellipses for gaps
+                      if (
+                        (page === 2 && currentPage > 3) ||
+                        (page === totalPages - 1 &&
+                          currentPage < totalPages - 2)
+                      ) {
+                        return (
+                          <span key={page} className="px-2">
+                            ...
+                          </span>
+                        );
+                      }
+                      return null;
+                    }
+
+                    // For fewer pages, show all page numbers
+                    return (
+                      <PaginationNumber
+                        key={page}
+                        page={page}
+                        currentPage={currentPage}
+                      />
+                    );
+                  }
+                )}
+              </div>
+
+              {/* Next Page Button */}
+              {currentPage < totalPages ? (
+                <Link
+                  href={`/resources?page=${currentPage + 1}`}
+                  aria-label="Next page"
+                >
+                  <Button variant="outline" size="sm">
+                    Next
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </Link>
+              ) : (
+                <Button variant="outline" size="sm" disabled>
+                  Next
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </>
+  );
+}
+
+// Helper component for pagination numbers
+function PaginationNumber({
+  page,
+  currentPage,
+}: {
+  page: number;
+  currentPage: number;
+}) {
+  const isActive = page === currentPage;
+
+  if (isActive) {
+    return (
+      <Button
+        variant="default"
+        size="sm"
+        className="w-8 h-8 p-0 pointer-events-none"
+      >
+        {page}
+      </Button>
+    );
+  }
+
+  return (
+    <Link href={`/resources?page=${page}`}>
+      <Button variant="outline" size="sm" className="w-8 h-8 p-0">
+        {page}
+      </Button>
+    </Link>
   );
 }
