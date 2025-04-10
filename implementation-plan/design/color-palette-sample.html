@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praxis Notes ABA-Inspired Color Palette</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        background-color: #fffdf9;
+        color: #333333;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin: 2rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #cdcdcd;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        max-width: 60ch;
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .color-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .color-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .color-preview {
+        height: 150px;
+      }
+
+      .color-info {
+        padding: 1rem;
+        background-color: #f3f3f3;
+      }
+
+      .color-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .color-hex {
+        font-family: monospace;
+        margin-bottom: 0.5rem;
+        color: #666666;
+      }
+
+      .color-usage {
+        font-size: 0.875rem;
+        color: #666666;
+      }
+
+      .gradient-preview {
+        height: 100px;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+      }
+
+      .dark-mode-section {
+        background-color: #1a2238;
+        color: #f1f6f9;
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+      }
+
+      .compare-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .old-design,
+      .new-design {
+        padding: 1.5rem;
+        border-radius: 12px;
+      }
+
+      .old-design {
+        background-color: white;
+        color: #111827;
+        border: 1px solid #e5e7eb;
+      }
+
+      .new-design {
+        background-color: #fffdf9;
+        color: #333333;
+        border: 1px solid #cdcdcd;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .old-button {
+        background-color: #3b82f6;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        border: none;
+        font-weight: 500;
+      }
+
+      .new-button {
+        background-color: #a8d8ea;
+        color: #333333;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Praxis Notes ABA-Inspired Color Palette</h1>
+        <p>
+          This document provides a visual reference for the pastel color palette
+          designed for ABA professionals using Praxis Notes.
+        </p>
+      </header>
+
+      <main>
+        <h2>Primary Colors</h2>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #a8d8ea"></div>
+            <div class="color-info">
+              <div class="color-name">Soft Blue</div>
+              <div class="color-hex">#A8D8EA</div>
+              <div class="color-usage">Primary actions, buttons, links</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #cdb4db"></div>
+            <div class="color-info">
+              <div class="color-name">Lavender</div>
+              <div class="color-hex">#CDB4DB</div>
+              <div class="color-usage">Secondary elements, highlights</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #beffc7"></div>
+            <div class="color-info">
+              <div class="color-name">Mint Green</div>
+              <div class="color-hex">#BEFFC7</div>
+              <div class="color-usage">Success states, progress indicators</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #ffd6ba"></div>
+            <div class="color-info">
+              <div class="color-name">Peach</div>
+              <div class="color-hex">#FFD6BA</div>
+              <div class="color-usage">Warnings, notifications</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #ffacc7"></div>
+            <div class="color-info">
+              <div class="color-name">Light Pink</div>
+              <div class="color-hex">#FFACC7</div>
+              <div class="color-usage">Error states, critical information</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Neutral Colors (Light Mode)</h2>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #fffdf9"></div>
+            <div class="color-info">
+              <div class="color-name">Ivory</div>
+              <div class="color-hex">#FFFDF9</div>
+              <div class="color-usage">Background (light mode)</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #f3f3f3"></div>
+            <div class="color-info">
+              <div class="color-name">Soft Gray</div>
+              <div class="color-hex">#F3F3F3</div>
+              <div class="color-usage">Cards, containers</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #cdcdcd"></div>
+            <div class="color-info">
+              <div class="color-name">Medium Gray</div>
+              <div class="color-hex">#CDCDCD</div>
+              <div class="color-usage">Borders, dividers</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-preview" style="background-color: #333333"></div>
+            <div class="color-info">
+              <div class="color-name">Charcoal</div>
+              <div class="color-hex">#333333</div>
+              <div class="color-usage">Text, icons (light mode)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dark-mode-section">
+          <h2>Dark Mode Colors</h2>
+          <div class="color-grid">
+            <div class="color-card">
+              <div
+                class="color-preview"
+                style="background-color: #1a2238"
+              ></div>
+              <div class="color-info">
+                <div class="color-name">Deep Navy</div>
+                <div class="color-hex">#1A2238</div>
+                <div class="color-usage">Background (dark mode)</div>
+              </div>
+            </div>
+            <div class="color-card">
+              <div
+                class="color-preview"
+                style="background-color: #394867"
+              ></div>
+              <div class="color-info">
+                <div class="color-name">Steel Blue</div>
+                <div class="color-hex">#394867</div>
+                <div class="color-usage">Cards, containers</div>
+              </div>
+            </div>
+            <div class="color-card">
+              <div
+                class="color-preview"
+                style="background-color: #9ba4b4"
+              ></div>
+              <div class="color-info">
+                <div class="color-name">Soft Lavender</div>
+                <div class="color-hex">#9BA4B4</div>
+                <div class="color-usage">Borders, dividers</div>
+              </div>
+            </div>
+            <div class="color-card">
+              <div
+                class="color-preview"
+                style="background-color: #f1f6f9"
+              ></div>
+              <div class="color-info">
+                <div class="color-name">Off White</div>
+                <div class="color-hex">#F1F6F9</div>
+                <div class="color-usage">Text, icons (dark mode)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Gradients</h2>
+        <div class="color-grid">
+          <div class="color-card">
+            <div
+              class="gradient-preview"
+              style="background: linear-gradient(to right, #a8d8ea, #cdb4db)"
+            ></div>
+            <div class="color-info">
+              <div class="color-name">Primary Gradient</div>
+              <div class="color-usage">Soft Blue to Lavender</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div
+              class="gradient-preview"
+              style="background: linear-gradient(to right, #beffc7, #a8d8ea)"
+            ></div>
+            <div class="color-info">
+              <div class="color-name">Secondary Gradient</div>
+              <div class="color-usage">Mint Green to Soft Blue</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div
+              class="gradient-preview"
+              style="
+                background: linear-gradient(to bottom right, #fffdf9, #f3f3f3);
+              "
+            ></div>
+            <div class="color-info">
+              <div class="color-name">Soft Gradient</div>
+              <div class="color-usage">Ivory to Soft Gray</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div
+              class="gradient-preview"
+              style="background: linear-gradient(to right, #1a2238, #394867)"
+            ></div>
+            <div class="color-info">
+              <div class="color-name">Dark Gradient</div>
+              <div class="color-usage">Deep Navy to Steel Blue</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Design Comparison</h2>
+        <p>
+          Below is a visual comparison between the original design and the new
+          ABA-inspired pastel design.
+        </p>
+
+        <div class="compare-container">
+          <div class="old-design">
+            <h3>Original Design</h3>
+            <p>
+              Standard web interface with traditional blue accent colors and
+              white backgrounds.
+            </p>
+            <div class="button-group">
+              <button class="old-button">Primary Action</button>
+              <button class="old-button" style="background-color: #60a5fa">
+                Secondary Action
+              </button>
+            </div>
+          </div>
+          <div class="new-design">
+            <h3>ABA-Inspired Design</h3>
+            <p>
+              Calming pastel colors with a softer contrast and more soothing
+              interface.
+            </p>
+            <div class="button-group">
+              <button class="new-button">Primary Action</button>
+              <button class="new-button" style="background-color: #cdb4db">
+                Secondary Action
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -51,125 +51,140 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  /* Base colors from ABA-inspired pastel palette */
+  --vivid-blue: #3b82f6;
+  --soft-blue: #a8d8ea;
+  --lavender: #cdb4db;
+  --mint-green: #beffc7;
+  --peach: #ffd6ba;
+  --light-pink: #ffacc7;
+  --ivory: #fffdf9;
+  --soft-gray: #f3f3f3;
+  --medium-gray: #cdcdcd;
+  --charcoal: #333333;
+
+  /* Border radius */
+  --radius: 0.75rem;
 
   /* Base colors */
-  --background: #ffffff;
-  --foreground: #111827;
+  --background: var(--ivory);
+  --foreground: var(--charcoal);
 
   /* Component colors */
-  --card: #ffffff;
-  --card-foreground: #111827;
-  --popover: #ffffff;
-  --popover-foreground: #111827;
+  --card: var(--soft-gray);
+  --card-foreground: var(--charcoal);
+  --popover: var(--ivory);
+  --popover-foreground: var(--charcoal);
 
   /* Primary colors */
-  --primary: #3b82f6; /* blue-500 */
-  --primary-foreground: #ffffff;
+  --primary: var(--vivid-blue);
+  --primary-foreground: var(--charcoal);
 
   /* Secondary colors */
-  --secondary: #60a5fa; /* blue-400 */
-  --secondary-foreground: #111827;
+  --secondary: var(--lavender);
+  --secondary-foreground: var(--charcoal);
 
   /* Neutral colors */
-  --muted: #f3f4f6; /* gray-100 */
-  --muted-foreground: #6b7280; /* gray-500 */
-  --accent: #f3f4f6; /* gray-100 */
-  --accent-foreground: #111827;
+  --muted: var(--soft-gray);
+  --muted-foreground: #666666;
+  --accent: var(--mint-green);
+  --accent-foreground: var(--charcoal);
 
   /* Functional colors */
-  --destructive: #ef4444; /* red-500 */
-  --destructive-foreground: #ffffff;
-  --success: #10b981; /* emerald-500 */
-  --success-foreground: #ffffff;
-  --warning: #f59e0b; /* amber-500 */
-  --warning-foreground: #ffffff;
-  --info: #3b82f6; /* blue-500 */
-  --info-foreground: #ffffff;
+  --destructive: var(--light-pink);
+  --destructive-foreground: var(--charcoal);
+  --success: var(--mint-green);
+  --success-foreground: var(--charcoal);
+  --warning: var(--peach);
+  --warning-foreground: var(--charcoal);
+  --info: var(--vivid-blue);
+  --info-foreground: var(--charcoal);
 
   /* UI colors */
-  --border: #e5e7eb; /* gray-200 */
-  --input: #e5e7eb; /* gray-200 */
-  --ring: #3b82f6; /* blue-500 */
+  --border: var(--medium-gray);
+  --input: var(--soft-gray);
+  --ring: var(--lavender);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
 
-  /* Sidebar - keep existing color scheme */
-  --sidebar: #ffffff;
-  --sidebar-foreground: #111827;
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f3f4f6;
-  --sidebar-accent-foreground: #111827;
-  --sidebar-border: #e5e7eb;
-  --sidebar-ring: #3b82f6;
+  /* Sidebar */
+  --sidebar: var(--ivory);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--soft-blue);
+  --sidebar-primary-foreground: var(--charcoal);
+  --sidebar-accent: var(--mint-green);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: var(--medium-gray);
+  --sidebar-ring: var(--lavender);
 }
 
 .dark {
+  /* Dark mode colors from ABA design */
+  --deep-navy: #1a2238;
+  --steel-blue: #394867;
+  --soft-lavender: #9ba4b4;
+  --off-white: #f1f6f9;
+
   /* Base colors */
-  --background: #111827; /* gray-900 */
-  --foreground: #ffffff;
+  --background: var(--deep-navy);
+  --foreground: var(--off-white);
 
   /* Component colors */
-  --card: #1f2937; /* gray-800 */
-  --card-foreground: #ffffff;
-  --popover: #1f2937; /* gray-800 */
-  --popover-foreground: #ffffff;
+  --card: var(--steel-blue);
+  --card-foreground: var(--off-white);
+  --popover: var(--steel-blue);
+  --popover-foreground: var(--off-white);
 
-  /* Primary colors */
-  --primary: #3b82f6; /* blue-500 */
-  --primary-foreground: #ffffff;
+  /* Primary colors - keep the pastel colors but adjust foreground */
+  --primary: var(--vivid-blue);
+  --primary-foreground: var(--deep-navy);
 
   /* Secondary colors */
-  --secondary: #374151; /* gray-700 */
-  --secondary-foreground: #ffffff;
+  --secondary: var(--lavender);
+  --secondary-foreground: var(--deep-navy);
 
   /* Neutral colors */
-  --muted: #374151; /* gray-700 */
-  --muted-foreground: #9ca3af; /* gray-400 */
-  --accent: #374151; /* gray-700 */
-  --accent-foreground: #ffffff;
+  --muted: var(--steel-blue);
+  --muted-foreground: var(--soft-lavender);
+  --accent: var(--mint-green);
+  --accent-foreground: var(--deep-navy);
 
-  /* Functional colors */
-  --destructive: #f87171; /* red-400 */
-  --destructive-foreground: #ffffff;
-  --success: #34d399; /* emerald-400 */
-  --success-foreground: #ffffff;
-  --warning: #fbbf24; /* amber-400 */
-  --warning-foreground: #111827;
-  --info: #60a5fa; /* blue-400 */
-  --info-foreground: #ffffff;
+  /* Functional colors - keep the pastel colors for consistency */
+  --destructive: var(--light-pink);
+  --destructive-foreground: var(--deep-navy);
+  --success: var(--mint-green);
+  --success-foreground: var(--deep-navy);
+  --warning: var(--peach);
+  --warning-foreground: var(--deep-navy);
+  --info: var(--vivid-blue);
+  --info-foreground: var(--deep-navy);
 
   /* UI colors */
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #60a5fa; /* blue-400 */
+  --border: var(--soft-lavender);
+  --input: var(--steel-blue);
+  --ring: var(--lavender);
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.3);
 
   /* Sidebar */
-  --sidebar: #1f2937; /* gray-800 */
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #3b82f6; /* blue-500 */
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #374151; /* gray-700 */
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #60a5fa; /* blue-400 */
+  --sidebar: var(--steel-blue);
+  --sidebar-foreground: var(--off-white);
+  --sidebar-primary: var(--soft-blue);
+  --sidebar-primary-foreground: var(--deep-navy);
+  --sidebar-accent: var(--mint-green);
+  --sidebar-accent-foreground: var(--deep-navy);
+  --sidebar-border: var(--soft-lavender);
+  --sidebar-ring: var(--lavender);
 }
 
 @layer base {
@@ -179,9 +194,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1,

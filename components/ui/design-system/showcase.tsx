@@ -1,55 +1,149 @@
 "use client";
 
 import { cn } from "../../../lib/utils";
-import { GRADIENTS, SHADOWS, BUTTON, CARD, FORM, GRID } from "./design-tokens";
+import {
+  GRADIENTS,
+  SHADOWS,
+  BUTTON,
+  CARD,
+  FORM,
+  GRID,
+  BADGES,
+} from "./design-tokens";
 
 export function DesignSystemShowcase() {
   return (
     <div className="space-y-10">
       <section className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight">Color Palette</h2>
-        <div className={GRID.FOUR_COLUMNS}>
-          <ColorSwatch
-            name="Primary Blue"
-            color="bg-blue-500"
-            textColor="text-white"
-          />
-          <ColorSwatch
-            name="Primary Purple"
-            color="bg-purple-500"
-            textColor="text-white"
-          />
-          <ColorSwatch
-            name="Secondary Blue"
-            color="bg-blue-400"
-            textColor="text-white"
-          />
-          <ColorSwatch
-            name="Secondary Purple"
-            color="bg-purple-400"
-            textColor="text-white"
-          />
-          <ColorSwatch
-            name="Success"
-            color="bg-emerald-500"
-            textColor="text-white"
-          />
-          <ColorSwatch
-            name="Warning"
-            color="bg-amber-500"
-            textColor="text-white"
-          />
-          <ColorSwatch name="Error" color="bg-red-500" textColor="text-white" />
-          <ColorSwatch name="Info" color="bg-blue-500" textColor="text-white" />
+        <h2 className="text-3xl font-bold tracking-tight">
+          ABA-Inspired Pastel Color Palette
+        </h2>
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold">Primary Colors</h3>
+          <div className={GRID.FOUR_COLUMNS}>
+            <ColorSwatch
+              name="Soft Blue"
+              color="bg-soft-blue"
+              textColor="text-charcoal"
+              hex="#A8D8EA"
+              usage="Primary actions, buttons, links"
+            />
+            <ColorSwatch
+              name="Lavender"
+              color="bg-lavender"
+              textColor="text-charcoal"
+              hex="#CDB4DB"
+              usage="Secondary elements, highlights"
+            />
+            <ColorSwatch
+              name="Mint Green"
+              color="bg-mint-green"
+              textColor="text-charcoal"
+              hex="#BEFFC7"
+              usage="Success states, progress indicators"
+            />
+            <ColorSwatch
+              name="Peach"
+              color="bg-peach"
+              textColor="text-charcoal"
+              hex="#FFD6BA"
+              usage="Warnings, notifications"
+            />
+            <ColorSwatch
+              name="Light Pink"
+              color="bg-light-pink"
+              textColor="text-charcoal"
+              hex="#FFACC7"
+              usage="Error states, critical information"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2 mt-6">
+          <h3 className="text-xl font-semibold">Neutral Colors (Light Mode)</h3>
+          <div className={GRID.FOUR_COLUMNS}>
+            <ColorSwatch
+              name="Ivory"
+              color="bg-ivory"
+              textColor="text-charcoal"
+              hex="#FFFDF9"
+              usage="Background"
+            />
+            <ColorSwatch
+              name="Soft Gray"
+              color="bg-soft-gray"
+              textColor="text-charcoal"
+              hex="#F3F3F3"
+              usage="Cards, containers"
+            />
+            <ColorSwatch
+              name="Medium Gray"
+              color="bg-medium-gray"
+              textColor="text-charcoal"
+              hex="#CDCDCD"
+              usage="Borders, dividers"
+            />
+            <ColorSwatch
+              name="Charcoal"
+              color="bg-charcoal"
+              textColor="text-white"
+              hex="#333333"
+              usage="Text, icons"
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2 mt-6">
+          <h3 className="text-xl font-semibold">Dark Mode Colors</h3>
+          <div className={GRID.FOUR_COLUMNS}>
+            <ColorSwatch
+              name="Deep Navy"
+              color="bg-deep-navy"
+              textColor="text-white"
+              hex="#1A2238"
+              usage="Background (dark mode)"
+            />
+            <ColorSwatch
+              name="Steel Blue"
+              color="bg-steel-blue"
+              textColor="text-white"
+              hex="#394867"
+              usage="Cards, containers"
+            />
+            <ColorSwatch
+              name="Soft Lavender"
+              color="bg-soft-lavender"
+              textColor="text-deep-navy"
+              hex="#9BA4B4"
+              usage="Borders, dividers"
+            />
+            <ColorSwatch
+              name="Off White"
+              color="bg-off-white"
+              textColor="text-deep-navy"
+              hex="#F1F6F9"
+              usage="Text, icons"
+            />
+          </div>
         </div>
 
         <h3 className="text-xl font-semibold mt-6">Gradients</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <GradientSwatch
             name="Primary Gradient"
             gradient={GRADIENTS.PRIMARY}
+            textColor="text-charcoal"
           />
-          <GradientSwatch name="Soft Gradient" gradient={GRADIENTS.SOFT} />
+          <GradientSwatch
+            name="Secondary Gradient"
+            gradient={GRADIENTS.SECONDARY}
+            textColor="text-charcoal"
+          />
+          <GradientSwatch
+            name="Soft Gradient"
+            gradient={GRADIENTS.SOFT}
+            textColor="text-charcoal"
+          />
           <GradientSwatch
             name="Dark Gradient"
             gradient={GRADIENTS.DARK}
@@ -72,9 +166,9 @@ export function DesignSystemShowcase() {
 
           <div className="mt-6 space-y-4">
             <p className="text-base">
-              Base paragraph text (16px). The Praxis Note platform offers
+              Base paragraph text (16px). The Praxis Notes platform offers
               comprehensive tools for ABA professionals to document and analyze
-              client behaviors.
+              client behaviors using a calming pastel design.
             </p>
             <p className="text-sm">
               Small text (14px). Used for secondary information and form labels.
@@ -92,10 +186,10 @@ export function DesignSystemShowcase() {
           Shadows & Elevation
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <ShadowSwatch name="SM" shadow="shadow-sm" />
-          <ShadowSwatch name="MD" shadow="shadow" />
-          <ShadowSwatch name="LG" shadow="shadow-lg" />
-          <ShadowSwatch name="XL" shadow="shadow-xl" />
+          <ShadowSwatch name="SM" shadow={SHADOWS.SM} />
+          <ShadowSwatch name="MD" shadow={SHADOWS.MD} />
+          <ShadowSwatch name="LG" shadow={SHADOWS.LG} />
+          <ShadowSwatch name="XL" shadow={SHADOWS.XL} />
           <ShadowSwatch name="2XL" shadow="shadow-2xl" />
           <ShadowSwatch name="Active Card" shadow={SHADOWS.ACTIVE_CARD} />
         </div>
@@ -110,6 +204,18 @@ export function DesignSystemShowcase() {
           <div className={cn(BUTTON.VARIANT.SECONDARY, BUTTON.SIZE.DEFAULT)}>
             Secondary Button
           </div>
+          <div className={cn(BUTTON.VARIANT.SUCCESS, BUTTON.SIZE.DEFAULT)}>
+            Success Button
+          </div>
+          <div className={cn(BUTTON.VARIANT.WARNING, BUTTON.SIZE.DEFAULT)}>
+            Warning Button
+          </div>
+          <div className={cn(BUTTON.VARIANT.ERROR, BUTTON.SIZE.DEFAULT)}>
+            Error Button
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-4 mt-4">
           <div className={cn(BUTTON.VARIANT.OUTLINE, BUTTON.SIZE.DEFAULT)}>
             Outline Button
           </div>
@@ -132,6 +238,18 @@ export function DesignSystemShowcase() {
           <div className={cn(BUTTON.VARIANT.PRIMARY, BUTTON.SIZE.XL)}>
             Extra Large
           </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-3xl font-bold tracking-tight">Badges</h2>
+        <div className="flex flex-wrap gap-4">
+          <div className={cn(BADGES.DEFAULT, BADGES.PRIMARY)}>Primary</div>
+          <div className={cn(BADGES.DEFAULT, BADGES.SECONDARY)}>Secondary</div>
+          <div className={cn(BADGES.DEFAULT, BADGES.SUCCESS)}>Success</div>
+          <div className={cn(BADGES.DEFAULT, BADGES.WARNING)}>Warning</div>
+          <div className={cn(BADGES.DEFAULT, BADGES.ERROR)}>Error</div>
+          <div className={cn(BADGES.DEFAULT, BADGES.OUTLINE)}>Outline</div>
         </div>
       </section>
 
@@ -163,6 +281,37 @@ export function DesignSystemShowcase() {
             <h3 className="text-lg font-semibold">Gradient Card</h3>
             <p className="text-muted-foreground mt-2">
               A card with a subtle gradient background.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-semibold mt-6">Pastel-Themed Cards</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className={CARD.VARIANT.SOFT_BLUE}>
+            <h3 className="text-lg font-semibold">Soft Blue Card</h3>
+            <p className="text-muted-foreground mt-2">
+              For primary data or important information.
+            </p>
+          </div>
+
+          <div className={CARD.VARIANT.LAVENDER}>
+            <h3 className="text-lg font-semibold">Lavender Card</h3>
+            <p className="text-muted-foreground mt-2">
+              For secondary data or supporting information.
+            </p>
+          </div>
+
+          <div className={CARD.VARIANT.MINT}>
+            <h3 className="text-lg font-semibold">Mint Card</h3>
+            <p className="text-muted-foreground mt-2">
+              For progress tracking or positive reinforcement.
+            </p>
+          </div>
+
+          <div className={CARD.VARIANT.PEACH}>
+            <h3 className="text-lg font-semibold">Peach Card</h3>
+            <p className="text-muted-foreground mt-2">
+              For warnings or important notifications.
             </p>
           </div>
         </div>
@@ -238,19 +387,23 @@ export function DesignSystemShowcase() {
 function ColorSwatch({
   name,
   color,
+  textColor = "text-charcoal",
+  hex,
+  usage,
 }: {
   name: string;
   color: string;
   textColor?: string;
+  hex?: string;
+  usage?: string;
 }) {
   return (
     <div className="flex flex-col">
-      <div className={cn("h-20 rounded-md", color)} />
-      <div className="mt-2">
+      <div className={cn("h-20 rounded-lg", color)} />
+      <div className={cn("mt-2", textColor)}>
         <p className="font-medium">{name}</p>
-        <p className="text-sm text-muted-foreground">
-          Tailwind class: {color.replace("bg-", "")}
-        </p>
+        {hex && <p className="text-xs text-muted-foreground">{hex}</p>}
+        {usage && <p className="text-xs text-muted-foreground mt-1">{usage}</p>}
       </div>
     </div>
   );
@@ -259,16 +412,21 @@ function ColorSwatch({
 function GradientSwatch({
   name,
   gradient,
-  textColor = "text-gray-900",
+  textColor = "text-charcoal",
 }: {
   name: string;
   gradient: string;
   textColor?: string;
 }) {
   return (
-    <div className="flex flex-col">
-      <div className={cn("h-20 rounded-md", gradient)} />
-      <p className={cn("font-medium mt-2", textColor)}>{name}</p>
+    <div
+      className={cn(
+        "h-24 rounded-lg flex items-center justify-center p-4",
+        gradient,
+        textColor
+      )}
+    >
+      <p className="font-medium text-center">{name}</p>
     </div>
   );
 }
@@ -277,12 +435,11 @@ function ShadowSwatch({ name, shadow }: { name: string; shadow: string }) {
   return (
     <div
       className={cn(
-        "p-6 rounded-lg bg-background border border-border",
-        shadow,
+        "h-24 rounded-lg bg-background flex items-center justify-center p-4",
+        shadow
       )}
     >
-      <p className="font-medium">{name}</p>
-      <p className="text-sm text-muted-foreground mt-1">Shadow: {shadow}</p>
+      <p className="font-medium text-center">{name}</p>
     </div>
   );
 }

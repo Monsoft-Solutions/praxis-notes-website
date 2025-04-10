@@ -4,13 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 const cardVariants = cva("rounded-lg text-card-foreground", {
   variants: {
     variant: {
-      default: "bg-background border border-border p-6",
+      default:
+        "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-6",
       interactive:
-        "bg-background border border-border p-6 hover:shadow-lg transition-shadow",
+        "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-6 hover:shadow-lg transition-shadow",
       feature:
-        "bg-white dark:bg-gray-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-blue-100 dark:border-blue-900/50",
+        "bg-white dark:bg-slate-800 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-gray-200 dark:border-slate-700",
       gradient:
-        "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-xl p-6",
+        "bg-gradient-to-br from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-xl p-6",
+      aboutTeam:
+        "bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-slate-700",
+      aboutValue:
+        "bg-white dark:bg-slate-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-gray-200 dark:border-slate-700 relative overflow-hidden group",
+      infoBox: "bg-gray-100 dark:bg-slate-800 rounded-xl p-8 shadow-lg",
+      comparisonBox:
+        "bg-white dark:bg-slate-800 rounded-lg p-6 shadow-lg max-w-lg border border-gray-200 dark:border-slate-700",
     },
     shadow: {
       none: "shadow-none",
@@ -60,7 +68,7 @@ const CardTitle = ({
     <h3
       className={cn(
         "text-2xl font-semibold leading-none tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
