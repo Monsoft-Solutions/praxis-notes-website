@@ -14,6 +14,7 @@ export const categories = pgTable("categories", {
     .$defaultFn(() => createId()),
   name: varchar("name", { length: 255 }).notNull().unique(),
   description: text("description"),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

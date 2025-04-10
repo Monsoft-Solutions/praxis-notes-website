@@ -61,10 +61,10 @@ export default async function ResourcePage({
                 <div className="flex flex-wrap gap-2 mb-4">
                   {resource.tags.map((tag) => (
                     <span
-                      key={tag}
+                      key={tag.toString()}
                       className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
                     >
-                      {tag}
+                      {tag.name}
                     </span>
                   ))}
                 </div>
