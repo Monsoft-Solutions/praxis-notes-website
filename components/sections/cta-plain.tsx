@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "website/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "website/lib/utils";
-
+import Image from "next/image";
 type CTAPlainProps = {
   subtitle?: string;
   description?: string;
@@ -27,7 +27,7 @@ const CTAPlain = ({
   return (
     <section
       className={cn(
-        "py-16 md:py-24",
+        "py-16 md:py-24 relative",
         dark ? "bg-slate-900" : "bg-white dark:bg-slate-900",
         className
       )}
@@ -64,6 +64,15 @@ const CTAPlain = ({
               </Link>
             )}
           </div>
+        </div>
+        <div className="image-container lg:absolute left-0 bottom-0 block">
+          <Image
+            src="/images/illustrations/kid-playing-with-toys.jpg"
+            alt="CTA Plain"
+            width={300}
+            height={100}
+            className="rounded-lg"
+          />
         </div>
       </div>
     </section>
