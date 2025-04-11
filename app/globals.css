@@ -59,7 +59,7 @@
   --peach: #ffd6ba;
   --light-pink: #ffacc7;
   --ivory: #fffdf9;
-  --soft-gray: #f3f3f3;
+  --soft-gray: #fffefe;
   --medium-gray: #cdcdcd;
   --charcoal: #333333;
 
@@ -68,7 +68,7 @@
 
   /* Base colors */
   --background: var(--ivory);
-  --foreground: var(--charcoal);
+  --foreground: var(--white);
 
   /* Component colors */
   --card: var(--soft-gray);
@@ -78,7 +78,7 @@
 
   /* Primary colors */
   --primary: var(--vivid-blue);
-  --primary-foreground: var(--charcoal);
+  --primary-foreground: var(--color-white);
 
   /* Secondary colors */
   --secondary: var(--lavender);

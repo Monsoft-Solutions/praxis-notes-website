@@ -9,9 +9,9 @@ const testimonials = [
     role: "BCBA, Private Practice",
     rating: 5,
     highlight: "75% time saved",
-    avatarColor: "bg-blue-100 dark:bg-blue-900/30",
-    textColor: "text-blue-600 dark:text-blue-400",
-    borderColor: "border-blue-200 dark:border-blue-800",
+    avatarColor: "bg-soft-blue/10 dark:bg-soft-blue/20",
+    textColor: "text-soft-blue",
+    borderColor: "border-soft-blue/20 dark:border-soft-blue/30",
   },
   {
     quote:
@@ -20,9 +20,9 @@ const testimonials = [
     role: "RBT, ABC Therapy Center",
     rating: 5,
     highlight: "Perfect for RBTs",
-    avatarColor: "bg-purple-100 dark:bg-purple-900/30",
-    textColor: "text-purple-600 dark:text-purple-400",
-    borderColor: "border-purple-200 dark:border-purple-800",
+    avatarColor: "bg-lavender/10 dark:bg-lavender/20",
+    textColor: "text-lavender",
+    borderColor: "border-lavender/20 dark:border-lavender/30",
   },
   {
     quote:
@@ -31,9 +31,9 @@ const testimonials = [
     role: "Clinical Director",
     rating: 5,
     highlight: "Insurance-ready",
-    avatarColor: "bg-green-100 dark:bg-green-900/30",
-    textColor: "text-green-600 dark:text-green-400",
-    borderColor: "border-green-200 dark:border-green-800",
+    avatarColor: "bg-mint-green/10 dark:bg-mint-green/20",
+    textColor: "text-mint-green",
+    borderColor: "border-mint-green/20 dark:border-mint-green/30",
   },
   {
     quote:
@@ -42,24 +42,25 @@ const testimonials = [
     role: "BCBA-D, Regional Director",
     rating: 5,
     highlight: "Clinical accuracy",
-    avatarColor: "bg-amber-100 dark:bg-amber-900/30",
-    textColor: "text-amber-600 dark:text-amber-400",
-    borderColor: "border-amber-200 dark:border-amber-800",
+    avatarColor: "bg-amber/10 dark:bg-amber/20",
+    textColor: "text-amber",
+    borderColor: "border-amber/20 dark:border-amber/30",
   },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-20 md:py-28 relative">
+    <section className="py-20 md:py-28 relative bg-ivory/30 dark:bg-deep-navy/30">
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50/50 dark:to-blue-950/10 -z-10"></div>
-      <div className="absolute -left-20 top-20 w-40 h-40 bg-blue-200/30 dark:bg-blue-900/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -right-20 bottom-20 w-40 h-40 bg-purple-200/30 dark:bg-purple-900/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute right-1/4 top-1/3 h-64 w-64 bg-lavender/5 dark:bg-lavender/10 rounded-full blur-3xl" />
+        <div className="absolute left-1/4 bottom-1/3 h-64 w-64 bg-soft-blue/5 dark:bg-soft-blue/10 rounded-full blur-3xl" />
+      </div>
 
-      <div className="px-4 sm:px-6 mx-auto container max-w-7xl">
+      <div className="px-4 sm:px-6 mx-auto container max-w-7xl relative">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 mb-4">
-            <span className="text-xs font-medium text-yellow-600 dark:text-yellow-400">
+          <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-amber/10 dark:bg-amber/20 border border-amber/20 dark:border-amber/30 mb-4">
+            <span className="text-xs font-medium text-amber">
               ⭐⭐⭐⭐⭐ 4.9/5 Average Rating
             </span>
           </div>
@@ -77,7 +78,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className={`overflow-hidden border ${testimonial.borderColor} hover:shadow-lg transition-shadow duration-300`}
+              className="relative border border-border hover:shadow-aba-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden group"
             >
               <CardContent className="p-8">
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -100,7 +101,7 @@ const Testimonials = () => {
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <svg
                             key={i}
-                            className="w-4 h-4 text-yellow-500 fill-current"
+                            className="w-4 h-4 text-amber fill-current"
                             viewBox="0 0 24 24"
                           >
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -110,13 +111,13 @@ const Testimonials = () => {
                     </div>
 
                     <div className="relative">
-                      <Quote className="absolute -top-2 -left-2 w-6 h-6 text-gray-200 dark:text-gray-700" />
+                      <Quote className="absolute -top-2 -left-2 w-6 h-6 text-muted-foreground/20" />
                       <blockquote className="text-lg font-medium mb-4 pt-4 pl-4">
                         &quot;{testimonial.quote}&quot;
                       </blockquote>
                     </div>
 
-                    <footer className="mt-4 flex items-center justify-between border-t pt-4">
+                    <footer className="mt-6 flex items-center justify-between border-t border-border pt-4">
                       <div>
                         <cite className="font-bold text-sm not-italic">
                           {testimonial.author}
@@ -137,7 +138,7 @@ const Testimonials = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <div className="inline-flex items-center rounded-full border border-gray-200 dark:border-gray-800 px-6 py-3 text-sm text-muted-foreground">
+          <div className="inline-flex items-center rounded-full border border-border px-6 py-3 text-sm text-muted-foreground">
             Join 1,000+ ABA professionals already using Praxis Note
           </div>
         </div>

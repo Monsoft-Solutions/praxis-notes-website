@@ -3,7 +3,6 @@ import Image from "next/image";
 import {
   BookOpenText,
   Brain,
-  FileText,
   Heart,
   LineChart,
   PencilRuler,

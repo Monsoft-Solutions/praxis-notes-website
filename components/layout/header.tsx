@@ -118,10 +118,7 @@ const Header = () => {
         <div className="hidden md:flex md:items-center md:space-x-3">
           <ThemeToggle />
           <Link href="/waitlist">
-            <Button
-              variant="gradient"
-              className="h-10 px-5 font-medium"
-            >
+            <Button variant="default" className="h-10 px-5 font-medium">
               Join Waitlist
             </Button>
           </Link>
