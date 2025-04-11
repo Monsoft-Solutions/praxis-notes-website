@@ -54,7 +54,7 @@ const Footer = () => {
                 </div>
                 <span className="text-xl font-bold">Praxis Note</span>
               </Link>
-              <p className="mt-4 text-mds text-muted-foreground max-w-md">
+              <p className="mt-4 text-md text-muted-foreground max-w-md">
                 AI-powered ABA session notes that save RBTs and BCBAs hours each
                 week. Detailed, insurance-ready documentation in seconds.
               </p>
