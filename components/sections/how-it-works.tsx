@@ -102,7 +102,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <Card
                 key={index}
-                className="p-8 border-primary/20 bg-primary/10 hover:shadow-lg transition-all duration-300 relative z-10"
+                className="p-8 border-primary/20 bg-blue-50 hover:shadow-lg transition-all duration-300 relative z-10"
               >
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold border-4 border-background">
                   {index + 1}
