@@ -34,12 +34,10 @@ const Header = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 flex h-20 items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+            <div className="w-10 h-10 rounded-full  flex items-center justify-center border border-gray-200 dark:border-gray-800 font-bold text-xl">
               P
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Praxis Note
-            </span>
+            <span className="text-xl font-bold">Praxis Note</span>
           </Link>
         </div>
 
