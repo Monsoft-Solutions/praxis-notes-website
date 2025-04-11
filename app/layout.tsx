@@ -31,16 +31,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
 
   return (
     <html lang="en" className="scroll-smooth w-full">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        {GA_MEASUREMENT_ID && <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />}
+        {GA_MEASUREMENT_ID && (
+          <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+        )}
         <AnalyticsProvider />
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider defaultTheme="light">
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />

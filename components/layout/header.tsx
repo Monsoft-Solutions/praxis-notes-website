@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "website/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { ThemeToggle } from "../ui/design-system/theme-toggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,12 +33,10 @@ const Header = () => {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 flex h-20 items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+            <div className="w-10 h-10 rounded-full  flex items-center justify-center border border-gray-200 dark:border-gray-800 font-bold text-xl">
               P
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Praxis Note
-            </span>
+            <span className="text-xl font-bold">Praxis Note</span>
           </Link>
         </div>
 
@@ -114,18 +111,6 @@ const Header = () => {
             Contact
           </Link>
         </nav>
-
-        <div className="hidden md:flex md:items-center md:space-x-3">
-          <ThemeToggle />
-          <Link href="/waitlist">
-            <Button
-              variant="gradient"
-              className="h-10 px-5 font-medium"
-            >
-              Join Waitlist
-            </Button>
-          </Link>
-        </div>
 
         {/* Mobile menu button */}
         <button
@@ -208,20 +193,10 @@ const Header = () => {
             >
               Contact
             </Link>
-            <Link
-              href="/design-system"
-              className="px-2 py-3 text-sm font-medium border-b border-gray-100 dark:border-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Design System
-            </Link>
-            <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-800">
-              <span className="text-sm font-medium">Theme</span>
-              <ThemeToggle />
-            </div>
+
             <div className="pt-4 flex flex-col space-y-3">
               <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="gradient" className="w-full">
+                <Button variant="default" className="w-full">
                   Join Waitlist
                 </Button>
               </Link>

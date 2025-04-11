@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 import colors from "tailwindcss/colors";
 
 const config = {
@@ -26,13 +27,13 @@ const config = {
           DEFAULT: "var(--primary)",
           foreground: "var(--primary-foreground)",
           blue: colors.blue[500],
-          purple: colors.purple[500],
+          purple: "var(--lavender)",
         },
         secondary: {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
-          blue: colors.blue[400],
-          purple: colors.purple[400],
+          blue: "var(--soft-blue)",
+          purple: "var(--lavender)",
         },
         destructive: {
           DEFAULT: "var(--destructive)",
@@ -54,10 +55,24 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-        success: colors.emerald[500],
-        warning: colors.amber[500],
-        error: colors.red[500],
-        info: colors.blue[500],
+        success: "var(--success)",
+        warning: "var(--warning)",
+        error: "var(--destructive)",
+        info: "var(--info)",
+        // ABA colors
+        "soft-blue": "var(--soft-blue)",
+        lavender: "var(--lavender)",
+        "mint-green": "var(--mint-green)",
+        peach: "var(--peach)",
+        "light-pink": "var(--light-pink)",
+        ivory: "var(--ivory)",
+        "soft-gray": "var(--soft-gray)",
+        "medium-gray": "var(--medium-gray)",
+        charcoal: "var(--charcoal)",
+        "deep-navy": "var(--deep-navy)",
+        "steel-blue": "var(--steel-blue)",
+        "soft-lavender": "var(--soft-lavender)",
+        "off-white": "var(--off-white)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
@@ -70,10 +85,14 @@ const config = {
         xl: "var(--radius-xl)",
       },
       boxShadow: {
-        "card-hover":
-          "var(--shadow-lg) hover:var(--shadow-xl) transition-shadow",
-        floating: "0 8px 30px rgb(0,0,0,0.12)",
+        "card-hover": "var(--shadow-lg)",
+        floating: "var(--shadow-xl)",
         "inner-glow": "inset 0 1px 2px rgba(0,0,0,0.1)",
+        // ABA-specific shadows
+        "aba-sm": "var(--shadow-sm)",
+        "aba-md": "var(--shadow)",
+        "aba-lg": "var(--shadow-lg)",
+        "aba-xl": "var(--shadow-xl)",
       },
       animation: {
         // Custom animations can be added here
@@ -83,7 +102,7 @@ const config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 } satisfies Config;
 
 export default config;

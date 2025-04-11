@@ -1,43 +1,48 @@
 /**
  * Design Tokens
  *
- * This file contains all the design tokens for the Praxis Note UI/UX design system.
+ * This file contains all the design tokens for the Praxis Note ABA-inspired pastel design system.
  * It provides a reference for using the tokens in your components.
  */
 
 export const COLORS = {
   // Primary Colors
-  PRIMARY_BLUE: "blue-500", // #3B82F6
-  PRIMARY_PURPLE: "purple-500", // #8B5CF6
+  SOFT_BLUE: "soft-blue", // #A8D8EA
+  LAVENDER: "lavender", // #CDB4DB
+  MINT_GREEN: "mint-green", // #BEFFC7
+  PEACH: "peach", // #FFD6BA
+  LIGHT_PINK: "light-pink", // #FFACC7
 
-  // Secondary Colors
-  SECONDARY_BLUE: "blue-400", // #60A5FA
-  SECONDARY_PURPLE: "purple-400", // #A78BFA
+  // Neutral Colors
+  IVORY: "ivory", // #FFFDF9
+  SOFT_GRAY: "soft-gray", // #F3F3F3
+  MEDIUM_GRAY: "medium-gray", // #CDCDCD
+  CHARCOAL: "charcoal", // #333333
 
-  // Neutrals
-  WHITE: "white", // #FFFFFF
-  LIGHT_BG: "gray-100", // #F3F4F6
-  DARK_BG: "gray-900", // #111827
-  TEXT_PRIMARY: "gray-900", // #111827
-  TEXT_SECONDARY: "gray-500", // #6B7280
+  // Dark Mode Colors
+  DEEP_NAVY: "deep-navy", // #1A2238
+  STEEL_BLUE: "steel-blue", // #394867
+  SOFT_LAVENDER: "soft-lavender", // #9BA4B4
+  OFF_WHITE: "off-white", // #F1F6F9
 
   // Functional Colors
-  SUCCESS: "emerald-500", // #10B981
-  WARNING: "amber-500", // #F59E0B
-  ERROR: "red-500", // #EF4444
-  INFO: "blue-500", // #3B82F6
+  SUCCESS: "success", // Mint Green
+  WARNING: "warning", // Peach
+  ERROR: "error", // Light Pink
+  INFO: "info", // Soft Blue
 };
 
 export const GRADIENTS = {
-  PRIMARY: "bg-gradient-to-r from-blue-500 to-purple-600",
-  SOFT: "bg-gradient-to-br from-blue-50 to-purple-50",
-  DARK: "bg-gradient-to-r from-gray-900 to-blue-900",
+  PRIMARY: "bg-gradient-to-r from-soft-blue to-lavender",
+  SECONDARY: "bg-gradient-to-r from-mint-green to-soft-blue",
+  SOFT: "bg-gradient-to-br from-ivory to-soft-gray",
+  DARK: "bg-gradient-to-r from-deep-navy to-steel-blue",
 };
 
 export const TYPOGRAPHY = {
   FONT_FAMILY: {
-    PRIMARY:
-      'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    PRIMARY: "font-sans", // Geist Sans
+    MONO: "font-mono", // Geist Mono
   },
 
   FONT_SIZE: {
@@ -85,16 +90,16 @@ export const CONTAINER = {
 
 export const SHADOWS = {
   NONE: "shadow-none",
-  SM: "shadow-sm",
-  MD: "shadow",
-  LG: "shadow-lg",
-  XL: "shadow-xl",
+  SM: "shadow-aba-sm",
+  MD: "shadow-aba-md",
+  LG: "shadow-aba-lg",
+  XL: "shadow-aba-xl",
   "2XL": "shadow-2xl",
 
   // Custom shadows
-  ACTIVE_CARD: "shadow-lg hover:shadow-xl transition-shadow",
-  FLOATING: "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
-  INNER_GLOW: "shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)]",
+  ACTIVE_CARD: "shadow-aba-lg hover:shadow-aba-xl transition-shadow",
+  FLOATING: "shadow-floating",
+  INNER_GLOW: "shadow-inner-glow",
 };
 
 export const TRANSITIONS = {
@@ -115,11 +120,14 @@ export const TRANSITIONS = {
 
 export const BUTTON = {
   VARIANT: {
-    PRIMARY:
-      "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90",
-    SECONDARY: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-    OUTLINE: "border border-input hover:bg-accent hover:text-accent-foreground",
-    GHOST: "hover:bg-accent hover:text-accent-foreground",
+    PRIMARY: "bg-soft-blue text-charcoal hover:opacity-90 shadow-sm",
+    SECONDARY: "bg-lavender text-charcoal hover:bg-lavender/80 shadow-sm",
+    SUCCESS: "bg-mint-green text-charcoal hover:bg-mint-green/80 shadow-sm",
+    WARNING: "bg-peach text-charcoal hover:bg-peach/80 shadow-sm",
+    ERROR: "bg-light-pink text-charcoal hover:bg-light-pink/80 shadow-sm",
+    OUTLINE:
+      "border border-medium-gray bg-transparent hover:bg-soft-gray text-foreground",
+    GHOST: "hover:bg-soft-gray text-foreground",
   },
 
   SIZE: {
@@ -132,29 +140,33 @@ export const BUTTON = {
 
 export const CARD = {
   VARIANT: {
-    BASIC: "bg-background rounded-lg border border-border p-6",
+    BASIC: "bg-card rounded-lg border border-border p-6",
     INTERACTIVE:
-      "bg-background rounded-lg border border-border p-6 hover:shadow-lg transition-shadow",
+      "bg-card rounded-lg border border-border p-6 hover:shadow-aba-lg transition-shadow",
     FEATURE:
-      "bg-white dark:bg-gray-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-blue-100 dark:border-blue-900/50",
+      "bg-soft-gray dark:bg-steel-blue rounded-xl p-8 shadow-aba-xl hover:shadow-2xl transition-shadow border border-medium-gray dark:border-soft-lavender",
     GRADIENT:
-      "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-xl p-6",
+      "bg-gradient-to-br from-ivory to-soft-gray dark:from-deep-navy dark:to-steel-blue rounded-xl p-6",
+    SOFT_BLUE: "bg-soft-blue/10 rounded-lg border border-soft-blue/30 p-6",
+    LAVENDER: "bg-lavender/10 rounded-lg border border-lavender/30 p-6",
+    MINT: "bg-mint-green/10 rounded-lg border border-mint-green/30 p-6",
+    PEACH: "bg-peach/10 rounded-lg border border-peach/30 p-6",
   },
 };
 
 export const FORM = {
   INPUT:
-    "w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all",
+    "w-full px-4 py-2 rounded-lg border border-medium-gray bg-soft-gray focus:ring-2 focus:ring-lavender/50 focus:border-soft-blue transition-all",
   SELECT:
-    "w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary",
+    "w-full px-4 py-2 rounded-lg border border-medium-gray bg-soft-gray focus:ring-2 focus:ring-lavender/50 focus:border-soft-blue",
   CHECKBOX:
-    "h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/80",
+    "h-4 w-4 rounded border-medium-gray text-soft-blue focus:ring-lavender/80",
   LABEL: "block text-sm font-medium mb-2",
 };
 
 export const ACCESSIBILITY = {
   FOCUS:
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lavender focus-visible:ring-offset-2",
 };
 
 export const RESPONSIVE = {
@@ -182,4 +194,14 @@ export const GRID = {
   TWO_COLUMNS: "grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
   THREE_COLUMNS: "grid grid-cols-1 md:grid-cols-3 gap-8",
   FOUR_COLUMNS: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8",
+};
+
+export const BADGES = {
+  DEFAULT: "px-2.5 py-0.5 rounded-full text-xs font-medium",
+  PRIMARY: "bg-soft-blue text-charcoal",
+  SECONDARY: "bg-lavender text-charcoal",
+  SUCCESS: "bg-mint-green text-charcoal",
+  WARNING: "bg-peach text-charcoal",
+  ERROR: "bg-light-pink text-charcoal",
+  OUTLINE: "border border-medium-gray text-foreground",
 };

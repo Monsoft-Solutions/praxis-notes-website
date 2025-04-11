@@ -5,23 +5,26 @@ import { ArrowRight, CheckCircle, Play } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden">
-      {/* Background gradient with more vibrant colors */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 opacity-70 dark:from-blue-950/30 dark:to-purple-950/30" />
+    <div className="relative overflow-hidden bg-white dark:bg-deep-navy">
+      {/* Background gradient effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-soft-blue/10 blur-3xl" />
+        <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-lavender/10 blur-3xl" />
+      </div>
 
-      <div className="relative pt-20 md:pt-28 pb-20 px-4 sm:px-6 mx-auto container max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div className="relative pt-20 md:pt-28 pb-20 px-4 sm:px-6 mx-auto container w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 mb-2">
-              <span className="text-xs font-medium text-blue-600 dark:text-blue-400">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-soft-blue/10 dark:bg-soft-blue/20 border border-soft-blue/20 dark:border-soft-blue/30 mb-2">
+              <span className="text-xs font-medium text-soft-blue dark:text-soft-blue">
                 New: AI-Powered RBT Notes
               </span>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tighter">
                 Effortless ABA Session Notes.{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-soft-blue to-lavender bg-clip-text text-transparent">
                   Instantly.
                 </span>
               </h1>
@@ -34,7 +37,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
               <Link href="/waitlist">
                 <Button
-                  variant="gradient"
+                  variant="default"
                   size="xl"
                   className="w-full sm:w-auto font-medium"
                 >
@@ -63,14 +66,14 @@ const Hero = () => {
                   "HIPAA compliant",
                 ].map((item, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-mint-green" />
                     <span className="text-sm">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-6 pt-6 border-t">
+            <div className="flex flex-wrap gap-6 pt-6 border-t border-border">
               <div className="flex flex-col">
                 <div className="flex items-center">
                   {Array(5)
@@ -92,7 +95,7 @@ const Hero = () => {
                     alt="Window icon"
                     width={20}
                     height={20}
-                    className="mr-1 text-blue-500"
+                    className="mr-1 text-soft-blue"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground mt-2 font-medium">
@@ -106,7 +109,7 @@ const Hero = () => {
                     alt="Globe icon"
                     width={20}
                     height={20}
-                    className="mr-1 text-green-500"
+                    className="mr-1 text-mint-green"
                   />
                 </div>
                 <p className="text-sm text-muted-foreground mt-2 font-medium">
@@ -116,41 +119,13 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg h-[550px] rounded-2xl overflow-hidden border-2 border-purple-200/50 dark:border-purple-900/30 bg-background shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80 dark:from-blue-950/40 dark:to-purple-950/40" />
-              <div className="absolute top-0 inset-x-0 h-10 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-900 dark:to-gray-800 flex items-center px-4">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-              </div>
-              <div className="relative p-4 pt-14 h-full">
-                {/* App mockup with better placeholder visuals */}
-                <div className="w-full h-full rounded-lg bg-white dark:bg-gray-800 flex flex-col p-4 overflow-hidden">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-32 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-md"></div>
-                    <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/50 rounded-full"></div>
-                  </div>
-                  <div className="flex-1 flex flex-col gap-4">
-                    <div className="w-full h-12 bg-gray-100 dark:bg-gray-700 rounded-md"></div>
-                    <div className="w-full h-24 bg-blue-50 dark:bg-blue-900/20 rounded-md"></div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="h-36 bg-gray-100 dark:bg-gray-700 rounded-md"></div>
-                      <div className="h-36 bg-gray-100 dark:bg-gray-700 rounded-md"></div>
-                    </div>
-                    <div className="w-full h-32 bg-purple-50 dark:bg-purple-900/20 rounded-md"></div>
-                  </div>
-                  <div className="mt-4 flex justify-end">
-                    <div className="w-28 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-md"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-200 dark:bg-blue-900/30 rounded-full blur-xl"></div>
-            <div className="absolute -top-6 -left-6 w-20 h-20 bg-purple-200 dark:bg-purple-900/30 rounded-full blur-xl"></div>
+          <div className=" relative aspect-video rounded-xl">
+            <Image
+              src="/images/illustrations/aba-progress.jpg"
+              alt="ABA professional working on documentation"
+              fill
+              className="object-cover m-0"
+            />
           </div>
         </div>
       </div>

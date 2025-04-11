@@ -12,20 +12,20 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950">
+      <section className="relative py-20 overflow-hidden bg-ivory dark:bg-deep-navy">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-blue-400/10 blur-3xl" />
-          <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-purple-400/10 blur-3xl" />
+          <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-soft-blue/10 blur-3xl" />
+          <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-lavender/10 blur-3xl" />
         </div>
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
               <span>Start free, pay only for what you need</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-              Simple, Transparent Pricing
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Invest in your Time
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed mb-10">
               Choose the plan that works best for you and your practice. No
               hidden fees.
             </p>

@@ -43,20 +43,18 @@ const highlights = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800">
+    <footer className="bg-white border-t border-gray dark:border-gray-800">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 space-y-6">
             <div>
               <Link href="/" className="flex items-center space-x-2">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-9 h-9 rounded-full  flex items-center justify-center  font-bold text-lg border border-gray-200 dark:border-gray-800">
                   P
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  Praxis Note
-                </span>
+                <span className="text-xl font-bold">Praxis Note</span>
               </Link>
-              <p className="mt-4 text-sm text-muted-foreground max-w-md">
+              <p className="mt-4 text-md text-muted-foreground max-w-md">
                 AI-powered ABA session notes that save RBTs and BCBAs hours each
                 week. Detailed, insurance-ready documentation in seconds.
               </p>
@@ -66,7 +64,7 @@ const Footer = () => {
               {highlights.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center text-sm text-gray-600 dark:text-gray-400"
+                  className="flex items-center dark:text-gray-400"
                 >
                   {item.icon}
                   <span>{item.text}</span>
@@ -115,7 +113,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className=" dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -133,7 +131,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className=" dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -147,7 +145,7 @@ const Footer = () => {
               Contact
             </h4>
             <div className="space-y-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className=" dark:text-gray-400">
                 Have questions? We&apos;re here to help.
               </p>
               <div className="flex items-center space-x-2">

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    <!-- Child's head -->
+    <path d="M300 200 C330 170, 350 180, 370 220 C380 240, 390 260, 380 290 C375 305, 360 310, 340 300 C330 295, 320 290, 310 295 C300 300, 290 310, 270 305 C250 300, 240 280, 245 260 C250 240, 260 220, 280 210 C290 205, 295 210, 300 200 Z" fill="black"/>
+    
+    <!-- Face -->
+    <ellipse cx="295" cy="270" rx="5" ry="10" fill="white"/>
+    <ellipse cx="330" cy="270" rx="5" ry="10" fill="white"/>
+    <path d="M310 290 C315 295, 320 295, 325 290" stroke="black" stroke-width="2" fill="none"/>
+    <path d="M295 310 C305 320, 315 320, 325 310" stroke="black" stroke-width="4" fill="none"/>
+    
+    <!-- Body -->
+    <path d="M270 305 C260 320, 250 340, 240 370 C235 385, 230 410, 240 430 C250 450, 270 460, 290 460 C310 460, 330 450, 345 430 C355 415, 360 400, 365 380 C370 360, 375 340, 370 320 C365 305, 355 300, 340 300" fill="white" stroke="black" stroke-width="2"/>
+    
+    <!-- Left arm -->
+    <path d="M250 340 C230 350, 210 360, 200 380 C195 390, 190 400, 195 410" fill="none" stroke="black" stroke-width="2"/>
+    <path d="M195 410 C200 415, 205 417, 210 415" fill="none" stroke="black" stroke-width="2"/>
+    
+    <!-- Right arm -->
+    <path d="M350 340 C370 350, 380 360, 385 380" fill="none" stroke="black" stroke-width="2"/>
+    <path d="M385 380 C390 390, 385 400, 375 405" fill="none" stroke="black" stroke-width="2"/>
+    <rect x="375" y="405" width="20" height="20" fill="white" stroke="black" stroke-width="2"/>
+    
+    <!-- Legs -->
+    <path d="M290 460 C285 470, 280 480, 275 490 C270 500, 260 510, 250 505" fill="black"/>
+    <path d="M275 490 C280 495, 285 497, 290 495" fill="white" stroke="black" stroke-width="1"/>
+    <path d="M345 430 C350 450, 355 470, 350 490" fill="black"/>
+    <path d="M350 490 C345 500, 340 505, 330 500" fill="white" stroke="black" stroke-width="1"/>
+    
+    <!-- Toys -->
+    <rect x="230" y="490" width="25" height="25" fill="white" stroke="black" stroke-width="2"/>
+    <rect x="180" y="450" width="25" height="25" fill="white" stroke="black" stroke-width="2"/>
+    
+    <!-- Stacking toy -->
+    <path d="M410 490 C400 485, 395 480, 400 470 C405 460, 415 458, 425 465 C430 470, 432 475, 430 480 Z" fill="black"/>
+    <path d="M415 470 C405 465, 400 460, 405 450 C410 440, 420 438, 430 445 C435 450, 437 455, 435 460 Z" fill="black"/>
+    <path d="M420 450 C410 445, 405 440, 410 430 C415 420, 425 418, 435 425 C440 430, 442 435, 440 440 Z" fill="black"/>
+    <path d="M425 430 C415 425, 410 420, 415 410 C420 400, 430 398, 440 405 C445 410, 447 415, 445 420 Z" fill="black"/>
+  </svg>

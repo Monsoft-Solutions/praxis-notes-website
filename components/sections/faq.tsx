@@ -27,7 +27,7 @@ const FAQ = ({
   className = "",
 }: FAQProps) => {
   return (
-    <section className={`py-16 md:py-24 bg-muted/50 ${className}`}>
+    <section className={`py-16 md:py-24 ${className}`}>
       <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
@@ -45,7 +45,7 @@ const FAQ = ({
               <AccordionItem
                 key={index}
                 value={`item-${index + 1}`}
-                className="border border-border rounded-lg px-6 mb-4 last:mb-0"
+                className="border border-border rounded-lg px-6 mb-4 last:border"
               >
                 <AccordionTrigger className="text-lg font-medium py-4">
                   {item.question}
