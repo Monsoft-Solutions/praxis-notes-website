@@ -113,15 +113,6 @@ const Header = () => {
           </Link>
         </nav>
 
-        <div className="hidden md:flex md:items-center md:space-x-3">
-          <ThemeToggle />
-          <Link href="/waitlist">
-            <Button variant="default" className="h-10 px-5 font-medium">
-              Join Waitlist
-            </Button>
-          </Link>
-        </div>
-
         {/* Mobile menu button */}
         <button
           className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -203,20 +194,10 @@ const Header = () => {
             >
               Contact
             </Link>
-            <Link
-              href="/design-system"
-              className="px-2 py-3 text-sm font-medium border-b border-gray-100 dark:border-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Design System
-            </Link>
-            <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-800">
-              <span className="text-sm font-medium">Theme</span>
-              <ThemeToggle />
-            </div>
+
             <div className="pt-4 flex flex-col space-y-3">
               <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="gradient" className="w-full">
+                <Button variant="default" className="w-full">
                   Join Waitlist
                 </Button>
               </Link>
