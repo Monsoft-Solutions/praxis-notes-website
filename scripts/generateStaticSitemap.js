@@ -11,7 +11,7 @@ const PUBLIC_DIR = path.join(__dirname, "../public");
 const SITEMAP_PATH = path.join(PUBLIC_DIR, "sitemap_static.xml");
 
 // Base URL from environment or default
-const baseUrl = process.env.SITE_URL || "https://praxisnotes.com";
+const baseUrl = process.env.SITE_URL || "https://www.praxisnote.com";
 
 // Static routes to include in the sitemap
 const staticRoutes = [

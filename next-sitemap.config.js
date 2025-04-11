@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-  siteUrl: process.env.SITE_URL || "https://www.praxisnotes.com", // Replace with your actual domain
+  siteUrl: process.env.SITE_URL || "https://www.praxisnote.com", // Replace with your actual domain
   generateRobotsTxt: true,
   sitemapSize: 5000,
   outDir: "public",
