@@ -13,18 +13,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "praxisnote.com"
-        }
-      ],
-      "destination": "https://www.praxisnote.com/:path*",
-      "permanent": true
-    }
   ]
 }
