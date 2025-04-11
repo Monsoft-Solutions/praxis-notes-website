@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "website/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { ThemeToggle } from "../ui/design-system/theme-toggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
