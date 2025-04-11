@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.SITE_URL || "https://praxisnotes.com";
 
   // Static routes
-  const staticRoutes = [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
@@ -115,5 +115,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const requestEnd = performance.now();
   console.log(`Sitemap generation took ${requestEnd - requestStart}ms`);
 
-  return [...staticRoutes, ...resourceRoutes];
+  return [...staticRoutes, ...resourceRoutes] as MetadataRoute.Sitemap;
 }
