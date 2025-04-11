@@ -24,14 +24,14 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "light",
   storageKey = "praxis-theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() =>
     typeof window !== "undefined"
       ? (localStorage.getItem(storageKey) as Theme) || defaultTheme
-      : defaultTheme,
+      : defaultTheme
   );
 
   useEffect(() => {
