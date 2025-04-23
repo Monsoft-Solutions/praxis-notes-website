@@ -1,6 +1,6 @@
-# Praxis Note Component Design Patterns
+# Praxis Notes Component Design Patterns
 
-This document provides detailed patterns and examples for components used throughout the Praxis Note website.
+This document provides detailed patterns and examples for components used throughout the Praxis Notes website.
 
 ## Table of Contents
 
@@ -50,13 +50,19 @@ The primary navigation should be consistent across all pages.
     </div>
     <div className="mt-10 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
       <p className="text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Praxis Note. All rights reserved.
+        © {new Date().getFullYear()} Praxis Notes. All rights reserved.
       </p>
       <div className="flex items-center gap-4">
-        <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
+        <a
+          href="#"
+          className="text-sm text-muted-foreground hover:text-foreground"
+        >
           Privacy Policy
         </a>
-        <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
+        <a
+          href="#"
+          className="text-sm text-muted-foreground hover:text-foreground"
+        >
           Terms of Service
         </a>
       </div>
@@ -109,7 +115,8 @@ The primary navigation should be consistent across all pages.
           Focus on Therapy, Not Paperwork
         </h1>
         <p className="text-xl text-muted-foreground mb-8">
-          Generate detailed, insurance-ready ABA session notes in minutes, not hours.
+          Generate detailed, insurance-ready ABA session notes in minutes, not
+          hours.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Button size="lg" variant="gradient">
@@ -140,7 +147,7 @@ The primary navigation should be consistent across all pages.
 ```tsx
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
   {features.map((feature, index) => (
-    <div 
+    <div
       key={index}
       className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-blue-100 dark:border-blue-900/50 relative overflow-hidden group"
     >
@@ -209,7 +216,9 @@ The primary navigation should be consistent across all pages.
     <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-900/30 mb-6">
       <Icon className="w-7 h-7 text-blue-600 dark:text-blue-400" />
     </div>
-    <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{title}</h3>
+    <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+      {title}
+    </h3>
     <p className="text-muted-foreground">{description}</p>
   </div>
 </div>
@@ -233,7 +242,10 @@ The primary navigation should be consistent across all pages.
     <div className="flex items-center">
       <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
         <span className="font-medium text-blue-600 dark:text-blue-400">
-          {name.split(' ').map(n => n[0]).join('')}
+          {name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}
         </span>
       </div>
       <div>
@@ -354,14 +366,23 @@ The primary navigation should be consistent across all pages.
             Ready to Save Hours on Session Notes?
           </h2>
           <p className="text-white/90 text-lg mb-0 md:mb-6">
-            Join thousands of ABA professionals who are reclaiming their time with Praxis Note.
+            Join thousands of ABA professionals who are reclaiming their time
+            with Praxis Notes.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 justify-start md:justify-end">
-          <Button size="xl" variant="default" className="bg-white text-blue-600 hover:bg-white/90">
+          <Button
+            size="xl"
+            variant="default"
+            className="bg-white text-blue-600 hover:bg-white/90"
+          >
             Start Free Trial
           </Button>
-          <Button size="xl" variant="outline" className="border-white text-white hover:bg-white/10">
+          <Button
+            size="xl"
+            variant="outline"
+            className="border-white text-white hover:bg-white/10"
+          >
             Schedule Demo
           </Button>
         </div>
@@ -404,7 +425,8 @@ The primary navigation should be consistent across all pages.
       <div>
         <h2 className="text-3xl font-bold mb-6">Section Title</h2>
         <p className="text-lg text-muted-foreground mb-6">
-          Main description text goes here. This explains the key benefits or features.
+          Main description text goes here. This explains the key benefits or
+          features.
         </p>
         <ul className="space-y-3">
           {points.map((point, index) => (
@@ -436,14 +458,12 @@ The primary navigation should be consistent across all pages.
         <Icon className="w-4 h-4" />
         <span>Section Label</span>
       </div>
-      <h2 className="text-3xl md:text-4xl font-bold mb-6">
-        Section Title
-      </h2>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6">Section Title</h2>
       <p className="text-xl text-muted-foreground">
         Descriptive text that explains this section in more detail.
       </p>
     </div>
-    
+
     {/* Section content */}
   </div>
 </section>
@@ -458,7 +478,10 @@ The primary navigation should be consistent across all pages.
 ```tsx
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
   {testimonials.map((testimonial, index) => (
-    <div key={index} className="p-1 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
+    <div
+      key={index}
+      className="p-1 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl"
+    >
       <div className="bg-white dark:bg-gray-900 p-6 rounded-lg h-full">
         <div className="flex text-amber-400 mb-4">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -471,7 +494,10 @@ The primary navigation should be consistent across all pages.
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
             <span className="font-medium text-blue-600 dark:text-blue-400">
-              {testimonial.name.split(' ').map(n => n[0]).join('')}
+              {testimonial.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
             </span>
           </div>
           <div>
@@ -497,7 +523,8 @@ The primary navigation should be consistent across all pages.
         ))}
       </div>
       <blockquote className="text-xl md:text-2xl font-medium mb-6">
-        "Praxis Note has completely transformed my documentation process. I save at least 5 hours every week on session notes."
+        "Praxis Notes has completely transformed my documentation process. I
+        save at least 5 hours every week on session notes."
       </blockquote>
       <div className="flex items-center">
         <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
@@ -514,18 +541,22 @@ The primary navigation should be consistent across all pages.
     <div className="relative">
       <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-xl transform -rotate-3"></div>
       <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-xl border border-blue-100 dark:border-blue-900/50">
-        <p className="mb-4 font-medium">Results with Praxis Note:</p>
+        <p className="mb-4 font-medium">Results with Praxis Notes:</p>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span>Time Saved</span>
-            <span className="font-bold text-blue-600 dark:text-blue-400">5+ hours/week</span>
+            <span className="font-bold text-blue-600 dark:text-blue-400">
+              5+ hours/week
+            </span>
           </div>
           <div className="w-full h-2 bg-blue-100 dark:bg-blue-900/30 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-blue-500 to-purple-600 w-[80%]"></div>
           </div>
           <div className="flex items-center justify-between">
             <span>Note Quality</span>
-            <span className="font-bold text-blue-600 dark:text-blue-400">Improved by 90%</span>
+            <span className="font-bold text-blue-600 dark:text-blue-400">
+              Improved by 90%
+            </span>
           </div>
           <div className="w-full h-2 bg-blue-100 dark:bg-blue-900/30 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-blue-500 to-purple-600 w-[90%]"></div>
@@ -546,12 +577,12 @@ The primary navigation should be consistent across all pages.
 ```tsx
 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
   {plans.map((plan, index) => (
-    <div 
-      key={index} 
+    <div
+      key={index}
       className={cn(
         "rounded-xl overflow-hidden border transition-shadow",
-        plan.featured 
-          ? "border-blue-200 dark:border-blue-800 shadow-xl relative bg-gradient-to-b from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-900" 
+        plan.featured
+          ? "border-blue-200 dark:border-blue-800 shadow-xl relative bg-gradient-to-b from-blue-50 to-white dark:from-blue-900/20 dark:to-gray-900"
           : "border-border shadow-lg hover:shadow-xl bg-background"
       )}
     >
@@ -570,9 +601,9 @@ The primary navigation should be consistent across all pages.
           <span className="text-4xl font-bold">${plan.price}</span>
           <span className="text-muted-foreground">/{plan.interval}</span>
         </div>
-        <Button 
-          variant={plan.featured ? "gradient" : "outline"} 
-          size="lg" 
+        <Button
+          variant={plan.featured ? "gradient" : "outline"}
+          size="lg"
           className="w-full mb-6"
         >
           {plan.buttonText}
@@ -639,9 +670,7 @@ The primary navigation should be consistent across all pages.
       <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
         {stat.value}
       </div>
-      <p className="text-sm md:text-base text-muted-foreground">
-        {stat.label}
-      </p>
+      <p className="text-sm md:text-base text-muted-foreground">{stat.label}</p>
     </div>
   ))}
 </div>
@@ -672,22 +701,29 @@ The primary navigation should be consistent across all pages.
 ```tsx
 <div className="relative">
   <div className="absolute top-5 left-0 right-0 h-0.5 bg-muted-foreground/20">
-    <div className="h-full bg-blue-600 dark:bg-blue-400" style={{ width: `${(currentStep / totalSteps) * 100}%` }}></div>
+    <div
+      className="h-full bg-blue-600 dark:bg-blue-400"
+      style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+    ></div>
   </div>
   <div className="relative flex justify-between">
     {steps.map((step, index) => (
       <div key={index} className="flex flex-col items-center">
-        <div className={cn(
-          "h-10 w-10 rounded-full flex items-center justify-center text-sm font-medium border-2 z-10",
-          index < currentStep 
-            ? "bg-blue-600 text-white border-blue-600 dark:bg-blue-400 dark:border-blue-400" 
-            : index === currentStep 
-              ? "bg-white text-blue-600 border-blue-600 dark:bg-gray-900 dark:text-blue-400 dark:border-blue-400" 
+        <div
+          className={cn(
+            "h-10 w-10 rounded-full flex items-center justify-center text-sm font-medium border-2 z-10",
+            index < currentStep
+              ? "bg-blue-600 text-white border-blue-600 dark:bg-blue-400 dark:border-blue-400"
+              : index === currentStep
+              ? "bg-white text-blue-600 border-blue-600 dark:bg-gray-900 dark:text-blue-400 dark:border-blue-400"
               : "bg-white text-muted-foreground border-muted-foreground/30 dark:bg-gray-900"
-        )}>
+          )}
+        >
           {index < currentStep ? <Check className="h-5 w-5" /> : index + 1}
         </div>
-        <div className="text-sm mt-2 text-center max-w-[120px]">{step.name}</div>
+        <div className="text-sm mt-2 text-center max-w-[120px]">
+          {step.name}
+        </div>
       </div>
     ))}
   </div>

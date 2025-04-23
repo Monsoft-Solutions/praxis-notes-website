@@ -17,9 +17,9 @@ import {
 import FeaturesCTA from "website/components/sections/features-shared-cta";
 
 export const metadata: Metadata = {
-  title: "Track ABA Progress | Praxis Note",
+  title: "Track ABA Progress | Praxis Notes",
   description:
-    "Monitor client progress, track behavioral trends, and generate comprehensive reports for ABA therapy with Praxis Note's powerful analytics tools.",
+    "Monitor client progress, track behavioral trends, and generate comprehensive reports for ABA therapy with Praxis Notes's powerful analytics tools.",
 };
 
 export default function TrackProgressPage() {
@@ -149,7 +149,7 @@ export default function TrackProgressPage() {
                                 style={{ height: `${height}%` }}
                               ></div>
                             </div>
-                          ),
+                          )
                         )}
                       </div>
                       <div className="flex justify-between">

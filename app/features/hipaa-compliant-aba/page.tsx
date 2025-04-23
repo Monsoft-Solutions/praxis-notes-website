@@ -17,7 +17,7 @@ import {
 import FeaturesCTA from "website/components/sections/features-shared-cta";
 
 export const metadata: Metadata = {
-  title: "HIPAA Compliant ABA Documentation | Praxis Note",
+  title: "HIPAA Compliant ABA Documentation | Praxis Notes",
   description:
     "Ensure HIPAA compliance in your ABA practice with secure, encrypted documentation and storage. Meet all regulatory requirements while protecting client information.",
 };

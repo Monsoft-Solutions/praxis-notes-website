@@ -13,9 +13,9 @@ import CTAPlain from "website/components/sections/cta-plain";
 import { InfoBox } from "website/components/sections/cards";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Praxis Note",
+  title: "Contact Us | Praxis Notes",
   description:
-    "Get in touch with the Praxis Note team. We're here to help with any questions about our ABA session notes tool.",
+    "Get in touch with the Praxis Notes team. We're here to help with any questions about our ABA session notes tool.",
 };
 
 export default function ContactPage() {
@@ -182,7 +182,7 @@ export default function ContactPage() {
                     "Yes, phone support is available for all paid plans during business hours (9 AM - 5 PM EST, Monday through Friday). Free trial users are encouraged to reach out via email.",
                 },
                 {
-                  question: "Can I schedule a demo of Praxis Note?",
+                  question: "Can I schedule a demo of Praxis Notes?",
                   answer:
                     "Absolutely! You can request a personalized demo through this contact form. Select &quot;Demo Request&quot; as your subject, and our team will reach out to schedule a time that works for you.",
                 },

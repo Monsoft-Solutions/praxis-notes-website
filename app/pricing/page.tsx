@@ -4,9 +4,9 @@ import CTA from "website/components/sections/cta";
 import FAQ from "website/components/sections/faq";
 
 export const metadata: Metadata = {
-  title: "Pricing | Praxis Note",
+  title: "Pricing | Praxis Notes",
   description:
-    "Simple, transparent pricing plans for Praxis Note - the AI-powered ABA session notes tool for RBTs, BCBAs, and clinics.",
+    "Simple, transparent pricing plans for Praxis Notes - the AI-powered ABA session notes tool for RBTs, BCBAs, and clinics.",
 };
 
 export default function PricingPage() {

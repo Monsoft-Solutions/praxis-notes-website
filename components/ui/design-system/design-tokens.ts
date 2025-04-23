@@ -1,7 +1,7 @@
 /**
  * Design Tokens
  *
- * This file contains all the design tokens for the Praxis Note ABA-inspired pastel design system.
+ * This file contains all the design tokens for the Praxis Notes ABA-inspired pastel design system.
  * It provides a reference for using the tokens in your components.
  */
 

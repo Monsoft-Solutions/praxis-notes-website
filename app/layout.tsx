@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Praxis Note | AI-Powered ABA Session Notes",
+  title: "Praxis Notes | AI-Powered ABA Session Notes",
   description:
     "Generate detailed, insurance-ready ABA session notes with AI. For RBTs, BCBAs, and clinics.",
   keywords:

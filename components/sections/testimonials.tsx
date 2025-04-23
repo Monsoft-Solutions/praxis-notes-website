@@ -4,7 +4,7 @@ import { Quote } from "lucide-react";
 const testimonials = [
   {
     quote:
-      "Praxis Note cut my documentation time by 75%. I'm able to spend more time with my clients and less time writing notes. The AI quality is phenomenal.",
+      "Praxis Notes cut my documentation time by 75%. I'm able to spend more time with my clients and less time writing notes. The AI quality is phenomenal.",
     author: "Jessica R.",
     role: "BCBA, Private Practice",
     rating: 5,
@@ -70,7 +70,7 @@ const Testimonials = () => {
           </h2>
           <p className="text-xl text-muted-foreground">
             Don&apos;t just take our word for it. See what our users have to say
-            about Praxis Note.
+            about Praxis Notes.
           </p>
         </div>
 
@@ -139,7 +139,7 @@ const Testimonials = () => {
 
         <div className="mt-12 text-center">
           <div className="inline-flex items-center rounded-full border border-border px-6 py-3 text-sm text-muted-foreground">
-            Join 1,000+ ABA professionals already using Praxis Note
+            Join 1,000+ ABA professionals already using Praxis Notes
           </div>
         </div>
       </div>

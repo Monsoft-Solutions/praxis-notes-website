@@ -5,9 +5,9 @@ import CTA from "website/components/sections/cta";
 import { ArrowRight, BarChart2, ClipboardCheck, RefreshCw } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Features | Praxis Note",
+  title: "Features | Praxis Notes",
   description:
-    "Explore the powerful features of Praxis Note - AI-powered ABA session notes, reviews, and documentation tools for RBTs, BCBAs, and clinics.",
+    "Explore the powerful features of Praxis Notes - AI-powered ABA session notes, reviews, and documentation tools for RBTs, BCBAs, and clinics.",
 };
 
 export default function FeaturesPage() {
@@ -23,7 +23,7 @@ export default function FeaturesPage() {
               Comprehensive Documentation Solution
             </h1>
             <p className="text-xl text-muted-foreground">
-              Praxis Note empowers RBTs, BCBAs, and ABA clinics with AI-powered
+              Praxis Notes empowers RBTs, BCBAs, and ABA clinics with AI-powered
               tools to create, review, and manage clinical documentation
               that&apos;s both clinically sound and insurance-compliant.
             </p>

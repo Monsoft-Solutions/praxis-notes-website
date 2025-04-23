@@ -5,7 +5,7 @@
   "type": "module",
   "owner": "Monsoft Solutions, LLC (https://monsoft.io)",
   "license": "Apache-2.0",
-  "description": "Praxis Note Website (https://praxisnotes.com)",
+  "description": "Praxis Notes Website (https://praxisnotes.com)",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build && pnpm sitemap:copy",

@@ -1,6 +1,6 @@
-# Praxis Note Brand and Color Guide
+# Praxis Notes Brand and Color Guide
 
-This document outlines the brand identity, color usage, and visual language for the Praxis Note website. It serves as a comprehensive reference for maintaining brand consistency across all touchpoints.
+This document outlines the brand identity, color usage, and visual language for the Praxis Notes website. It serves as a comprehensive reference for maintaining brand consistency across all touchpoints.
 
 ## Table of Contents
 
@@ -37,7 +37,7 @@ This document outlines the brand identity, color usage, and visual language for 
 
 ### Brand Story
 
-Praxis Note was created by and for ABA professionals who recognized the documentation burden facing therapists. Our brand represents the perfect blend of clinical expertise and technological innovation, designed to give practitioners more time for what matters most: helping their clients.
+Praxis Notes was created by and for ABA professionals who recognized the documentation burden facing therapists. Our brand represents the perfect blend of clinical expertise and technological innovation, designed to give practitioners more time for what matters most: helping their clients.
 
 ---
 
@@ -45,44 +45,44 @@ Praxis Note was created by and for ABA professionals who recognized the document
 
 ### Primary Brand Colors
 
-| Name | Hex | Tailwind | RGB | Usage |
-|------|-----|----------|-----|-------|
-| Blue Primary | `#3B82F6` | `blue-500` | `59, 130, 246` | Primary brand color, main buttons, links, accents |
-| Purple Primary | `#8B5CF6` | `purple-500` | `139, 92, 246` | Supporting brand color, accents, gradients |
+| Name           | Hex       | Tailwind     | RGB            | Usage                                             |
+| -------------- | --------- | ------------ | -------------- | ------------------------------------------------- |
+| Blue Primary   | `#3B82F6` | `blue-500`   | `59, 130, 246` | Primary brand color, main buttons, links, accents |
+| Purple Primary | `#8B5CF6` | `purple-500` | `139, 92, 246` | Supporting brand color, accents, gradients        |
 
 ### Secondary Brand Colors
 
-| Name | Hex | Tailwind | RGB | Usage |
-|------|-----|----------|-----|-------|
-| Blue Light | `#60A5FA` | `blue-400` | `96, 165, 250` | Lighter accents, secondary elements |
-| Blue Dark | `#2563EB` | `blue-600` | `37, 99, 235` | Darker accents, hover states |
+| Name         | Hex       | Tailwind     | RGB             | Usage                               |
+| ------------ | --------- | ------------ | --------------- | ----------------------------------- |
+| Blue Light   | `#60A5FA` | `blue-400`   | `96, 165, 250`  | Lighter accents, secondary elements |
+| Blue Dark    | `#2563EB` | `blue-600`   | `37, 99, 235`   | Darker accents, hover states        |
 | Purple Light | `#A78BFA` | `purple-400` | `167, 139, 250` | Lighter accents, secondary elements |
-| Purple Dark | `#7C3AED` | `purple-600` | `124, 58, 237` | Darker accents, hover states |
+| Purple Dark  | `#7C3AED` | `purple-600` | `124, 58, 237`  | Darker accents, hover states        |
 
 ### Neutral Colors
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
-| White | `#FFFFFF` | `white` | Primary background, text on dark backgrounds |
-| Gray 50 | `#F9FAFB` | `gray-50` | Secondary background |
-| Gray 100 | `#F3F4F6` | `gray-100` | Card backgrounds, dividers |
-| Gray 200 | `#E5E7EB` | `gray-200` | Borders, separators |
-| Gray 300 | `#D1D5DB` | `gray-300` | Disabled states |
-| Gray 400 | `#9CA3AF` | `gray-400` | Placeholder text |
-| Gray 500 | `#6B7280` | `gray-500` | Secondary text |
-| Gray 600 | `#4B5563` | `gray-600` | Tertiary text |
-| Gray 700 | `#374151` | `gray-700` | Strong text |
-| Gray 800 | `#1F2937` | `gray-800` | Heading text |
-| Gray 900 | `#111827` | `gray-900` | Primary text |
+| Name     | Hex       | Tailwind   | Usage                                        |
+| -------- | --------- | ---------- | -------------------------------------------- |
+| White    | `#FFFFFF` | `white`    | Primary background, text on dark backgrounds |
+| Gray 50  | `#F9FAFB` | `gray-50`  | Secondary background                         |
+| Gray 100 | `#F3F4F6` | `gray-100` | Card backgrounds, dividers                   |
+| Gray 200 | `#E5E7EB` | `gray-200` | Borders, separators                          |
+| Gray 300 | `#D1D5DB` | `gray-300` | Disabled states                              |
+| Gray 400 | `#9CA3AF` | `gray-400` | Placeholder text                             |
+| Gray 500 | `#6B7280` | `gray-500` | Secondary text                               |
+| Gray 600 | `#4B5563` | `gray-600` | Tertiary text                                |
+| Gray 700 | `#374151` | `gray-700` | Strong text                                  |
+| Gray 800 | `#1F2937` | `gray-800` | Heading text                                 |
+| Gray 900 | `#111827` | `gray-900` | Primary text                                 |
 
 ### Functional Colors
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
+| Name    | Hex       | Tailwind      | Usage                                 |
+| ------- | --------- | ------------- | ------------------------------------- |
 | Success | `#10B981` | `emerald-500` | Success messages, positive indicators |
-| Warning | `#F59E0B` | `amber-500` | Warnings, cautionary messages |
-| Error | `#EF4444` | `red-500` | Error messages, destructive actions |
-| Info | `#3B82F6` | `blue-500` | Informational messages |
+| Warning | `#F59E0B` | `amber-500`   | Warnings, cautionary messages         |
+| Error   | `#EF4444` | `red-500`     | Error messages, destructive actions   |
+| Info    | `#3B82F6` | `blue-500`    | Informational messages                |
 
 ### Color Proportions
 
@@ -104,13 +104,13 @@ Praxis Note was created by and for ABA professionals who recognized the document
 
 ### Tone Guidelines
 
-| Context | Tone | Example |
-|---------|------|---------|
-| Marketing | Enthusiastic but professional | "Transform your documentation process and reclaim hours of your week." |
-| Product Information | Clear and factual | "Praxis Note generates compliant session notes in under 15 minutes." |
-| Support | Helpful and empathetic | "We understand how challenging documentation can be. Here's how we can help..." |
-| Technical | Precise but accessible | "Our secure API integrates with your existing EHR system." |
-| Error Messages | Concise and solution-focused | "We couldn't save your note. Please try again or contact support." |
+| Context             | Tone                          | Example                                                                         |
+| ------------------- | ----------------------------- | ------------------------------------------------------------------------------- |
+| Marketing           | Enthusiastic but professional | "Transform your documentation process and reclaim hours of your week."          |
+| Product Information | Clear and factual             | "Praxis Notes generates compliant session notes in under 15 minutes."           |
+| Support             | Helpful and empathetic        | "We understand how challenging documentation can be. Here's how we can help..." |
+| Technical           | Precise but accessible        | "Our secure API integrates with your existing EHR system."                      |
+| Error Messages      | Concise and solution-focused  | "We couldn't save your note. Please try again or contact support."              |
 
 ---
 
@@ -122,28 +122,28 @@ Inter is our primary typeface for its exceptional readability and professional a
 
 ### Font Weight Usage
 
-| Weight | Name | Usage |
-|--------|------|-------|
-| 400 | Regular | Body text, paragraphs |
-| 500 | Medium | Subheadings, emphasized text |
-| 600 | Semibold | Important information, feature headings |
-| 700 | Bold | Primary headings, buttons |
-| 800 | Extrabold | Hero headlines, major statements |
+| Weight | Name      | Usage                                   |
+| ------ | --------- | --------------------------------------- |
+| 400    | Regular   | Body text, paragraphs                   |
+| 500    | Medium    | Subheadings, emphasized text            |
+| 600    | Semibold  | Important information, feature headings |
+| 700    | Bold      | Primary headings, buttons               |
+| 800    | Extrabold | Hero headlines, major statements        |
 
 ### Font Size Hierarchy
 
-| Size | Tailwind | Purpose |
-|------|----------|---------|
-| 12px | `text-xs` | Legal text, footnotes |
-| 14px | `text-sm` | Secondary text, captions |
-| 16px | `text-base` | Body text |
-| 18px | `text-lg` | Lead paragraphs |
-| 20px | `text-xl` | Subheadings |
-| 24px | `text-2xl` | Section headings |
-| 30px | `text-3xl` | Page headings |
-| 36px | `text-4xl` | Hero headings (mobile) |
-| 48px | `text-5xl` | Hero headings (desktop) |
-| 60px | `text-6xl` | Major statements |
+| Size | Tailwind    | Purpose                  |
+| ---- | ----------- | ------------------------ |
+| 12px | `text-xs`   | Legal text, footnotes    |
+| 14px | `text-sm`   | Secondary text, captions |
+| 16px | `text-base` | Body text                |
+| 18px | `text-lg`   | Lead paragraphs          |
+| 20px | `text-xl`   | Subheadings              |
+| 24px | `text-2xl`  | Section headings         |
+| 30px | `text-3xl`  | Page headings            |
+| 36px | `text-4xl`  | Hero headings (mobile)   |
+| 48px | `text-5xl`  | Hero headings (desktop)  |
+| 60px | `text-6xl`  | Major statements         |
 
 ### Typographic Best Practices
 
@@ -160,7 +160,7 @@ Inter is our primary typeface for its exceptional readability and professional a
 ### Primary Gradient
 
 ```css
-background: linear-gradient(to right, #3B82F6, #8B5CF6);
+background: linear-gradient(to right, #3b82f6, #8b5cf6);
 ```
 
 **Tailwind**: `bg-gradient-to-r from-blue-500 to-purple-500`
@@ -170,7 +170,7 @@ This gradient is our signature brand element, used for primary CTAs, hero backgr
 ### Soft Gradient
 
 ```css
-background: linear-gradient(to bottom right, #EFF6FF, #F5F3FF);
+background: linear-gradient(to bottom right, #eff6ff, #f5f3ff);
 ```
 
 **Tailwind**: `bg-gradient-to-br from-blue-50 to-purple-50`
@@ -180,7 +180,7 @@ This subtle gradient is used for card backgrounds, section backgrounds, and othe
 ### Dark Mode Gradient
 
 ```css
-background: linear-gradient(to right, #1E40AF, #6D28D9);
+background: linear-gradient(to right, #1e40af, #6d28d9);
 ```
 
 **Tailwind**: `bg-gradient-to-r from-blue-800 to-purple-800`
@@ -190,11 +190,13 @@ This deeper gradient is used for primary elements in dark mode.
 ### Accent Combinations
 
 1. **Call to Action**
+
    - Button: Blue Primary (`#3B82F6`)
    - Text: White (`#FFFFFF`)
    - Hover: Blue Dark (`#2563EB`)
 
 2. **Content Highlight**
+
    - Background: Blue Light (`#60A5FA`) at 10% opacity
    - Border: Blue Primary (`#3B82F6`)
    - Text: Gray 900 (`#111827`)
@@ -256,13 +258,13 @@ We use the Lucide icon library for its clean, professional appearance and compre
 
 ### Common Icon Applications
 
-| Context | Icon Examples | Style |
-|---------|---------------|-------|
-| Navigation | Home, Features, Pricing | Outline style, medium weight |
-| Actions | Download, Share, Save | Filled or outline depending on importance |
-| Status | Success check, Error alert | Filled style with status colors |
-| Categories | Features, Modules | Outline style, consistent with other UI |
-| Social | LinkedIn, Twitter, Facebook | Brand-standard icons |
+| Context    | Icon Examples               | Style                                     |
+| ---------- | --------------------------- | ----------------------------------------- |
+| Navigation | Home, Features, Pricing     | Outline style, medium weight              |
+| Actions    | Download, Share, Save       | Filled or outline depending on importance |
+| Status     | Success check, Error alert  | Filled style with status colors           |
+| Categories | Features, Modules           | Outline style, consistent with other UI   |
+| Social     | LinkedIn, Twitter, Facebook | Brand-standard icons                      |
 
 ---
 
@@ -270,12 +272,12 @@ We use the Lucide icon library for its clean, professional appearance and compre
 
 ### Color Adaptations
 
-| Light Mode | Dark Mode | Usage |
-|------------|-----------|-------|
-| White (#FFFFFF) | Gray 900 (#111827) | Background |
-| Gray 100 (#F3F4F6) | Gray 800 (#1F2937) | Card backgrounds |
-| Gray 900 (#111827) | Gray 100 (#F3F4F6) | Primary text |
-| Blue 500 (#3B82F6) | Blue 400 (#60A5FA) | Primary brand color |
+| Light Mode           | Dark Mode            | Usage                 |
+| -------------------- | -------------------- | --------------------- |
+| White (#FFFFFF)      | Gray 900 (#111827)   | Background            |
+| Gray 100 (#F3F4F6)   | Gray 800 (#1F2937)   | Card backgrounds      |
+| Gray 900 (#111827)   | Gray 100 (#F3F4F6)   | Primary text          |
+| Blue 500 (#3B82F6)   | Blue 400 (#60A5FA)   | Primary brand color   |
 | Purple 500 (#8B5CF6) | Purple 400 (#A78BFA) | Secondary brand color |
 
 ### Contrast Requirements
@@ -359,9 +361,7 @@ In dark mode, shadows should be more subtle:
     <Icon className="w-4 h-4" />
     <span>Section Label</span>
   </div>
-  <h2 className="text-3xl md:text-4xl font-bold mb-6">
-    Section Title
-  </h2>
+  <h2 className="text-3xl md:text-4xl font-bold mb-6">Section Title</h2>
   <p className="text-xl text-gray-500 dark:text-gray-400">
     Descriptive text that explains this section in more detail.
   </p>
@@ -389,12 +389,14 @@ In dark mode, shadows should be more subtle:
 ### Color Usage
 
 ✅ **Do**:
+
 - Use brand colors consistently across the site
 - Maintain proper contrast for accessibility
 - Use the primary gradient for key CTAs and important elements
 - Adapt colors appropriately for dark mode
 
 ❌ **Don't**:
+
 - Mix too many colors in a single design
 - Use colors that aren't in the brand palette
 - Create low-contrast text that's difficult to read
@@ -403,12 +405,14 @@ In dark mode, shadows should be more subtle:
 ### Typography
 
 ✅ **Do**:
+
 - Maintain a clear typographic hierarchy
 - Use font weights consistently
 - Ensure sufficient line height for readability
 - Keep text aligned left for long-form content (except headings)
 
 ❌ **Don't**:
+
 - Use more than 2-3 font weights on a single page
 - Create long lines of text (over 80 characters)
 - Use centered text for long paragraphs
@@ -417,12 +421,14 @@ In dark mode, shadows should be more subtle:
 ### Imagery
 
 ✅ **Do**:
+
 - Use high-quality, professional images
 - Show diverse ABA professionals
 - Maintain consistent treatment for all photos
 - Ensure images have proper alt text
 
 ❌ **Don't**:
+
 - Use generic stock photos that feel inauthentic
 - Show unprofessional or inappropriate clinical settings
 - Mix different photographic styles
@@ -431,12 +437,14 @@ In dark mode, shadows should be more subtle:
 ### Layout
 
 ✅ **Do**:
+
 - Maintain consistent spacing throughout the design
 - Use a clear grid system
 - Design for all screen sizes
 - Create clear visual hierarchy
 
 ❌ **Don't**:
+
 - Crowd elements with insufficient spacing
 - Use inconsistent margins and padding
 - Ignore mobile experiences

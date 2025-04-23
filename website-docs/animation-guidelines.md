@@ -1,6 +1,6 @@
-# Praxis Note Animation Guidelines
+# Praxis Notes Animation Guidelines
 
-This document provides principles and examples for animations and transitions used throughout the Praxis Note website.
+This document provides principles and examples for animations and transitions used throughout the Praxis Notes website.
 
 ## Table of Contents
 
@@ -47,22 +47,22 @@ This document provides principles and examples for animations and transitions us
 
 ### Duration Guidelines
 
-| Type | Duration | Tailwind | Use Case |
-|------|----------|----------|----------|
-| Instant | 100ms | `duration-100` | Immediate feedback (button presses) |
-| Fast | 150ms | `duration-150` | Micro-interactions, small UI changes |
-| Standard | 300ms | `duration-300` | Most transitions (hover, focus) |
-| Moderate | 500ms | `duration-500` | Element appearance, page transitions |
-| Slow | 700ms | `duration-700` | Expressive animations, storytelling |
+| Type     | Duration | Tailwind       | Use Case                             |
+| -------- | -------- | -------------- | ------------------------------------ |
+| Instant  | 100ms    | `duration-100` | Immediate feedback (button presses)  |
+| Fast     | 150ms    | `duration-150` | Micro-interactions, small UI changes |
+| Standard | 300ms    | `duration-300` | Most transitions (hover, focus)      |
+| Moderate | 500ms    | `duration-500` | Element appearance, page transitions |
+| Slow     | 700ms    | `duration-700` | Expressive animations, storytelling  |
 
 ### Easing Functions
 
-| Type | Cubic-Bezier | Tailwind | Use Case |
-|------|--------------|----------|----------|
-| Default | `cubic-bezier(0.4, 0, 0.2, 1)` | `ease-in-out` | Most transitions |
-| Entrance | `cubic-bezier(0, 0, 0.2, 1)` | `ease-out` | Elements appearing |
-| Exit | `cubic-bezier(0.4, 0, 1, 1)` | `ease-in` | Elements disappearing |
-| Bounce | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Custom | Attention-grabbing animations |
+| Type     | Cubic-Bezier                        | Tailwind      | Use Case                      |
+| -------- | ----------------------------------- | ------------- | ----------------------------- |
+| Default  | `cubic-bezier(0.4, 0, 0.2, 1)`      | `ease-in-out` | Most transitions              |
+| Entrance | `cubic-bezier(0, 0, 0.2, 1)`        | `ease-out`    | Elements appearing            |
+| Exit     | `cubic-bezier(0.4, 0, 1, 1)`        | `ease-in`     | Elements disappearing         |
+| Bounce   | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Custom        | Attention-grabbing animations |
 
 ---
 
@@ -101,7 +101,7 @@ This document provides principles and examples for animations and transitions us
 }
 .feature-card::before {
   @apply absolute top-0 right-0 w-24 h-24 bg-blue-100 dark:bg-blue-900/20 rounded-bl-full z-0 transition-transform duration-300 group-hover:scale-110;
-  content: '';
+  content: "";
 }
 
 /* Feature card with highlighted heading */
@@ -124,7 +124,7 @@ This document provides principles and examples for animations and transitions us
 }
 .link-underline::after {
   @apply absolute left-0 bottom-0 w-0 h-0.5 bg-current transition-all duration-300 ease-out;
-  content: '';
+  content: "";
 }
 .link-underline:hover::after {
   @apply w-full;
@@ -140,17 +140,21 @@ This document provides principles and examples for animations and transitions us
 For page transitions in Next.js, we can use the following approach:
 
 ```tsx
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 const pageVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
-  exit: { opacity: 0, transition: { duration: 0.3 } }
-}
+  exit: { opacity: 0, transition: { duration: 0.3 } },
+};
 
-export default function PageTransition({ children }: { children: React.ReactNode }) {
+export default function PageTransition({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <motion.div
       initial="hidden"
@@ -160,7 +164,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
     >
       {children}
     </motion.div>
-  )
+  );
 }
 ```
 
@@ -177,58 +181,56 @@ export default function PageTransition({ children }: { children: React.ReactNode
 ### Implementation with Intersection Observer
 
 ```tsx
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import { cn } from 'website/lib/utils'
+import { useEffect, useRef, useState } from "react";
+import { cn } from "website/lib/utils";
 
-export function FadeInOnScroll({ 
-  children, 
+export function FadeInOnScroll({
+  children,
   className,
-  delay = 0
-}: { 
-  children: React.ReactNode, 
-  className?: string,
-  delay?: number
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
 }) {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+          setIsVisible(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
-    )
+    );
 
     if (ref.current) {
-      observer.observe(ref.current)
+      observer.observe(ref.current);
     }
 
     return () => {
-      observer.disconnect()
-    }
-  }, [])
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div
       ref={ref}
       className={cn(
-        'transition-all duration-700 ease-out',
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-8',
+        "transition-all duration-700 ease-out",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
         className
       )}
       style={{ transitionDelay: `${delay * 100}ms` }}
     >
       {children}
     </div>
-  )
+  );
 }
 ```
 
@@ -253,7 +255,7 @@ export function FadeInOnScroll({
       Processing...
     </>
   ) : (
-    'Submit'
+    "Submit"
   )}
 </Button>
 ```
@@ -272,7 +274,7 @@ function CardSkeleton() {
       <div className="h-3 w-3/5 bg-muted animate-pulse rounded"></div>
       <div className="mt-6 h-10 w-1/3 bg-muted animate-pulse rounded"></div>
     </div>
-  )
+  );
 }
 ```
 
@@ -289,7 +291,7 @@ export default function LoadingState() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 ```
 
@@ -317,9 +319,15 @@ export default function LoadingState() {
   animation: checkmark 0.2s ease-in-out;
 }
 @keyframes checkmark {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 ```
 
@@ -338,7 +346,9 @@ export default function LoadingState() {
       <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
       <div>
         <h4 className="font-medium">Success</h4>
-        <p className="text-sm text-muted-foreground">Your message has been sent!</p>
+        <p className="text-sm text-muted-foreground">
+          Your message has been sent!
+        </p>
       </div>
     </div>
   </motion.div>
@@ -373,20 +383,23 @@ For scroll-based animations, throttle event handlers:
 ```tsx
 function throttle(fn: Function, delay: number) {
   let lastCall = 0;
-  return function(...args: any[]) {
+  return function (...args: any[]) {
     const now = new Date().getTime();
     if (now - lastCall < delay) {
       return;
     }
     lastCall = now;
     return fn(...args);
-  }
+  };
 }
 
 // Usage
-window.addEventListener('scroll', throttle(() => {
-  // Animation logic
-}, 100));
+window.addEventListener(
+  "scroll",
+  throttle(() => {
+    // Animation logic
+  }, 100)
+);
 ```
 
 ---
@@ -412,25 +425,25 @@ Always respect the `prefers-reduced-motion` media query:
 
 ```tsx
 function useReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
 
-    const onChange = () => setPrefersReducedMotion(mediaQuery.matches)
-    mediaQuery.addEventListener('change', onChange)
-    
-    return () => mediaQuery.removeEventListener('change', onChange)
-  }, [])
+    const onChange = () => setPrefersReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", onChange);
 
-  return prefersReducedMotion
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  return prefersReducedMotion;
 }
 
 // Usage
 function AnimatedComponent() {
-  const prefersReducedMotion = useReducedMotion()
-  
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
       animate={{ x: 100 }}
@@ -438,7 +451,7 @@ function AnimatedComponent() {
     >
       Content
     </motion.div>
-  )
+  );
 }
 ```
 
@@ -456,7 +469,7 @@ function AnimatedComponent() {
 ### Gradient Button Hover Effect
 
 ```tsx
-<Button 
+<Button
   className="
     relative overflow-hidden 
     transition-all duration-300 
@@ -465,7 +478,7 @@ function AnimatedComponent() {
   "
 >
   <span className="relative z-10">Get Started</span>
-  <span 
+  <span
     className="
       absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700
       opacity-0 transition-opacity duration-300 hover:opacity-100
@@ -491,53 +504,61 @@ function AnimatedComponent() {
 ### Number Counter Animation
 
 ```tsx
-'use client'
+"use client";
 
-import { useEffect, useState, useRef } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
-export function AnimatedCounter({ 
-  end, 
+export function AnimatedCounter({
+  end,
   duration = 2000,
-  suffix = ''
-}: { 
-  end: number
-  duration?: number
-  suffix?: string
+  suffix = "",
+}: {
+  end: number;
+  duration?: number;
+  suffix?: string;
 }) {
-  const [count, setCount] = useState(0)
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const rafRef = useRef<number | null>(null)
-  const startTimeRef = useRef<number | null>(null)
+  const [count, setCount] = useState(0);
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const rafRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!inView) return
-    
+    if (!inView) return;
+
     const animate = (timestamp: number) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp
-      const progress = Math.min((timestamp - startTimeRef.current) / duration, 1)
-      
-      setCount(Math.floor(progress * end))
-      
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const progress = Math.min(
+        (timestamp - startTimeRef.current) / duration,
+        1
+      );
+
+      setCount(Math.floor(progress * end));
+
       if (progress < 1) {
-        rafRef.current = requestAnimationFrame(animate)
+        rafRef.current = requestAnimationFrame(animate);
       }
-    }
-    
-    rafRef.current = requestAnimationFrame(animate)
-    
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    }
-  }, [inView, end, duration])
-  
-  return <div ref={ref}>{count}{suffix}</div>
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [inView, end, duration]);
+
+  return (
+    <div ref={ref}>
+      {count}
+      {suffix}
+    </div>
+  );
 }
 
 // Usage
 <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
   <AnimatedCounter end={5000} suffix="+" />
-</div>
+</div>;
 ```
 
 ### Image Reveal on Scroll
@@ -566,7 +587,7 @@ export function AnimatedCounter({
 
 ## Conclusion
 
-Animations on the Praxis Note website should:
+Animations on the Praxis Notes website should:
 
 1. Enhance the user experience without distracting from content
 2. Maintain a professional and polished feel appropriate for ABA professionals

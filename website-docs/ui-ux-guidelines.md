@@ -1,6 +1,6 @@
-# Praxis Note UI/UX Guidelines
+# Praxis Notes UI/UX Guidelines
 
-This document outlines the comprehensive UI/UX guidelines for the Praxis Note website, ensuring consistency, accessibility, and a professional experience tailored for ABA professionals.
+This document outlines the comprehensive UI/UX guidelines for the Praxis Notes website, ensuring consistency, accessibility, and a professional experience tailored for ABA professionals.
 
 ## Table of Contents
 
@@ -21,44 +21,44 @@ This document outlines the comprehensive UI/UX guidelines for the Praxis Note we
 
 ### Primary Colors
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
-| Blue Primary | `#3B82F6` | `blue-500` | Primary buttons, links, focus states |
+| Name           | Hex       | Tailwind     | Usage                                  |
+| -------------- | --------- | ------------ | -------------------------------------- |
+| Blue Primary   | `#3B82F6` | `blue-500`   | Primary buttons, links, focus states   |
 | Purple Primary | `#8B5CF6` | `purple-500` | Gradients, accents, secondary elements |
 
 ### Secondary Colors
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
-| Blue Secondary | `#60A5FA` | `blue-400` | Hover states, secondary elements |
+| Name             | Hex       | Tailwind     | Usage                            |
+| ---------------- | --------- | ------------ | -------------------------------- |
+| Blue Secondary   | `#60A5FA` | `blue-400`   | Hover states, secondary elements |
 | Purple Secondary | `#A78BFA` | `purple-400` | Hover states, secondary elements |
 
 ### Neutrals
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
-| White | `#FFFFFF` | `white` | Backgrounds, text on dark backgrounds |
-| Light Background | `#F3F4F6` | `gray-100` | Section backgrounds, cards |
-| Dark Background | `#111827` | `gray-900` | Dark mode backgrounds |
-| Text Primary | `#111827` | `gray-900` | Primary text |
-| Text Secondary | `#6B7280` | `gray-500` | Secondary text, labels |
+| Name             | Hex       | Tailwind   | Usage                                 |
+| ---------------- | --------- | ---------- | ------------------------------------- |
+| White            | `#FFFFFF` | `white`    | Backgrounds, text on dark backgrounds |
+| Light Background | `#F3F4F6` | `gray-100` | Section backgrounds, cards            |
+| Dark Background  | `#111827` | `gray-900` | Dark mode backgrounds                 |
+| Text Primary     | `#111827` | `gray-900` | Primary text                          |
+| Text Secondary   | `#6B7280` | `gray-500` | Secondary text, labels                |
 
 ### Functional Colors
 
-| Name | Hex | Tailwind | Usage |
-|------|-----|----------|-------|
+| Name    | Hex       | Tailwind      | Usage                              |
+| ------- | --------- | ------------- | ---------------------------------- |
 | Success | `#10B981` | `emerald-500` | Success states, positive messaging |
-| Warning | `#F59E0B` | `amber-500` | Warning states, important notices |
-| Error | `#EF4444` | `red-500` | Error states, destructive actions |
-| Info | `#3B82F6` | `blue-500` | Informational elements |
+| Warning | `#F59E0B` | `amber-500`   | Warning states, important notices  |
+| Error   | `#EF4444` | `red-500`     | Error states, destructive actions  |
+| Info    | `#3B82F6` | `blue-500`    | Informational elements             |
 
 ### Gradients
 
-| Name | Definition | Usage |
-|------|------------|-------|
+| Name             | Definition                                     | Usage                                      |
+| ---------------- | ---------------------------------------------- | ------------------------------------------ |
 | Primary Gradient | `bg-gradient-to-r from-blue-500 to-purple-600` | CTAs, hero sections, important UI elements |
-| Soft Gradient | `bg-gradient-to-br from-blue-50 to-purple-50` | Backgrounds, cards, subtle UI elements |
-| Dark Gradient | `bg-gradient-to-r from-gray-900 to-blue-900` | Dark mode UI elements |
+| Soft Gradient    | `bg-gradient-to-br from-blue-50 to-purple-50`  | Backgrounds, cards, subtle UI elements     |
+| Dark Gradient    | `bg-gradient-to-r from-gray-900 to-blue-900`   | Dark mode UI elements                      |
 
 ---
 
@@ -71,36 +71,36 @@ This document outlines the comprehensive UI/UX guidelines for the Praxis Note we
 
 ### Font Sizes
 
-| Name | Size | Tailwind | Usage |
-|------|------|----------|-------|
-| XS | 12px | `text-xs` | Footnotes, small labels |
-| SM | 14px | `text-sm` | Secondary text, form labels |
-| Base | 16px | `text-base` | Body text, paragraphs |
-| LG | 18px | `text-lg` | Large body text, important info |
-| XL | 20px | `text-xl` | Subheadings, feature titles |
-| 2XL | 24px | `text-2xl` | Section headings |
-| 3XL | 30px | `text-3xl` | Major section headings |
-| 4XL | 36px | `text-4xl` | Page headings |
-| 5XL | 48px | `text-5xl` | Hero headings |
-| 6XL | 60px | `text-6xl` | Large hero headings |
+| Name | Size | Tailwind    | Usage                           |
+| ---- | ---- | ----------- | ------------------------------- |
+| XS   | 12px | `text-xs`   | Footnotes, small labels         |
+| SM   | 14px | `text-sm`   | Secondary text, form labels     |
+| Base | 16px | `text-base` | Body text, paragraphs           |
+| LG   | 18px | `text-lg`   | Large body text, important info |
+| XL   | 20px | `text-xl`   | Subheadings, feature titles     |
+| 2XL  | 24px | `text-2xl`  | Section headings                |
+| 3XL  | 30px | `text-3xl`  | Major section headings          |
+| 4XL  | 36px | `text-4xl`  | Page headings                   |
+| 5XL  | 48px | `text-5xl`  | Hero headings                   |
+| 6XL  | 60px | `text-6xl`  | Large hero headings             |
 
 ### Font Weights
 
-| Name | Weight | Tailwind | Usage |
-|------|--------|----------|-------|
-| Normal | 400 | `font-normal` | Body text |
-| Medium | 500 | `font-medium` | Emphasis, subheadings |
-| Semibold | 600 | `font-semibold` | Subheadings, important text |
-| Bold | 700 | `font-bold` | Headings, buttons |
-| Extrabold | 800 | `font-extrabold` | Hero headings |
+| Name      | Weight | Tailwind         | Usage                       |
+| --------- | ------ | ---------------- | --------------------------- |
+| Normal    | 400    | `font-normal`    | Body text                   |
+| Medium    | 500    | `font-medium`    | Emphasis, subheadings       |
+| Semibold  | 600    | `font-semibold`  | Subheadings, important text |
+| Bold      | 700    | `font-bold`      | Headings, buttons           |
+| Extrabold | 800    | `font-extrabold` | Hero headings               |
 
 ### Line Heights
 
-| Name | Value | Tailwind | Usage |
-|------|-------|----------|-------|
-| Tight | 1.25 | `leading-tight` | Headings |
-| Normal | 1.5 | `leading-normal` | Body text |
-| Relaxed | 1.75 | `leading-relaxed` | Long-form content |
+| Name    | Value | Tailwind          | Usage             |
+| ------- | ----- | ----------------- | ----------------- |
+| Tight   | 1.25  | `leading-tight`   | Headings          |
+| Normal  | 1.5   | `leading-normal`  | Body text         |
+| Relaxed | 1.75  | `leading-relaxed` | Long-form content |
 
 ---
 
@@ -108,16 +108,16 @@ This document outlines the comprehensive UI/UX guidelines for the Praxis Note we
 
 Follow a consistent spacing scale with the following values using Tailwind's spacing utilities:
 
-| Name | Size | Tailwind | Example Usage |
-|------|------|----------|---------------|
-| XS | 4px | `p-1`, `m-1` | Minimal spacing, icons |
-| SM | 8px | `p-2`, `m-2` | Small elements, compact layouts |
-| MD | 16px | `p-4`, `m-4` | Standard spacing |
-| LG | 24px | `p-6`, `m-6` | Section padding |
-| XL | 32px | `p-8`, `m-8` | Large section spacing |
-| 2XL | 48px | `p-12`, `m-12` | Major section breaks |
-| 3XL | 64px | `p-16`, `m-16` | Hero sections, large layouts |
-| 4XL | 96px | `p-24`, `m-24` | Very large section separations |
+| Name | Size | Tailwind       | Example Usage                   |
+| ---- | ---- | -------------- | ------------------------------- |
+| XS   | 4px  | `p-1`, `m-1`   | Minimal spacing, icons          |
+| SM   | 8px  | `p-2`, `m-2`   | Small elements, compact layouts |
+| MD   | 16px | `p-4`, `m-4`   | Standard spacing                |
+| LG   | 24px | `p-6`, `m-6`   | Section padding                 |
+| XL   | 32px | `p-8`, `m-8`   | Large section spacing           |
+| 2XL  | 48px | `p-12`, `m-12` | Major section breaks            |
+| 3XL  | 64px | `p-16`, `m-16` | Hero sections, large layouts    |
+| 4XL  | 96px | `p-24`, `m-24` | Very large section separations  |
 
 ### Container Width
 
@@ -131,14 +131,14 @@ Use shadows to create depth and establish a visual hierarchy.
 
 ### Shadow Levels
 
-| Name | Tailwind | Usage |
-|------|----------|-------|
-| None | `shadow-none` | Flat elements |
-| SM | `shadow-sm` | Subtle elevation, cards |
-| MD | `shadow` | Standard elevation, dropdowns, cards |
-| LG | `shadow-lg` | Higher elevation, modals, popovers |
-| XL | `shadow-xl` | Significant elevation, feature cards |
-| 2XL | `shadow-2xl` | Maximum elevation, hero elements |
+| Name | Tailwind      | Usage                                |
+| ---- | ------------- | ------------------------------------ |
+| None | `shadow-none` | Flat elements                        |
+| SM   | `shadow-sm`   | Subtle elevation, cards              |
+| MD   | `shadow`      | Standard elevation, dropdowns, cards |
+| LG   | `shadow-lg`   | Higher elevation, modals, popovers   |
+| XL   | `shadow-xl`   | Significant elevation, feature cards |
+| 2XL  | `shadow-2xl`  | Maximum elevation, hero elements     |
 
 ### Custom Shadows
 
@@ -152,40 +152,44 @@ Use shadows to create depth and establish a visual hierarchy.
 
 ### Transition Durations
 
-| Name | Tailwind | Usage |
-|------|----------|-------|
-| Fast | `duration-150` | Micro-interactions, immediate feedback |
-| Normal | `duration-300` | Standard transitions, hover effects |
-| Slow | `duration-500` | Larger animations, emphasis |
+| Name   | Tailwind       | Usage                                  |
+| ------ | -------------- | -------------------------------------- |
+| Fast   | `duration-150` | Micro-interactions, immediate feedback |
+| Normal | `duration-300` | Standard transitions, hover effects    |
+| Slow   | `duration-500` | Larger animations, emphasis            |
 
 ### Transition Types
 
-| Name | Tailwind | Usage |
-|------|----------|-------|
-| Default | `transition` | General purpose |
-| Transform | `transition-transform` | Movement, scaling |
-| Colors | `transition-colors` | Color changes, hover states |
-| Opacity | `transition-opacity` | Fading elements |
-| Shadow | `transition-shadow` | Elevation changes |
+| Name      | Tailwind               | Usage                       |
+| --------- | ---------------------- | --------------------------- |
+| Default   | `transition`           | General purpose             |
+| Transform | `transition-transform` | Movement, scaling           |
+| Colors    | `transition-colors`    | Color changes, hover states |
+| Opacity   | `transition-opacity`   | Fading elements             |
+| Shadow    | `transition-shadow`    | Elevation changes           |
 
 ### Animation Examples
 
 1. **Button Hover**:
+
    ```
    transition-colors duration-300 hover:bg-opacity-90
    ```
 
 2. **Card Hover**:
+
    ```
    transition-shadow duration-300 hover:shadow-xl
    ```
 
 3. **Link Hover**:
+
    ```
    transition-colors duration-150 hover:text-primary
    ```
 
 4. **Element Appear**:
+
    ```
    transition-opacity duration-300 opacity-0 group-hover:opacity-100
    ```
@@ -207,39 +211,39 @@ Use shadows to create depth and establish a visual hierarchy.
 
 ### Buttons
 
-| Variant | Tailwind Classes | Usage |
-|---------|------------------|-------|
-| Primary | `bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90` | Main CTAs |
-| Secondary | `bg-secondary text-secondary-foreground hover:bg-secondary/80` | Secondary actions |
-| Outline | `border border-input hover:bg-accent hover:text-accent-foreground` | Tertiary actions |
-| Ghost | `hover:bg-accent hover:text-accent-foreground` | Minimal visual impact |
+| Variant   | Tailwind Classes                                                           | Usage                 |
+| --------- | -------------------------------------------------------------------------- | --------------------- |
+| Primary   | `bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90` | Main CTAs             |
+| Secondary | `bg-secondary text-secondary-foreground hover:bg-secondary/80`             | Secondary actions     |
+| Outline   | `border border-input hover:bg-accent hover:text-accent-foreground`         | Tertiary actions      |
+| Ghost     | `hover:bg-accent hover:text-accent-foreground`                             | Minimal visual impact |
 
 ### Button Sizes
 
-| Size | Tailwind Classes | Usage |
-|------|------------------|-------|
-| SM | `h-9 px-3 rounded-md text-sm` | Compact UIs |
-| Default | `h-10 py-2 px-4 rounded-md` | Standard |
-| LG | `h-11 px-8 rounded-md` | Important actions |
-| XL | `h-14 px-8 rounded-md text-base` | Hero CTAs |
+| Size    | Tailwind Classes                 | Usage             |
+| ------- | -------------------------------- | ----------------- |
+| SM      | `h-9 px-3 rounded-md text-sm`    | Compact UIs       |
+| Default | `h-10 py-2 px-4 rounded-md`      | Standard          |
+| LG      | `h-11 px-8 rounded-md`           | Important actions |
+| XL      | `h-14 px-8 rounded-md text-base` | Hero CTAs         |
 
 ### Cards
 
-| Variant | Tailwind Classes | Usage |
-|---------|------------------|-------|
-| Basic | `bg-background rounded-lg border border-border p-6` | Simple content |
-| Interactive | `bg-background rounded-lg border border-border p-6 hover:shadow-lg transition-shadow` | Clickable cards |
-| Feature | `bg-white dark:bg-gray-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-blue-100 dark:border-blue-900/50` | Highlighted features |
-| Gradient | `bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-xl p-6` | Special emphasis |
+| Variant     | Tailwind Classes                                                                                                                       | Usage                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| Basic       | `bg-background rounded-lg border border-border p-6`                                                                                    | Simple content       |
+| Interactive | `bg-background rounded-lg border border-border p-6 hover:shadow-lg transition-shadow`                                                  | Clickable cards      |
+| Feature     | `bg-white dark:bg-gray-900 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-shadow border border-blue-100 dark:border-blue-900/50` | Highlighted features |
+| Gradient    | `bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-xl p-6`                                     | Special emphasis     |
 
 ### Form Elements
 
-| Element | Tailwind Classes | Notes |
-|---------|------------------|-------|
-| Input | `w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all` | Text inputs |
-| Select | `w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary` | Dropdown selects |
-| Checkbox | `h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/80` | Checkboxes |
-| Label | `block text-sm font-medium mb-2` | Form labels |
+| Element  | Tailwind Classes                                                                                                                       | Notes            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| Input    | `w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all` | Text inputs      |
+| Select   | `w-full px-4 py-2 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/50 focus:border-primary`                | Dropdown selects |
+| Checkbox | `h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary/80`                                                                   | Checkboxes       |
+| Label    | `block text-sm font-medium mb-2`                                                                                                       | Form labels      |
 
 ---
 
@@ -314,13 +318,13 @@ Use shadows to create depth and establish a visual hierarchy.
 
 ### Breakpoints
 
-| Name | Size | Tailwind | Usage |
-|------|------|----------|-------|
-| SM | 640px | `sm:` | Small devices, large phones |
-| MD | 768px | `md:` | Tablets, small laptops |
-| LG | 1024px | `lg:` | Desktops, large tablets |
-| XL | 1280px | `xl:` | Large desktops |
-| 2XL | 1536px | `2xl:` | Extra large screens |
+| Name | Size   | Tailwind | Usage                       |
+| ---- | ------ | -------- | --------------------------- |
+| SM   | 640px  | `sm:`    | Small devices, large phones |
+| MD   | 768px  | `md:`    | Tablets, small laptops      |
+| LG   | 1024px | `lg:`    | Desktops, large tablets     |
+| XL   | 1280px | `xl:`    | Large desktops              |
+| 2XL  | 1536px | `2xl:`   | Extra large screens         |
 
 ### Mobile-First Approach
 
@@ -331,22 +335,26 @@ Use shadows to create depth and establish a visual hierarchy.
 ### Common Responsive Patterns
 
 1. **Stack on Mobile**: Elements that are side by side on desktop should stack vertically on mobile
+
    ```
    flex flex-col md:flex-row
    ```
 
 2. **Adjust Text Sizes**: Reduce heading sizes on smaller screens
+
    ```
    text-4xl md:text-5xl lg:text-6xl
    ```
 
 3. **Simplified Navigation**: Use hamburger menu on mobile
+
    ```
    hidden md:block (for desktop menu)
    block md:hidden (for mobile menu button)
    ```
 
 4. **Reduced Padding**: Use smaller spacing on mobile
+
    ```
    py-8 md:py-16 lg:py-24
    ```

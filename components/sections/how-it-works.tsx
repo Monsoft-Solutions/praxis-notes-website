@@ -85,7 +85,7 @@ const HowItWorks = () => {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            How Praxis Note Works
+            How Praxis Notes Works
           </h2>
           <p className="text-xl text-muted-foreground">
             From session details to perfect documentation in seconds. No more
@@ -156,7 +156,7 @@ const HowItWorks = () => {
           <div className="lg:col-span-2 space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold">See It In Action</h3>
             <p className="text-lg text-muted-foreground">
-              Watch how Praxis Note transforms a few simple inputs into
+              Watch how Praxis Notes transforms a few simple inputs into
               detailed, professional ABA session notes in seconds.
             </p>
 
@@ -178,7 +178,7 @@ const HowItWorks = () => {
                     <div className="w-0 h-0 border-t-8 border-b-8 border-l-12 border-transparent border-l-primary-foreground ml-1"></div>
                   </div>
                   <p className="text-xl font-medium text-primary-foreground">
-                    Praxis Note Demo
+                    Praxis Notes Demo
                   </p>
                 </div>
 

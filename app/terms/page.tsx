@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Praxis Note",
+  title: "Terms of Service | Praxis Notes",
   description:
-    "Read the terms of service for Praxis Note, our AI-powered ABA session notes platform.",
+    "Read the terms of service for Praxis Notes, our AI-powered ABA session notes platform.",
 };
 
 export default function TermsPage() {
@@ -22,8 +22,8 @@ export default function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">1. Introduction</h2>
           <p>
-            Welcome to Praxis Note. These Terms of Service (&quot;Terms&quot;)
-            govern your access to and use of the Praxis Note website and
+            Welcome to Praxis Notes. These Terms of Service (&quot;Terms&quot;)
+            govern your access to and use of the Praxis Notes website and
             application (the &quot;Service&quot;), and any information, text,
             graphics, or other materials uploaded, downloaded, or appearing on
             the Service. By accessing or using the Service, you agree to be
@@ -59,7 +59,7 @@ export default function TermsPage() {
           </p>
           <ul className="list-disc list-inside ml-4 space-y-2">
             <li>
-              &quot;Service&quot; refers to the Praxis Note application and
+              &quot;Service&quot; refers to the Praxis Notes application and
               website.
             </li>
             <li>
@@ -119,7 +119,7 @@ export default function TermsPage() {
           <p>
             You agree that you will not use the Service to create, receive,
             maintain, or transmit PHI unless and until a BAA is in place between
-            you and Praxis Note.
+            you and Praxis Notes.
           </p>
         </section>
 
@@ -130,7 +130,7 @@ export default function TermsPage() {
             non-transferable, non-sublicensable license to use the Service for
             your professional activities related to Applied Behavior Analysis
             (ABA) therapy. This license is for the sole purpose of enabling you
-            to use the Service as provided by Praxis Note, in the manner
+            to use the Service as provided by Praxis Notes, in the manner
             permitted by these Terms.
           </p>
           <p>You may not:</p>
@@ -258,11 +258,11 @@ export default function TermsPage() {
           </h2>
           <p>
             THE SERVICE IS PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS
-            AVAILABLE&quot; BASIS. PRAXIS NOTE AND ITS SUPPLIERS AND LICENSORS
+            AVAILABLE&quot; BASIS. PRAXIS NOTES AND ITS SUPPLIERS AND LICENSORS
             HEREBY DISCLAIM ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
             INCLUDING, WITHOUT LIMITATION, THE WARRANTIES OF MERCHANTABILITY,
             FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. NEITHER
-            PRAXIS NOTE NOR ITS SUPPLIERS AND LICENSORS MAKES ANY WARRANTY THAT
+            PRAXIS NOTES NOR ITS SUPPLIERS AND LICENSORS MAKES ANY WARRANTY THAT
             THE SERVICE WILL BE ERROR FREE OR THAT ACCESS THERETO WILL BE
             CONTINUOUS OR UNINTERRUPTED.
           </p>
@@ -277,17 +277,17 @@ export default function TermsPage() {
             13. Limitation of Liability
           </h2>
           <p>
-            IN NO EVENT WILL PRAXIS NOTE, OR ITS SUPPLIERS OR LICENSORS, BE
+            IN NO EVENT WILL PRAXIS NOTES, OR ITS SUPPLIERS OR LICENSORS, BE
             LIABLE WITH RESPECT TO ANY SUBJECT MATTER OF THIS AGREEMENT UNDER
             ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY OR OTHER LEGAL OR
             EQUITABLE THEORY FOR: (I) ANY SPECIAL, INCIDENTAL OR CONSEQUENTIAL
             DAMAGES; (II) THE COST OF PROCUREMENT OF SUBSTITUTE PRODUCTS OR
             SERVICES; (III) FOR INTERRUPTION OF USE OR LOSS OR CORRUPTION OF
             DATA; OR (IV) FOR ANY AMOUNTS THAT EXCEED THE FEES PAID BY YOU TO
-            PRAXIS NOTE UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTH PERIOD
-            PRIOR TO THE CAUSE OF ACTION. PRAXIS NOTE SHALL HAVE NO LIABILITY
-            FOR ANY FAILURE OR DELAY DUE TO MATTERS BEYOND THEIR REASONABLE
-            CONTROL.
+            PRAXIS NOTES UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTH
+            PERIOD PRIOR TO THE CAUSE OF ACTION. PRAXIS NOTES SHALL HAVE NO
+            LIABILITY FOR ANY FAILURE OR DELAY DUE TO MATTERS BEYOND THEIR
+            REASONABLE CONTROL.
           </p>
         </section>
 
@@ -308,7 +308,7 @@ export default function TermsPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">15. Indemnification</h2>
           <p>
-            You agree to indemnify and hold harmless Praxis Note, its
+            You agree to indemnify and hold harmless Praxis Notes, its
             contractors, and its licensors, and their respective directors,
             officers, employees, and agents from and against any and all claims
             and expenses, including attorneys&apos; fees, arising out of your
