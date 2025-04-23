@@ -73,12 +73,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/waitlist`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/design-system`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
@@ -100,6 +94,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/cookies`,
       lastModified: new Date(),
       changeFrequency: "yearly" as const,
+      priority: 0.3,
+    },
+    {
+      url: `https://app.praxisnotes.com/auth/sign-up`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
       priority: 0.3,
     },
   ];

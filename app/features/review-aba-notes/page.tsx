@@ -17,7 +17,7 @@ import {
 import FeaturesCTA from "website/components/sections/features-shared-cta";
 
 export const metadata: Metadata = {
-  title: "Review ABA Notes | Praxis Note",
+  title: "Review ABA Notes | Praxis Notes",
   description:
     "Upload existing ABA session notes for AI-powered analysis, improvement suggestions, and compliance verification to ensure clinical and billing standards.",
 };

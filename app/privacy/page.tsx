@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Praxis Note",
+  title: "Privacy Policy | Praxis Notes",
   description:
-    "Our privacy policy details how we collect, use, and protect your personal information when using Praxis Note.",
+    "Our privacy policy details how we collect, use, and protect your personal information when using Praxis Notes.",
 };
 
 export default function PrivacyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Introduction</h2>
           <p>
-            At Praxis Note, we take your privacy seriously. This Privacy Policy
+            At Praxis Notes, we take your privacy seriously. This Privacy Policy
             explains how we collect, use, disclose, and safeguard your
             information when you use our application. Please read this privacy
             policy carefully. If you do not agree with the terms of this privacy
@@ -89,14 +89,14 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">HIPAA Compliance</h2>
           <p>
-            Praxis Note is designed to be compliant with the Health Insurance
+            Praxis Notes is designed to be compliant with the Health Insurance
             Portability and Accountability Act (HIPAA). As such, we implement
             physical, technical, and administrative safeguards to protect the
             privacy and security of protected health information (PHI).
           </p>
           <p>
             Before using our services, covered entities will be required to
-            enter into a Business Associate Agreement (BAA) with Praxis Note,
+            enter into a Business Associate Agreement (BAA) with Praxis Notes,
             which outlines our respective responsibilities for protecting and
             securing PHI.
           </p>

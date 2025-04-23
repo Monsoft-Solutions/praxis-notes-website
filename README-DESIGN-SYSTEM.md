@@ -1,6 +1,6 @@
-# Praxis Note Design System
+# Praxis Notes Design System
 
-This document provides an overview of the Praxis Note design system implementation, which has been built using Tailwind CSS, shadcn/ui, and React.
+This document provides an overview of the Praxis Notes design system implementation, which has been built using Tailwind CSS, shadcn/ui, and React.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ This document provides an overview of the Praxis Note design system implementati
 
 ## Overview
 
-The Praxis Note design system is a comprehensive collection of design tokens, components, and guidelines for creating consistent, accessible, and professional user experiences for ABA professionals. It's built with extensibility and maintainability in mind.
+The Praxis Notes design system is a comprehensive collection of design tokens, components, and guidelines for creating consistent, accessible, and professional user experiences for ABA professionals. It's built with extensibility and maintainability in mind.
 
 ## File Structure
 
@@ -63,7 +63,7 @@ To use the theme provider, wrap your application with:
 
 ## Components
 
-The design system includes enhanced versions of shadcn/ui components with additional variants and properties aligned with the Praxis Note design language:
+The design system includes enhanced versions of shadcn/ui components with additional variants and properties aligned with the Praxis Notes design language:
 
 - `Button`: Various styles (primary, secondary, outline, etc.) and sizes
 - `Card`: Different card variants with consistent styling

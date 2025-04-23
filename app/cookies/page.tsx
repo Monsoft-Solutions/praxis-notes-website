@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Praxis Note",
+  title: "Cookie Policy | Praxis Notes",
   description:
-    "Learn about how Praxis Note uses cookies and other tracking technologies on our website.",
+    "Learn about how Praxis Notes uses cookies and other tracking technologies on our website.",
 };
 
 export default function CookiesPage() {
@@ -22,7 +22,7 @@ export default function CookiesPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Introduction</h2>
           <p>
-            This Cookie Policy explains how Praxis Note (&quot;we&quot;,
+            This Cookie Policy explains how Praxis Notes (&quot;we&quot;,
             &quot;us&quot;, or &quot;our&quot;) uses cookies and similar
             technologies to recognize you when you visit our website and
             application (the &quot;Service&quot;). It explains what these
@@ -40,7 +40,7 @@ export default function CookiesPage() {
             efficiently, as well as to provide reporting information.
           </p>
           <p>
-            Cookies set by the website owner (in this case, Praxis Note) are
+            Cookies set by the website owner (in this case, Praxis Notes) are
             called &quot;first-party cookies&quot;. Cookies set by parties other
             than the website owner are called &quot;third-party cookies&quot;.
             Third-party cookies enable third-party features or functionality to

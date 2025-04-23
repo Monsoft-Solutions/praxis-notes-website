@@ -36,7 +36,7 @@ const CTA = () => {
                   </h2>
                   <p className="text-xl  md:pr-6">
                     Join 1,000+ RBTs and BCBAs who have eliminated documentation
-                    stress with Praxis Note&apos;s AI-powered session notes.
+                    stress with Praxis Notes&apos;s AI-powered session notes.
                   </p>
                 </div>
 
@@ -63,7 +63,7 @@ const CTA = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <Link href="/waitlist">
+                    <Link href="https://app.praxisnotes.com/auth/sign-up">
                       <Button size="lg" variant="default" className="w-full">
                         Start Now <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -72,7 +72,7 @@ const CTA = () => {
 
                   <p className="text-sm ">
                     &quot;I never thought AI could write clinical notes this
-                    well. Praxis Note has transformed our workflow.&quot;
+                    well. Praxis Notes has transformed our workflow.&quot;
                     <span className="block mt-1 font-medium">
                       — Rebecca M., BCBA
                     </span>
