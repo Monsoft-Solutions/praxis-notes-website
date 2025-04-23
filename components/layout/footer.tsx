@@ -151,10 +151,10 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 <a
-                  href="mailto:support@praxisnote.com"
+                  href="mailto:support@praxisnotes.com"
                   className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
-                  support@praxisnote.com
+                  support@praxisnotes.com
                 </a>
               </div>
               <div className="pt-4">

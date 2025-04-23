@@ -220,7 +220,7 @@ export default function CookiesPage() {
           </h2>
           <p>
             If you have any questions about our use of cookies or other
-            technologies, please email us at privacy@praxisnote.com or contact
+            technologies, please email us at privacy@praxisnotes.com or contact
             us via our website at{" "}
             <a href="/contact" className="text-blue-600 hover:underline">
               Contact Us

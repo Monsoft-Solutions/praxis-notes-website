@@ -188,7 +188,7 @@ export default function PrivacyPage() {
             us:
           </p>
           <ul className="list-none ml-4 space-y-2">
-            <li>By email: privacy@praxisnote.com</li>
+            <li>By email: privacy@praxisnotes.com</li>
             <li>
               By visiting the contact page on our website:{" "}
               <a href="/contact" className="text-blue-600 hover:underline">

@@ -5,16 +5,17 @@
   "type": "module",
   "owner": "Monsoft Solutions, LLC (https://monsoft.io)",
   "license": "Apache-2.0",
-  "description": "Praxis Note Website (https://praxisnote.com)",
+  "description": "Praxis Note Website (https://praxisnotes.com)",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build && pnpm sitemap:copy",
+    "start": "next start",
+    "lint": "next lint",
     "build:force": "NEXT_SKIP_TYPECHECKING=1 next build && pnpm sitemap:copy",
     "sitemap:copy": "node scripts/copySitemapToPublic.js",
     "sitemap:generate": "env-cmd node scripts/generateStaticSitemap.js",
     "sitemap:notify": "env-cmd node scripts/notifyGoogleAppRouter.js",
-    "start": "next start",
-    "lint": "next lint",
+    "update-google-index": "env-cmd node scripts/update-google-index.js",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
@@ -22,8 +23,7 @@
     "db:seed": "tsx db/seed.ts",
     "db:seed:resources": "tsx db/seed-resources.ts",
     "db:seed:categories": "tsx db/seed-categories.ts",
-    "db:setup": "pnpm db:generate && pnpm db:migrate && pnpm db:seed",
-    "update-google-index": "env-cmd node scripts/update-google-index.js"
+    "db:setup": "pnpm db:generate && pnpm db:migrate && pnpm db:seed"
   },
   "dependencies": {
     "@monsoft/google-indexing": "^0.4.0",

@@ -341,7 +341,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-semibold">18. Contact Information</h2>
           <p>If you have any questions about these Terms, please contact us:</p>
           <ul className="list-none ml-4 space-y-2">
-            <li>By email: legal@praxisnote.com</li>
+            <li>By email: legal@praxisnotes.com</li>
             <li>
               By visiting the contact page on our website:{" "}
               <a href="/contact" className="text-blue-600 hover:underline">

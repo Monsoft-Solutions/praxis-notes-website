@@ -24,7 +24,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Configuration
-const BASE_URL = process.env.SITE_URL || "https://www.praxisnote.com";
+const BASE_URL = process.env.SITE_URL || "https://www.praxisnotes.com";
 const SITEMAP_PATH = join(__dirname, "../public/sitemap.xml");
 
 // Helper functions for credentials

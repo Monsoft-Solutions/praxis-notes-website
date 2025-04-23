@@ -8,7 +8,7 @@ PraxisNote is an advanced AI-powered platform designed specifically for ABA (App
 
 PraxisNote was developed by [Monsoft Solutions](https://www.monsoftsolutions.com) to help ABA professionals save time on documentation while maintaining high clinical standards. Our mission is to give therapists more time to focus on what matters most - their clients.
 
-Visit [PraxisNote.com](https://www.praxisnote.com) to learn more or start your free trial.
+Visit [PraxisNotes.com](https://www.praxisnotes.com) to learn more or start your free trial.
 
 ## Key Features
 
@@ -77,7 +77,7 @@ Copyright © 2024 Monsoft Solutions. All rights reserved.
 
 For more information, visit:
 
-- [PraxisNote.com](https://www.praxisnote.com)
+- [PraxisNotes.com](https://www.praxisnotes.com)
 - [Monsoft Solutions](https://www.monsoftsolutions.com)
 
 ## SEO and Sitemap
