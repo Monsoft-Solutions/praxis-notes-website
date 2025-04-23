@@ -85,10 +85,10 @@ export default function ContactPage() {
                         Email
                       </h3>
                       <a
-                        href="mailto:support@praxisnote.com"
+                        href="mailto:support@praxisnotes.com"
                         className="text-muted-foreground hover:text-soft-blue dark:hover:text-blue-400 transition-colors"
                       >
-                        support@praxisnote.com
+                        support@praxisnotes.com
                       </a>
                     </div>
                   </div>
