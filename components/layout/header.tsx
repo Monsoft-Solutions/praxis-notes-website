@@ -195,9 +195,12 @@ const Header = () => {
             </Link>
 
             <div className="pt-4 flex flex-col space-y-3">
-              <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="https://app.praxisnotes.com/auth/sign-up"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Button variant="default" className="w-full">
-                  Join Waitlist
+                  Sign Up
                 </Button>
               </Link>
             </div>

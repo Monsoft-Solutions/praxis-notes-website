@@ -41,7 +41,6 @@ const staticRoutes = [
   },
   { url: `${baseUrl}/pricing`, priority: 0.8, changeFreq: "weekly" },
   { url: `${baseUrl}/resources`, priority: 0.9, changeFreq: "daily" },
-  { url: `${baseUrl}/waitlist`, priority: 0.6, changeFreq: "monthly" },
   { url: `${baseUrl}/design-system`, priority: 0.3, changeFreq: "monthly" },
   { url: `${baseUrl}/terms`, priority: 0.3, changeFreq: "yearly" },
   { url: `${baseUrl}/privacy`, priority: 0.3, changeFreq: "yearly" },

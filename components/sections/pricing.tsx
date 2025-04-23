@@ -240,7 +240,11 @@ const Pricing = () => {
               </CardContent>
               <CardFooter>
                 <Link
-                  href={index === 3 ? "/contact" : "/waitlist"}
+                  href={
+                    index === 3
+                      ? "/contact"
+                      : "https://app.praxisnotes.com/auth/sign-up"
+                  }
                   className="w-full"
                 >
                   <Button

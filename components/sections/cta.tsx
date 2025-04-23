@@ -63,7 +63,7 @@ const CTA = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <Link href="/waitlist">
+                    <Link href="https://app.praxisnotes.com/auth/sign-up">
                       <Button size="lg" variant="default" className="w-full">
                         Start Now <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>

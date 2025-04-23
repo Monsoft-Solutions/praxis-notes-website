@@ -14,7 +14,7 @@ const resources = [
   { name: "Features", href: "/features" },
   { name: "Pricing", href: "/pricing" },
   { name: "Login", href: "/auth" },
-  { name: "Sign Up", href: "/waitlist" },
+  { name: "Sign Up", href: "https://app.praxisnotes.com/auth/sign-up" },
 ];
 
 const company = [

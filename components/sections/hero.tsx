@@ -35,13 +35,13 @@ const Hero = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
-              <Link href="/waitlist">
+              <Link href="https://app.praxisnotes.com/auth/sign-up">
                 <Button
                   variant="default"
                   size="xl"
                   className="w-full sm:w-auto font-medium"
                 >
-                  Join Waitlist <ArrowRight className="ml-2 h-5 w-5" />
+                  Sign Up <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="#how-it-works">
