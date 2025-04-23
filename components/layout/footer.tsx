@@ -9,11 +9,11 @@ import {
   Shield,
   Download,
 } from "lucide-react";
-
+import Image from "next/image";
 const resources = [
   { name: "Features", href: "/features" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Login", href: "/auth" },
+  { name: "Login", href: "https://app.praxisnotes.com/auth/log-in" },
   { name: "Sign Up", href: "https://app.praxisnotes.com/auth/sign-up" },
 ];
 
@@ -49,10 +49,12 @@ const Footer = () => {
           <div className="lg:col-span-2 space-y-6">
             <div>
               <Link href="/" className="flex items-center space-x-2">
-                <div className="w-9 h-9 rounded-full  flex items-center justify-center  font-bold text-lg border border-gray-200 dark:border-gray-800">
-                  P
-                </div>
-                <span className="text-xl font-bold">Praxis Note</span>
+                <Image
+                  src="/images/logo/praxis-note-logo-gray.png"
+                  alt="Praxis Notes Logo"
+                  width={150}
+                  height={100}
+                />
               </Link>
               <p className="mt-4 text-md text-muted-foreground max-w-md">
                 AI-powered ABA session notes that save RBTs and BCBAs hours each

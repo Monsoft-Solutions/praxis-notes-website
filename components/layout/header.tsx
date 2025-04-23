@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Button } from "website/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 
+import Image from "next/image";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -31,12 +33,14 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 flex h-20 items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center aspect-video">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full  flex items-center justify-center border border-gray-200 dark:border-gray-800 font-bold text-xl">
-              P
-            </div>
-            <span className="text-xl font-bold">Praxis Note</span>
+            <Image
+              src="/images/logo/praxis-note-logo-gray.png"
+              alt="Praxis Notes Logo"
+              width={85}
+              height={80}
+            />
           </Link>
         </div>
 
@@ -112,6 +116,14 @@ const Header = () => {
           </Link>
         </nav>
 
+        <Link
+          href="https://app.praxisnotes.com/auth/log-in"
+          className="hidden md:inline-flex"
+        >
+          <Button variant="default" size="sm" className="font-medium">
+            Sign In
+          </Button>
+        </Link>
         {/* Mobile menu button */}
         <button
           className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -194,16 +206,14 @@ const Header = () => {
               Contact
             </Link>
 
-            <div className="pt-4 flex flex-col space-y-3">
-              <Link
-                href="https://app.praxisnotes.com/auth/sign-up"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <Button variant="default" className="w-full">
-                  Sign Up
-                </Button>
-              </Link>
-            </div>
+            <Link
+              href="https://app.praxisnotes.com/auth/log-in"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Button variant="default" className="w-full">
+                Sign In
+              </Button>
+            </Link>
           </nav>
         </div>
       )}

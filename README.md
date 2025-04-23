@@ -1,6 +1,6 @@
 # PraxisNote - AI-Powered ABA Session Notes
 
-![PraxisNote](public/favicon.ico)
+![PraxisNote](public/images/logo/praxis-note-logo-main.png)
 
 PraxisNote is an advanced AI-powered platform designed specifically for ABA (Applied Behavior Analysis) professionals to streamline session documentation, reduce administrative burden, and ensure compliance with insurance requirements.
 
