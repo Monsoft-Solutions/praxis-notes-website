@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Pricing from "website/components/sections/pricing";
 import CTA from "website/components/sections/cta";
 import FAQ from "website/components/sections/faq";
+import PricingHero from "website/components/sections/pricing/pricing-hero";
 
 export const metadata: Metadata = {
   title: "Pricing | Praxis Notes",
@@ -12,43 +13,9 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <section className="relative py-20 overflow-hidden bg-ivory dark:bg-deep-navy">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-soft-blue/10 blur-3xl" />
-          <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-lavender/10 blur-3xl" />
-        </div>
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
-              <span>Start free, pay only for what you need</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Invest in your Time
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed mb-10">
-              Choose the plan that works best for you and your practice. No
-              hidden fees.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <div className="inline-block">
-                <div className="flex items-center space-x-2 mb-2 justify-center">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <div key={i} className="text-yellow-500">
-                        ⭐
-                      </div>
-                    ))}
-                </div>
-                <p className="text-sm text-muted-foreground font-medium">
-                  Trusted by 5,000+ ABA professionals
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PricingHero />
 
+      <div id="pricing"></div>
       <Pricing />
 
       <FAQ
@@ -100,11 +67,7 @@ export default function PricingPage() {
             answer:
               "Yes, you can export your notes as PDF or CSV files, making it easy to integrate with your existing systems.",
           },
-          {
-            question: "Do you offer a money-back guarantee?",
-            answer:
-              "Yes, we offer a 30-day money-back guarantee if you're not satisfied with our service for any reason.",
-          },
+
           {
             question: "Can I upgrade or downgrade my plan?",
             answer:

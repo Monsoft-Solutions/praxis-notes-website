@@ -19,9 +19,16 @@ const pricingPlans = [
     name: "Free Forever",
     description: "Get started with no cost",
     price: "$0",
-    pricePerNote: "$0",
+    pricePerNote: "$0.00",
     duration: "forever",
-    billingOptions: null,
+    billingOptions: [
+      {
+        label: "Forever",
+        price: "$0",
+        pricePerNote: "$0.00",
+        discount: null,
+      },
+    ],
     features: [
       "1 client",
       "10 AI-generated notes",
@@ -116,42 +123,6 @@ const pricingPlans = [
     iconColor: "text-orange-600",
     iconBg: "bg-orange-100",
     buttonColor: "bg-orange-400 hover:bg-orange-500",
-  },
-  {
-    name: "Team",
-    description: "Ideal for clinics & groups",
-    price: "$99",
-    pricePerNote: "$0.50",
-    duration: "per month",
-    billingOptions: [
-      { label: "Monthly", price: "$99", pricePerNote: "$0.50", discount: null },
-      {
-        label: "Annually",
-        price: "$990",
-        pricePerNote: "$0.41",
-        discount: "2 months free",
-      },
-    ],
-    features: [
-      "Everything in Pro plan",
-      "Unlimited clients",
-      "200 AI-generated notes/revisions",
-      "Shared templates library",
-      "Team management dashboard",
-      "Role-based permissions",
-      "Advanced data analytics",
-      "Dedicated account manager",
-    ],
-    cta: "Contact Sales",
-    highlight: false,
-    cardBorder: "border-yellow-300",
-    borderStyle: "border-dashed",
-    thumbTackStyle: "round",
-    thumbTackColor: "bg-yellow-400",
-    cardRotation: "rotate-[0.4deg]",
-    iconColor: "text-yellow-700",
-    iconBg: "bg-yellow-100",
-    buttonColor: "bg-yellow-400 hover:bg-yellow-500 text-gray-800",
   },
 ];
 
@@ -280,7 +251,7 @@ const Pricing = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {pricingPlans.map((plan, index) => (
             <div
               key={index}
@@ -289,7 +260,7 @@ const Pricing = () => {
               <Card
                 className={`relative ${plan.cardBorder} ${
                   plan.borderStyle
-                } border-2 bg-white/95 backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl overflow-visible h-full ${
+                } border-2 bg-white/95 backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl overflow-visible h-full flex flex-col ${
                   plan.highlight ? "border-4" : ""
                 }`}
                 style={{
@@ -347,21 +318,24 @@ const Pricing = () => {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex-grow">
-                  {plan.billingOptions ? (
-                    <div className="mb-6 text-center">
-                      <div className="flex flex-col mb-2">
-                        <div className="flex items-end justify-center mb-1">
-                          <span className="text-4xl font-quicksand font-bold text-gray-900">
-                            {isAnnual
-                              ? plan.billingOptions[1].price
-                              : plan.billingOptions[0].price}
-                          </span>
-                          <span className="text-gray-600 ml-1 font-nunito">
-                            {isAnnual ? "/year" : `/${plan.duration}`}
-                          </span>
-                        </div>
-                        {isAnnual && plan.billingOptions[1].discount && (
+                <CardContent className="flex-grow flex flex-col">
+                  <div className="mb-6 text-center">
+                    <div className="flex flex-col mb-2">
+                      <div className="flex items-end justify-center mb-1">
+                        <span className="text-4xl font-quicksand font-bold text-gray-900">
+                          {plan.billingOptions.length > 1 && isAnnual
+                            ? plan.billingOptions[1].price
+                            : plan.billingOptions[0].price}
+                        </span>
+                        <span className="text-gray-600 ml-1 font-nunito">
+                          {plan.billingOptions.length > 1 && isAnnual
+                            ? "/year"
+                            : `/${plan.duration}`}
+                        </span>
+                      </div>
+                      {plan.billingOptions.length > 1 &&
+                        isAnnual &&
+                        plan.billingOptions[1].discount && (
                           <div
                             className="inline-block mx-auto px-2 py-1 bg-green-100 text-green-700 text-xs font-quicksand font-bold border border-green-200 mb-2"
                             style={{
@@ -371,53 +345,44 @@ const Pricing = () => {
                             {plan.billingOptions[1].discount}
                           </div>
                         )}
-                        <div className="text-xs font-nunito text-gray-600">
-                          <span className={`font-bold ${plan.iconColor}`}>
-                            {isAnnual
-                              ? plan.billingOptions[1].pricePerNote
-                              : plan.billingOptions[0].pricePerNote}
-                          </span>{" "}
-                          per note
-                        </div>
+                      <div className="text-xs font-nunito text-gray-600">
+                        <span className={`font-bold ${plan.iconColor}`}>
+                          {plan.billingOptions.length > 1 && isAnnual
+                            ? plan.billingOptions[1].pricePerNote
+                            : plan.billingOptions[0].pricePerNote}
+                        </span>{" "}
+                        per note
                       </div>
                     </div>
-                  ) : (
-                    <div className="mb-6 text-center">
-                      <span className="text-4xl font-quicksand font-bold text-gray-900">
-                        {plan.price}
-                      </span>
-                      <span className="text-gray-600 font-nunito">
-                        /{plan.duration}
-                      </span>
-                    </div>
-                  )}
+                  </div>
 
-                  <ul className="space-y-3">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <div
-                          className={`h-5 w-5 rounded-full ${plan.iconColor.replace(
-                            "text-",
-                            "bg-"
-                          )} flex items-center justify-center shrink-0 mr-3 mt-0.5`}
-                        >
-                          <Check className="h-3 w-3 text-white" />
-                        </div>
-                        <span className="text-sm font-nunito text-gray-700">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex-grow">
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <div
+                            className={`h-5 w-5 rounded-full flex items-center justify-center shrink-0 mr-3 mt-0.5 ${
+                              index === 0
+                                ? "bg-green-600"
+                                : index === 1
+                                ? "bg-blue-600"
+                                : "bg-orange-600"
+                            }`}
+                          >
+                            <Check className="h-3 w-3 text-white" />
+                          </div>
+                          <span className="text-sm font-nunito text-gray-700">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </CardContent>
 
-                <CardFooter>
+                <CardFooter className="mt-auto pt-6">
                   <Link
-                    href={
-                      index === 3
-                        ? "/contact"
-                        : "https://app.praxisnotes.com/auth/sign-up"
-                    }
+                    href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-cards&utm_content=get-started-button"
                     className="w-full"
                   >
                     <Button
