@@ -8,10 +8,10 @@
   "description": "Praxis Notes Website (https://praxisnotes.com)",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && pnpm sitemap:copy",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:force": "NEXT_SKIP_TYPECHECKING=1 next build && pnpm sitemap:copy",
+    "build:force": "NEXT_SKIP_TYPECHECKING=1 next build",
     "type-check": "tsc --noEmit --skipLibCheck",
     "pre-commit-check": "pnpm type-check && pnpm lint && pnpm build",
     "sitemap:copy": "node scripts/copySitemapToPublic.js",

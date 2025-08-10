@@ -1,131 +1,164 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "website/components/ui/button";
-import { ArrowRight, CheckCircle, Play } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  Play,
+  Star,
+  Shield,
+  Globe,
+} from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-deep-navy">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute right-1/3 top-0 h-96 w-96 -translate-y-1/2 rounded-full bg-soft-blue/10 blur-3xl" />
-        <div className="absolute left-1/4 bottom-0 h-96 w-96 translate-y-1/2 rounded-full bg-lavender/10 blur-3xl" />
+    <div className="min-h-screen gradient-aba-main relative">
+      {/* More colorful background decorations like the image */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* Blue dots */}
+        <div className="decoration-hidden-mobile left-10 top-20 dot-blue-md"></div>
+        <div className="decoration-hidden-mobile left-20 top-32 dot-blue-sm"></div>
+
+        {/* Green dots */}
+        <div className="decoration-hidden-mobile left-1/4 top-16 dot-green-lg"></div>
+        <div className="decoration-hidden-mobile left-1/3 bottom-40 dot-green-sm"></div>
+
+        {/* Orange dots */}
+        <div className="decoration-hidden-mobile right-16 top-24 dot-orange-md"></div>
+        <div className="decoration-hidden-mobile right-1/4 bottom-20 dot-orange-sm"></div>
+
+        {/* Yellow dots */}
+        <div className="decoration-hidden-mobile right-20 bottom-32 dot-yellow-md"></div>
+        <div className="decoration-hidden-mobile left-1/2 top-12 dot-yellow-sm"></div>
+
+        {/* Additional scattered dots */}
+        <div className="decoration-hidden-mobile left-3/4 top-40 dot-blue-sm"></div>
+        <div className="decoration-hidden-mobile right-1/3 top-60 dot-green-xs"></div>
       </div>
 
       <div className="relative pt-20 md:pt-28 pb-20 px-4 sm:px-6 mx-auto container w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-soft-blue/10 dark:bg-soft-blue/20 border border-soft-blue/20 dark:border-soft-blue/30 mb-2">
-              <span className="text-xs font-medium text-soft-blue dark:text-soft-blue">
+            {/* Badge Card with dashed border */}
+            <div className="relative inline-flex items-center px-4 py-2 bg-white shadow-lg w-fit card-badge border-dashed-blue">
+              {/* Thumb tack */}
+              <div className="thumb-tack-square thumb-tack-blue"></div>
+
+              <span className="text-sm font-quicksand font-semibold text-blue-500 pt-1">
                 New: AI-Powered RBT Notes
               </span>
             </div>
 
+            {/* Main heading */}
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tighter">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-quicksand font-bold leading-tight tracking-tight text-gray-800 text-hand-drawn">
                 Effortless ABA Session Notes.{" "}
-                <span className="bg-gradient-to-r from-soft-blue to-lavender bg-clip-text text-transparent">
-                  Instantly.
-                </span>
+                <span className="text-blue-500">Instantly.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground md:pr-8 leading-relaxed">
+              <p className="text-xl md:text-2xl font-nunito text-gray-600 md:pr-8 leading-relaxed">
                 Generate detailed, insurance-ready ABA session notes with AI.
                 Save 75% of your documentation time.
               </p>
             </div>
 
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
               <Link href="https://app.praxisnotes.com/auth/sign-up">
-                <Button
-                  variant="default"
-                  size="xl"
-                  className="w-full sm:w-auto font-medium"
-                >
-                  Sign Up <ArrowRight className="ml-2 h-5 w-5" />
+                <Button className="w-full sm:w-auto h-12 bg-blue-400 hover:bg-blue-500 text-white button-quicksand hover-lift button-hand-drawn-1">
+                  <ArrowRight className="mr-2 h-4 w-4" />
+                  Sign Up Free
                 </Button>
               </Link>
               <Link href="#how-it-works">
                 <Button
                   variant="outline"
-                  size="xl"
-                  className="w-full sm:w-auto font-medium"
+                  className="w-full sm:w-auto h-12 text-green-500 hover:bg-green-50 button-quicksand hover-lift button-hand-drawn-2 border-dashed-green"
                 >
-                  <Play className="mr-2 h-5 w-5" /> Watch Demo
+                  <Play className="mr-2 h-4 w-4" />
+                  Watch Demo
                 </Button>
               </Link>
             </div>
 
-            <div className="space-y-3 pt-6">
-              <p className="text-sm font-medium text-muted-foreground">
-                Trusted by ABA professionals nationwide
-              </p>
-              <div className="flex flex-wrap gap-4">
-                {[
-                  "No credit card required",
-                  "Cancel anytime",
-                  "HIPAA compliant",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-mint-green" />
-                    <span className="text-sm">{item}</span>
-                  </div>
-                ))}
+            {/* Trust indicators card with dashed border */}
+            <div className="relative bg-white p-6 shadow-lg card-hand-drawn-1 border-dashed-green">
+              {/* Triangle thumb tack */}
+              <div className="thumb-tack-triangle thumb-tack-triangle-green"></div>
+
+              <div className="pt-2 space-y-3">
+                <p className="text-sm font-quicksand font-semibold text-gray-600">
+                  Trusted by ABA professionals nationwide
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    "No credit card required",
+                    "Cancel anytime",
+                    "HIPAA compliant",
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
+                      <span className="text-sm font-nunito text-gray-700">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-6 pt-6 border-t border-border">
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <div key={i} className="text-yellow-500 mr-1">
-                        ⭐
-                      </div>
-                    ))}
+            {/* Social proof card with dashed border */}
+            <div className="relative bg-white p-6 shadow-lg card-hand-drawn-2 border-dashed-orange">
+              {/* Round thumb tack */}
+              <div className="thumb-tack-round thumb-tack-orange"></div>
+
+              <div className="pt-2 flex flex-wrap gap-8">
+                <div className="flex flex-col">
+                  <div className="flex items-center">
+                    {Array(5)
+                      .fill(0)
+                      .map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-4 w-4 text-yellow-400 fill-current mr-1"
+                        />
+                      ))}
+                  </div>
+                  <p className="text-sm font-nunito text-gray-600 mt-2 font-medium">
+                    Trusted by 1,000+ professionals
+                  </p>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">
-                  Trusted by 1,000+ professionals
-                </p>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  <Image
-                    src="/window.svg"
-                    alt="Window icon"
-                    width={20}
-                    height={20}
-                    className="mr-1 text-soft-blue"
-                  />
+                <div className="flex flex-col">
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 text-blue-400" />
+                  </div>
+                  <p className="text-sm font-nunito text-gray-600 mt-2 font-medium">
+                    Used by leading ABA clinics
+                  </p>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">
-                  Used by leading ABA clinics
-                </p>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center">
-                  <Image
-                    src="/globe.svg"
-                    alt="Globe icon"
-                    width={20}
-                    height={20}
-                    className="mr-1 text-mint-green"
-                  />
+                <div className="flex flex-col">
+                  <div className="flex items-center">
+                    <Globe className="h-5 w-5 text-green-400" />
+                  </div>
+                  <p className="text-sm font-nunito text-gray-600 mt-2 font-medium">
+                    HIPAA-ready, secure
+                  </p>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">
-                  HIPAA-ready, secure
-                </p>
               </div>
             </div>
           </div>
 
-          <div className=" relative aspect-video rounded-xl">
-            <Image
-              src="/images/illustrations/aba-progress.jpg"
-              alt="ABA professional working on documentation"
-              fill
-              className="object-cover m-0"
-            />
+          {/* Image card with dashed border */}
+          <div className="relative bg-white shadow-xl card-hand-drawn-3 border-dashed-blue rounded-xl">
+            {/* Round thumb tack */}
+
+            <div className="relative aspect-video rounded-xl overflow-hidden">
+              <Image
+                src="/images/illustrations/praxis-notes-hero.png"
+                alt="ABA professional working on documentation"
+                fill
+                className="object-cover rounded-xl"
+              />
+            </div>
           </div>
         </div>
       </div>

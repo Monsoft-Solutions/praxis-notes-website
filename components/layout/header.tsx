@@ -36,10 +36,10 @@ const Header = () => {
         <div className="flex items-center aspect-video">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/images/logo/praxis-note-logo-gray.png"
+              src="/images/logo/praxis-note-logo-main.png"
               alt="Praxis Notes Logo"
-              width={85}
-              height={80}
+              width={45}
+              height={45}
             />
           </Link>
         </div>
