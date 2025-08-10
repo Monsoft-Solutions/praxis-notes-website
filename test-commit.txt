@@ -1,2 +1,0 @@
-This is a test file to verify the pre-commit hook works correctly.
-Testing TypeScript compliance and build verification before commits. 

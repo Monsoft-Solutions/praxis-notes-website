@@ -12,6 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "build:force": "NEXT_SKIP_TYPECHECKING=1 next build && pnpm sitemap:copy",
+    "type-check": "tsc --noEmit --skipLibCheck",
+    "pre-commit-check": "pnpm type-check && pnpm lint && pnpm build",
     "sitemap:copy": "node scripts/copySitemapToPublic.js",
     "sitemap:generate": "env-cmd node scripts/generateStaticSitemap.js",
     "sitemap:notify": "env-cmd node scripts/notifyGoogleAppRouter.js",
