@@ -60,7 +60,7 @@ export default function ReviewNotesPage() {
               {/* Breadcrumb */}
               <Link
                 href="/features"
-                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-nunito font-medium"
+                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-nunito font-medium lg:hidden"
               >
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back to Features
               </Link>

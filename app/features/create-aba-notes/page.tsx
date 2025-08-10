@@ -56,7 +56,7 @@ export default function CreateNotesPage() {
               {/* Breadcrumb */}
               <Link
                 href="/features"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-nunito font-medium"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-nunito font-medium lg:hidden"
               >
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back to Features
               </Link>

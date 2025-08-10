@@ -52,18 +52,20 @@ export default function HipaaCompliancePage() {
           <div className="absolute left-1/3 bottom-1/4 h-4 w-4 rounded-full bg-yellow-300 opacity-35 hidden lg:block"></div>
         </div>
 
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative pt-20">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative pt-12">
+          {/* Breadcrumb - positioned at top */}
+          <div className="mb-8 lg:hidden">
+            <Link
+              href="/features"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-nunito font-medium"
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" /> Back to Features
+            </Link>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[75vh]">
             {/* Left side - Content */}
             <div className="space-y-8">
-              {/* Breadcrumb */}
-              <Link
-                href="/features"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-nunito font-medium"
-              >
-                <ChevronLeft className="w-4 h-4 mr-1" /> Back to Features
-              </Link>
-
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-blue-200"
