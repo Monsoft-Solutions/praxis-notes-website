@@ -75,6 +75,7 @@ async function getUrlsFromSitemap() {
 function loadCache() {
   try {
     if (fs.existsSync(CACHE_PATH)) {
+      console.log("🔍 Loading cache from", CACHE_PATH);
       return JSON.parse(fs.readFileSync(CACHE_PATH, "utf8"));
     }
   } catch (error) {

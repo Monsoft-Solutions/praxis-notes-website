@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Constants
-const SITEMAP_PATH = path.join(__dirname, "../public/sitemap.xml");
+const SITEMAP_PATH = path.join(__dirname, "../public/sitemap_static.xml");
 const CACHE_PATH = path.join(__dirname, "./sitemap.cache.json");
 const BATCH_SIZE = 10; // Process in smaller batches to avoid rate limits
 const BATCH_DELAY_MS = 1000; // Delay between batches
@@ -20,7 +20,7 @@ console.log(process.env);
 // Check if required environment variables are set
 if (!process.env.GOOGLE_CLIENT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
   console.error(
-    "❌ Missing required environment variables: GOOGLE_CLIENT_EMAIL and/or GOOGLE_PRIVATE_KEY",
+    "❌ Missing required environment variables: GOOGLE_CLIENT_EMAIL and/or GOOGLE_PRIVATE_KEY"
   );
   process.exit(1);
 }
@@ -95,7 +95,9 @@ async function notifyGoogle(urls) {
     const batch = urls.slice(i, i + BATCH_SIZE);
 
     console.log(
-      `🔄 Processing batch ${i / BATCH_SIZE + 1}/${Math.ceil(urls.length / BATCH_SIZE)}`,
+      `🔄 Processing batch ${i / BATCH_SIZE + 1}/${Math.ceil(
+        urls.length / BATCH_SIZE
+      )}`
     );
 
     for (const url of batch) {
@@ -116,7 +118,7 @@ async function notifyGoogle(urls) {
         if (err.response && err.response.data) {
           console.error(
             "Error details:",
-            JSON.stringify(err.response.data, null, 2),
+            JSON.stringify(err.response.data, null, 2)
           );
         }
       }
@@ -167,7 +169,7 @@ async function run() {
     }
 
     console.log(
-      `📊 Summary: ${successCount} succeeded, ${failureCount} failed`,
+      `📊 Summary: ${successCount} succeeded, ${failureCount} failed`
     );
 
     // Exit with error code if all notifications failed
