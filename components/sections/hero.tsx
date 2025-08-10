@@ -12,7 +12,14 @@ import {
 
 const Hero = () => {
   return (
-    <div className="min-h-screen gradient-aba-main relative">
+    <div className="min-h-screen relative">
+      {/* Main background gradient */}
+      <div className="absolute inset-0 gradient-aba-main"></div>
+
+      {/* Seamless transition overlay to features */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-orange-100/60"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-orange-100/80"></div>
+
       {/* More colorful background decorations like the image */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Blue dots */}

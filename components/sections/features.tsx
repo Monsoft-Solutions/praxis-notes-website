@@ -130,11 +130,11 @@ const featuresData = [
 const Features = () => {
   return (
     <section id="features" className="relative">
-      {/* Seamless background transition from Hero */}
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-100/80 via-blue-50/60 to-green-50/40"></div>
+      {/* Seamless background continuation from Hero */}
+      <div className="absolute inset-0 bg-gradient-to-b from-orange-100/80 via-orange-50/60 to-blue-50/40"></div>
 
-      {/* Subtle transition overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-white/40"></div>
+      {/* Enhanced transition overlay for smooth flow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 via-white/20 to-white/40"></div>
 
       {/* Enhanced background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

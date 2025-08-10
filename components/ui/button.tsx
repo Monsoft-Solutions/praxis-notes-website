@@ -2,40 +2,44 @@ import { cn } from "website/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:scale-[1.02] active:scale-[0.98] transition-transform hover:cursor-pointer",
+  "inline-flex items-center justify-center font-quicksand font-semibold text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input border-gray-300",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "underline-offset-4 hover:underline text-primary",
-        gradient:
-          "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90",
-        success: "bg-emerald-500 text-white hover:bg-emerald-600",
-        warning: "bg-amber-500 text-white hover:bg-amber-600",
-        info: "bg-blue-500 text-white hover:bg-blue-600",
+        default: "bg-blue-400 text-white hover:bg-blue-500 shadow-sm",
+        destructive: "bg-red-500 text-white hover:bg-red-600 shadow-sm",
+        outline:
+          "border-2 border-blue-200 bg-white text-gray-900 hover:bg-blue-50 hover:border-blue-300",
+        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 shadow-sm",
+        ghost: "hover:bg-blue-100 hover:text-blue-600 text-gray-700",
+        link: "underline-offset-4 hover:underline text-blue-500 hover:text-blue-600",
+        success: "bg-green-400 text-gray-900 hover:bg-green-500 shadow-sm",
+        warning: "bg-orange-400 text-gray-900 hover:bg-orange-500 shadow-sm",
+        info: "bg-yellow-400 text-gray-800 hover:bg-yellow-500 shadow-sm",
       },
       size: {
-        default: "h-10 py-2 px-4 rounded-md",
-        sm: "h-9 px-3 rounded-md text-sm",
-        lg: "h-11 px-8 rounded-md",
-        xl: "h-14 px-8 rounded-md text-base",
-        icon: "h-9 w-9 rounded-md p-0",
+        default: "h-11 py-2 px-4",
+        sm: "h-9 px-3 text-sm",
+        lg: "h-12 px-6 text-base",
+        xl: "h-14 px-8 text-lg",
+        icon: "h-9 w-9 p-0",
+      },
+      radius: {
+        default: "rounded-hand-drawn-sm",
+        normal: "rounded-xl",
+        large: "rounded-hand-drawn",
+        irregular: "rounded-irregular",
       },
       animation: {
         none: "",
-        pulse: "animate-pulse",
-        bounce: "animate-bounce",
+        gentle: "hover:animate-gentle-bounce",
+        float: "animate-subtle-float",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      radius: "default",
       animation: "none",
     },
   }
@@ -49,12 +53,15 @@ const Button = ({
   className,
   variant,
   size,
+  radius,
   animation,
   ...props
 }: ButtonProps) => {
   return (
     <button
-      className={cn(buttonVariants({ variant, size, animation, className }))}
+      className={cn(
+        buttonVariants({ variant, size, radius, animation, className })
+      )}
       {...props}
     />
   );
