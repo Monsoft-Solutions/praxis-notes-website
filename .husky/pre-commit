@@ -1,0 +1,13 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged for staged files (linting and formatting)
+pnpm lint-staged
+
+# Run type checking on all files (since TypeScript needs full project context)
+pnpm type-check
+
+# Note: build:force is commented out for pre-commit to speed up commits
+# Consider moving build check to pre-push hook for better developer experience
+# Uncomment the next line if you want to ensure build passes before every commit:
+# pnpm build:force 
