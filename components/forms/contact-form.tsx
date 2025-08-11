@@ -125,6 +125,8 @@ export default function ContactForm() {
             style={{
               borderRadius: '15px 18px 12px 20px',
             }}
+            role="alert"
+            aria-live="assertive"
           >
             <div className="flex items-center gap-3">
               <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
@@ -140,6 +142,8 @@ export default function ContactForm() {
             style={{
               borderRadius: '18px 15px 20px 12px',
             }}
+            role="alert"
+            aria-live="assertive"
           >
             <div className="flex items-center gap-3">
               <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />

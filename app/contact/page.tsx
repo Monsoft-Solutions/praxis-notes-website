@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 import {
   Mail,
   MapPin,
@@ -7,13 +7,13 @@ import {
   MessageSquare,
   Headphones,
   CheckCircle,
-} from "lucide-react";
-import FAQ from "website/components/sections/faq";
-import ContactForm from "website/components/forms/contact-form";
-import CTAPlain from "website/components/sections/cta-plain";
+} from 'lucide-react';
+import FAQ from 'website/components/sections/faq';
+import ContactForm from 'website/components/forms/contact-form';
+import CTAPlain from 'website/components/sections/cta-plain';
 
 export const metadata: Metadata = {
-  title: "Contact Us | Praxis Notes",
+  title: 'Contact Us | Praxis Notes',
   description:
     "Get in touch with the Praxis Notes team. We're here to help with any questions about our ABA session notes tool.",
 };
@@ -24,15 +24,25 @@ export default function ContactPage() {
       {/* Background with subtle decorations */}
       <div className="min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative">
         {/* Very subtle background decorations */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="fixed inset-0 overflow-hidden pointer-events-none"
+          aria-hidden="true"
+        >
           <div
             className="absolute left-10 top-20 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30 hidden sm:block"
-            style={{ transform: "rotate(0.1deg)" }}
+            style={{ transform: 'rotate(0.1deg)' }}
+            aria-hidden="true"
           ></div>
 
-          <div className="absolute right-16 bottom-32 h-8 w-8 rounded border border-green-200 opacity-40 hidden sm:block"></div>
+          <div
+            className="absolute right-16 bottom-32 h-8 w-8 rounded border border-green-200 opacity-40 hidden sm:block"
+            aria-hidden="true"
+          ></div>
 
-          <div className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-orange-200 opacity-50 hidden sm:block"></div>
+          <div
+            className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-orange-200 opacity-50 hidden sm:block"
+            aria-hidden="true"
+          ></div>
         </div>
 
         {/* Hero section */}
@@ -44,7 +54,7 @@ export default function ContactPage() {
                 <div
                   className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-200 font-quicksand font-semibold text-gray-800 shadow-lg"
                   style={{
-                    borderRadius: "20px 25px 18px 28px",
+                    borderRadius: '20px 25px 18px 28px',
                   }}
                 >
                   <MessageSquare className="w-4 h-4 text-blue-400" />
@@ -60,7 +70,7 @@ export default function ContactPage() {
               <h1
                 className="text-4xl md:text-6xl font-quicksand font-bold mb-6 text-gray-800"
                 style={{
-                  textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                 }}
               >
                 Get in Touch
@@ -83,13 +93,22 @@ export default function ContactPage() {
                 <div
                   className="relative bg-white border-2 border-blue-200 p-8 shadow-lg"
                   style={{
-                    borderRadius: "25px 30px 20px 35px",
+                    borderRadius: '25px 30px 20px 35px',
                   }}
                 >
                   {/* Thumb tack */}
-                  <div className="absolute -top-2 right-12 h-4 w-4">
-                    <div className="h-full w-full rounded-full bg-green-400 shadow-sm"></div>
-                    <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+                  <div
+                    className="absolute -top-2 right-12 h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <div
+                      className="h-full w-full rounded-full bg-green-400 shadow-sm"
+                      aria-hidden="true"
+                    ></div>
+                    <div
+                      className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+                      aria-hidden="true"
+                    ></div>
                   </div>
 
                   <div className="pt-2">
@@ -101,12 +120,15 @@ export default function ContactPage() {
                 <div
                   className="relative mt-8 bg-white border-2 border-green-200 p-6 shadow-lg"
                   style={{
-                    borderRadius: "20px 28px 25px 22px",
+                    borderRadius: '20px 28px 25px 22px',
                   }}
                 >
                   {/* Triangle thumb tack */}
-                  <div className="absolute -top-2 left-8">
-                    <div className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400"></div>
+                  <div className="absolute -top-2 left-8" aria-hidden="true">
+                    <div
+                      className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400"
+                      aria-hidden="true"
+                    ></div>
                   </div>
 
                   <div className="pt-2">
@@ -134,11 +156,14 @@ export default function ContactPage() {
                 <div
                   className="relative bg-white border-2 border-orange-200 p-8 shadow-lg h-fit"
                   style={{
-                    borderRadius: "28px 25px 30px 20px",
+                    borderRadius: '28px 25px 30px 20px',
                   }}
                 >
                   {/* Square thumb tack */}
-                  <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
+                  <div
+                    className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"
+                    aria-hidden="true"
+                  ></div>
 
                   <div className="pt-2">
                     <h2 className="text-2xl font-quicksand font-bold mb-8 text-gray-800">
@@ -221,7 +246,7 @@ export default function ContactPage() {
                     <div
                       className="p-4 mt-8 bg-blue-100 border border-blue-200"
                       style={{
-                        borderRadius: "15px 18px 12px 20px",
+                        borderRadius: '15px 18px 12px 20px',
                       }}
                     >
                       <p className="text-sm text-gray-700 font-nunito">
@@ -240,59 +265,53 @@ export default function ContactPage() {
         {/* FAQ section */}
         <section className="pb-16 md:pb-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2
-                className="text-3xl md:text-4xl font-quicksand font-bold mb-6 text-gray-800"
-                style={{
-                  textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
-                }}
-              >
-                Frequently Asked Questions
-              </h2>
-              <p className="text-xl text-gray-600 font-nunito">
-                Find quick answers to common questions about contacting and
-                working with us
-              </p>
-            </div>
-
             <div
               className="relative max-w-4xl mx-auto bg-white border-2 border-yellow-200 p-8 shadow-lg"
               style={{
-                borderRadius: "30px 25px 35px 20px",
+                borderRadius: '30px 25px 35px 20px',
               }}
             >
               {/* Thumb tack */}
-              <div className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 transform">
-                <div className="h-full w-full rounded-full bg-yellow-400 shadow-sm"></div>
-                <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+              <div
+                className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 transform"
+                aria-hidden="true"
+              >
+                <div
+                  className="h-full w-full rounded-full bg-yellow-400 shadow-sm"
+                  aria-hidden="true"
+                ></div>
+                <div
+                  className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+                  aria-hidden="true"
+                ></div>
               </div>
 
               <div className="pt-2">
                 <FAQ
                   items={[
                     {
-                      question: "How quickly will I receive a response?",
+                      question: 'How quickly will I receive a response?',
                       answer:
-                        "We strive to respond to all inquiries within 24 hours during business days. For complex technical issues, it may take up to 48 hours to provide a complete solution.",
+                        'We strive to respond to all inquiries within 24 hours during business days. For complex technical issues, it may take up to 48 hours to provide a complete solution.',
                     },
                     {
-                      question: "Do you offer phone support?",
+                      question: 'Do you offer phone support?',
                       answer:
-                        "Yes, phone support is available for all paid plans during business hours (9 AM - 5 PM EST, Monday through Friday). Free trial users are encouraged to reach out via email.",
+                        'Yes, phone support is available for all paid plans during business hours (9 AM - 5 PM EST, Monday through Friday). Free trial users are encouraged to reach out via email.',
                     },
                     {
-                      question: "Can I schedule a demo of Praxis Notes?",
+                      question: 'Can I schedule a demo of Praxis Notes?',
                       answer:
                         'Absolutely! You can request a personalized demo through this contact form. Select "Demo Request" as your subject, and our team will reach out to schedule a time that works for you.',
                     },
                     {
-                      question: "How do I report a technical issue?",
+                      question: 'How do I report a technical issue?',
                       answer:
-                        "For technical issues, please provide as much detail as possible including: your account email, what you were trying to do, any error messages you received, and screenshots if available. This helps us resolve your issue more quickly.",
+                        'For technical issues, please provide as much detail as possible including: your account email, what you were trying to do, any error messages you received, and screenshots if available. This helps us resolve your issue more quickly.',
                     },
                     {
                       question:
-                        "Do you offer custom solutions for larger organizations?",
+                        'Do you offer custom solutions for larger organizations?',
                       answer:
                         'Yes, we offer customized enterprise solutions for larger ABA practices and organizations. Please contact us through the form and specify "Enterprise Inquiry" in the subject line. Our team will work with you to understand your specific needs and create a tailored solution.',
                     },
