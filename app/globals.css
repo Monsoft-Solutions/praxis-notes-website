@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
 
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -10,8 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-quicksand: "Quicksand", sans-serif;
-  --font-nunito: "Nunito", sans-serif;
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -237,7 +237,9 @@
 
   body {
     @apply bg-background text-foreground font-nunito;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
   h1,
@@ -355,7 +357,7 @@
 }
 
 .thumb-tack-round::after {
-  content: "";
+  content: '';
   @apply absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white;
 }
 
@@ -368,7 +370,7 @@
 }
 
 .thumb-tack-triangle::before {
-  content: "";
+  content: '';
   @apply border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent;
 }
 
@@ -632,4 +634,143 @@
   .prose hr {
     @apply my-8 border-gray-200 dark:border-gray-700;
   }
+}
+
+/* Hand-drawn Button Effects */
+@layer components {
+  /* Enhanced button effects for hand-drawn sketch appearance */
+  .btn-sketch-subtle {
+    position: relative;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-sketch-subtle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .btn-sketch-enhanced {
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-sketch-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+
+  .btn-sketch-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    pointer-events: none;
+  }
+
+  /* Hover effects for hand-drawn buttons */
+  .btn-sketch-subtle:hover,
+  .btn-sketch-enhanced:hover {
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Hand-drawn button text effects */
+  .btn-text-sketch {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 0 0 currentColor;
+    letter-spacing: 0.01em;
+  }
+
+  /* Subtle texture overlay for buttons */
+  .btn-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px
+      );
+    background-size:
+      20px 20px,
+      25px 25px,
+      30px 30px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Button press effect */
+  .btn-sketch-press:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Hand-drawn animations */
+@keyframes gentle-sketch-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
+@keyframes subtle-sketch-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(0.1deg);
+  }
+}
+
+.animate-gentle-sketch-bounce:hover {
+  animation: gentle-sketch-bounce 0.6s ease-in-out;
+}
+
+.animate-subtle-sketch-float {
+  animation: subtle-sketch-float 3s ease-in-out infinite;
 }

@@ -64,7 +64,7 @@ This document outlines all available rules and guidelines for the AI assistant t
 ## Guidelines for Using These Rules
 
 1. **Task-Specific Application:** Apply the relevant rules based on the specific task you're working on:
-   - For UI components, refer to the [ui-components.rules.mdc](mdc:.cursor/rules/ui-components.rules.mdc)
+   - For UI components, refer to the [ui-components.rules.mdc](mdc:.cursor/rules/ui-components.rules.mdc) and [ui-design.mdc](mdc:.cursor/rules/ui-design.mdc)
    - For data operations, use [database.rules.mdc](mdc:.cursor/rules/database.rules.mdc) and [data-fetching.rules.mdc](mdc:.cursor/rules/data-fetching.rules.mdc)
    - For TypeScript coding, follow [typescript.rules.mdc](mdc:.cursor/rules/typescript.rules.mdc)
    - For API implementation, consult [api-routes.rules.mdc](mdc:.cursor/rules/api-routes.rules.mdc)
