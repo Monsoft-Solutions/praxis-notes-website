@@ -9,7 +9,7 @@ import {
   ArrowRight,
   TrendingUp,
 } from 'lucide-react';
-import { Button } from 'website/components/ui/button';
+import { buttonVariants } from 'website/components/ui/button';
 
 export default function ResourcesHero() {
   return (
@@ -18,14 +18,16 @@ export default function ResourcesHero() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100"></div>
 
       {/* Hand-drawn background decorations */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating geometric shapes */}
         <div
+          aria-hidden="true"
           className="absolute left-16 top-32 h-16 w-16 rounded-full border-2 border-blue-200 opacity-20 hidden lg:block"
           style={{ transform: 'rotate(0.1deg)' }}
         ></div>
 
         <div
+          aria-hidden="true"
           className="absolute right-20 top-40 h-12 w-12 border-2 border-green-200 opacity-25 hidden lg:block"
           style={{
             transform: 'rotate(-0.15deg)',
@@ -34,6 +36,7 @@ export default function ResourcesHero() {
         ></div>
 
         <div
+          aria-hidden="true"
           className="absolute left-1/4 bottom-40 h-10 w-10 border-2 border-orange-200 opacity-30 hidden lg:block"
           style={{
             transform: 'rotate(0.2deg)',
@@ -42,6 +45,7 @@ export default function ResourcesHero() {
         ></div>
 
         <div
+          aria-hidden="true"
           className="absolute right-1/3 bottom-32 h-8 w-8 border-2 border-yellow-200 opacity-25 hidden lg:block"
           style={{
             transform: 'rotate(-0.1deg)',
@@ -50,9 +54,18 @@ export default function ResourcesHero() {
         ></div>
 
         {/* Small decorative dots */}
-        <div className="absolute right-1/4 top-1/3 h-3 w-3 rounded-full bg-yellow-300 opacity-40 hidden lg:block"></div>
-        <div className="absolute left-1/5 bottom-1/3 h-2 w-2 rounded-full bg-blue-300 opacity-35 hidden lg:block"></div>
-        <div className="absolute right-1/5 top-1/4 h-4 w-4 rounded-full bg-green-200 opacity-30 hidden lg:block"></div>
+        <div
+          aria-hidden="true"
+          className="absolute right-1/4 top-1/3 h-3 w-3 rounded-full bg-yellow-300 opacity-40 hidden lg:block"
+        ></div>
+        <div
+          aria-hidden="true"
+          className="absolute left-[20%] bottom-1/3 h-2 w-2 rounded-full bg-blue-300 opacity-40 hidden lg:block"
+        ></div>
+        <div
+          aria-hidden="true"
+          className="absolute right-[20%] top-1/4 h-4 w-4 rounded-full bg-green-200 opacity-30 hidden lg:block"
+        ></div>
       </div>
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative pt-20">
@@ -96,23 +109,35 @@ export default function ResourcesHero() {
                   number: '150+',
                   label: 'Expert Articles',
                   color: 'blue',
+                  borderClass: 'border-blue-200',
+                  iconClass: 'text-blue-500',
+                  numberClass: 'text-blue-600',
+                  thumbTackClass: 'bg-blue-400',
                 },
                 {
                   icon: Users,
                   number: '25K+',
                   label: 'Professionals',
                   color: 'green',
+                  borderClass: 'border-green-200',
+                  iconClass: 'text-green-500',
+                  numberClass: 'text-green-600',
+                  thumbTackClass: 'bg-green-400',
                 },
                 {
                   icon: Award,
                   number: '98%',
                   label: 'Success Rate',
                   color: 'orange',
+                  borderClass: 'border-orange-200',
+                  iconClass: 'text-orange-500',
+                  numberClass: 'text-orange-600',
+                  thumbTackClass: 'bg-orange-400',
                 },
               ].map((stat, index) => (
                 <div
                   key={index}
-                  className={`relative bg-white p-4 shadow-md border-2 border-${stat.color}-200 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                  className={`relative bg-white p-4 shadow-md border-2 ${stat.borderClass} text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
                   style={{
                     borderRadius:
                       index === 0
@@ -133,16 +158,16 @@ export default function ResourcesHero() {
                     }`}
                   >
                     <div
-                      className={`h-2 w-2 rounded-full bg-${stat.color}-400 shadow-sm`}
+                      className={`h-2 w-2 rounded-full ${stat.thumbTackClass} shadow-sm`}
                     ></div>
                   </div>
 
                   <div className="pt-2">
                     <stat.icon
-                      className={`w-5 h-5 mx-auto mb-2 text-${stat.color}-500`}
+                      className={`w-5 h-5 mx-auto mb-2 ${stat.iconClass}`}
                     />
                     <div
-                      className={`text-2xl font-quicksand font-bold text-${stat.color}-600 mb-1`}
+                      className={`text-2xl font-quicksand font-bold ${stat.numberClass} mb-1`}
                     >
                       {stat.number}
                     </div>
@@ -156,28 +181,32 @@ export default function ResourcesHero() {
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#resources">
-                <Button
-                  variant="hero-primary"
-                  size="lg"
-                  radius="hero-secondary"
-                  className="px-8"
-                >
-                  <Star className="mr-2 h-5 w-5" />
-                  Explore Resources
-                </Button>
+              <Link
+                href="#resources"
+                className={buttonVariants({
+                  variant: 'hero-primary',
+                  size: 'lg',
+                  radius: 'hero-primary',
+                  className: 'px-8',
+                })}
+                style={{ borderRadius: '16px 20px 14px 18px' }}
+              >
+                <Star className="mr-2 h-5 w-5" />
+                Explore Resources
               </Link>
 
-              <Link href="/contact">
-                <Button
-                  variant="hero-secondary"
-                  size="lg"
-                  radius="hand-drawn-sm"
-                  className="px-8"
-                >
-                  Get Expert Help
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <Link
+                href="/contact"
+                className={buttonVariants({
+                  variant: 'hero-secondary',
+                  size: 'lg',
+                  radius: 'hero-secondary',
+                  className: 'px-8',
+                })}
+                style={{ borderRadius: '14px 18px 12px 16px' }}
+              >
+                Get Expert Help
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
           </div>
