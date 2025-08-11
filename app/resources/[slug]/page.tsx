@@ -253,6 +253,7 @@ export default async function ResourcePage({
                     <Link
                       href={`https://app.praxisnotes.com?utm_source=website&utm_medium=resources&utm_campaign=resource-cta&utm_content=${slug}`}
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Button
                         size="lg"
