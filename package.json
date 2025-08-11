@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "pnpm run sitemap:generate && pnpm run sitemap:copy",
     "start": "next start",
     "lint": "next lint",
     "build:force": "NEXT_SKIP_TYPECHECKING=1 next build",
