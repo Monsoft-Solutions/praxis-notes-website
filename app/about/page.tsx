@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import Image from "next/image";
+import { Metadata } from 'next';
+import Image from 'next/image';
 import {
   BookOpenText,
   Brain,
@@ -14,14 +14,14 @@ import {
   Award,
   Coffee,
   Smile,
-} from "lucide-react";
-import CTAPlain from "website/components/sections/cta-plain";
-import { Button } from "website/components/ui/button";
+} from 'lucide-react';
+import CTAPlain from 'website/components/sections/cta-plain';
+import { Button } from 'website/components/ui/button';
 
 export const metadata: Metadata = {
-  title: "About Us | Praxis Notes",
+  title: 'About Us | Praxis Notes',
   description:
-    "Learn about Praxis Notes - our mission is to help ABA professionals focus on therapy, not paperwork.",
+    'Learn about Praxis Notes - our mission is to help ABA professionals focus on therapy, not paperwork.',
 };
 
 export default function AboutPage() {
@@ -37,22 +37,22 @@ export default function AboutPage() {
           {/* Floating geometric shapes */}
           <div
             className="absolute left-16 top-32 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30 hidden sm:block"
-            style={{ transform: "rotate(0.1deg)" }}
+            style={{ transform: 'rotate(0.1deg)' }}
           ></div>
 
           <div
             className="absolute right-20 top-40 h-10 w-10 border-2 border-green-200 opacity-40 hidden sm:block"
             style={{
-              transform: "rotate(-0.2deg)",
-              borderRadius: "18px 22px 16px 26px",
+              transform: 'rotate(-0.2deg)',
+              borderRadius: '18px 22px 16px 26px',
             }}
           ></div>
 
           <div
             className="absolute left-1/4 bottom-20 h-8 w-8 border-2 border-orange-200 opacity-35 hidden sm:block"
             style={{
-              transform: "rotate(0.15deg)",
-              borderRadius: "16px 20px 14px 22px",
+              transform: 'rotate(0.15deg)',
+              borderRadius: '16px 20px 14px 22px',
             }}
           ></div>
 
@@ -68,7 +68,7 @@ export default function AboutPage() {
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-4 py-2 bg-white shadow-lg w-fit border-2 border-blue-200"
-                style={{ borderRadius: "20px 25px 18px 28px" }}
+                style={{ borderRadius: '20px 25px 18px 28px' }}
               >
                 {/* Thumb tack */}
                 <div className="absolute -top-1.5 left-6 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
@@ -80,7 +80,7 @@ export default function AboutPage() {
 
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-quicksand font-bold leading-tight text-gray-800">
-                  We&apos;re building the future of{" "}
+                  We&apos;re building the future of{' '}
                   <span className="text-blue-500">ABA documentation</span>
                 </h1>
                 <p className="text-xl md:text-2xl font-nunito text-gray-600 leading-relaxed">
@@ -93,9 +93,9 @@ export default function AboutPage() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6">
                 {[
-                  { number: "30+", label: "Years Combined ABA Experience" },
-                  { number: "1000+", label: "Hours Saved Monthly" },
-                  { number: "500+", label: "Therapists Served" },
+                  { number: '30+', label: 'Years Combined ABA Experience' },
+                  { number: '1000+', label: 'Hours Saved Monthly' },
+                  { number: '500+', label: 'Therapists Served' },
                 ].map((stat, index) => (
                   <div
                     key={index}
@@ -103,10 +103,10 @@ export default function AboutPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "18px 22px 16px 24px"
+                          ? '18px 22px 16px 24px'
                           : index === 1
-                          ? "20px 16px 24px 18px"
-                          : "22px 24px 18px 20px",
+                            ? '20px 16px 24px 18px'
+                            : '22px 24px 18px 20px',
                     }}
                   >
                     {/* Small thumb tack */}
@@ -128,7 +128,7 @@ export default function AboutPage() {
               <div
                 className="relative bg-white shadow-2xl border-2 border-yellow-200 p-6"
                 style={{
-                  borderRadius: "30px 35px 28px 32px",
+                  borderRadius: '30px 35px 28px 32px',
                 }}
               >
                 {/* Thumb tack */}
@@ -177,59 +177,74 @@ export default function AboutPage() {
             {[
               {
                 icon: <Target className="w-10 h-10 text-blue-400" />,
-                title: "Clear Purpose",
+                title: 'Clear Purpose',
                 description:
-                  "We exist to eliminate the documentation burden that keeps ABA professionals from focusing on their clients.",
-                color: "blue",
+                  'We exist to eliminate the documentation burden that keeps ABA professionals from focusing on their clients.',
+                color: 'blue',
               },
               {
                 icon: <Lightbulb className="w-10 h-10 text-orange-400" />,
-                title: "Smart Innovation",
+                title: 'Smart Innovation',
                 description:
-                  "We leverage AI and smart technology to automate repetitive tasks while maintaining clinical accuracy.",
-                color: "orange",
+                  'We leverage AI and smart technology to automate repetitive tasks while maintaining clinical accuracy.',
+                color: 'orange',
               },
               {
                 icon: <Heart className="w-10 h-10 text-green-400" />,
-                title: "Human-Centered",
+                title: 'Human-Centered',
                 description:
-                  "Every feature we build is designed with real ABA professionals and their daily challenges in mind.",
-                color: "green",
+                  'Every feature we build is designed with real ABA professionals and their daily challenges in mind.',
+                color: 'green',
               },
-            ].map((mission, index) => (
-              <div
-                key={index}
-                className={`relative bg-white shadow-xl border-2 border-${mission.color}-200 p-8`}
-                style={{
-                  borderRadius:
-                    index === 0
-                      ? "25px 30px 22px 28px"
-                      : index === 1
-                      ? "28px 22px 30px 25px"
-                      : "30px 28px 25px 32px",
-                }}
-              >
-                {/* Thumb tack */}
-                <div className="absolute -top-2 right-8 h-4 w-4 -translate-x-1/2 transform">
-                  <div
-                    className={`h-full w-full rounded-full bg-${mission.color}-400 shadow-sm`}
-                  ></div>
-                  <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-                </div>
+            ].map((mission, index) => {
+              // Map color values to explicit Tailwind classes
+              const borderColorMap = {
+                blue: 'border-blue-200',
+                orange: 'border-orange-200',
+                green: 'border-green-200',
+              } as const;
 
-                <div className="pt-2 text-center">
-                  <div className="w-16 h-16 rounded-xl bg-gray-50 flex items-center justify-center mb-6 mx-auto">
-                    {mission.icon}
+              const bgColorMap = {
+                blue: 'bg-blue-400',
+                orange: 'bg-orange-400',
+                green: 'bg-green-400',
+              } as const;
+
+              return (
+                <div
+                  key={index}
+                  className={`relative bg-white shadow-xl border-2 ${borderColorMap[mission.color as keyof typeof borderColorMap]} p-8`}
+                  style={{
+                    borderRadius:
+                      index === 0
+                        ? '25px 30px 22px 28px'
+                        : index === 1
+                          ? '28px 22px 30px 25px'
+                          : '30px 28px 25px 32px',
+                  }}
+                >
+                  {/* Thumb tack */}
+                  <div className="absolute -top-2 right-8 h-4 w-4 -translate-x-1/2 transform">
+                    <div
+                      className={`h-full w-full rounded-full ${bgColorMap[mission.color as keyof typeof bgColorMap]} shadow-sm`}
+                    ></div>
+                    <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
                   </div>
-                  <h3 className="text-xl font-quicksand font-bold mb-4 text-gray-800">
-                    {mission.title}
-                  </h3>
-                  <p className="text-gray-600 font-nunito leading-relaxed">
-                    {mission.description}
-                  </p>
+
+                  <div className="pt-2 text-center">
+                    <div className="w-16 h-16 rounded-xl bg-gray-50 flex items-center justify-center mb-6 mx-auto">
+                      {mission.icon}
+                    </div>
+                    <h3 className="text-xl font-quicksand font-bold mb-4 text-gray-800">
+                      {mission.title}
+                    </h3>
+                    <p className="text-gray-600 font-nunito leading-relaxed">
+                      {mission.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -243,7 +258,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute right-20 top-1/4 h-16 w-16 rounded-full border-2 border-yellow-200 opacity-25 hidden sm:block"
-            style={{ transform: "rotate(0.2deg)" }}
+            style={{ transform: 'rotate(0.2deg)' }}
           ></div>
           <div className="absolute left-1/3 bottom-20 h-2 w-2 rounded-full bg-blue-200 opacity-40 hidden sm:block"></div>
         </div>
@@ -264,7 +279,7 @@ export default function AboutPage() {
             <div
               className="relative bg-white shadow-xl border-2 border-blue-200 p-8 lg:p-12"
               style={{
-                borderRadius: "32px 28px 35px 25px",
+                borderRadius: '32px 28px 35px 25px',
               }}
             >
               {/* Thumb tack */}
@@ -286,7 +301,7 @@ export default function AboutPage() {
                   <p className="text-gray-700 font-nunito leading-relaxed">
                     <strong>
                       2-3 hours of notes for every hour of therapy.
-                    </strong>{" "}
+                    </strong>{' '}
                     Multiple disconnected systems. Generic templates that never
                     quite fit ABA needs. We lived this frustration daily.
                   </p>
@@ -295,7 +310,7 @@ export default function AboutPage() {
                   <div
                     className="relative bg-gray-50 border-2 border-orange-200 p-4"
                     style={{
-                      borderRadius: "25px 30px 22px 28px",
+                      borderRadius: '25px 30px 22px 28px',
                     }}
                   >
                     <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 transform bg-orange-400 shadow-sm"></div>
@@ -317,7 +332,7 @@ export default function AboutPage() {
             <div
               className="relative bg-white shadow-xl border-2 border-green-200 p-8 lg:p-12"
               style={{
-                borderRadius: "28px 35px 25px 30px",
+                borderRadius: '28px 35px 25px 30px',
               }}
             >
               {/* Thumb tack */}
@@ -346,7 +361,7 @@ export default function AboutPage() {
                   <div
                     className="relative bg-gray-50 border-2 border-yellow-200 p-4"
                     style={{
-                      borderRadius: "30px 25px 28px 22px",
+                      borderRadius: '30px 25px 28px 22px',
                     }}
                   >
                     <div className="absolute -top-2 left-1/3 h-4 w-4 -translate-x-1/2 transform">
@@ -380,8 +395,8 @@ export default function AboutPage() {
           <div
             className="absolute left-16 top-32 h-14 w-14 border-2 border-orange-200 opacity-30 hidden sm:block"
             style={{
-              transform: "rotate(-0.1deg)",
-              borderRadius: "20px 26px 18px 28px",
+              transform: 'rotate(-0.1deg)',
+              borderRadius: '20px 26px 18px 28px',
             }}
           ></div>
           <div className="absolute right-1/4 bottom-24 h-3 w-3 rounded-full bg-green-200 opacity-40 hidden sm:block"></div>
@@ -403,30 +418,30 @@ export default function AboutPage() {
             {[
               {
                 icon: <Brain className="w-8 h-8 text-blue-400" />,
-                title: "Clinical Expertise",
+                title: 'Clinical Expertise',
                 description:
-                  "BCBAs and RBTs who understand the daily realities of ABA practice and documentation challenges.",
-                stats: "30+ years combined experience",
-                thumbTackColor: "bg-blue-400",
-                borderColor: "border-blue-200",
+                  'BCBAs and RBTs who understand the daily realities of ABA practice and documentation challenges.',
+                stats: '30+ years combined experience',
+                thumbTackColor: 'bg-blue-400',
+                borderColor: 'border-blue-200',
               },
               {
                 icon: <PencilRuler className="w-8 h-8 text-green-400" />,
-                title: "Design Excellence",
+                title: 'Design Excellence',
                 description:
-                  "UX designers focused on creating calming, intuitive interfaces that reduce cognitive load.",
-                stats: "500+ user interviews conducted",
-                thumbTackColor: "bg-green-400",
-                borderColor: "border-green-200",
+                  'UX designers focused on creating calming, intuitive interfaces that reduce cognitive load.',
+                stats: '500+ user interviews conducted',
+                thumbTackColor: 'bg-green-400',
+                borderColor: 'border-green-200',
               },
               {
                 icon: <Puzzle className="w-8 h-8 text-orange-400" />,
-                title: "Technical Innovation",
+                title: 'Technical Innovation',
                 description:
-                  "Engineers building AI-powered solutions specifically designed for behavioral health workflows.",
-                stats: "1M+ notes processed safely",
-                thumbTackColor: "bg-orange-400",
-                borderColor: "border-orange-200",
+                  'Engineers building AI-powered solutions specifically designed for behavioral health workflows.',
+                stats: '1M+ notes processed safely',
+                thumbTackColor: 'bg-orange-400',
+                borderColor: 'border-orange-200',
               },
             ].map((team, index) => (
               <div
@@ -435,10 +450,10 @@ export default function AboutPage() {
                 style={{
                   borderRadius:
                     index === 0
-                      ? "25px 30px 20px 35px"
+                      ? '25px 30px 20px 35px'
                       : index === 1
-                      ? "30px 22px 35px 25px"
-                      : "28px 35px 22px 30px",
+                        ? '30px 22px 35px 25px'
+                        : '28px 35px 22px 30px',
                 }}
               >
                 {/* Thumb tack */}
@@ -475,7 +490,7 @@ export default function AboutPage() {
             <div
               className="relative bg-white shadow-xl border-2 border-purple-200 p-8 max-w-2xl mx-auto"
               style={{
-                borderRadius: "35px 28px 32px 25px",
+                borderRadius: '35px 28px 32px 25px',
               }}
             >
               {/* Thumb tack */}
@@ -496,7 +511,7 @@ export default function AboutPage() {
                 <Button
                   className="inline-flex items-center justify-center px-6 py-3 h-11 bg-blue-400 text-white font-quicksand font-semibold transition-all hover:bg-blue-500 hover:shadow-md"
                   style={{
-                    borderRadius: "12px 14px 12px 16px",
+                    borderRadius: '12px 14px 12px 16px',
                   }}
                 >
                   <Smile className="mr-2 h-4 w-4" />
@@ -528,42 +543,42 @@ export default function AboutPage() {
             {[
               {
                 icon: <Heart className="w-8 h-8 text-red-400" />,
-                title: "Client-First Approach",
+                title: 'Client-First Approach',
                 description:
-                  "Every feature we build asks: does this help therapists spend more quality time with their clients?",
+                  'Every feature we build asks: does this help therapists spend more quality time with their clients?',
                 points: [
-                  "User-centered design",
-                  "Clinical outcome focus",
-                  "Therapist feedback driven",
+                  'User-centered design',
+                  'Clinical outcome focus',
+                  'Therapist feedback driven',
                 ],
-                thumbTackColor: "bg-red-400",
-                borderColor: "border-red-200",
+                thumbTackColor: 'bg-red-400',
+                borderColor: 'border-red-200',
               },
               {
                 icon: <LineChart className="w-8 h-8 text-blue-400" />,
-                title: "Data-Driven Decisions",
+                title: 'Data-Driven Decisions',
                 description:
-                  "We believe in the power of data to improve both our product and clinical outcomes.",
+                  'We believe in the power of data to improve both our product and clinical outcomes.',
                 points: [
-                  "Evidence-based features",
-                  "Continuous measurement",
-                  "Transparent metrics",
+                  'Evidence-based features',
+                  'Continuous measurement',
+                  'Transparent metrics',
                 ],
-                thumbTackColor: "bg-blue-400",
-                borderColor: "border-blue-200",
+                thumbTackColor: 'bg-blue-400',
+                borderColor: 'border-blue-200',
               },
               {
                 icon: <BookOpenText className="w-8 h-8 text-green-400" />,
-                title: "Continuous Learning",
+                title: 'Continuous Learning',
                 description:
                   "We're always learning from users, research, and the evolving field of behavioral science.",
                 points: [
-                  "Regular user research",
-                  "Industry collaboration",
-                  "Adaptive development",
+                  'Regular user research',
+                  'Industry collaboration',
+                  'Adaptive development',
                 ],
-                thumbTackColor: "bg-green-400",
-                borderColor: "border-green-200",
+                thumbTackColor: 'bg-green-400',
+                borderColor: 'border-green-200',
               },
             ].map((value, index) => (
               <div
@@ -572,10 +587,10 @@ export default function AboutPage() {
                 style={{
                   borderRadius:
                     index === 0
-                      ? "32px 25px 30px 28px"
+                      ? '32px 25px 30px 28px'
                       : index === 1
-                      ? "25px 35px 22px 30px"
-                      : "30px 28px 35px 25px",
+                        ? '25px 35px 22px 30px'
+                        : '30px 28px 35px 25px',
                 }}
               >
                 {/* Thumb tack */}
