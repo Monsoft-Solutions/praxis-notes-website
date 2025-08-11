@@ -1,29 +1,6 @@
-import { db } from "website/db/config";
-import { resources } from "website/db/schema";
-import { eq, desc, count } from "drizzle-orm";
-
-export interface Resource {
-  id: string;
-  slug: string;
-  title: string;
-  metaDescription: string;
-  date: string;
-  readingTime: string;
-  content: string;
-  cta?: {
-    title: string;
-    content: string;
-    buttonText: string;
-    buttonLink: string;
-  } | null;
-  author?: {
-    name: string;
-    title?: string;
-    image?: string;
-  } | null;
-  tags?: (string | { id: string; name: string })[] | null;
-  image?: string | null;
-}
+import { db } from 'website/db/config';
+import { resources, type Resource } from 'website/db/schema';
+import { eq, desc, count } from 'drizzle-orm';
 
 /**
  * Loads resources from the database with pagination
@@ -44,7 +21,7 @@ export async function getPaginatedResources(
 
     // Get the resources for the current page
     const result = await db.query.resources.findMany({
-      orderBy: (resources) => [desc(resources.date)],
+      orderBy: resources => [desc(resources.date)],
       limit: pageSize,
       offset: offset,
     });
@@ -55,15 +32,15 @@ export async function getPaginatedResources(
     const totalPages = Math.ceil(totalCount / pageSize);
 
     return {
-      resources: result.map((resource) => ({
+      resources: result.map(resource => ({
         ...resource,
-        readingTime: resource.readingTime || "",
+        readingTime: resource.readingTime || '',
       })),
       totalCount,
       totalPages,
     };
   } catch (error) {
-    console.error("Error fetching paginated resources:", error);
+    console.error('Error fetching paginated resources:', error);
     return {
       resources: [],
       totalCount: 0,
@@ -78,15 +55,15 @@ export async function getPaginatedResources(
 export async function getAllResources(): Promise<Resource[]> {
   try {
     const result = await db.query.resources.findMany({
-      orderBy: (resources) => [desc(resources.date)],
+      orderBy: resources => [desc(resources.date)],
     });
 
-    return result.map((resource) => ({
+    return result.map(resource => ({
       ...resource,
-      readingTime: resource.readingTime || "",
+      readingTime: resource.readingTime || '',
     }));
   } catch (error) {
-    console.error("Error fetching resources:", error);
+    console.error('Error fetching resources:', error);
     return [];
   }
 }
@@ -111,7 +88,7 @@ export async function getResourceBySlug(
 
     return {
       ...resource,
-      readingTime: resource.readingTime || "",
+      readingTime: resource.readingTime || '',
     };
   } catch (error) {
     console.error(`Error fetching resource with slug ${slugValue}:`, error);

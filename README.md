@@ -67,6 +67,42 @@ pnpm build
 pnpm start
 ```
 
+### Pre-commit Hooks
+
+This project uses Git pre-commit hooks to ensure code quality and prevent breaking changes from being committed. The pre-commit hook automatically runs:
+
+1. **TypeScript Type Checking** - Validates all TypeScript files for type errors
+2. **ESLint** - Checks code style and quality (can be skipped with `SKIP_LINT=true`)
+3. **Build Verification** - Ensures the project builds successfully
+
+#### Manual Testing
+
+You can manually run the same checks that the pre-commit hook performs:
+
+```bash
+# Run all pre-commit checks
+pnpm pre-commit-check
+
+# Or run individual checks
+pnpm type-check    # TypeScript type checking
+pnpm lint          # ESLint
+pnpm build         # Build verification
+```
+
+#### Skipping Checks
+
+In rare cases where you need to skip the pre-commit checks:
+
+```bash
+# Skip all pre-commit hooks
+git commit --no-verify -m "Your commit message"
+
+# Skip only ESLint (still runs TypeScript and build checks)
+SKIP_LINT=true git commit -m "Your commit message"
+```
+
+**Note:** Use `--no-verify` sparingly and only when absolutely necessary. It's recommended to fix the underlying issues instead of skipping the checks.
+
 ## License
 
 PraxisNote is licensed under the [Apache License 2.0](LICENSE).

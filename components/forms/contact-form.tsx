@@ -1,12 +1,11 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
-import { Button } from "website/components/ui/button";
-import { submitContact } from "website/app/actions/contact";
-import { useRouter } from "next/navigation";
-import { toast } from "website/components/ui/use-toast";
-import { FORM } from "website/components/ui/design-system/design-tokens";
-import { cn } from "website/lib/utils";
+import { useState, useRef } from 'react';
+import { Button } from 'website/components/ui/button';
+import { submitContact } from 'website/app/actions/contact';
+import { useRouter } from 'next/navigation';
+import { toast } from 'website/components/ui/use-toast';
+import { Send, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -14,10 +13,10 @@ export default function ContactForm() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
+    name: '',
+    email: '',
+    company: '',
+    message: '',
   });
   const router = useRouter();
 
@@ -25,7 +24,7 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+    setFormValues(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -33,10 +32,10 @@ export default function ContactForm() {
 
   const resetForm = () => {
     setFormValues({
-      name: "",
-      email: "",
-      company: "",
-      message: "",
+      name: '',
+      email: '',
+      company: '',
+      message: '',
     });
 
     // Also manually clear form inputs
@@ -44,8 +43,8 @@ export default function ContactForm() {
       const inputs = formRef.current.querySelectorAll<
         HTMLInputElement | HTMLTextAreaElement
       >('input[type="text"], input[type="email"], textarea');
-      inputs.forEach((input) => {
-        input.value = "";
+      inputs.forEach(input => {
+        input.value = '';
       });
 
       // Reset checkbox if it exists
@@ -71,29 +70,29 @@ export default function ContactForm() {
         setFormSuccess(true);
         resetForm();
         toast({
-          title: "Message sent!",
+          title: 'Message sent!',
           description:
             "We've received your message and will get back to you soon.",
-          variant: "success",
+          variant: 'success',
         });
       } else {
         setFormError(
-          response.error || "Something went wrong. Please try again."
+          response.error || 'Something went wrong. Please try again.'
         );
         toast({
-          title: "Error",
+          title: 'Error',
           description:
-            response.error || "Something went wrong. Please try again.",
-          variant: "destructive",
+            response.error || 'Something went wrong. Please try again.',
+          variant: 'destructive',
         });
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-      setFormError("An unexpected error occurred. Please try again later.");
+      console.error('Form submission error:', error);
+      setFormError('An unexpected error occurred. Please try again later.');
       toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again later.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again later.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
@@ -102,187 +101,227 @@ export default function ContactForm() {
   };
 
   return (
-    <form
-      ref={formRef}
-      className="p-8 rounded-xl space-y-6 transition-all duration-200 
-                 bg-white border border-gray-200 dark:bg-slate-800 dark:border-slate-700"
-      onSubmit={handleSubmit}
-    >
-      {formError && (
-        <div
-          className="p-4 mb-4 rounded-lg transition-colors duration-200
-                        bg-red-50 border border-red-200 text-red-600
-                        dark:bg-red-900/20 dark:border-red-800 dark:text-red-300"
+    <div>
+      <div className="mb-8">
+        <h2
+          className="text-3xl font-quicksand font-bold mb-4 text-gray-800"
+          style={{
+            textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+          }}
         >
-          {formError}
-        </div>
-      )}
+          Send us a message
+        </h2>
+        <p className="text-gray-600 font-nunito">
+          Have a question about Praxis Notes? We&apos;d love to help you get
+          started.
+        </p>
+      </div>
 
-      {formSuccess && (
-        <div
-          className="p-4 mb-4 rounded-lg transition-colors duration-200
-                        bg-green-50 border border-green-200 text-green-700
-                        dark:bg-green-900/20 dark:border-green-800 dark:text-green-300"
-        >
-          Thank you for your message! We&apos;ll get back to you soon.
-        </div>
-      )}
+      <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
+        {/* Error Message */}
+        {formError && (
+          <div
+            className="relative p-4 bg-white border-2 border-red-300 shadow-lg"
+            style={{
+              borderRadius: '15px 18px 12px 20px',
+            }}
+            role="alert"
+            aria-live="assertive"
+          >
+            <div className="flex items-center gap-3">
+              <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
+              <p className="text-red-700 font-nunito">{formError}</p>
+            </div>
+          </div>
+        )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Success Message */}
+        {formSuccess && (
+          <div
+            className="relative p-4 bg-white border-2 border-green-300 shadow-lg"
+            style={{
+              borderRadius: '18px 15px 20px 12px',
+            }}
+            role="alert"
+            aria-live="assertive"
+          >
+            <div className="flex items-center gap-3">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <p className="text-green-700 font-nunito">
+                Thank you for your message! We&apos;ll get back to you soon.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Name and Email Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-quicksand font-semibold text-gray-800 mb-2"
+            >
+              Name
+            </label>
+            <div
+              className="relative bg-white border-2 border-blue-200 shadow-lg"
+              style={{
+                borderRadius: '12px 15px 10px 18px',
+              }}
+            >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formValues.name}
+                onChange={handleInputChange}
+                className="w-full h-12 px-4 bg-transparent border-0 text-gray-800 font-nunito placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-xl"
+                placeholder="Your name"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-quicksand font-semibold text-gray-800 mb-2"
+            >
+              Email
+            </label>
+            <div
+              className="relative bg-white border-2 border-green-200 shadow-lg"
+              style={{
+                borderRadius: '15px 12px 16px 10px',
+              }}
+            >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formValues.email}
+                onChange={handleInputChange}
+                className="w-full h-12 px-4 bg-transparent border-0 text-gray-800 font-nunito placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-300 rounded-xl"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Company Field */}
         <div>
           <label
-            htmlFor="name"
-            className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+            htmlFor="company"
+            className="block text-sm font-quicksand font-semibold text-gray-800 mb-2"
           >
-            Name
+            Organization (Optional)
           </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formValues.name}
-            onChange={handleInputChange}
-            className={cn(
-              FORM.INPUT,
-              "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
-              "focus:ring-blue-500 focus:border-blue-500",
-              "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
-              "dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              "transition-colors duration-200"
-            )}
-            placeholder="Your name"
-            required
-          />
+          <div
+            className="relative bg-white border-2 border-orange-200 shadow-lg"
+            style={{
+              borderRadius: '10px 18px 14px 12px',
+            }}
+          >
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formValues.company}
+              onChange={handleInputChange}
+              className="w-full h-12 px-4 bg-transparent border-0 text-gray-800 font-nunito placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-300 rounded-xl"
+              placeholder="Your company or organization"
+            />
+          </div>
         </div>
+
+        {/* Message Field */}
         <div>
           <label
-            htmlFor="email"
-            className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+            htmlFor="message"
+            className="block text-sm font-quicksand font-semibold text-gray-800 mb-2"
           >
-            Email
+            Message
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formValues.email}
-            onChange={handleInputChange}
-            className={cn(
-              FORM.INPUT,
-              "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
-              "focus:ring-blue-500 focus:border-blue-500",
-              "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
-              "dark:focus:ring-blue-500 dark:focus:border-blue-500",
-              "transition-colors duration-200"
-            )}
-            placeholder="your.email@example.com"
-            required
-          />
+          <div
+            className="relative bg-white border-2 border-yellow-200 shadow-lg"
+            style={{
+              borderRadius: '16px 12px 18px 14px',
+            }}
+          >
+            <textarea
+              id="message"
+              name="message"
+              rows={6}
+              value={formValues.message}
+              onChange={handleInputChange}
+              className="w-full p-4 bg-transparent border-0 text-gray-800 font-nunito placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded-xl resize-none"
+              placeholder="Tell us about your question or concern..."
+              required
+            />
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          htmlFor="company"
-          className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
+        {/* Newsletter Subscription */}
+        <div
+          className="relative p-4 bg-blue-100 border-2 border-blue-200 shadow-lg"
+          style={{
+            borderRadius: '14px 20px 12px 16px',
+          }}
         >
-          Organization (Optional)
-        </label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          value={formValues.company}
-          onChange={handleInputChange}
-          className={cn(
-            FORM.INPUT,
-            "bg-white border-gray-300 text-gray-900 placeholder-gray-500",
-            "focus:ring-blue-500 focus:border-blue-500",
-            "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
-            "dark:focus:ring-blue-500 dark:focus:border-blue-500",
-            "transition-colors duration-200"
-          )}
-          placeholder="Your company or organization"
-        />
-      </div>
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              className="mt-1 h-4 w-4 rounded border-2 border-blue-300 text-blue-500 focus:ring-2 focus:ring-blue-300"
+            />
+            <label
+              htmlFor="newsletter"
+              className="text-sm text-gray-700 font-nunito leading-relaxed"
+            >
+              Subscribe to our newsletter for product updates and resources for
+              ABA professionals
+            </label>
+          </div>
+        </div>
 
-      <div>
-        <label
-          htmlFor="message"
-          className={cn(FORM.LABEL, "text-foreground dark:text-slate-200")}
-        >
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={6}
-          value={formValues.message}
-          onChange={handleInputChange}
-          className={cn(
-            FORM.INPUT,
-            "resize-none bg-white border-gray-300 text-gray-900 placeholder-gray-500",
-            "focus:ring-blue-500 focus:border-blue-500",
-            "dark:bg-slate-900 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400",
-            "dark:focus:ring-blue-500 dark:focus:border-blue-500",
-            "transition-colors duration-200"
-          )}
-          placeholder="Tell us about your question or concern..."
-          required
-        />
-      </div>
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <Button
+            type="submit"
+            variant="form-primary"
+            size="lg"
+            radius="hand-drawn-sm"
+            className="px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send className="mr-2 h-4 w-4" />
+                Send Message
+              </>
+            )}
+          </Button>
 
-      <div
-        className="flex items-start p-4 rounded-lg transition-colors duration-200
-                      bg-blue-50 border border-blue-200 
-                      dark:bg-blue-900/20 dark:border-blue-800"
-      >
-        <input
-          type="checkbox"
-          id="newsletter"
-          name="newsletter"
-          className={cn(
-            FORM.CHECKBOX,
-            "mt-1 mr-2 border-gray-300 text-blue-600",
-            "dark:border-slate-600 dark:bg-slate-900 dark:checked:bg-blue-600",
-            "transition-colors duration-200"
-          )}
-        />
-        <label
-          htmlFor="newsletter"
-          className="text-sm text-gray-800 dark:text-slate-200"
-        >
-          Subscribe to our newsletter for product updates and resources for ABA
-          professionals
-        </label>
-      </div>
-
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Button
-          type="submit"
-          variant="default"
-          size="lg"
-          className="bg-blue-600 text-white hover:bg-blue-700 
-                     dark:bg-blue-700 dark:hover:bg-blue-800 
-                     w-full sm:w-auto transition-colors duration-200"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          size="lg"
-          className="w-full sm:w-auto border border-gray-400 text-gray-700
-                     hover:bg-gray-100 hover:text-gray-900
-                     dark:border-slate-600 dark:text-slate-200
-                     dark:hover:bg-slate-700 dark:hover:text-white
-                     transition-colors duration-200"
-          onClick={resetForm}
-        >
-          Clear Form
-        </Button>
-      </div>
-    </form>
+          <Button
+            type="button"
+            variant="form-secondary"
+            size="lg"
+            radius="form-secondary"
+            className="px-8"
+            onClick={resetForm}
+          >
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Clear Form
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

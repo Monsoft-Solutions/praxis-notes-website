@@ -1,5 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -8,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -51,140 +55,179 @@
 }
 
 :root {
-  /* Base colors from ABA-inspired pastel palette */
-  --vivid-blue: #3b82f6;
-  --soft-blue: #a8d8ea;
-  --lavender: #cdb4db;
-  --mint-green: #beffc7;
-  --peach: #ffd6ba;
-  --light-pink: #ffacc7;
-  --ivory: #fffdf9;
-  --soft-gray: #fffefe;
-  --medium-gray: #cdcdcd;
-  --charcoal: #333333;
+  /* ABA-themed color palette */
 
-  /* Border radius */
+  --white: #ffffff;
+
+  /* Blues */
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+
+  /* Greens */
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+
+  /* Oranges */
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+
+  /* Yellows */
+  --yellow-100: #fef9c3;
+  --yellow-200: #fef08a;
+  --yellow-300: #fde047;
+  --yellow-400: #facc15;
+  --yellow-500: #eab308;
+  --yellow-600: #ca8a04;
+
+  /* Grays */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Border radius for hand-drawn aesthetic */
   --radius: 0.75rem;
+  --radius-irregular: 1.5rem 1.875rem 1.25rem 2.1875rem; /* 24px 30px 20px 35px */
 
-  /* Base colors */
-  --background: var(--ivory);
-  --foreground: var(--white);
+  /* Hand-drawn border radius variations */
+  --radius-badge: 1.125rem 1.5625rem 0.9375rem 1.375rem; /* 18px 25px 15px 22px */
+  --radius-card-1: 1.375rem 1.75rem 1.125rem 2rem; /* 22px 28px 18px 32px */
+  --radius-card-2: 1.5625rem 1.25rem 1.75rem 1.375rem; /* 25px 20px 28px 22px */
+  --radius-card-3: 1.75rem 2.1875rem 1.375rem 2.375rem; /* 28px 35px 22px 38px */
+  --radius-button-1: 0.9375rem 1.125rem 0.75rem 1.25rem; /* 15px 18px 12px 20px */
+  --radius-button-2: 0.75rem 1rem 0.875rem 1.125rem; /* 12px 16px 14px 18px */
+
+  /* Base colors - light theme */
+  --background: var(--white);
+  --foreground: var(--gray-900);
 
   /* Component colors */
-  --card: var(--soft-gray);
-  --card-foreground: var(--charcoal);
-  --popover: var(--ivory);
-  --popover-foreground: var(--charcoal);
+  --card: var(--white);
+  --card-foreground: var(--gray-900);
+  --popover: var(--white);
+  --popover-foreground: var(--gray-900);
 
-  /* Primary colors */
-  --primary: var(--vivid-blue);
-  --primary-foreground: var(--color-white);
+  /* Primary colors - ABA blue theme */
+  --primary: var(--blue-400);
+  --primary-foreground: var(--white);
 
   /* Secondary colors */
-  --secondary: var(--lavender);
-  --secondary-foreground: var(--charcoal);
+  --secondary: var(--gray-100);
+  --secondary-foreground: var(--gray-900);
 
   /* Neutral colors */
-  --muted: var(--soft-gray);
-  --muted-foreground: #666666;
-  --accent: var(--mint-green);
-  --accent-foreground: var(--charcoal);
+  --muted: var(--gray-100);
+  --muted-foreground: var(--gray-500);
+  --accent: var(--blue-100);
+  --accent-foreground: var(--gray-900);
 
-  /* Functional colors */
-  --destructive: var(--light-pink);
-  --destructive-foreground: var(--charcoal);
-  --success: var(--mint-green);
-  --success-foreground: var(--charcoal);
-  --warning: var(--peach);
-  --warning-foreground: var(--charcoal);
-  --info: var(--vivid-blue);
-  --info-foreground: var(--charcoal);
+  /* Functional colors with ABA palette */
+  --destructive: #ef4444;
+  --destructive-foreground: var(--white);
+  --success: var(--green-400);
+  --success-foreground: var(--gray-900);
+  --warning: var(--orange-400);
+  --warning-foreground: var(--gray-900);
+  --info: var(--blue-400);
+  --info-foreground: var(--white);
 
   /* UI colors */
-  --border: var(--medium-gray);
-  --input: var(--soft-gray);
-  --ring: var(--lavender);
+  --border: var(--gray-200);
+  --input: var(--white);
+  --ring: var(--blue-300);
 
-  /* Shadows */
+  /* Hand-drawn aesthetic shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
   --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
 
   /* Sidebar */
-  --sidebar: var(--ivory);
-  --sidebar-foreground: var(--charcoal);
-  --sidebar-primary: var(--soft-blue);
-  --sidebar-primary-foreground: var(--charcoal);
-  --sidebar-accent: var(--mint-green);
-  --sidebar-accent-foreground: var(--charcoal);
-  --sidebar-border: var(--medium-gray);
-  --sidebar-ring: var(--lavender);
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--gray-900);
+  --sidebar-primary: var(--blue-200);
+  --sidebar-primary-foreground: var(--gray-900);
+  --sidebar-accent: var(--green-200);
+  --sidebar-accent-foreground: var(--gray-900);
+  --sidebar-border: var(--gray-200);
+  --sidebar-ring: var(--blue-300);
 }
 
 .dark {
-  /* Dark mode colors from ABA design */
-  --deep-navy: #1a2238;
-  --steel-blue: #394867;
-  --soft-lavender: #9ba4b4;
-  --off-white: #f1f6f9;
-
-  /* Base colors */
-  --background: var(--deep-navy);
-  --foreground: var(--off-white);
+  /* Dark mode with maintaining ABA aesthetic */
+  --background: var(--gray-900);
+  --foreground: var(--gray-100);
 
   /* Component colors */
-  --card: var(--steel-blue);
-  --card-foreground: var(--off-white);
-  --popover: var(--steel-blue);
-  --popover-foreground: var(--off-white);
+  --card: var(--gray-800);
+  --card-foreground: var(--gray-100);
+  --popover: var(--gray-800);
+  --popover-foreground: var(--gray-100);
 
-  /* Primary colors - keep the pastel colors but adjust foreground */
-  --primary: var(--vivid-blue);
-  --primary-foreground: var(--deep-navy);
+  /* Primary colors - keep ABA blue but adjust foreground */
+  --primary: var(--blue-400);
+  --primary-foreground: var(--gray-900);
 
   /* Secondary colors */
-  --secondary: var(--lavender);
-  --secondary-foreground: var(--deep-navy);
+  --secondary: var(--gray-800);
+  --secondary-foreground: var(--gray-100);
 
   /* Neutral colors */
-  --muted: var(--steel-blue);
-  --muted-foreground: var(--soft-lavender);
-  --accent: var(--mint-green);
-  --accent-foreground: var(--deep-navy);
+  --muted: var(--gray-800);
+  --muted-foreground: var(--gray-400);
+  --accent: var(--gray-800);
+  --accent-foreground: var(--gray-100);
 
-  /* Functional colors - keep the pastel colors for consistency */
-  --destructive: var(--light-pink);
-  --destructive-foreground: var(--deep-navy);
-  --success: var(--mint-green);
-  --success-foreground: var(--deep-navy);
-  --warning: var(--peach);
-  --warning-foreground: var(--deep-navy);
-  --info: var(--vivid-blue);
-  --info-foreground: var(--deep-navy);
+  /* Functional colors - maintain ABA palette */
+  --destructive: #ef4444;
+  --destructive-foreground: var(--white);
+  --success: var(--green-400);
+  --success-foreground: var(--gray-900);
+  --warning: var(--orange-400);
+  --warning-foreground: var(--gray-900);
+  --info: var(--blue-400);
+  --info-foreground: var(--gray-900);
 
   /* UI colors */
-  --border: var(--soft-lavender);
-  --input: var(--steel-blue);
-  --ring: var(--lavender);
+  --border: var(--gray-700);
+  --input: var(--gray-800);
+  --ring: var(--blue-400);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.25);
-  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.3);
+  /* Enhanced shadows for dark mode */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.5);
 
   /* Sidebar */
-  --sidebar: var(--steel-blue);
-  --sidebar-foreground: var(--off-white);
-  --sidebar-primary: var(--soft-blue);
-  --sidebar-primary-foreground: var(--deep-navy);
-  --sidebar-accent: var(--mint-green);
-  --sidebar-accent-foreground: var(--deep-navy);
-  --sidebar-border: var(--soft-lavender);
-  --sidebar-ring: var(--lavender);
+  --sidebar: var(--gray-800);
+  --sidebar-foreground: var(--gray-100);
+  --sidebar-primary: var(--gray-700);
+  --sidebar-primary-foreground: var(--gray-100);
+  --sidebar-accent: var(--gray-700);
+  --sidebar-accent-foreground: var(--gray-100);
+  --sidebar-border: var(--gray-700);
+  --sidebar-ring: var(--blue-400);
 }
 
 @layer base {
@@ -193,8 +236,10 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-nunito;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 
   h1,
@@ -203,7 +248,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold tracking-tight;
+    @apply font-quicksand font-bold tracking-tight;
   }
 
   h1 {
@@ -249,34 +294,224 @@
   }
 }
 
-/* Utility classes for gradients */
-.gradient-primary {
-  @apply bg-gradient-to-r from-blue-500 to-purple-600;
+/* Hand-drawn aesthetic utility classes */
+.hand-drawn-border {
+  border-radius: var(--radius-irregular);
 }
 
-.gradient-soft {
-  @apply bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950;
+.hand-drawn-card {
+  border-radius: var(--radius-irregular);
+  border-style: solid;
 }
 
-.gradient-dark {
-  @apply bg-gradient-to-r from-gray-900 to-blue-900;
+.hand-drawn-button {
+  border-radius: 0.75rem 0.875rem 0.75rem 1rem; /* 12px 14px 12px 16px */
 }
 
-.text-gradient {
-  @apply bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent;
+/* Dashed border utilities with ABA theme colors */
+.border-dashed-blue {
+  border: 2px dashed #93c5fd;
 }
 
-/* Animation classes */
-.transition-fast {
-  @apply transition duration-150;
+.border-dashed-green {
+  border: 2px dashed #4ade80;
 }
 
-.transition-normal {
-  @apply transition duration-300;
+.border-dashed-orange {
+  border: 2px dashed #fb923c;
 }
 
-.transition-slow {
-  @apply transition duration-500;
+.border-dashed-yellow {
+  border: 2px dashed #facc15;
+}
+
+/* Hand-drawn card variations */
+.card-badge {
+  border-radius: var(--radius-badge);
+}
+
+.card-hand-drawn-1 {
+  border-radius: var(--radius-card-1);
+}
+
+.card-hand-drawn-2 {
+  border-radius: var(--radius-card-2);
+}
+
+.card-hand-drawn-3 {
+  border-radius: var(--radius-card-3);
+}
+
+/* Hand-drawn button variations */
+.button-hand-drawn-1 {
+  border-radius: var(--radius-button-1);
+}
+
+.button-hand-drawn-2 {
+  border-radius: var(--radius-button-2);
+}
+
+/* Thumb tack components */
+.thumb-tack-round {
+  @apply absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full shadow-sm;
+}
+
+.thumb-tack-round::after {
+  content: '';
+  @apply absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white;
+}
+
+.thumb-tack-square {
+  @apply absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform shadow-sm;
+}
+
+.thumb-tack-triangle {
+  @apply absolute -top-2 left-8;
+}
+
+.thumb-tack-triangle::before {
+  content: '';
+  @apply border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent;
+}
+
+/* Thumb tack color variations */
+.thumb-tack-blue {
+  @apply bg-blue-400;
+}
+
+.thumb-tack-green {
+  @apply bg-green-400;
+}
+
+.thumb-tack-orange {
+  @apply bg-orange-400;
+}
+
+.thumb-tack-yellow {
+  @apply bg-yellow-400;
+}
+
+/* Triangle thumb tack color variations */
+.thumb-tack-triangle-blue::before {
+  @apply border-b-blue-400;
+}
+
+.thumb-tack-triangle-green::before {
+  @apply border-b-green-400;
+}
+
+.thumb-tack-triangle-orange::before {
+  @apply border-b-orange-400;
+}
+
+.thumb-tack-triangle-yellow::before {
+  @apply border-b-yellow-400;
+}
+
+/* Scattered dots utilities */
+.dot-blue-sm {
+  @apply h-2 w-2 rounded-full bg-blue-300 opacity-50;
+}
+
+.dot-blue-md {
+  @apply h-3 w-3 rounded-full bg-blue-400 opacity-60;
+}
+
+.dot-blue-lg {
+  @apply h-4 w-4 rounded-full bg-blue-400 opacity-50;
+}
+
+.dot-green-sm {
+  @apply h-2 w-2 rounded-full bg-green-300 opacity-60;
+}
+
+.dot-green-md {
+  @apply h-3 w-3 rounded-full bg-green-400 opacity-55;
+}
+
+.dot-green-lg {
+  @apply h-4 w-4 rounded-full bg-green-400 opacity-50;
+}
+
+.dot-orange-sm {
+  @apply h-2 w-2 rounded-full bg-orange-300 opacity-50;
+}
+
+.dot-orange-md {
+  @apply h-3 w-3 rounded-full bg-orange-400 opacity-55;
+}
+
+.dot-orange-lg {
+  @apply h-4 w-4 rounded-full bg-orange-400 opacity-60;
+}
+
+.dot-yellow-sm {
+  @apply h-2 w-2 rounded-full bg-yellow-300 opacity-45;
+}
+
+.dot-yellow-md {
+  @apply h-3 w-3 rounded-full bg-yellow-400 opacity-60;
+}
+
+.dot-yellow-lg {
+  @apply h-4 w-4 rounded-full bg-yellow-400 opacity-55;
+}
+
+.dot-green-xs {
+  @apply h-1 w-1 rounded-full bg-green-200 opacity-50;
+}
+
+/* Background decoration positioning utilities */
+.decoration-hidden-mobile {
+  @apply absolute hidden sm:block;
+}
+
+/* ABA Color gradients for backgrounds */
+.gradient-aba-blue {
+  @apply bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200;
+}
+
+.gradient-aba-green {
+  @apply bg-gradient-to-br from-green-100 via-green-50 to-green-200;
+}
+
+.gradient-aba-orange {
+  @apply bg-gradient-to-br from-orange-100 via-orange-50 to-orange-200;
+}
+
+.gradient-aba-yellow {
+  @apply bg-gradient-to-br from-yellow-100 via-yellow-50 to-yellow-200;
+}
+
+.gradient-aba-main {
+  @apply bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100;
+}
+
+/* Text styling for hand-drawn aesthetic */
+.text-hand-drawn {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation classes for hand-drawn elements */
+.transition-hand-drawn {
+  @apply transition-all duration-200;
+}
+
+.hover-lift {
+  @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
+}
+
+.hover-gentle {
+  @apply transition-all duration-200 hover:shadow-md;
+}
+
+/* Interactive elements styling */
+.button-quicksand {
+  @apply font-quicksand font-semibold;
+}
+
+.text-nunito {
+  @apply font-nunito;
 }
 
 /* Micro-interactions */
@@ -297,10 +532,27 @@
   @apply container max-w-7xl mx-auto px-4 sm:px-6;
 }
 
+/* Utility classes for very subtle rotations (decorative only) */
+.rotate-subtle-1 {
+  transform: rotate(0.1deg);
+}
+
+.rotate-subtle-2 {
+  transform: rotate(-0.1deg);
+}
+
+.rotate-subtle-3 {
+  transform: rotate(0.2deg);
+}
+
+.rotate-subtle-4 {
+  transform: rotate(-0.2deg);
+}
+
 /* Custom Typography Styles for Markdown Content */
 @layer components {
   .prose {
-    @apply max-w-none;
+    @apply max-w-none font-nunito;
   }
 
   .prose h1,
@@ -309,7 +561,7 @@
   .prose h4,
   .prose h5,
   .prose h6 {
-    @apply font-bold tracking-tight text-foreground;
+    @apply font-quicksand font-bold tracking-tight text-foreground;
   }
 
   .prose h1 {
@@ -342,11 +594,12 @@
   }
 
   .prose blockquote {
-    @apply border-l-4 border-blue-500 pl-4 py-2 my-6 text-foreground/80 italic;
+    @apply border-l-4 border-blue-400 pl-4 py-2 my-6 text-foreground/80 italic;
+    border-radius: var(--radius-irregular);
   }
 
   .prose a {
-    @apply text-blue-600 dark:text-blue-400 font-medium hover:underline;
+    @apply text-blue-500 hover:text-blue-600 font-medium hover:underline transition-colors;
   }
 
   .prose img {
@@ -358,7 +611,8 @@
   }
 
   .prose pre {
-    @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg my-6;
+    @apply bg-gray-100 dark:bg-gray-800 p-4 my-6;
+    border-radius: var(--radius-irregular);
   }
 
   .prose pre code {
@@ -380,4 +634,143 @@
   .prose hr {
     @apply my-8 border-gray-200 dark:border-gray-700;
   }
+}
+
+/* Hand-drawn Button Effects */
+@layer components {
+  /* Enhanced button effects for hand-drawn sketch appearance */
+  .btn-sketch-subtle {
+    position: relative;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-sketch-subtle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .btn-sketch-enhanced {
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-sketch-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+
+  .btn-sketch-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    pointer-events: none;
+  }
+
+  /* Hover effects for hand-drawn buttons */
+  .btn-sketch-subtle:hover,
+  .btn-sketch-enhanced:hover {
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Hand-drawn button text effects */
+  .btn-text-sketch {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 0 0 currentColor;
+    letter-spacing: 0.01em;
+  }
+
+  /* Subtle texture overlay for buttons */
+  .btn-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px
+      );
+    background-size:
+      20px 20px,
+      25px 25px,
+      30px 30px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Button press effect */
+  .btn-sketch-press:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Hand-drawn animations */
+@keyframes gentle-sketch-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
+@keyframes subtle-sketch-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(0.1deg);
+  }
+}
+
+.animate-gentle-sketch-bounce:hover {
+  animation: gentle-sketch-bounce 0.6s ease-in-out;
+}
+
+.animate-subtle-sketch-float {
+  animation: subtle-sketch-float 3s ease-in-out infinite;
 }
