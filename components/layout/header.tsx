@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Button } from "website/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
-import Image from "next/image";
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { Button } from 'website/components/ui/button';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,16 +19,16 @@ const Header = () => {
       setScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg border-b-2 border-blue-200"
-          : "bg-gradient-to-r from-blue-50/80 via-yellow-50/60 to-orange-50/80 backdrop-blur-sm"
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b-2 border-blue-200'
+          : 'bg-gradient-to-r from-blue-50/80 via-yellow-50/60 to-orange-50/80 backdrop-blur-sm'
       }`}
     >
       {/* Very subtle background decorations */}
@@ -60,14 +60,14 @@ const Header = () => {
               href="/features"
               className="text-sm font-nunito font-medium text-gray-700 group-hover:text-blue-500 transition-colors flex items-center gap-1"
             >
-              Features{" "}
+              Features{' '}
               <ChevronDown className="h-4 w-4 opacity-70 transition-transform group-hover:rotate-180" />
             </Link>
             {/* Hand-drawn dropdown */}
             <div
               className="absolute left-0 top-full mt-2 w-64 bg-white shadow-xl ring-1 ring-blue-200 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50 border-2 border-blue-200"
               style={{
-                borderRadius: "22px 28px 18px 32px",
+                borderRadius: '22px 28px 18px 32px',
               }}
             >
               <div className="p-2">
@@ -136,13 +136,7 @@ const Header = () => {
           href="https://app.praxisnotes.com/auth/log-in"
           className="hidden md:inline-flex"
         >
-          <Button
-            className="bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 border-0"
-            style={{
-              borderRadius: "12px 14px 12px 16px",
-            }}
-            size="sm"
-          >
+          <Button variant="header" size="sm" radius="hand-drawn-sm">
             Sign In
           </Button>
         </Link>
@@ -166,8 +160,8 @@ const Header = () => {
         <div
           className="md:hidden border-t-2 border-blue-200 bg-white shadow-xl absolute left-0 right-0"
           style={{
-            borderBottomLeftRadius: "20px",
-            borderBottomRightRadius: "20px",
+            borderBottomLeftRadius: '20px',
+            borderBottomRightRadius: '20px',
           }}
         >
           <nav className="flex flex-col container mx-auto max-w-7xl px-4 py-4">
@@ -246,10 +240,9 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Button
-                  className="w-full bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-md border-0"
-                  style={{
-                    borderRadius: "12px 14px 12px 16px",
-                  }}
+                  variant="header"
+                  radius="hand-drawn-sm"
+                  className="w-full"
                 >
                   Sign In
                 </Button>

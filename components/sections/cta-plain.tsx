@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Button } from "website/components/ui/button";
-import { ArrowRight, CheckCircle, Sparkles } from "lucide-react";
-import { cn } from "website/lib/utils";
-import Image from "next/image";
+import Link from 'next/link';
+import { Button } from 'website/components/ui/button';
+import { ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
+import { cn } from 'website/lib/utils';
+import Image from 'next/image';
 
 type CTAPlainProps = {
   subtitle?: string;
@@ -15,17 +15,17 @@ type CTAPlainProps = {
 };
 
 const CTAPlain = ({
-  subtitle = "Join our growing community of ABA professionals.",
-  description = "Experience the power of AI-assisted documentation and focus on what matters most - your clients.",
-  primaryButtonText = "Get started for free",
-  primaryButtonLink = "https://app.praxisnotes.com/auth/sign-up",
-  secondaryButtonText = "Learn about pricing",
-  secondaryButtonLink = "/pricing",
-  className = "",
+  subtitle = 'Join our growing community of ABA professionals.',
+  description = 'Experience the power of AI-assisted documentation and focus on what matters most - your clients.',
+  primaryButtonText = 'Get started for free',
+  primaryButtonLink = 'https://app.praxisnotes.com/auth/sign-up',
+  secondaryButtonText = 'Learn about pricing',
+  secondaryButtonLink = '/pricing',
+  className = '',
 }: CTAPlainProps) => {
   return (
     <section
-      className={cn("py-16 md:py-24 relative overflow-hidden", className)}
+      className={cn('py-16 md:py-24 relative overflow-hidden', className)}
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50"></div>
@@ -35,22 +35,22 @@ const CTAPlain = ({
         {/* Large decorative shapes */}
         <div
           className="absolute left-16 top-20 h-24 w-24 rounded-full border-2 border-blue-200 opacity-25 hidden sm:block"
-          style={{ transform: "rotate(0.2deg)" }}
+          style={{ transform: 'rotate(0.2deg)' }}
         ></div>
 
         <div
           className="absolute right-20 top-1/3 h-20 w-20 border-2 border-orange-200 opacity-30 hidden sm:block"
           style={{
-            transform: "rotate(-0.15deg)",
-            borderRadius: "22px 28px 20px 32px",
+            transform: 'rotate(-0.15deg)',
+            borderRadius: '22px 28px 20px 32px',
           }}
         ></div>
 
         <div
           className="absolute left-1/4 bottom-32 h-16 w-16 border-2 border-green-200 opacity-25 hidden sm:block"
           style={{
-            transform: "rotate(0.3deg)",
-            borderRadius: "18px 24px 16px 26px",
+            transform: 'rotate(0.3deg)',
+            borderRadius: '18px 24px 16px 26px',
           }}
         ></div>
 
@@ -68,7 +68,7 @@ const CTAPlain = ({
             <div
               className="relative bg-white shadow-2xl border-2 border-blue-200 p-8 lg:p-12"
               style={{
-                borderRadius: "35px 28px 32px 25px",
+                borderRadius: '35px 28px 32px 25px',
               }}
             >
               {/* Thumb tack */}
@@ -81,7 +81,7 @@ const CTAPlain = ({
                 {/* Badge */}
                 <div
                   className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 mb-6"
-                  style={{ borderRadius: "16px 20px 14px 22px" }}
+                  style={{ borderRadius: '16px 20px 14px 22px' }}
                 >
                   <Sparkles className="w-4 h-4 mr-2 text-blue-500" />
                   <span className="text-sm font-quicksand font-semibold text-blue-600">
@@ -101,10 +101,9 @@ const CTAPlain = ({
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href={primaryButtonLink}>
                     <Button
-                      className="inline-flex items-center justify-center px-8 py-4 h-14 bg-blue-400 text-white font-quicksand font-semibold text-lg transition-all hover:bg-blue-500 hover:shadow-lg hover:-translate-y-0.5"
-                      style={{
-                        borderRadius: "16px 18px 14px 20px",
-                      }}
+                      variant="cta-primary"
+                      size="cta-default"
+                      radius="cta-primary"
                     >
                       <CheckCircle className="mr-2 h-5 w-5" />
                       {primaryButtonText}
@@ -114,11 +113,9 @@ const CTAPlain = ({
                   {secondaryButtonText && (
                     <Link href={secondaryButtonLink}>
                       <Button
-                        variant="outline"
-                        className="inline-flex items-center justify-center px-8 py-4 h-14 border-2 border-gray-300 text-gray-700 font-quicksand font-semibold text-lg transition-all hover:bg-gray-50 hover:border-gray-400 hover:shadow-md hover:-translate-y-0.5"
-                        style={{
-                          borderRadius: "14px 20px 16px 18px",
-                        }}
+                        variant="cta-secondary"
+                        size="cta-default"
+                        radius="cta-secondary"
                       >
                         {secondaryButtonText}
                         <ArrowRight className="ml-2 h-5 w-5" />
@@ -153,7 +150,7 @@ const CTAPlain = ({
             <div
               className="relative bg-white shadow-xl border-2 border-green-200 p-6"
               style={{
-                borderRadius: "28px 35px 25px 30px",
+                borderRadius: '28px 35px 25px 30px',
               }}
             >
               {/* Different thumb tack style */}
@@ -179,7 +176,7 @@ const CTAPlain = ({
           <div
             className="relative bg-yellow-50 shadow-lg border-2 border-yellow-200 p-6 max-w-4xl mx-auto"
             style={{
-              borderRadius: "30px 25px 35px 22px",
+              borderRadius: '30px 25px 35px 22px',
             }}
           >
             {/* Thumb tack */}

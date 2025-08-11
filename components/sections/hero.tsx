@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "website/components/ui/button";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from 'website/components/ui/button';
 import {
   ArrowRight,
   CheckCircle,
@@ -8,7 +8,7 @@ import {
   Star,
   Shield,
   Globe,
-} from "lucide-react";
+} from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -59,7 +59,7 @@ const Hero = () => {
             {/* Main heading */}
             <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-quicksand font-bold leading-tight tracking-tight text-gray-800 text-hand-drawn">
-                Effortless ABA Session Notes.{" "}
+                Effortless ABA Session Notes.{' '}
                 <span className="text-blue-500">Instantly.</span>
               </h1>
               <p className="text-xl md:text-2xl font-nunito text-gray-600 md:pr-8 leading-relaxed">
@@ -71,15 +71,22 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
               <Link href="https://app.praxisnotes.com/auth/sign-up">
-                <Button className="w-full sm:w-auto h-12 bg-blue-400 hover:bg-blue-500 text-white button-quicksand hover-lift button-hand-drawn-1">
+                <Button
+                  variant="hero-primary"
+                  size="lg"
+                  radius="hero-primary"
+                  className="w-full sm:w-auto"
+                >
                   <ArrowRight className="mr-2 h-4 w-4" />
                   Sign Up Free
                 </Button>
               </Link>
               <Link href="#how-it-works">
                 <Button
-                  variant="outline"
-                  className="w-full sm:w-auto h-12 text-green-500 hover:bg-green-50 button-quicksand hover-lift button-hand-drawn-2 border-dashed-green"
+                  variant="hero-secondary"
+                  size="lg"
+                  radius="hero-secondary"
+                  className="w-full sm:w-auto"
                 >
                   <Play className="mr-2 h-4 w-4" />
                   Watch Demo
@@ -98,9 +105,9 @@ const Hero = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   {[
-                    "No credit card required",
-                    "Cancel anytime",
-                    "HIPAA compliant",
+                    'No credit card required',
+                    'Cancel anytime',
+                    'HIPAA compliant',
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-400" />

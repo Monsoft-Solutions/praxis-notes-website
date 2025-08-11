@@ -509,10 +509,9 @@ export default function AboutPage() {
                   make a difference in ABA therapy. Coffee chats welcomed!
                 </p>
                 <Button
-                  className="inline-flex items-center justify-center px-6 py-3 h-11 bg-blue-400 text-white font-quicksand font-semibold transition-all hover:bg-blue-500 hover:shadow-md"
-                  style={{
-                    borderRadius: '12px 14px 12px 16px',
-                  }}
+                  variant="default"
+                  radius="hand-drawn-sm"
+                  className="px-6 py-3"
                 >
                   <Smile className="mr-2 h-4 w-4" />
                   View Open Positions

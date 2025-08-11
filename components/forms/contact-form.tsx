@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
-import { Button } from "website/components/ui/button";
-import { submitContact } from "website/app/actions/contact";
-import { useRouter } from "next/navigation";
-import { toast } from "website/components/ui/use-toast";
-import { Send, RefreshCw, CheckCircle, AlertCircle } from "lucide-react";
+import { useState, useRef } from 'react';
+import { Button } from 'website/components/ui/button';
+import { submitContact } from 'website/app/actions/contact';
+import { useRouter } from 'next/navigation';
+import { toast } from 'website/components/ui/use-toast';
+import { Send, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -13,10 +13,10 @@ export default function ContactForm() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
+    name: '',
+    email: '',
+    company: '',
+    message: '',
   });
   const router = useRouter();
 
@@ -24,7 +24,7 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+    setFormValues(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -32,10 +32,10 @@ export default function ContactForm() {
 
   const resetForm = () => {
     setFormValues({
-      name: "",
-      email: "",
-      company: "",
-      message: "",
+      name: '',
+      email: '',
+      company: '',
+      message: '',
     });
 
     // Also manually clear form inputs
@@ -43,8 +43,8 @@ export default function ContactForm() {
       const inputs = formRef.current.querySelectorAll<
         HTMLInputElement | HTMLTextAreaElement
       >('input[type="text"], input[type="email"], textarea');
-      inputs.forEach((input) => {
-        input.value = "";
+      inputs.forEach(input => {
+        input.value = '';
       });
 
       // Reset checkbox if it exists
@@ -70,29 +70,29 @@ export default function ContactForm() {
         setFormSuccess(true);
         resetForm();
         toast({
-          title: "Message sent!",
+          title: 'Message sent!',
           description:
             "We've received your message and will get back to you soon.",
-          variant: "success",
+          variant: 'success',
         });
       } else {
         setFormError(
-          response.error || "Something went wrong. Please try again."
+          response.error || 'Something went wrong. Please try again.'
         );
         toast({
-          title: "Error",
+          title: 'Error',
           description:
-            response.error || "Something went wrong. Please try again.",
-          variant: "destructive",
+            response.error || 'Something went wrong. Please try again.',
+          variant: 'destructive',
         });
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-      setFormError("An unexpected error occurred. Please try again later.");
+      console.error('Form submission error:', error);
+      setFormError('An unexpected error occurred. Please try again later.');
       toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again later.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'An unexpected error occurred. Please try again later.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
@@ -106,7 +106,7 @@ export default function ContactForm() {
         <h2
           className="text-3xl font-quicksand font-bold mb-4 text-gray-800"
           style={{
-            textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+            textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
           }}
         >
           Send us a message
@@ -123,7 +123,7 @@ export default function ContactForm() {
           <div
             className="relative p-4 bg-white border-2 border-red-300 shadow-lg"
             style={{
-              borderRadius: "15px 18px 12px 20px",
+              borderRadius: '15px 18px 12px 20px',
             }}
           >
             <div className="flex items-center gap-3">
@@ -138,7 +138,7 @@ export default function ContactForm() {
           <div
             className="relative p-4 bg-white border-2 border-green-300 shadow-lg"
             style={{
-              borderRadius: "18px 15px 20px 12px",
+              borderRadius: '18px 15px 20px 12px',
             }}
           >
             <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export default function ContactForm() {
             <div
               className="relative bg-white border-2 border-blue-200 shadow-lg"
               style={{
-                borderRadius: "12px 15px 10px 18px",
+                borderRadius: '12px 15px 10px 18px',
               }}
             >
               <input
@@ -188,7 +188,7 @@ export default function ContactForm() {
             <div
               className="relative bg-white border-2 border-green-200 shadow-lg"
               style={{
-                borderRadius: "15px 12px 16px 10px",
+                borderRadius: '15px 12px 16px 10px',
               }}
             >
               <input
@@ -216,7 +216,7 @@ export default function ContactForm() {
           <div
             className="relative bg-white border-2 border-orange-200 shadow-lg"
             style={{
-              borderRadius: "10px 18px 14px 12px",
+              borderRadius: '10px 18px 14px 12px',
             }}
           >
             <input
@@ -242,7 +242,7 @@ export default function ContactForm() {
           <div
             className="relative bg-white border-2 border-yellow-200 shadow-lg"
             style={{
-              borderRadius: "16px 12px 18px 14px",
+              borderRadius: '16px 12px 18px 14px',
             }}
           >
             <textarea
@@ -262,7 +262,7 @@ export default function ContactForm() {
         <div
           className="relative p-4 bg-blue-100 border-2 border-blue-200 shadow-lg"
           style={{
-            borderRadius: "14px 20px 12px 16px",
+            borderRadius: '14px 20px 12px 16px',
           }}
         >
           <div className="flex items-start gap-3">
@@ -286,10 +286,10 @@ export default function ContactForm() {
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
           <Button
             type="submit"
-            className="h-12 px-8 bg-blue-400 text-white font-quicksand font-semibold transition-all duration-200 hover:bg-blue-500 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{
-              borderRadius: "12px 14px 12px 16px",
-            }}
+            variant="form-primary"
+            size="lg"
+            radius="hand-drawn-sm"
+            className="px-8 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
@@ -307,10 +307,10 @@ export default function ContactForm() {
 
           <Button
             type="button"
-            className="h-12 px-8 bg-white border-2 border-gray-300 text-gray-700 font-quicksand font-semibold transition-all duration-200 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md"
-            style={{
-              borderRadius: "14px 12px 16px 12px",
-            }}
+            variant="form-secondary"
+            size="lg"
+            radius="form-secondary"
+            className="px-8"
             onClick={resetForm}
           >
             <RefreshCw className="mr-2 h-4 w-4" />

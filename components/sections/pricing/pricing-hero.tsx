@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   Star,
   Users,
@@ -7,8 +7,8 @@ import {
   CheckCircle,
   ArrowRight,
   DollarSign,
-} from "lucide-react";
-import { Button } from "website/components/ui/button";
+} from 'lucide-react';
+import { Button } from 'website/components/ui/button';
 
 export default function PricingHero() {
   return (
@@ -21,30 +21,30 @@ export default function PricingHero() {
         {/* Floating geometric shapes */}
         <div
           className="absolute left-16 top-32 h-16 w-16 rounded-full border-2 border-blue-200 opacity-20 hidden lg:block"
-          style={{ transform: "rotate(0.1deg)" }}
+          style={{ transform: 'rotate(0.1deg)' }}
         ></div>
 
         <div
           className="absolute right-20 top-40 h-12 w-12 border-2 border-green-200 opacity-25 hidden lg:block"
           style={{
-            transform: "rotate(-0.15deg)",
-            borderRadius: "16px 20px 14px 22px",
+            transform: 'rotate(-0.15deg)',
+            borderRadius: '16px 20px 14px 22px',
           }}
         ></div>
 
         <div
           className="absolute left-1/4 bottom-40 h-10 w-10 border-2 border-orange-200 opacity-30 hidden lg:block"
           style={{
-            transform: "rotate(0.2deg)",
-            borderRadius: "14px 18px 12px 20px",
+            transform: 'rotate(0.2deg)',
+            borderRadius: '14px 18px 12px 20px',
           }}
         ></div>
 
         <div
           className="absolute right-1/3 bottom-32 h-8 w-8 border-2 border-yellow-200 opacity-25 hidden lg:block"
           style={{
-            transform: "rotate(-0.1deg)",
-            borderRadius: "12px 16px 10px 18px",
+            transform: 'rotate(-0.1deg)',
+            borderRadius: '12px 16px 10px 18px',
           }}
         ></div>
 
@@ -61,7 +61,7 @@ export default function PricingHero() {
             {/* Badge */}
             <div
               className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-blue-200"
-              style={{ borderRadius: "20px 26px 18px 30px" }}
+              style={{ borderRadius: '20px 26px 18px 30px' }}
             >
               {/* Thumb tack */}
               <div className="absolute -top-1.5 left-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm"></div>
@@ -91,19 +91,19 @@ export default function PricingHero() {
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
               {[
                 {
-                  label: "Free Trial",
-                  value: "10 Notes",
-                  color: "blue",
+                  label: 'Free Trial',
+                  value: '10 Notes',
+                  color: 'blue',
                 },
                 {
-                  label: "Individual",
-                  value: "$29/mo",
-                  color: "green",
+                  label: 'Individual',
+                  value: '$29/mo',
+                  color: 'green',
                 },
                 {
-                  label: "Teams",
-                  value: "$99/mo",
-                  color: "orange",
+                  label: 'Teams',
+                  value: '$99/mo',
+                  color: 'orange',
                 },
               ].map((plan, index) => (
                 <div
@@ -112,20 +112,20 @@ export default function PricingHero() {
                   style={{
                     borderRadius:
                       index === 0
-                        ? "16px 20px 14px 22px"
+                        ? '16px 20px 14px 22px'
                         : index === 1
-                        ? "18px 14px 20px 16px"
-                        : "20px 16px 18px 24px",
+                          ? '18px 14px 20px 16px'
+                          : '20px 16px 18px 24px',
                   }}
                 >
                   {/* Mini thumb tack */}
                   <div
                     className={`absolute -top-1 ${
                       index === 0
-                        ? "left-1/2 -translate-x-1/2"
+                        ? 'left-1/2 -translate-x-1/2'
                         : index === 1
-                        ? "right-3"
-                        : "left-3"
+                          ? 'right-3'
+                          : 'left-3'
                     }`}
                   >
                     <div
@@ -153,7 +153,7 @@ export default function PricingHero() {
               <div
                 className="relative bg-white border-2 border-green-200 p-4 shadow-lg"
                 style={{
-                  borderRadius: "20px 24px 18px 26px",
+                  borderRadius: '20px 24px 18px 26px',
                 }}
               >
                 {/* Small square thumb tack */}
@@ -180,7 +180,7 @@ export default function PricingHero() {
               <div
                 className="relative bg-white border-2 border-orange-200 p-4 shadow-lg"
                 style={{
-                  borderRadius: "22px 18px 24px 20px",
+                  borderRadius: '22px 18px 24px 20px',
                 }}
               >
                 {/* Triangle thumb tack */}
@@ -201,8 +201,10 @@ export default function PricingHero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#pricing">
                 <Button
-                  className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
-                  style={{ borderRadius: "14px 18px 12px 20px" }}
+                  variant="hero-primary"
+                  size="lg"
+                  radius="hero-secondary"
+                  className="px-8"
                 >
                   <DollarSign className="mr-2 h-5 w-5" />
                   View All Plans
@@ -211,9 +213,10 @@ export default function PricingHero() {
 
               <Link href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-hero&utm_content=start-now-button">
                 <Button
-                  variant="outline"
-                  className="h-12 px-8 border-2 border-green-300 text-green-600 hover:bg-green-50 font-quicksand font-semibold transition-all hover:shadow-md"
-                  style={{ borderRadius: "12px 16px 14px 18px" }}
+                  variant="hero-secondary"
+                  size="lg"
+                  radius="hand-drawn-sm"
+                  className="px-8"
                 >
                   Start Now
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -227,7 +230,7 @@ export default function PricingHero() {
             {/* Main image container */}
             <div
               className="relative bg-white p-4 shadow-xl border-2 border-orange-200"
-              style={{ borderRadius: "32px 28px 36px 30px" }}
+              style={{ borderRadius: '32px 28px 36px 30px' }}
             >
               {/* Thumb tack */}
               <div className="absolute -top-2 right-12 h-4 w-4 -translate-x-1/2 transform">
@@ -237,7 +240,7 @@ export default function PricingHero() {
 
               <div
                 className="relative h-80 lg:h-96 w-full overflow-hidden"
-                style={{ borderRadius: "24px 20px 28px 22px" }}
+                style={{ borderRadius: '24px 20px 28px 22px' }}
               >
                 <Image
                   src="/images/pricing-hero.jpg"
@@ -251,7 +254,7 @@ export default function PricingHero() {
                 <div className="absolute bottom-4 left-4">
                   <div
                     className="bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md border border-blue-200"
-                    style={{ borderRadius: "12px 16px 10px 14px" }}
+                    style={{ borderRadius: '12px 16px 10px 14px' }}
                   >
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
@@ -268,8 +271,8 @@ export default function PricingHero() {
             <div
               className="absolute -left-6 top-16 bg-green-100 border-2 border-green-200 p-3 shadow-lg hidden lg:block"
               style={{
-                borderRadius: "16px 20px 14px 18px",
-                transform: "rotate(-2deg)",
+                borderRadius: '16px 20px 14px 18px',
+                transform: 'rotate(-2deg)',
               }}
             >
               <div className="text-center">
@@ -283,8 +286,8 @@ export default function PricingHero() {
             <div
               className="absolute -right-4 bottom-20 bg-yellow-100 border-2 border-yellow-200 p-3 shadow-lg hidden lg:block"
               style={{
-                borderRadius: "14px 18px 12px 16px",
-                transform: "rotate(1.5deg)",
+                borderRadius: '14px 18px 12px 16px',
+                transform: 'rotate(1.5deg)',
               }}
             >
               <div className="text-center">

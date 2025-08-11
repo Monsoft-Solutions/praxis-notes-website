@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState } from "react";
-import { Button } from "website/components/ui/button";
+import Link from 'next/link';
+import { useState } from 'react';
+import { Button } from 'website/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,119 +10,119 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "website/components/ui/card";
-import { Switch } from "website/components/ui/switch";
-import { Check, FileText, Edit3, DollarSign } from "lucide-react";
+} from 'website/components/ui/card';
+import { Switch } from 'website/components/ui/switch';
+import { Check, FileText, Edit3, DollarSign } from 'lucide-react';
 
 const pricingPlans = [
   {
-    name: "Free Forever",
-    description: "Get started with no cost",
-    price: "$0",
-    pricePerNote: "$0.00",
-    duration: "forever",
+    name: 'Free Forever',
+    description: 'Get started with no cost',
+    price: '$0',
+    pricePerNote: '$0.00',
+    duration: 'forever',
     billingOptions: [
       {
-        label: "Forever",
-        price: "$0",
-        pricePerNote: "$0.00",
+        label: 'Forever',
+        price: '$0',
+        pricePerNote: '$0.00',
         discount: null,
       },
     ],
     features: [
-      "1 client",
-      "10 AI-generated notes",
-      "10 note revisions",
-      "Basic templates",
-      "Web access",
-      "Email support",
+      '1 client',
+      '10 AI-generated notes',
+      '10 note revisions',
+      'Basic templates',
+      'Web access',
+      'Email support',
     ],
-    cta: "Start Free",
+    cta: 'Start Free',
     highlight: false,
-    cardBorder: "border-green-200",
-    borderStyle: "border-solid",
-    thumbTackStyle: "round",
-    thumbTackColor: "bg-green-400",
-    cardRotation: "rotate-[-0.2deg]",
-    iconColor: "text-green-600",
-    iconBg: "bg-green-100",
-    buttonColor: "bg-green-400 hover:bg-green-500",
+    cardBorder: 'border-green-200',
+    borderStyle: 'border-solid',
+    thumbTackStyle: 'round',
+    thumbTackColor: 'bg-green-400',
+    cardRotation: 'rotate-[-0.2deg]',
+    iconColor: 'text-green-600',
+    iconBg: 'bg-green-100',
+    buttonColor: 'bg-green-400 hover:bg-green-500',
   },
   {
-    name: "Individual",
-    description: "Perfect for independent RBTs & BCBAs",
-    price: "$19.99",
-    pricePerNote: "$0.67",
-    duration: "per month",
+    name: 'Individual',
+    description: 'Perfect for independent RBTs & BCBAs',
+    price: '$19.99',
+    pricePerNote: '$0.67',
+    duration: 'per month',
     billingOptions: [
       {
-        label: "Monthly",
-        price: "$19.99",
-        pricePerNote: "$0.67",
+        label: 'Monthly',
+        price: '$19.99',
+        pricePerNote: '$0.67',
         discount: null,
       },
       {
-        label: "Annually",
-        price: "$199.90",
-        pricePerNote: "$0.56",
-        discount: "2 months free",
+        label: 'Annually',
+        price: '$199.90',
+        pricePerNote: '$0.56',
+        discount: '2 months free',
       },
     ],
     features: [
-      "1 client",
-      "30 AI-generated notes/revisions",
-      "Custom templates",
-      "Mobile & web access",
-      "Priority support",
-      "Export to PDF/CSV",
-      "HIPAA-compliant storage",
+      '1 client',
+      '30 AI-generated notes/revisions',
+      'Custom templates',
+      'Mobile & web access',
+      'Priority support',
+      'Export to PDF/CSV',
+      'HIPAA-compliant storage',
     ],
-    cta: "Get Started",
+    cta: 'Get Started',
     highlight: false,
-    cardBorder: "border-blue-200",
-    borderStyle: "border-dashed",
-    thumbTackStyle: "square",
-    thumbTackColor: "bg-blue-400",
-    cardRotation: "rotate-[0.3deg]",
-    iconColor: "text-blue-600",
-    iconBg: "bg-blue-100",
-    buttonColor: "bg-blue-400 hover:bg-blue-500",
+    cardBorder: 'border-blue-200',
+    borderStyle: 'border-dashed',
+    thumbTackStyle: 'square',
+    thumbTackColor: 'bg-blue-400',
+    cardRotation: 'rotate-[0.3deg]',
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-100',
+    buttonColor: 'bg-blue-400 hover:bg-blue-500',
   },
   {
-    name: "Pro",
-    description: "For growing practices & independent professionals",
-    price: "$39",
-    pricePerNote: "$0.65",
-    duration: "per month",
+    name: 'Pro',
+    description: 'For growing practices & independent professionals',
+    price: '$39',
+    pricePerNote: '$0.65',
+    duration: 'per month',
     billingOptions: [
-      { label: "Monthly", price: "$39", pricePerNote: "$0.65", discount: null },
+      { label: 'Monthly', price: '$39', pricePerNote: '$0.65', discount: null },
       {
-        label: "Annually",
-        price: "$390",
-        pricePerNote: "$0.54",
-        discount: "2 months free",
+        label: 'Annually',
+        price: '$390',
+        pricePerNote: '$0.54',
+        discount: '2 months free',
       },
     ],
     features: [
-      "Unlimited clients",
-      "60 AI-generated notes/revisions",
-      "Advanced templates",
-      "Mobile & web access",
-      "Priority support",
-      "Export to PDF/CSV",
-      "HIPAA-compliant storage",
-      "Data analytics dashboard",
+      'Unlimited clients',
+      '60 AI-generated notes/revisions',
+      'Advanced templates',
+      'Mobile & web access',
+      'Priority support',
+      'Export to PDF/CSV',
+      'HIPAA-compliant storage',
+      'Data analytics dashboard',
     ],
-    cta: "Get Started",
+    cta: 'Get Started',
     highlight: true,
-    cardBorder: "border-orange-200",
-    borderStyle: "border-solid",
-    thumbTackStyle: "triangle",
-    thumbTackColor: "bg-orange-400",
-    cardRotation: "rotate-[-0.1deg]",
-    iconColor: "text-orange-600",
-    iconBg: "bg-orange-100",
-    buttonColor: "bg-orange-400 hover:bg-orange-500",
+    cardBorder: 'border-orange-200',
+    borderStyle: 'border-solid',
+    thumbTackStyle: 'triangle',
+    thumbTackColor: 'bg-orange-400',
+    cardRotation: 'rotate-[-0.1deg]',
+    iconColor: 'text-orange-600',
+    iconBg: 'bg-orange-100',
+    buttonColor: 'bg-orange-400 hover:bg-orange-500',
   },
 ];
 
@@ -142,22 +142,22 @@ const Pricing = () => {
         {/* Floating geometric shapes */}
         <div
           className="absolute left-16 top-40 h-14 w-14 rounded-full border-2 border-blue-300 opacity-25 hidden sm:block"
-          style={{ transform: "rotate(0.2deg)" }}
+          style={{ transform: 'rotate(0.2deg)' }}
         ></div>
 
         <div
           className="absolute right-20 top-1/3 h-12 w-12 border-2 border-orange-300 opacity-30 hidden sm:block"
           style={{
-            transform: "rotate(-0.1deg)",
-            borderRadius: "18px 24px 16px 28px",
+            transform: 'rotate(-0.1deg)',
+            borderRadius: '18px 24px 16px 28px',
           }}
         ></div>
 
         <div
           className="absolute left-1/4 bottom-40 h-16 w-16 border-2 border-green-300 opacity-25 hidden sm:block"
           style={{
-            transform: "rotate(0.3deg)",
-            borderRadius: "22px 28px 20px 32px",
+            transform: 'rotate(0.3deg)',
+            borderRadius: '22px 28px 20px 32px',
           }}
         ></div>
 
@@ -173,8 +173,8 @@ const Pricing = () => {
           <div
             className="inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-blue-300 mb-8 shadow-lg relative"
             style={{
-              borderRadius: "22px 30px 20px 34px",
-              transform: "rotate(-0.1deg)",
+              borderRadius: '22px 30px 20px 34px',
+              transform: 'rotate(-0.1deg)',
             }}
           >
             {/* Badge thumb tack */}
@@ -192,7 +192,7 @@ const Pricing = () => {
           <h2
             className="text-4xl md:text-6xl font-quicksand font-bold tracking-tight mb-8 text-gray-900 leading-tight"
             style={{
-              textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+              textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
             }}
           >
             Simple, Transparent
@@ -208,7 +208,7 @@ const Pricing = () => {
           <div
             className="inline-flex items-center gap-4 px-6 py-4 bg-white/90 backdrop-blur-sm border-2 border-green-200 border-dashed shadow-lg"
             style={{
-              borderRadius: "20px 28px 18px 32px",
+              borderRadius: '20px 28px 18px 32px',
             }}
           >
             {/* Small decorative thumb tack */}
@@ -216,7 +216,7 @@ const Pricing = () => {
 
             <span
               className={`text-sm font-quicksand font-bold ${
-                !isAnnual ? "text-blue-600" : "text-gray-500"
+                !isAnnual ? 'text-blue-600' : 'text-gray-500'
               }`}
             >
               Monthly
@@ -234,7 +234,7 @@ const Pricing = () => {
             <div className="flex items-center">
               <span
                 className={`text-sm font-quicksand font-bold ${
-                  isAnnual ? "text-blue-600" : "text-gray-500"
+                  isAnnual ? 'text-blue-600' : 'text-gray-500'
                 }`}
               >
                 Annual
@@ -242,7 +242,7 @@ const Pricing = () => {
               <span
                 className="ml-2 px-2 py-1 bg-green-100 text-green-700 text-xs font-quicksand font-bold border border-green-200"
                 style={{
-                  borderRadius: "8px 12px 6px 10px",
+                  borderRadius: '8px 12px 6px 10px',
                 }}
               >
                 2 months free
@@ -261,10 +261,10 @@ const Pricing = () => {
                 className={`relative ${plan.cardBorder} ${
                   plan.borderStyle
                 } border-2 bg-white/95 backdrop-blur-sm shadow-xl transition-all duration-300 hover:shadow-2xl overflow-visible h-full flex flex-col ${
-                  plan.highlight ? "border-4" : ""
+                  plan.highlight ? 'border-4' : ''
                 }`}
                 style={{
-                  borderRadius: "30px 38px 28px 42px",
+                  borderRadius: '30px 38px 28px 42px',
                 }}
               >
                 {/* Popular badge for highlighted plan */}
@@ -272,7 +272,7 @@ const Pricing = () => {
                   <div
                     className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1.5 bg-orange-400 text-white text-xs font-quicksand font-bold shadow-lg z-10"
                     style={{
-                      borderRadius: "12px 18px 10px 16px",
+                      borderRadius: '12px 18px 10px 16px',
                     }}
                   >
                     MOST POPULAR
@@ -280,7 +280,7 @@ const Pricing = () => {
                 )}
 
                 {/* Thumb tack effects */}
-                {plan.thumbTackStyle === "round" && (
+                {plan.thumbTackStyle === 'round' && (
                   <div className="absolute -top-3 right-8 h-5 w-5 transform z-10">
                     <div
                       className={`h-full w-full rounded-full ${plan.thumbTackColor} shadow-lg`}
@@ -289,27 +289,27 @@ const Pricing = () => {
                   </div>
                 )}
 
-                {plan.thumbTackStyle === "square" && (
+                {plan.thumbTackStyle === 'square' && (
                   <div
                     className={`absolute -top-2 right-8 h-4 w-4 rotate-45 transform ${plan.thumbTackColor} shadow-lg z-10`}
                   ></div>
                 )}
 
-                {plan.thumbTackStyle === "triangle" && (
+                {plan.thumbTackStyle === 'triangle' && (
                   <div className="absolute -top-3 left-8 z-10">
                     <div
                       className="h-0 w-0 border-l-[6px] border-r-[6px] border-b-[8px] border-l-transparent border-r-transparent"
                       style={{
                         borderBottomColor:
-                          plan.thumbTackColor === "bg-orange-400"
-                            ? "#fb923c"
-                            : "#facc15",
+                          plan.thumbTackColor === 'bg-orange-400'
+                            ? '#fb923c'
+                            : '#facc15',
                       }}
                     ></div>
                   </div>
                 )}
 
-                <CardHeader className={`${plan.highlight ? "pt-10" : "pt-8"}`}>
+                <CardHeader className={`${plan.highlight ? 'pt-10' : 'pt-8'}`}>
                   <CardTitle className="text-2xl font-quicksand font-bold text-gray-900 text-center">
                     {plan.name}
                   </CardTitle>
@@ -329,7 +329,7 @@ const Pricing = () => {
                         </span>
                         <span className="text-gray-600 ml-1 font-nunito">
                           {plan.billingOptions.length > 1 && isAnnual
-                            ? "/year"
+                            ? '/year'
                             : `/${plan.duration}`}
                         </span>
                       </div>
@@ -339,7 +339,7 @@ const Pricing = () => {
                           <div
                             className="inline-block mx-auto px-2 py-1 bg-green-100 text-green-700 text-xs font-quicksand font-bold border border-green-200 mb-2"
                             style={{
-                              borderRadius: "8px 12px 6px 10px",
+                              borderRadius: '8px 12px 6px 10px',
                             }}
                           >
                             {plan.billingOptions[1].discount}
@@ -350,7 +350,7 @@ const Pricing = () => {
                           {plan.billingOptions.length > 1 && isAnnual
                             ? plan.billingOptions[1].pricePerNote
                             : plan.billingOptions[0].pricePerNote}
-                        </span>{" "}
+                        </span>{' '}
                         per note
                       </div>
                     </div>
@@ -363,10 +363,10 @@ const Pricing = () => {
                           <div
                             className={`h-5 w-5 rounded-full flex items-center justify-center shrink-0 mr-3 mt-0.5 ${
                               index === 0
-                                ? "bg-green-600"
+                                ? 'bg-green-600'
                                 : index === 1
-                                ? "bg-blue-600"
-                                : "bg-orange-600"
+                                  ? 'bg-blue-600'
+                                  : 'bg-orange-600'
                             }`}
                           >
                             <Check className="h-3 w-3 text-white" />
@@ -386,10 +386,9 @@ const Pricing = () => {
                     className="w-full"
                   >
                     <Button
-                      className={`w-full h-12 ${plan.buttonColor} text-white font-quicksand font-semibold transition-all hover:shadow-md`}
-                      style={{
-                        borderRadius: "15px 20px 12px 18px",
-                      }}
+                      className={`w-full ${plan.buttonColor} text-white`}
+                      size="lg"
+                      radius="pricing"
                     >
                       {plan.cta}
                     </Button>
@@ -405,8 +404,8 @@ const Pricing = () => {
           <div
             className="text-center mb-12 px-8 py-4 bg-white/90 backdrop-blur-sm border-2 border-yellow-300 border-dashed shadow-lg relative max-w-md mx-auto"
             style={{
-              borderRadius: "25px 32px 22px 35px",
-              transform: "rotate(0.1deg)",
+              borderRadius: '25px 32px 22px 35px',
+              transform: 'rotate(0.1deg)',
             }}
           >
             {/* CTA thumb tack */}
@@ -422,8 +421,8 @@ const Pricing = () => {
             <div
               className="relative bg-white/95 backdrop-blur-sm p-6 border-2 border-blue-200 border-dashed shadow-lg flex-1 min-w-[280px] max-w-[320px] text-center transition-all duration-300 hover:scale-105"
               style={{
-                borderRadius: "25px 32px 22px 35px",
-                transform: "rotate(-0.1deg)",
+                borderRadius: '25px 32px 22px 35px',
+                transform: 'rotate(-0.1deg)',
               }}
             >
               {/* Small thumb tack */}
@@ -432,7 +431,7 @@ const Pricing = () => {
               <div
                 className="mb-4 w-16 h-16 flex items-center justify-center mx-auto bg-blue-100 border-2 border-blue-200 shadow-md"
                 style={{
-                  borderRadius: "15px 20px 12px 18px",
+                  borderRadius: '15px 20px 12px 18px',
                 }}
               >
                 <FileText className="h-8 w-8 text-blue-600" />
@@ -445,7 +444,7 @@ const Pricing = () => {
               <span
                 className="inline-block py-1 px-3 bg-blue-100 text-blue-600 text-sm font-quicksand font-bold border border-blue-200 mb-3"
                 style={{
-                  borderRadius: "10px 14px 8px 12px",
+                  borderRadius: '10px 14px 8px 12px',
                 }}
               >
                 1 Note Usage
@@ -460,8 +459,8 @@ const Pricing = () => {
             <div
               className="relative bg-white/95 backdrop-blur-sm p-6 border-2 border-green-200 shadow-lg flex-1 min-w-[280px] max-w-[320px] text-center transition-all duration-300 hover:scale-105"
               style={{
-                borderRadius: "28px 35px 25px 38px",
-                transform: "rotate(0.2deg)",
+                borderRadius: '28px 35px 25px 38px',
+                transform: 'rotate(0.2deg)',
               }}
             >
               {/* Round thumb tack */}
@@ -473,7 +472,7 @@ const Pricing = () => {
               <div
                 className="mb-4 w-16 h-16 flex items-center justify-center mx-auto bg-green-100 border-2 border-green-200 shadow-md"
                 style={{
-                  borderRadius: "15px 20px 12px 18px",
+                  borderRadius: '15px 20px 12px 18px',
                 }}
               >
                 <Edit3 className="h-8 w-8 text-green-600" />
@@ -486,7 +485,7 @@ const Pricing = () => {
               <span
                 className="inline-block py-1 px-3 bg-green-100 text-green-600 text-sm font-quicksand font-bold border border-green-200 mb-3"
                 style={{
-                  borderRadius: "10px 14px 8px 12px",
+                  borderRadius: '10px 14px 8px 12px',
                 }}
               >
                 1 Note Usage
@@ -510,7 +509,7 @@ const Pricing = () => {
                 variant="outline"
                 className="font-quicksand font-semibold border-2 border-orange-200 text-orange-600 hover:bg-orange-50"
                 style={{
-                  borderRadius: "12px 16px 10px 14px",
+                  borderRadius: '12px 16px 10px 14px',
                 }}
               >
                 Contact us for enterprise pricing

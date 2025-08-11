@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Button } from "website/components/ui/button";
+import Link from 'next/link';
+import { Button } from 'website/components/ui/button';
 import {
   ArrowRight,
   CheckCircle,
@@ -8,36 +8,36 @@ import {
   Sparkles,
   Quote,
   Star,
-} from "lucide-react";
+} from 'lucide-react';
 
 const benefits = [
   {
     icon: <Clock className="h-5 w-5" />,
-    text: "Save 3+ hours per week",
-    iconColor: "text-blue-600",
-    iconBg: "bg-blue-100",
-    borderColor: "border-blue-200",
+    text: 'Save 3+ hours per week',
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-100',
+    borderColor: 'border-blue-200',
   },
   {
     icon: <CheckCircle className="h-5 w-5" />,
-    text: "Insurance-ready notes",
-    iconColor: "text-green-600",
-    iconBg: "bg-green-100",
-    borderColor: "border-green-200",
+    text: 'Insurance-ready notes',
+    iconColor: 'text-green-600',
+    iconBg: 'bg-green-100',
+    borderColor: 'border-green-200',
   },
   {
     icon: <Shield className="h-5 w-5" />,
-    text: "HIPAA compliant",
-    iconColor: "text-orange-600",
-    iconBg: "bg-orange-100",
-    borderColor: "border-orange-200",
+    text: 'HIPAA compliant',
+    iconColor: 'text-orange-600',
+    iconBg: 'bg-orange-100',
+    borderColor: 'border-orange-200',
   },
   {
     icon: <Sparkles className="h-5 w-5" />,
-    text: "Free forever",
-    iconColor: "text-yellow-700",
-    iconBg: "bg-yellow-100",
-    borderColor: "border-yellow-300",
+    text: 'Free forever',
+    iconColor: 'text-yellow-700',
+    iconBg: 'bg-yellow-100',
+    borderColor: 'border-yellow-300',
   },
 ];
 
@@ -55,22 +55,22 @@ const CTA = () => {
         {/* Large decorative shapes */}
         <div
           className="absolute left-10 top-20 h-32 w-32 rounded-full border-2 border-blue-300 opacity-20 hidden sm:block"
-          style={{ transform: "rotate(0.3deg)" }}
+          style={{ transform: 'rotate(0.3deg)' }}
         ></div>
 
         <div
           className="absolute right-16 top-1/4 h-24 w-24 border-2 border-orange-300 opacity-25 hidden sm:block"
           style={{
-            transform: "rotate(-0.2deg)",
-            borderRadius: "25px 35px 22px 40px",
+            transform: 'rotate(-0.2deg)',
+            borderRadius: '25px 35px 22px 40px',
           }}
         ></div>
 
         <div
           className="absolute left-1/4 bottom-20 h-20 w-20 border-2 border-green-300 opacity-30 hidden sm:block"
           style={{
-            transform: "rotate(0.4deg)",
-            borderRadius: "20px 28px 18px 32px",
+            transform: 'rotate(0.4deg)',
+            borderRadius: '20px 28px 18px 32px',
           }}
         ></div>
 
@@ -86,8 +86,8 @@ const CTA = () => {
           <div
             className="relative bg-white/95 backdrop-blur-sm border-2 border-blue-200 border-dashed shadow-2xl overflow-visible"
             style={{
-              borderRadius: "40px 50px 35px 55px",
-              transform: "rotate(-0.1deg)",
+              borderRadius: '40px 50px 35px 55px',
+              transform: 'rotate(-0.1deg)',
             }}
           >
             {/* Large decorative thumb tack */}
@@ -109,8 +109,8 @@ const CTA = () => {
                   <div
                     className="inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-green-300 shadow-lg relative"
                     style={{
-                      borderRadius: "18px 25px 16px 28px",
-                      transform: "rotate(0.1deg)",
+                      borderRadius: '18px 25px 16px 28px',
+                      transform: 'rotate(0.1deg)',
                     }}
                   >
                     {/* Small thumb tack */}
@@ -126,7 +126,7 @@ const CTA = () => {
                     <h2
                       className="text-4xl md:text-6xl font-quicksand font-bold tracking-tight mb-6 text-gray-900 leading-tight"
                       style={{
-                        textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                       }}
                     >
                       Start Writing Better
@@ -148,11 +148,11 @@ const CTA = () => {
                         key={index}
                         className={`flex items-center space-x-4 p-4 bg-white/80 backdrop-blur-sm border-2 ${benefit.borderColor} border-dashed shadow-md transition-all duration-300 hover:scale-105`}
                         style={{
-                          borderRadius: "15px 20px 12px 18px",
+                          borderRadius: '15px 20px 12px 18px',
                           transform:
                             index % 2 === 0
-                              ? "rotate(-0.1deg)"
-                              : "rotate(0.1deg)",
+                              ? 'rotate(-0.1deg)'
+                              : 'rotate(0.1deg)',
                         }}
                       >
                         <div
@@ -173,8 +173,8 @@ const CTA = () => {
                   <div
                     className="relative bg-white/90 backdrop-blur-sm border-2 border-orange-200 shadow-xl overflow-visible"
                     style={{
-                      borderRadius: "32px 40px 28px 45px",
-                      transform: "rotate(0.2deg)",
+                      borderRadius: '32px 40px 28px 45px',
+                      transform: 'rotate(0.2deg)',
                     }}
                   >
                     {/* CTA card thumb tack */}
@@ -200,11 +200,10 @@ const CTA = () => {
                         <div className="space-y-4">
                           <Link href="https://app.praxisnotes.com/auth/sign-up">
                             <Button
-                              size="lg"
-                              className="w-full h-14 bg-orange-400 hover:bg-orange-500 text-white font-quicksand font-semibold transition-all hover:shadow-lg text-lg"
-                              style={{
-                                borderRadius: "18px 22px 15px 25px",
-                              }}
+                              variant="warning"
+                              size="xl"
+                              radius="hero-primary"
+                              className="w-full"
                             >
                               Start Now <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
@@ -215,7 +214,7 @@ const CTA = () => {
                         <div
                           className="relative p-6 bg-blue-50/80 backdrop-blur-sm border-2 border-blue-200 border-dashed"
                           style={{
-                            borderRadius: "20px 28px 18px 32px",
+                            borderRadius: '20px 28px 18px 32px',
                           }}
                         >
                           {/* Small decorative thumb tack */}
