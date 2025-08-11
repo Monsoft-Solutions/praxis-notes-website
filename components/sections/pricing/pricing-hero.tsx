@@ -101,8 +101,8 @@ export default function PricingHero() {
                   color: 'green',
                 },
                 {
-                  label: 'Teams',
-                  value: '$99/mo',
+                  label: 'Pro',
+                  value: '$39/mo',
                   color: 'orange',
                 },
               ].map((plan, index) => (
@@ -199,29 +199,31 @@ export default function PricingHero() {
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#pricing">
-                <Button
-                  variant="hero-primary"
-                  size="lg"
-                  radius="hero-secondary"
-                  className="px-8"
-                >
+              <Button
+                asChild
+                variant="hero-primary"
+                size="lg"
+                radius="hero-secondary"
+                className="px-8"
+              >
+                <Link href="#pricing">
                   <DollarSign className="mr-2 h-5 w-5" />
                   View All Plans
-                </Button>
-              </Link>
+                </Link>
+              </Button>
 
-              <Link href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-hero&utm_content=start-now-button">
-                <Button
-                  variant="hero-secondary"
-                  size="lg"
-                  radius="hand-drawn-sm"
-                  className="px-8"
-                >
+              <Button
+                asChild
+                variant="hero-secondary"
+                size="lg"
+                radius="hand-drawn-sm"
+                className="px-8"
+              >
+                <Link href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-hero&utm_content=start-now-button">
                   Start Now
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
 

@@ -37,7 +37,7 @@ export default function ReviewNotesPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100"></div>
 
         {/* Hand-drawn background decorations */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute left-16 top-28 h-16 w-16 rounded-full border-2 border-purple-200 opacity-20 hidden lg:block"
             style={{ transform: 'rotate(0.15deg)' }}

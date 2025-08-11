@@ -132,14 +132,15 @@ const Header = () => {
           </Link>
         </nav>
 
-        <Link
-          href="https://app.praxisnotes.com/auth/log-in"
+        <Button
+          asChild
+          variant="header"
+          size="sm"
+          radius="hand-drawn-sm"
           className="hidden md:inline-flex"
         >
-          <Button variant="header" size="sm" radius="hand-drawn-sm">
-            Sign In
-          </Button>
-        </Link>
+          <Link href="https://app.praxisnotes.com/auth/log-in">Sign In</Link>
+        </Button>
 
         {/* Mobile menu button */}
         <button
@@ -235,18 +236,19 @@ const Header = () => {
             </Link>
 
             <div className="pt-4">
-              <Link
-                href="https://app.praxisnotes.com/auth/log-in"
-                onClick={() => setIsMenuOpen(false)}
+              <Button
+                asChild
+                variant="header"
+                radius="hand-drawn-sm"
+                className="w-full"
               >
-                <Button
-                  variant="header"
-                  radius="hand-drawn-sm"
-                  className="w-full"
+                <Link
+                  href="https://app.praxisnotes.com/auth/log-in"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </nav>
         </div>

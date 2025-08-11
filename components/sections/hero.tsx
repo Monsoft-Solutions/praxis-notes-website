@@ -70,28 +70,30 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 pt-2">
-              <Link href="https://app.praxisnotes.com/auth/sign-up">
-                <Button
-                  variant="hero-primary"
-                  size="lg"
-                  radius="hero-primary"
-                  className="w-full sm:w-auto"
-                >
+              <Button
+                asChild
+                variant="hero-primary"
+                size="lg"
+                radius="hero-primary"
+                className="w-full sm:w-auto"
+              >
+                <Link href="https://app.praxisnotes.com/auth/sign-up">
                   <ArrowRight className="mr-2 h-4 w-4" />
                   Sign Up Free
-                </Button>
-              </Link>
-              <Link href="#how-it-works">
-                <Button
-                  variant="hero-secondary"
-                  size="lg"
-                  radius="hero-secondary"
-                  className="w-full sm:w-auto"
-                >
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="hero-secondary"
+                size="lg"
+                radius="hero-secondary"
+                className="w-full sm:w-auto"
+              >
+                <Link href="#how-it-works">
                   <Play className="mr-2 h-4 w-4" />
                   Watch Demo
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
 
             {/* Trust indicators card with dashed border */}

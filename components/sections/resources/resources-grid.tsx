@@ -426,15 +426,16 @@ export default function ResourcesGrid({
 
             {/* View all resources button */}
             <div className="mt-10 pt-8 border-t border-gray-100 text-center">
-              <Link href="/resources">
-                <Button
-                  className="h-12 px-8 bg-green-400 hover:bg-green-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ borderRadius: '14px 18px 12px 16px' }}
-                >
+              <Button
+                asChild
+                className="h-12 px-8 bg-green-400 hover:bg-green-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                style={{ borderRadius: '14px 18px 12px 16px' }}
+              >
+                <Link href="/resources">
                   <BookOpen className="w-5 h-5 mr-2" />
                   View All Resources
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

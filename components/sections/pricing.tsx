@@ -206,7 +206,7 @@ const Pricing = () => {
 
           {/* Billing toggle */}
           <div
-            className="inline-flex items-center gap-4 px-6 py-4 bg-white/90 backdrop-blur-sm border-2 border-green-200 border-dashed shadow-lg"
+            className="relative inline-flex items-center gap-4 px-6 py-4 bg-white/90 backdrop-blur-sm border-2 border-green-200 border-dashed shadow-lg"
             style={{
               borderRadius: '20px 28px 18px 32px',
             }}
@@ -381,18 +381,16 @@ const Pricing = () => {
                 </CardContent>
 
                 <CardFooter className="mt-auto pt-6">
-                  <Link
-                    href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-cards&utm_content=get-started-button"
-                    className="w-full"
+                  <Button
+                    asChild
+                    className={`w-full ${plan.buttonColor} text-white`}
+                    size="lg"
+                    radius="pricing"
                   >
-                    <Button
-                      className={`w-full ${plan.buttonColor} text-white`}
-                      size="lg"
-                      radius="pricing"
-                    >
+                    <Link href="https://app.praxisnotes.com/auth/sign-up?utm_source=website&utm_medium=cta&utm_campaign=pricing-cards&utm_content=get-started-button">
                       {plan.cta}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </CardFooter>
               </Card>
             </div>
@@ -504,17 +502,16 @@ const Pricing = () => {
               expire.
             </p>
 
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                className="font-quicksand font-semibold border-2 border-orange-200 text-orange-600 hover:bg-orange-50"
-                style={{
-                  borderRadius: '12px 16px 10px 14px',
-                }}
-              >
-                Contact us for enterprise pricing
-              </Button>
-            </Link>
+            <Button
+              asChild
+              variant="outline"
+              className="font-quicksand font-semibold border-2 border-orange-200 text-orange-600 hover:bg-orange-50"
+              style={{
+                borderRadius: '12px 16px 10px 14px',
+              }}
+            >
+              <Link href="/contact">Contact us for enterprise pricing</Link>
+            </Button>
           </div>
         </div>
       </div>

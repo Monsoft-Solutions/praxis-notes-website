@@ -198,16 +198,17 @@ const CTA = () => {
                         </div>
 
                         <div className="space-y-4">
-                          <Link href="https://app.praxisnotes.com/auth/sign-up">
-                            <Button
-                              variant="warning"
-                              size="xl"
-                              radius="hero-primary"
-                              className="w-full"
-                            >
+                          <Button
+                            asChild
+                            variant="warning"
+                            size="xl"
+                            radius="hero-primary"
+                            className="w-full"
+                          >
+                            <Link href="https://app.praxisnotes.com/auth/sign-up">
                               Start Now <ArrowRight className="ml-2 h-5 w-5" />
-                            </Button>
-                          </Link>
+                            </Link>
+                          </Button>
                         </div>
 
                         {/* Testimonial */}

@@ -11,18 +11,18 @@ const config = {
     // Dynamic color classes using regex patterns to prevent PurgeCSS from removing them
     {
       pattern:
-        /^(border|bg|text)-(blue|green|orange|yellow|purple|amber)-(50|100|200|300|400|500|600)$/,
+        /^(border|bg|text)-(blue|green|orange|purple|teal|emerald|indigo|cyan|amber|red)-(50|100|200|300|400|500|600)$/,
       variants: ['hover', 'focus', 'active'],
     },
     // Additional gradient patterns
     {
       pattern:
-        /^(from|via|to)-(blue|green|orange|yellow|purple|amber)-(50|100|200|300|400|500|600)$/,
+        /^(from|via|to)-(blue|green|orange|purple|teal|emerald|indigo|cyan|amber|red)-(50|100|200|300|400|500|600)$/,
     },
     // Ring colors for focus states
     {
       pattern:
-        /^ring-(blue|green|orange|yellow|purple|amber)-(200|300|400|500)$/,
+        /^ring-(blue|green|orange|purple|teal|emerald|indigo|cyan|amber|red)-(200|300|400|500)$/,
     },
     // Specific gray utility classes
     'bg-gray-50',

@@ -1,5 +1,6 @@
 import { cn } from 'website/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Slot } from '@radix-ui/react-slot';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center font-quicksand font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer',
@@ -101,7 +102,9 @@ const getHandDrawnStyle = (radius: string | null | undefined) => {
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
 
 const Button = ({
   className,
@@ -110,13 +113,15 @@ const Button = ({
   radius,
   animation,
   style,
+  asChild,
   ...props
 }: ButtonProps) => {
   const handDrawnStyle = getHandDrawnStyle(radius);
   const combinedStyle = { ...handDrawnStyle, ...style };
+  const Comp = asChild ? Slot : 'button';
 
   return (
-    <button
+    <Comp
       className={cn(
         buttonVariants({ variant, size, radius, animation, className })
       )}

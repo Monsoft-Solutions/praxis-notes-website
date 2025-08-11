@@ -99,28 +99,30 @@ const CTAPlain = ({
 
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href={primaryButtonLink}>
-                    <Button
-                      variant="cta-primary"
-                      size="cta-default"
-                      radius="cta-primary"
-                    >
+                  <Button
+                    asChild
+                    variant="cta-primary"
+                    size="cta-default"
+                    radius="cta-primary"
+                  >
+                    <Link href={primaryButtonLink}>
                       <CheckCircle className="mr-2 h-5 w-5" />
                       {primaryButtonText}
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
 
                   {secondaryButtonText && (
-                    <Link href={secondaryButtonLink}>
-                      <Button
-                        variant="cta-secondary"
-                        size="cta-default"
-                        radius="cta-secondary"
-                      >
+                    <Button
+                      asChild
+                      variant="cta-secondary"
+                      size="cta-default"
+                      radius="cta-secondary"
+                    >
+                      <Link href={secondaryButtonLink}>
                         {secondaryButtonText}
                         <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   )}
                 </div>
 

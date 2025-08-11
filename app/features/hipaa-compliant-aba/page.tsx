@@ -792,7 +792,10 @@ export default function HipaaCompliancePage() {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Physical Safeguards */}
             <div className="space-y-8">
-              <h3 className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 flex items-center">
+              <h3
+                id="physical-safeguards"
+                className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 flex items-center"
+              >
                 <Server className="w-8 h-8 mr-3 text-orange-600" />
                 Physical Safeguards
               </h3>
@@ -842,7 +845,10 @@ export default function HipaaCompliancePage() {
 
             {/* Administrative Safeguards */}
             <div className="space-y-8">
-              <h3 className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 flex items-center">
+              <h3
+                id="administrative-safeguards"
+                className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 flex items-center"
+              >
                 <FileCheck className="w-8 h-8 mr-3 text-green-600" />
                 Administrative Safeguards
               </h3>

@@ -319,11 +319,16 @@ const HowItWorks = () => {
               </p>
 
               <div className="pt-2">
-                <Link href="https://app.praxisnotes.com/auth/sign-up">
-                  <Button variant="hero-primary" size="lg" radius="pricing">
+                <Button
+                  asChild
+                  variant="hero-primary"
+                  size="lg"
+                  radius="pricing"
+                >
+                  <Link href="https://app.praxisnotes.com/auth/sign-up">
                     Try It Yourself <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
 
