@@ -1,11 +1,11 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "website/components/ui/button";
-import { getResourceBySlug } from "website/lib/resources";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from 'website/components/ui/button';
+import { getResourceBySlug } from 'website/lib/resources';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {
   ChevronLeft,
   ArrowRight,
@@ -13,7 +13,7 @@ import {
   Clock,
   Share,
   User,
-} from "lucide-react";
+} from 'lucide-react';
 
 type ResourceParams = {
   slug: string;
@@ -29,7 +29,7 @@ export async function generateMetadata({
 
   if (!resource) {
     return {
-      title: "Resource Not Found",
+      title: 'Resource Not Found',
     };
   }
 
@@ -57,7 +57,7 @@ export default async function ResourcePage({
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute left-10 top-20 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30 hidden sm:block"
-          style={{ transform: "rotate(0.1deg)" }}
+          style={{ transform: 'rotate(0.1deg)' }}
         />
         <div className="absolute right-16 bottom-32 h-8 w-8 rounded border border-green-200 opacity-40 hidden sm:block" />
         <div className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-orange-200 opacity-50" />
@@ -88,7 +88,7 @@ export default async function ResourcePage({
               <div
                 className="relative rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-xl"
                 style={{
-                  borderRadius: "25px 30px 20px 35px",
+                  borderRadius: '25px 30px 20px 35px',
                 }}
               >
                 {/* Thumb tack */}
@@ -101,15 +101,15 @@ export default async function ResourcePage({
                   {/* Tags */}
                   {resource.tags && resource.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {resource.tags.map((tag) => (
+                      {resource.tags.map(tag => (
                         <span
-                          key={tag.toString()}
+                          key={tag}
                           className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium font-quicksand"
                           style={{
-                            borderRadius: "18px 25px 15px 22px",
+                            borderRadius: '18px 25px 15px 22px',
                           }}
                         >
-                          {typeof tag === "string" ? tag : tag.name}
+                          {tag}
                         </span>
                       ))}
                     </div>
@@ -119,7 +119,7 @@ export default async function ResourcePage({
                   <h1
                     className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900"
                     style={{
-                      textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                     }}
                   >
                     {resource.title}
@@ -173,7 +173,7 @@ export default async function ResourcePage({
                 <div
                   className="relative rounded-3xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px] shadow-xl border-2 border-green-200 transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]"
                   style={{
-                    borderRadius: "22px 28px 18px 32px",
+                    borderRadius: '22px 28px 18px 32px',
                   }}
                 >
                   {/* Small decorative thumb tack */}
@@ -201,7 +201,7 @@ export default async function ResourcePage({
               <div
                 className="relative rounded-3xl border-2 border-orange-200 bg-white p-8 md:p-12 shadow-lg"
                 style={{
-                  borderRadius: "28px 35px 22px 38px",
+                  borderRadius: '28px 35px 22px 38px',
                 }}
               >
                 {/* Triangle thumb tack */}
@@ -229,7 +229,7 @@ export default async function ResourcePage({
                 <div
                   className="relative rounded-3xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50 p-8 shadow-lg"
                   style={{
-                    borderRadius: "25px 20px 28px 22px",
+                    borderRadius: '25px 20px 28px 22px',
                   }}
                 >
                   {/* Round thumb tack */}
@@ -242,7 +242,7 @@ export default async function ResourcePage({
                     <h3
                       className="text-2xl md:text-3xl font-bold mb-4 text-orange-700 font-quicksand"
                       style={{
-                        textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                       }}
                     >
                       {resource.cta.title}
@@ -258,7 +258,7 @@ export default async function ResourcePage({
                         size="lg"
                         className="bg-orange-400 hover:bg-orange-500 text-gray-900 font-quicksand font-semibold transition-all hover:shadow-md hover:-translate-y-0.5 flex items-center"
                         style={{
-                          borderRadius: "15px 18px 12px 20px",
+                          borderRadius: '15px 18px 12px 20px',
                         }}
                       >
                         {resource.cta.buttonText}
@@ -279,7 +279,7 @@ export default async function ResourcePage({
               <div
                 className="relative rounded-3xl border-2 border-blue-200 bg-white p-6 shadow-lg"
                 style={{
-                  borderRadius: "20px 25px 18px 30px",
+                  borderRadius: '20px 25px 18px 30px',
                 }}
               >
                 {/* Square thumb tack */}
@@ -291,7 +291,7 @@ export default async function ResourcePage({
                       variant="outline"
                       className="group border-blue-200 hover:bg-blue-50 font-quicksand font-medium"
                       style={{
-                        borderRadius: "12px 16px 14px 18px",
+                        borderRadius: '12px 16px 14px 18px',
                       }}
                     >
                       <ChevronLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
@@ -304,7 +304,7 @@ export default async function ResourcePage({
                     size="sm"
                     className="gap-2 text-gray-600 hover:text-gray-800 font-quicksand"
                     style={{
-                      borderRadius: "10px 14px 12px 16px",
+                      borderRadius: '10px 14px 12px 16px',
                     }}
                   >
                     <Share className="h-4 w-4" />

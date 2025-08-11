@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   ChevronLeft,
@@ -8,18 +8,9 @@ import {
   Clock,
   BookOpen,
   Target,
-} from "lucide-react";
-import { Button } from "website/components/ui/button";
-
-interface Resource {
-  slug: string;
-  title: string;
-  metaDescription: string;
-  date: string;
-  readingTime?: string;
-  image?: string | null;
-  tags?: (string | { id: string; name: string })[] | null;
-}
+} from 'lucide-react';
+import { Button } from 'website/components/ui/button';
+import { type Resource } from '../../../db/schema/resources';
 
 interface ResourcesGridProps {
   resources: Resource[];
@@ -41,7 +32,7 @@ function PaginationNumber({
     return (
       <Button
         className="w-10 h-10 p-0 pointer-events-none bg-blue-400 hover:bg-blue-400 text-white font-quicksand font-semibold shadow-md"
-        style={{ borderRadius: "10px 12px 8px 14px" }}
+        style={{ borderRadius: '10px 12px 8px 14px' }}
       >
         {page}
       </Button>
@@ -52,7 +43,7 @@ function PaginationNumber({
     <Link href={`/resources?page=${page}`}>
       <Button
         className="w-10 h-10 p-0 bg-white border-2 border-gray-200 text-gray-600 hover:border-blue-300 hover:text-blue-500 hover:shadow-md font-quicksand font-semibold transition-all duration-200"
-        style={{ borderRadius: "10px 12px 8px 14px" }}
+        style={{ borderRadius: '10px 12px 8px 14px' }}
       >
         {page}
       </Button>
@@ -76,7 +67,7 @@ export default function ResourcesGrid({
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute left-10 top-20 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30"
-            style={{ transform: "rotate(0.1deg)" }}
+            style={{ transform: 'rotate(0.1deg)' }}
           ></div>
           <div className="absolute right-16 top-1/4 h-8 w-8 rounded border border-green-200 opacity-40"></div>
           <div className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-orange-200 opacity-50"></div>
@@ -89,49 +80,49 @@ export default function ResourcesGrid({
               // Cycle through ABA colors and thumb tack styles
               const colors = [
                 {
-                  border: "border-blue-200",
-                  tag: "bg-blue-400",
-                  tack: "bg-blue-400",
-                  hover: "group-hover:border-blue-300",
+                  border: 'border-blue-200',
+                  tag: 'bg-blue-400',
+                  tack: 'bg-blue-400',
+                  hover: 'group-hover:border-blue-300',
                 },
                 {
-                  border: "border-green-200",
-                  tag: "bg-green-400",
-                  tack: "bg-green-400",
-                  hover: "group-hover:border-green-300",
+                  border: 'border-green-200',
+                  tag: 'bg-green-400',
+                  tack: 'bg-green-400',
+                  hover: 'group-hover:border-green-300',
                 },
                 {
-                  border: "border-orange-200",
-                  tag: "bg-orange-400",
-                  tack: "bg-orange-400",
-                  hover: "group-hover:border-orange-300",
+                  border: 'border-orange-200',
+                  tag: 'bg-orange-400',
+                  tack: 'bg-orange-400',
+                  hover: 'group-hover:border-orange-300',
                 },
                 {
-                  border: "border-yellow-200",
-                  tag: "bg-yellow-400",
-                  tack: "bg-yellow-400",
-                  hover: "group-hover:border-yellow-300",
+                  border: 'border-yellow-200',
+                  tag: 'bg-yellow-400',
+                  tack: 'bg-yellow-400',
+                  hover: 'group-hover:border-yellow-300',
                 },
               ];
               const colorSet = colors[index % colors.length];
 
               // Irregular border radius variations
               const borderRadiusOptions = [
-                "25px 30px 20px 35px",
-                "28px 22px 32px 26px",
-                "22px 35px 18px 30px",
-                "30px 20px 28px 24px",
-                "26px 32px 22px 28px",
-                "20px 28px 24px 32px",
+                '25px 30px 20px 35px',
+                '28px 22px 32px 26px',
+                '22px 35px 18px 30px',
+                '30px 20px 28px 24px',
+                '26px 32px 22px 28px',
+                '20px 28px 24px 32px',
               ];
               const borderRadius =
                 borderRadiusOptions[index % borderRadiusOptions.length];
 
               // Thumb tack styles
               const thumbTackStyles = [
-                { type: "round", position: "left-1/2 -translate-x-1/2" },
-                { type: "square", position: "right-8" },
-                { type: "triangle", position: "left-8" },
+                { type: 'round', position: 'left-1/2 -translate-x-1/2' },
+                { type: 'square', position: 'right-8' },
+                { type: 'triangle', position: 'left-8' },
               ];
               const thumbTack = thumbTackStyles[index % thumbTackStyles.length];
 
@@ -145,11 +136,11 @@ export default function ResourcesGrid({
                     className={`relative bg-white p-8 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 ${colorSet.border} ${colorSet.hover} h-full flex flex-col`}
                     style={{
                       borderRadius,
-                      borderStyle: "solid",
+                      borderStyle: 'solid',
                     }}
                   >
                     {/* Thumb tack */}
-                    {thumbTack.type === "round" && (
+                    {thumbTack.type === 'round' && (
                       <div
                         className={`absolute -top-2 ${thumbTack.position} h-4 w-4 transform`}
                       >
@@ -159,16 +150,16 @@ export default function ResourcesGrid({
                         <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
                       </div>
                     )}
-                    {thumbTack.type === "square" && (
+                    {thumbTack.type === 'square' && (
                       <div
                         className={`absolute -top-1.5 ${thumbTack.position} h-3 w-3 rotate-45 transform ${colorSet.tack} shadow-md`}
                       ></div>
                     )}
-                    {thumbTack.type === "triangle" && (
+                    {thumbTack.type === 'triangle' && (
                       <div className={`absolute -top-2 ${thumbTack.position}`}>
                         <div
                           className={`h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-${
-                            colorSet.tack.split("-")[1]
+                            colorSet.tack.split('-')[1]
                           }-400 shadow-sm`}
                         ></div>
                       </div>
@@ -190,16 +181,11 @@ export default function ResourcesGrid({
                               <span
                                 className={`px-3 py-1.5 ${colorSet.tag} text-white text-xs font-quicksand font-semibold shadow-md`}
                                 style={{
-                                  borderRadius: "12px 16px 10px 14px",
-                                  textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                                  borderRadius: '12px 16px 10px 14px',
+                                  textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                                 }}
                               >
-                                {typeof resource.tags[0] === "string"
-                                  ? resource.tags[0]
-                                  : resource.tags[0] &&
-                                    "name" in resource.tags[0]
-                                  ? resource.tags[0].name
-                                  : "Tag"}
+                                {resource.tags[0]}
                               </span>
                             </div>
                           )}
@@ -208,7 +194,7 @@ export default function ResourcesGrid({
 
                       <h2
                         className="text-xl font-quicksand font-bold mb-4 text-gray-800 group-hover:text-blue-500 transition-colors duration-200 leading-tight"
-                        style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.05)" }}
+                        style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.05)' }}
                       >
                         {resource.title}
                       </h2>
@@ -221,7 +207,7 @@ export default function ResourcesGrid({
                         <div className="flex items-center text-sm text-gray-500 font-nunito">
                           <Clock className="w-4 h-4 mr-2 text-gray-400" />
                           <span>
-                            {resource.date}{" "}
+                            {resource.date}{' '}
                             {resource.readingTime &&
                               `• ${resource.readingTime}`}
                           </span>
@@ -253,7 +239,7 @@ export default function ResourcesGrid({
                 >
                   <Button
                     className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderRadius: "12px 14px 12px 16px" }}
+                    style={{ borderRadius: '12px 14px 12px 16px' }}
                   >
                     <ChevronLeft className="h-4 w-4 mr-2" />
                     Previous
@@ -263,7 +249,7 @@ export default function ResourcesGrid({
                 <Button
                   disabled
                   className="h-12 px-8 bg-gray-200 text-gray-400 font-quicksand font-semibold cursor-not-allowed"
-                  style={{ borderRadius: "12px 14px 12px 16px" }}
+                  style={{ borderRadius: '12px 14px 12px 16px' }}
                 >
                   <ChevronLeft className="h-4 w-4 mr-2" />
                   Previous
@@ -273,7 +259,7 @@ export default function ResourcesGrid({
               {/* Page Numbers */}
               <div className="flex items-center gap-3 mx-6">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (page) => {
+                  page => {
                     // For many pages, show a limited range
                     if (totalPages > 7) {
                       // Always show first, last, current, and pages adjacent to current
@@ -328,7 +314,7 @@ export default function ResourcesGrid({
                 >
                   <Button
                     className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderRadius: "12px 14px 12px 16px" }}
+                    style={{ borderRadius: '12px 14px 12px 16px' }}
                   >
                     Next
                     <ChevronRight className="h-4 w-4 ml-2" />
@@ -338,7 +324,7 @@ export default function ResourcesGrid({
                 <Button
                   disabled
                   className="h-12 px-8 bg-gray-200 text-gray-400 font-quicksand font-semibold cursor-not-allowed"
-                  style={{ borderRadius: "12px 14px 12px 16px" }}
+                  style={{ borderRadius: '12px 14px 12px 16px' }}
                 >
                   Next
                   <ChevronRight className="h-4 w-4 ml-2" />
@@ -366,7 +352,7 @@ export default function ResourcesGrid({
               <Target className="w-8 h-8 text-green-500" />
               <h2
                 className="text-4xl md:text-5xl font-quicksand font-bold text-gray-800"
-                style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.1)" }}
+                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}
               >
                 Featured <span className="text-green-500">Resources</span>
               </h2>
@@ -379,8 +365,8 @@ export default function ResourcesGrid({
           <div
             className="max-w-5xl mx-auto bg-white p-10 shadow-2xl border-2 border-green-200 relative transition-all duration-300 hover:shadow-3xl hover:-translate-y-1"
             style={{
-              borderRadius: "28px 35px 22px 38px",
-              borderStyle: "solid",
+              borderRadius: '28px 35px 22px 38px',
+              borderStyle: 'solid',
             }}
           >
             {/* Thumb tack for featured section */}
@@ -390,12 +376,12 @@ export default function ResourcesGrid({
             </div>
 
             <div className="pt-6 space-y-6">
-              {resources.slice(0, 3).map((resource) => (
+              {resources.slice(0, 3).map(resource => (
                 <Link
                   key={`featured-${resource.slug}`}
                   href={`/resources/${resource.slug}`}
                   className="block p-6 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 transition-all duration-300 group border border-transparent hover:border-green-200"
-                  style={{ borderRadius: "16px 20px 14px 18px" }}
+                  style={{ borderRadius: '16px 20px 14px 18px' }}
                 >
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
@@ -406,7 +392,7 @@ export default function ResourcesGrid({
                     <div className="flex-1">
                       <h3
                         className="text-xl font-quicksand font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors leading-tight"
-                        style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.05)" }}
+                        style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.05)' }}
                       >
                         {resource.title}
                       </h3>
@@ -416,7 +402,7 @@ export default function ResourcesGrid({
                       <div className="flex items-center mt-3 text-sm text-gray-500 font-nunito">
                         <Clock className="w-4 h-4 mr-2 text-gray-400" />
                         <span>
-                          {resource.date}{" "}
+                          {resource.date}{' '}
                           {resource.readingTime && `• ${resource.readingTime}`}
                         </span>
                       </div>
@@ -436,7 +422,7 @@ export default function ResourcesGrid({
               <Link href="/resources">
                 <Button
                   className="h-12 px-8 bg-green-400 hover:bg-green-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ borderRadius: "14px 18px 12px 16px" }}
+                  style={{ borderRadius: '14px 18px 12px 16px' }}
                 >
                   <BookOpen className="w-5 h-5 mr-2" />
                   View All Resources
