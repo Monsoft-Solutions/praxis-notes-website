@@ -5,7 +5,29 @@ import {
   FileText,
   BarChart3,
   Activity,
-} from "lucide-react";
+} from 'lucide-react';
+
+// Static color mapping to prevent Tailwind purging
+const colorClasses = {
+  green: {
+    border: 'border-green-200',
+    background: 'bg-green-400',
+    backgroundLight: 'bg-green-100',
+    text: 'text-green-600',
+  },
+  blue: {
+    border: 'border-blue-200',
+    background: 'bg-blue-400',
+    backgroundLight: 'bg-blue-100',
+    text: 'text-blue-600',
+  },
+  orange: {
+    border: 'border-orange-200',
+    background: 'bg-orange-400',
+    backgroundLight: 'bg-orange-100',
+    text: 'text-orange-600',
+  },
+} as const;
 
 export default function AdvancedReportingSection() {
   return (
@@ -18,14 +40,14 @@ export default function AdvancedReportingSection() {
         {/* Subtle geometric shapes */}
         <div
           className="absolute left-24 top-40 h-14 w-14 rounded-full border-2 border-green-200 opacity-25 hidden lg:block"
-          style={{ transform: "rotate(0.1deg)" }}
+          style={{ transform: 'rotate(0.1deg)' }}
         ></div>
 
         <div
           className="absolute right-20 bottom-32 h-10 w-10 border-2 border-blue-200 opacity-30 hidden lg:block"
           style={{
-            transform: "rotate(-0.15deg)",
-            borderRadius: "14px 18px 12px 16px",
+            transform: 'rotate(-0.15deg)',
+            borderRadius: '14px 18px 12px 16px',
           }}
         ></div>
 
@@ -40,7 +62,7 @@ export default function AdvancedReportingSection() {
           {/* Badge */}
           <div
             className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-green-200 mb-8"
-            style={{ borderRadius: "20px 26px 18px 30px" }}
+            style={{ borderRadius: '20px 26px 18px 30px' }}
           >
             {/* Thumb tack */}
             <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
@@ -71,55 +93,55 @@ export default function AdvancedReportingSection() {
             {[
               {
                 icon: TrendingUp,
-                title: "Behavior Tracking & Visualization",
+                title: 'Behavior Tracking & Visualization',
                 description:
-                  "Generate charts and graphs showing behavior frequency, duration, and intensity across sessions.",
-                color: "green",
+                  'Generate charts and graphs showing behavior frequency, duration, and intensity across sessions.',
+                color: 'green' as const,
               },
               {
                 icon: Target,
-                title: "Goal Progress Monitoring",
+                title: 'Goal Progress Monitoring',
                 description:
-                  "Track client progress toward goals with visual indicators and milestone tracking.",
-                color: "blue",
+                  'Track client progress toward goals with visual indicators and milestone tracking.',
+                color: 'blue' as const,
               },
               {
                 icon: LineChart,
-                title: "Intervention Effectiveness Analysis",
+                title: 'Intervention Effectiveness Analysis',
                 description:
-                  "Compare intervention strategies with data-driven insights to identify the most effective approaches.",
-                color: "green",
+                  'Compare intervention strategies with data-driven insights to identify the most effective approaches.',
+                color: 'green' as const,
               },
               {
                 icon: FileText,
-                title: "Custom Report Generation",
+                title: 'Custom Report Generation',
                 description:
-                  "Create professional reports for stakeholders, parents, schools, and insurance providers.",
-                color: "orange",
+                  'Create professional reports for stakeholders, parents, schools, and insurance providers.',
+                color: 'orange' as const,
               },
             ].map((feature, index) => (
               <div
                 key={index}
-                className={`relative bg-white p-6 shadow-xl border-2 border-${feature.color}-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}
+                className={`relative bg-white p-6 shadow-xl border-2 ${colorClasses[feature.color].border} transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}
                 style={{
                   borderRadius:
                     index === 0
-                      ? "24px 20px 28px 16px"
+                      ? '24px 20px 28px 16px'
                       : index === 1
-                      ? "20px 28px 16px 24px"
-                      : index === 2
-                      ? "28px 16px 24px 20px"
-                      : "16px 24px 20px 28px",
+                        ? '20px 28px 16px 24px'
+                        : index === 2
+                          ? '28px 16px 24px 20px'
+                          : '16px 24px 20px 28px',
                 }}
               >
                 {/* Thumb tack */}
                 <div
                   className={`absolute -top-2 ${
-                    index % 2 === 0 ? "left-8" : "right-8"
+                    index % 2 === 0 ? 'left-8' : 'right-8'
                   }`}
                 >
                   <div
-                    className={`h-4 w-4 rounded-full bg-${feature.color}-400 shadow-sm`}
+                    className={`h-4 w-4 rounded-full ${colorClasses[feature.color].background} shadow-sm`}
                   ></div>
                   <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
                 </div>
@@ -127,11 +149,11 @@ export default function AdvancedReportingSection() {
                 <div className="pt-4 flex items-start space-x-4">
                   {/* Icon */}
                   <div
-                    className={`bg-${feature.color}-100 p-3 rounded-xl flex-shrink-0`}
-                    style={{ borderRadius: "14px 18px 12px 16px" }}
+                    className={`${colorClasses[feature.color].backgroundLight} p-3 rounded-xl flex-shrink-0`}
+                    style={{ borderRadius: '14px 18px 12px 16px' }}
                   >
                     <feature.icon
-                      className={`w-7 h-7 text-${feature.color}-600`}
+                      className={`w-7 h-7 ${colorClasses[feature.color].text}`}
                     />
                   </div>
 
@@ -154,7 +176,7 @@ export default function AdvancedReportingSection() {
             {/* Main dashboard container */}
             <div
               className="relative bg-white p-6 shadow-2xl border-2 border-green-200"
-              style={{ borderRadius: "32px 28px 36px 24px" }}
+              style={{ borderRadius: '32px 28px 36px 24px' }}
             >
               {/* Thumb tack */}
               <div className="absolute -top-2 right-16 h-4 w-4 -translate-x-1/2 transform">
@@ -164,7 +186,7 @@ export default function AdvancedReportingSection() {
 
               <div
                 className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center overflow-hidden"
-                style={{ borderRadius: "24px 20px 28px 16px" }}
+                style={{ borderRadius: '24px 20px 28px 16px' }}
               >
                 {/* Dashboard mockup content */}
                 <div className="text-center space-y-6">
@@ -180,23 +202,23 @@ export default function AdvancedReportingSection() {
                   <div className="flex justify-center space-x-2 mt-6">
                     <div
                       className="w-3 h-12 bg-green-300 rounded-t"
-                      style={{ borderRadius: "4px 6px 0 0" }}
+                      style={{ borderRadius: '4px 6px 0 0' }}
                     ></div>
                     <div
                       className="w-3 h-8 bg-blue-300 rounded-t"
-                      style={{ borderRadius: "4px 6px 0 0" }}
+                      style={{ borderRadius: '4px 6px 0 0' }}
                     ></div>
                     <div
                       className="w-3 h-16 bg-green-400 rounded-t"
-                      style={{ borderRadius: "4px 6px 0 0" }}
+                      style={{ borderRadius: '4px 6px 0 0' }}
                     ></div>
                     <div
                       className="w-3 h-6 bg-orange-300 rounded-t"
-                      style={{ borderRadius: "4px 6px 0 0" }}
+                      style={{ borderRadius: '4px 6px 0 0' }}
                     ></div>
                     <div
                       className="w-3 h-10 bg-blue-400 rounded-t"
-                      style={{ borderRadius: "4px 6px 0 0" }}
+                      style={{ borderRadius: '4px 6px 0 0' }}
                     ></div>
                   </div>
                 </div>
@@ -205,7 +227,7 @@ export default function AdvancedReportingSection() {
                 <div className="absolute bottom-4 left-4">
                   <div
                     className="bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md border border-green-200"
-                    style={{ borderRadius: "12px 16px 10px 14px" }}
+                    style={{ borderRadius: '12px 16px 10px 14px' }}
                   >
                     <div className="flex items-center gap-2">
                       <Activity className="w-4 h-4 text-green-500" />
@@ -222,8 +244,8 @@ export default function AdvancedReportingSection() {
             <div
               className="absolute -left-4 top-20 bg-blue-100 border-2 border-blue-200 p-3 shadow-lg hidden lg:block"
               style={{
-                borderRadius: "16px 20px 14px 18px",
-                transform: "rotate(-1.5deg)",
+                borderRadius: '16px 20px 14px 18px',
+                transform: 'rotate(-1.5deg)',
               }}
             >
               <div className="text-center">
@@ -237,8 +259,8 @@ export default function AdvancedReportingSection() {
             <div
               className="absolute -right-6 bottom-16 bg-orange-100 border-2 border-orange-200 p-3 shadow-lg hidden lg:block"
               style={{
-                borderRadius: "14px 18px 12px 16px",
-                transform: "rotate(2deg)",
+                borderRadius: '14px 18px 12px 16px',
+                transform: 'rotate(2deg)',
               }}
             >
               <div className="text-center">
@@ -255,7 +277,7 @@ export default function AdvancedReportingSection() {
         <div className="text-center mt-20">
           <div
             className="relative inline-flex items-center px-6 py-4 bg-white shadow-lg border-2 border-blue-200"
-            style={{ borderRadius: "20px 26px 18px 30px" }}
+            style={{ borderRadius: '20px 26px 18px 30px' }}
           >
             {/* Thumb tack */}
             <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm"></div>

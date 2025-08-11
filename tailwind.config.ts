@@ -1,4 +1,3 @@
-import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import typography from '@tailwindcss/typography';
 
@@ -7,6 +6,33 @@ const config = {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  safelist: [
+    // Dynamic color classes using regex patterns to prevent PurgeCSS from removing them
+    {
+      pattern:
+        /^(border|bg|text)-(blue|green|orange|yellow|purple|amber)-(50|100|200|300|400|500|600)$/,
+      variants: ['hover', 'focus', 'active'],
+    },
+    // Additional gradient patterns
+    {
+      pattern:
+        /^(from|via|to)-(blue|green|orange|yellow|purple|amber)-(50|100|200|300|400|500|600)$/,
+    },
+    // Ring colors for focus states
+    {
+      pattern:
+        /^ring-(blue|green|orange|yellow|purple|amber)-(200|300|400|500)$/,
+    },
+    // Specific gray utility classes
+    'bg-gray-50',
+    'bg-gray-100',
+    'bg-gray-200',
+    'text-gray-600',
+    'text-gray-700',
+    'text-gray-800',
+    'border-gray-200',
+    'border-gray-300',
   ],
   theme: {
     container: {
@@ -236,6 +262,6 @@ const config = {
       addUtilities(handDrawnUtilities);
     }),
   ],
-} satisfies Config;
+};
 
 export default config;
