@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   ArrowRight,
   ChevronLeft,
@@ -22,9 +25,11 @@ interface ResourcesGridProps {
 function PaginationNumber({
   page,
   currentPage,
+  onPageChange,
 }: {
   page: number;
   currentPage: number;
+  onPageChange: (page: number) => void;
 }) {
   const isActive = page === currentPage;
 
@@ -40,14 +45,13 @@ function PaginationNumber({
   }
 
   return (
-    <Link href={`/resources?page=${page}`}>
-      <Button
-        className="w-10 h-10 p-0 bg-white border-2 border-gray-200 text-gray-600 hover:border-blue-300 hover:text-blue-500 hover:shadow-md font-quicksand font-semibold transition-all duration-200"
-        style={{ borderRadius: '10px 12px 8px 14px' }}
-      >
-        {page}
-      </Button>
-    </Link>
+    <Button
+      onClick={() => onPageChange(page)}
+      className="w-10 h-10 p-0 bg-white border-2 border-gray-200 text-gray-600 hover:border-blue-300 hover:text-blue-500 hover:shadow-md font-quicksand font-semibold transition-all duration-200"
+      style={{ borderRadius: '10px 12px 8px 14px' }}
+    >
+      {page}
+    </Button>
   );
 }
 
@@ -56,6 +60,11 @@ export default function ResourcesGrid({
   currentPage,
   totalPages,
 }: ResourcesGridProps) {
+  const router = useRouter();
+
+  const handlePageChange = (page: number) => {
+    router.replace(`/resources?page=${page}`, { scroll: false });
+  };
   return (
     <>
       {/* Resources grid section */}
@@ -83,24 +92,28 @@ export default function ResourcesGrid({
                   border: 'border-blue-200',
                   tag: 'bg-blue-400',
                   tack: 'bg-blue-400',
+                  tri: 'border-b-blue-400',
                   hover: 'group-hover:border-blue-300',
                 },
                 {
                   border: 'border-green-200',
                   tag: 'bg-green-400',
                   tack: 'bg-green-400',
+                  tri: 'border-b-green-400',
                   hover: 'group-hover:border-green-300',
                 },
                 {
                   border: 'border-orange-200',
                   tag: 'bg-orange-400',
                   tack: 'bg-orange-400',
+                  tri: 'border-b-orange-400',
                   hover: 'group-hover:border-orange-300',
                 },
                 {
                   border: 'border-yellow-200',
                   tag: 'bg-yellow-400',
                   tack: 'bg-yellow-400',
+                  tri: 'border-b-yellow-400',
                   hover: 'group-hover:border-yellow-300',
                 },
               ];
@@ -158,9 +171,7 @@ export default function ResourcesGrid({
                     {thumbTack.type === 'triangle' && (
                       <div className={`absolute -top-2 ${thumbTack.position}`}>
                         <div
-                          className={`h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-${
-                            colorSet.tack.split('-')[1]
-                          }-400 shadow-sm`}
+                          className={`h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent ${colorSet.tri} shadow-sm`}
                         ></div>
                       </div>
                     )}
@@ -233,18 +244,15 @@ export default function ResourcesGrid({
             <div className="mt-20 flex justify-center items-center gap-4">
               {/* Previous Page Button */}
               {currentPage > 1 ? (
-                <Link
-                  href={`/resources?page=${currentPage - 1}`}
+                <Button
+                  onClick={() => handlePageChange(currentPage - 1)}
                   aria-label="Previous page"
+                  className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                  style={{ borderRadius: '12px 14px 12px 16px' }}
                 >
-                  <Button
-                    className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderRadius: '12px 14px 12px 16px' }}
-                  >
-                    <ChevronLeft className="h-4 w-4 mr-2" />
-                    Previous
-                  </Button>
-                </Link>
+                  <ChevronLeft className="h-4 w-4 mr-2" />
+                  Previous
+                </Button>
               ) : (
                 <Button
                   disabled
@@ -273,6 +281,7 @@ export default function ResourcesGrid({
                             key={page}
                             page={page}
                             currentPage={currentPage}
+                            onPageChange={handlePageChange}
                           />
                         );
                       }
@@ -300,6 +309,7 @@ export default function ResourcesGrid({
                         key={page}
                         page={page}
                         currentPage={currentPage}
+                        onPageChange={handlePageChange}
                       />
                     );
                   }
@@ -308,18 +318,15 @@ export default function ResourcesGrid({
 
               {/* Next Page Button */}
               {currentPage < totalPages ? (
-                <Link
-                  href={`/resources?page=${currentPage + 1}`}
+                <Button
+                  onClick={() => handlePageChange(currentPage + 1)}
                   aria-label="Next page"
+                  className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                  style={{ borderRadius: '12px 14px 12px 16px' }}
                 >
-                  <Button
-                    className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderRadius: '12px 14px 12px 16px' }}
-                  >
-                    Next
-                    <ChevronRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </Link>
+                  Next
+                  <ChevronRight className="h-4 w-4 ml-2" />
+                </Button>
               ) : (
                 <Button
                   disabled
