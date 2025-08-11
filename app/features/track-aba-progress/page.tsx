@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from 'next';
+import Link from 'next/link';
 import {
   ChevronLeft,
   CheckCircle,
@@ -19,11 +19,11 @@ import {
   Timer,
   Activity,
   Zap,
-} from "lucide-react";
-import FeaturesCTA from "website/components/sections/features-shared-cta";
+} from 'lucide-react';
+import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: "Track ABA Progress | Praxis Notes",
+  title: 'Track ABA Progress | Praxis Notes',
   description:
     "Monitor client progress, track behavioral trends, and generate comprehensive reports for ABA therapy with Praxis Notes's powerful analytics tools.",
 };
@@ -40,13 +40,13 @@ export default function TrackProgressPage() {
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute left-24 top-32 h-14 w-14 rounded-full border-2 border-green-200 opacity-25 hidden lg:block"
-            style={{ transform: "rotate(0.1deg)" }}
+            style={{ transform: 'rotate(0.1deg)' }}
           ></div>
           <div
             className="absolute right-16 top-40 h-10 w-10 border-2 border-teal-200 opacity-30 hidden lg:block"
             style={{
-              transform: "rotate(-0.15deg)",
-              borderRadius: "14px 18px 12px 20px",
+              transform: 'rotate(-0.15deg)',
+              borderRadius: '14px 18px 12px 20px',
             }}
           ></div>
           <div className="absolute right-1/3 top-1/2 h-4 w-4 rounded-full bg-emerald-300 opacity-35 hidden lg:block"></div>
@@ -68,7 +68,7 @@ export default function TrackProgressPage() {
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-green-200"
-                style={{ borderRadius: "20px 26px 18px 30px" }}
+                style={{ borderRadius: '20px 26px 18px 30px' }}
               >
                 <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 transform bg-teal-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-green-600 pt-1">
@@ -98,21 +98,21 @@ export default function TrackProgressPage() {
                 {[
                   {
                     icon: TrendingUp,
-                    number: "95%",
-                    label: "Goal Success",
-                    color: "green",
+                    number: '95%',
+                    label: 'Goal Success',
+                    color: 'green',
                   },
                   {
                     icon: Timer,
-                    number: "30sec",
-                    label: "Report Gen",
-                    color: "teal",
+                    number: '30sec',
+                    label: 'Report Gen',
+                    color: 'teal',
                   },
                   {
                     icon: BarChart3,
-                    number: "50+",
-                    label: "Metrics",
-                    color: "emerald",
+                    number: '50+',
+                    label: 'Metrics',
+                    color: 'emerald',
                   },
                 ].map((stat, index) => (
                   <div
@@ -121,19 +121,19 @@ export default function TrackProgressPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "16px 20px 14px 22px"
+                          ? '16px 20px 14px 22px'
                           : index === 1
-                          ? "18px 14px 20px 16px"
-                          : "20px 16px 18px 24px",
+                            ? '18px 14px 20px 16px'
+                            : '20px 16px 18px 24px',
                     }}
                   >
                     <div
                       className={`absolute -top-1 ${
                         index === 0
-                          ? "left-1/2 -translate-x-1/2"
+                          ? 'left-1/2 -translate-x-1/2'
                           : index === 1
-                          ? "right-3"
-                          : "left-3"
+                            ? 'right-3'
+                            : 'left-3'
                       }`}
                     >
                       <div
@@ -164,24 +164,20 @@ export default function TrackProgressPage() {
                   href="https://app.praxisnotes.com?utm_source=website&utm_medium=cta&utm_campaign=track_progress_page"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-12 px-8 bg-green-400 hover:bg-green-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '16px 20px 14px 22px' }}
                 >
-                  <button
-                    className="h-12 px-8 bg-green-400 hover:bg-green-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "16px 20px 14px 22px" }}
-                  >
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    Start Tracking Progress
-                  </button>
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Start Tracking Progress
                 </Link>
 
-                <Link href="#how-it-works">
-                  <button
-                    className="h-12 px-8 border-2 border-teal-300 text-teal-600 hover:bg-teal-50 font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "14px 18px 12px 20px" }}
-                  >
-                    See How It Works
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
+                <Link
+                  href="#how-it-works"
+                  className="inline-flex items-center justify-center h-12 px-8 border-2 border-teal-300 text-teal-600 hover:bg-teal-50 font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '14px 18px 12px 20px' }}
+                >
+                  See How It Works
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -190,7 +186,7 @@ export default function TrackProgressPage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-green-200"
-                style={{ borderRadius: "32px 28px 36px 24px" }}
+                style={{ borderRadius: '32px 28px 36px 24px' }}
               >
                 <div className="absolute -top-2 left-16 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-green-400 shadow-sm"></div>
@@ -199,7 +195,7 @@ export default function TrackProgressPage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-green-50 to-teal-50 overflow-hidden p-6"
-                  style={{ borderRadius: "24px 20px 28px 16px" }}
+                  style={{ borderRadius: '24px 20px 28px 16px' }}
                 >
                   {/* Progress Dashboard Interface Mockup */}
                   <div className="space-y-4">
@@ -222,7 +218,7 @@ export default function TrackProgressPage() {
                         </span>
                         <span
                           className="text-xs text-green-600 bg-green-100 px-2 py-0.5 rounded"
-                          style={{ borderRadius: "6px 8px 4px 10px" }}
+                          style={{ borderRadius: '6px 8px 4px 10px' }}
                         >
                           -25% this month
                         </span>
@@ -231,7 +227,7 @@ export default function TrackProgressPage() {
                       {/* Chart bars */}
                       <div
                         className="h-16 w-full bg-white rounded flex items-end p-2"
-                        style={{ borderRadius: "8px 12px 6px 10px" }}
+                        style={{ borderRadius: '8px 12px 6px 10px' }}
                       >
                         {[40, 35, 45, 30, 25, 35, 20, 30, 25, 15].map(
                           (height, i) => (
@@ -243,7 +239,7 @@ export default function TrackProgressPage() {
                                 className="bg-green-400 rounded-t"
                                 style={{
                                   height: `${height}%`,
-                                  borderRadius: "2px 4px 0 0",
+                                  borderRadius: '2px 4px 0 0',
                                 }}
                               ></div>
                             </div>
@@ -260,19 +256,19 @@ export default function TrackProgressPage() {
                       <div className="space-y-2">
                         {[
                           {
-                            label: "Eye Contact",
+                            label: 'Eye Contact',
                             progress: 85,
-                            color: "green",
+                            color: 'green',
                           },
                           {
-                            label: "Following Instructions",
+                            label: 'Following Instructions',
                             progress: 70,
-                            color: "teal",
+                            color: 'teal',
                           },
                           {
-                            label: "Social Interaction",
+                            label: 'Social Interaction',
                             progress: 60,
-                            color: "emerald",
+                            color: 'emerald',
                           },
                         ].map((goal, i) => (
                           <div key={i} className="space-y-1">
@@ -302,7 +298,7 @@ export default function TrackProgressPage() {
                   <div className="absolute bottom-4 right-4">
                     <div
                       className="bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md border border-green-200"
-                      style={{ borderRadius: "12px 16px 10px 14px" }}
+                      style={{ borderRadius: '12px 16px 10px 14px' }}
                     >
                       <div className="flex items-center gap-2">
                         <Activity className="w-4 h-4 text-green-500" />
@@ -319,8 +315,8 @@ export default function TrackProgressPage() {
               <div
                 className="absolute -left-4 top-24 bg-teal-100 border-2 border-teal-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "16px 20px 14px 18px",
-                  transform: "rotate(-1.5deg)",
+                  borderRadius: '16px 20px 14px 18px',
+                  transform: 'rotate(-1.5deg)',
                 }}
               >
                 <div className="text-center">
@@ -334,8 +330,8 @@ export default function TrackProgressPage() {
               <div
                 className="absolute -right-6 bottom-20 bg-emerald-100 border-2 border-emerald-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "14px 18px 12px 16px",
-                  transform: "rotate(2deg)",
+                  borderRadius: '14px 18px 12px 16px',
+                  transform: 'rotate(2deg)',
                 }}
               >
                 <div className="text-center">
@@ -359,7 +355,7 @@ export default function TrackProgressPage() {
             <div className="space-y-8">
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-teal-200"
-                style={{ borderRadius: "18px 24px 16px 28px" }}
+                style={{ borderRadius: '18px 24px 16px 28px' }}
               >
                 <div className="absolute -top-1.5 left-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-teal-600 pt-1">
@@ -383,22 +379,22 @@ export default function TrackProgressPage() {
               <div className="space-y-6">
                 {[
                   {
-                    title: "Visualize Behavioral Trends",
+                    title: 'Visualize Behavioral Trends',
                     description:
-                      "Track frequency, duration, and intensity of behaviors across sessions with interactive charts.",
-                    color: "teal",
+                      'Track frequency, duration, and intensity of behaviors across sessions with interactive charts.',
+                    color: 'teal',
                   },
                   {
-                    title: "Monitor Intervention Effectiveness",
+                    title: 'Monitor Intervention Effectiveness',
                     description:
-                      "Compare strategies to identify the most successful approaches for each client.",
-                    color: "green",
+                      'Compare strategies to identify the most successful approaches for each client.',
+                    color: 'green',
                   },
                   {
-                    title: "Generate Stakeholder Reports",
+                    title: 'Generate Stakeholder Reports',
                     description:
-                      "Create professional reports for parents, schools, and insurance providers.",
-                    color: "emerald",
+                      'Create professional reports for parents, schools, and insurance providers.',
+                    color: 'emerald',
                   },
                 ].map((item, index) => (
                   <div
@@ -407,15 +403,15 @@ export default function TrackProgressPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "20px 16px 24px 12px"
+                          ? '20px 16px 24px 12px'
                           : index === 1
-                          ? "16px 24px 12px 20px"
-                          : "24px 12px 20px 16px",
+                            ? '16px 24px 12px 20px'
+                            : '24px 12px 20px 16px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div
@@ -427,7 +423,7 @@ export default function TrackProgressPage() {
                     <div className="pt-2 flex items-start space-x-4">
                       <div
                         className={`bg-${item.color}-100 p-2 rounded-lg flex-shrink-0`}
-                        style={{ borderRadius: "8px 12px 6px 10px" }}
+                        style={{ borderRadius: '8px 12px 6px 10px' }}
                       >
                         <CheckCircle
                           className={`w-5 h-5 text-${item.color}-600`}
@@ -451,7 +447,7 @@ export default function TrackProgressPage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-teal-200"
-                style={{ borderRadius: "28px 32px 24px 36px" }}
+                style={{ borderRadius: '28px 32px 24px 36px' }}
               >
                 <div className="absolute -top-2 right-12 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-teal-400 shadow-sm"></div>
@@ -460,7 +456,7 @@ export default function TrackProgressPage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-teal-50 to-green-50 p-6"
-                  style={{ borderRadius: "20px 24px 16px 28px" }}
+                  style={{ borderRadius: '20px 24px 16px 28px' }}
                 >
                   <div className="text-center space-y-6">
                     <div className="text-5xl mb-4">📊</div>
@@ -473,9 +469,9 @@ export default function TrackProgressPage() {
                       {/* Progress circles */}
                       <div className="flex justify-center space-x-4">
                         {[
-                          { label: "Goals", value: 85, color: "green" },
-                          { label: "Sessions", value: 92, color: "teal" },
-                          { label: "Outcomes", value: 78, color: "emerald" },
+                          { label: 'Goals', value: 85, color: 'green' },
+                          { label: 'Sessions', value: 92, color: 'teal' },
+                          { label: 'Outcomes', value: 78, color: 'emerald' },
                         ].map((metric, i) => (
                           <div key={i} className="text-center">
                             <div
@@ -498,7 +494,7 @@ export default function TrackProgressPage() {
                       <div className="mt-6">
                         <div
                           className="h-16 bg-white rounded border-2 border-gray-200 p-2"
-                          style={{ borderRadius: "8px 12px 6px 10px" }}
+                          style={{ borderRadius: '8px 12px 6px 10px' }}
                         >
                           <svg className="w-full h-full" viewBox="0 0 200 40">
                             <polyline
@@ -530,7 +526,7 @@ export default function TrackProgressPage() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div
               className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-emerald-200 mb-8"
-              style={{ borderRadius: "20px 26px 18px 30px" }}
+              style={{ borderRadius: '20px 26px 18px 30px' }}
             >
               <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-teal-400 shadow-sm"></div>
               <span className="text-sm font-quicksand font-semibold text-emerald-600 pt-1">
@@ -540,7 +536,7 @@ export default function TrackProgressPage() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-quicksand font-bold mb-6 text-gray-800">
-              Analytics That{" "}
+              Analytics That{' '}
               <span className="text-emerald-500">Drive Results</span>
             </h2>
 
@@ -555,31 +551,31 @@ export default function TrackProgressPage() {
             {[
               {
                 icon: BarChart3,
-                title: "Behavior Tracking",
+                title: 'Behavior Tracking',
                 description:
-                  "Monitor frequency, duration, and intensity of target behaviors across sessions.",
-                color: "green",
+                  'Monitor frequency, duration, and intensity of target behaviors across sessions.',
+                color: 'green',
               },
               {
                 icon: TrendingUp,
-                title: "Goal Progress",
+                title: 'Goal Progress',
                 description:
-                  "Track achievement of treatment objectives with visual progress indicators.",
-                color: "emerald",
+                  'Track achievement of treatment objectives with visual progress indicators.',
+                color: 'emerald',
               },
               {
                 icon: LineChart,
-                title: "Intervention Analysis",
+                title: 'Intervention Analysis',
                 description:
-                  "Compare effectiveness of different strategies to optimize treatment plans.",
-                color: "teal",
+                  'Compare effectiveness of different strategies to optimize treatment plans.',
+                color: 'teal',
               },
               {
                 icon: PieChart,
-                title: "Reporting & Exports",
+                title: 'Reporting & Exports',
                 description:
-                  "Generate professional reports and data exports for stakeholders.",
-                color: "cyan",
+                  'Generate professional reports and data exports for stakeholders.',
+                color: 'cyan',
               },
             ].map((feature, index) => (
               <div
@@ -588,14 +584,14 @@ export default function TrackProgressPage() {
                 style={{
                   borderRadius:
                     index % 2 === 0
-                      ? "22px 18px 26px 14px"
-                      : "18px 26px 14px 22px",
+                      ? '22px 18px 26px 14px'
+                      : '18px 26px 14px 22px',
                 }}
               >
                 {/* Thumb tack */}
                 <div
                   className={`absolute -top-2 ${
-                    index % 2 === 0 ? "left-8" : "right-8"
+                    index % 2 === 0 ? 'left-8' : 'right-8'
                   }`}
                 >
                   <div
@@ -607,7 +603,7 @@ export default function TrackProgressPage() {
                 <div className="pt-4">
                   <div
                     className={`bg-${feature.color}-100 p-3 rounded-xl w-fit mb-4`}
-                    style={{ borderRadius: "14px 18px 12px 16px" }}
+                    style={{ borderRadius: '14px 18px 12px 16px' }}
                   >
                     <feature.icon
                       className={`w-8 h-8 text-${feature.color}-600`}
@@ -638,24 +634,24 @@ export default function TrackProgressPage() {
                 {[
                   {
                     icon: ListFilter,
-                    title: "Customizable Data Views",
+                    title: 'Customizable Data Views',
                     description:
-                      "Filter, sort, and customize visualizations to focus on the metrics that matter most to your clients and practice.",
-                    color: "green",
+                      'Filter, sort, and customize visualizations to focus on the metrics that matter most to your clients and practice.',
+                    color: 'green',
                   },
                   {
                     icon: Users,
-                    title: "Multi-User Collaboration",
+                    title: 'Multi-User Collaboration',
                     description:
-                      "Enable seamless collaboration between RBTs, BCBAs, and other team members with shared data access and role-based permissions.",
-                    color: "teal",
+                      'Enable seamless collaboration between RBTs, BCBAs, and other team members with shared data access and role-based permissions.',
+                    color: 'teal',
                   },
                   {
                     icon: Goal,
-                    title: "Goal Alignment Tracking",
+                    title: 'Goal Alignment Tracking',
                     description:
-                      "Ensure all clinical activities align with treatment goals and track progress toward specific objectives with automated milestone indicators.",
-                    color: "emerald",
+                      'Ensure all clinical activities align with treatment goals and track progress toward specific objectives with automated milestone indicators.',
+                    color: 'emerald',
                   },
                 ].map((feature, index) => (
                   <div
@@ -664,15 +660,15 @@ export default function TrackProgressPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "24px 20px 28px 16px"
+                          ? '24px 20px 28px 16px'
                           : index === 1
-                          ? "20px 28px 16px 24px"
-                          : "28px 16px 24px 20px",
+                            ? '20px 28px 16px 24px'
+                            : '28px 16px 24px 20px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-8" : "right-8"
+                        index % 2 === 0 ? 'left-8' : 'right-8'
                       }`}
                     >
                       <div
@@ -684,7 +680,7 @@ export default function TrackProgressPage() {
                     <div className="pt-4 flex items-start space-x-4">
                       <div
                         className={`bg-${feature.color}-100 p-3 rounded-lg flex-shrink-0`}
-                        style={{ borderRadius: "12px 16px 10px 14px" }}
+                        style={{ borderRadius: '12px 16px 10px 14px' }}
                       >
                         <feature.icon
                           className={`w-6 h-6 text-${feature.color}-600`}
@@ -707,7 +703,7 @@ export default function TrackProgressPage() {
             <div className="space-y-8 order-1 lg:order-2">
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-green-200"
-                style={{ borderRadius: "18px 24px 16px 28px" }}
+                style={{ borderRadius: '18px 24px 16px 28px' }}
               >
                 <div className="absolute -top-1.5 left-10 h-3 w-3 rotate-45 transform bg-emerald-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-green-600 pt-1">
@@ -729,11 +725,11 @@ export default function TrackProgressPage() {
 
               <div className="space-y-4">
                 {[
-                  "Client progress comparisons against research benchmarks",
-                  "Predictive analytics to forecast treatment timelines",
-                  "Automatic identification of skill acquisition patterns",
-                  "Early detection of regression or plateaus",
-                  "Parent-friendly progress summaries and visualizations",
+                  'Client progress comparisons against research benchmarks',
+                  'Predictive analytics to forecast treatment timelines',
+                  'Automatic identification of skill acquisition patterns',
+                  'Early detection of regression or plateaus',
+                  'Parent-friendly progress summaries and visualizations',
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <ArrowRight className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -764,39 +760,39 @@ export default function TrackProgressPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Parent/Caregiver Reports",
+                title: 'Parent/Caregiver Reports',
                 icon: Users,
-                color: "green",
+                color: 'green',
                 items: [
-                  "Visual progress summaries",
-                  "Accessible behavior explanations",
-                  "Home strategy recommendations",
-                  "Goal achievement timelines",
-                  "Milestone celebration highlights",
+                  'Visual progress summaries',
+                  'Accessible behavior explanations',
+                  'Home strategy recommendations',
+                  'Goal achievement timelines',
+                  'Milestone celebration highlights',
                 ],
               },
               {
-                title: "Clinical Team Reports",
+                title: 'Clinical Team Reports',
                 icon: BarChart2,
-                color: "teal",
+                color: 'teal',
                 items: [
-                  "Detailed behavior analysis",
-                  "Intervention effectiveness metrics",
-                  "Session data aggregation",
-                  "Treatment plan alignment",
-                  "Inter-observer agreement stats",
+                  'Detailed behavior analysis',
+                  'Intervention effectiveness metrics',
+                  'Session data aggregation',
+                  'Treatment plan alignment',
+                  'Inter-observer agreement stats',
                 ],
               },
               {
-                title: "Administrative Reports",
+                title: 'Administrative Reports',
                 icon: Share2,
-                color: "cyan",
+                color: 'cyan',
                 items: [
-                  "Insurance documentation",
-                  "Billing support materials",
-                  "Service authorization justification",
-                  "Compliance verification",
-                  "Treatment hour summaries",
+                  'Insurance documentation',
+                  'Billing support materials',
+                  'Service authorization justification',
+                  'Compliance verification',
+                  'Treatment hour summaries',
                 ],
               },
             ].map((reportType, index) => (
@@ -806,20 +802,20 @@ export default function TrackProgressPage() {
                 style={{
                   borderRadius:
                     index === 0
-                      ? "24px 20px 28px 16px"
+                      ? '24px 20px 28px 16px'
                       : index === 1
-                      ? "20px 28px 16px 24px"
-                      : "28px 16px 24px 20px",
+                        ? '20px 28px 16px 24px'
+                        : '28px 16px 24px 20px',
                 }}
               >
                 {/* Thumb tack */}
                 <div
                   className={`absolute -top-2 ${
                     index === 1
-                      ? "left-1/2 -translate-x-1/2"
+                      ? 'left-1/2 -translate-x-1/2'
                       : index === 0
-                      ? "left-8"
-                      : "right-8"
+                        ? 'left-8'
+                        : 'right-8'
                   }`}
                 >
                   <div
@@ -832,7 +828,7 @@ export default function TrackProgressPage() {
                   <div className="flex items-center gap-3 mb-6">
                     <div
                       className={`bg-${reportType.color}-100 p-3 rounded-lg`}
-                      style={{ borderRadius: "10px 14px 8px 12px" }}
+                      style={{ borderRadius: '10px 14px 8px 12px' }}
                     >
                       <reportType.icon
                         className={`w-6 h-6 text-${reportType.color}-600`}

@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from 'next';
+import Link from 'next/link';
 import {
   ChevronLeft,
   Pencil,
@@ -15,13 +15,13 @@ import {
   Brain,
   Target,
   CheckCircle,
-} from "lucide-react";
-import FeaturesCTA from "website/components/sections/features-shared-cta";
+} from 'lucide-react';
+import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: "Create ABA Notes | Praxis Notes",
+  title: 'Create ABA Notes | Praxis Notes',
   description:
-    "Generate detailed ABA session notes in seconds with our AI-powered tools. Save time on documentation and focus more on client care.",
+    'Generate detailed ABA session notes in seconds with our AI-powered tools. Save time on documentation and focus more on client care.',
 };
 
 export default function CreateNotesPage() {
@@ -36,13 +36,13 @@ export default function CreateNotesPage() {
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute left-20 top-32 h-14 w-14 rounded-full border-2 border-blue-200 opacity-20 hidden lg:block"
-            style={{ transform: "rotate(0.1deg)" }}
+            style={{ transform: 'rotate(0.1deg)' }}
           ></div>
           <div
             className="absolute right-24 top-40 h-10 w-10 border-2 border-green-200 opacity-25 hidden lg:block"
             style={{
-              transform: "rotate(-0.15deg)",
-              borderRadius: "14px 18px 12px 20px",
+              transform: 'rotate(-0.15deg)',
+              borderRadius: '14px 18px 12px 20px',
             }}
           ></div>
           <div className="absolute right-1/4 top-1/3 h-3 w-3 rounded-full bg-yellow-300 opacity-40 hidden lg:block"></div>
@@ -64,7 +64,7 @@ export default function CreateNotesPage() {
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-blue-200"
-                style={{ borderRadius: "20px 26px 18px 30px" }}
+                style={{ borderRadius: '20px 26px 18px 30px' }}
               >
                 <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-blue-600 pt-1">
@@ -94,21 +94,21 @@ export default function CreateNotesPage() {
                 {[
                   {
                     icon: Timer,
-                    number: "75%",
-                    label: "Time Saved",
-                    color: "blue",
+                    number: '75%',
+                    label: 'Time Saved',
+                    color: 'blue',
                   },
                   {
                     icon: CheckCircle,
-                    number: "100%",
-                    label: "Compliant",
-                    color: "green",
+                    number: '100%',
+                    label: 'Compliant',
+                    color: 'green',
                   },
                   {
                     icon: FileText,
-                    number: "5",
-                    label: "CPT Codes",
-                    color: "orange",
+                    number: '5',
+                    label: 'CPT Codes',
+                    color: 'orange',
                   },
                 ].map((stat, index) => (
                   <div
@@ -117,19 +117,19 @@ export default function CreateNotesPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "16px 20px 14px 22px"
+                          ? '16px 20px 14px 22px'
                           : index === 1
-                          ? "18px 14px 20px 16px"
-                          : "20px 16px 18px 24px",
+                            ? '18px 14px 20px 16px'
+                            : '20px 16px 18px 24px',
                     }}
                   >
                     <div
                       className={`absolute -top-1 ${
                         index === 0
-                          ? "left-1/2 -translate-x-1/2"
+                          ? 'left-1/2 -translate-x-1/2'
                           : index === 1
-                          ? "right-3"
-                          : "left-3"
+                            ? 'right-3'
+                            : 'left-3'
                       }`}
                     >
                       <div
@@ -156,24 +156,22 @@ export default function CreateNotesPage() {
 
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/pricing">
-                  <button
-                    className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "14px 18px 12px 20px" }}
-                  >
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    Start Free Trial
-                  </button>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '14px 18px 12px 20px' }}
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Start Free Trial
                 </Link>
 
-                <Link href="#how-it-works">
-                  <button
-                    className="h-12 px-8 border-2 border-green-300 text-green-600 hover:bg-green-50 font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "12px 16px 14px 18px" }}
-                  >
-                    Learn How It Works
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
+                <Link
+                  href="#how-it-works"
+                  className="inline-flex items-center justify-center h-12 px-8 border-2 border-green-300 text-green-600 hover:bg-green-50 font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '12px 16px 14px 18px' }}
+                >
+                  Learn How It Works
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -182,7 +180,7 @@ export default function CreateNotesPage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-green-200"
-                style={{ borderRadius: "32px 28px 36px 24px" }}
+                style={{ borderRadius: '32px 28px 36px 24px' }}
               >
                 <div className="absolute -top-2 right-16 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-green-400 shadow-sm"></div>
@@ -191,7 +189,7 @@ export default function CreateNotesPage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden p-6"
-                  style={{ borderRadius: "24px 20px 28px 16px" }}
+                  style={{ borderRadius: '24px 20px 28px 16px' }}
                 >
                   {/* Generator Interface Mockup */}
                   <div className="space-y-4">
@@ -214,7 +212,7 @@ export default function CreateNotesPage() {
                         </div>
                         <div
                           className="h-8 bg-white rounded border-2 border-blue-200"
-                          style={{ borderRadius: "8px 10px 6px 12px" }}
+                          style={{ borderRadius: '8px 10px 6px 12px' }}
                         ></div>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
@@ -222,7 +220,7 @@ export default function CreateNotesPage() {
                           <div className="text-xs text-gray-500 mb-1">Date</div>
                           <div
                             className="h-8 bg-white rounded border-2 border-green-200"
-                            style={{ borderRadius: "6px 12px 8px 10px" }}
+                            style={{ borderRadius: '6px 12px 8px 10px' }}
                           ></div>
                         </div>
                         <div>
@@ -231,7 +229,7 @@ export default function CreateNotesPage() {
                           </div>
                           <div
                             className="h-8 bg-white rounded border-2 border-orange-200"
-                            style={{ borderRadius: "10px 6px 12px 8px" }}
+                            style={{ borderRadius: '10px 6px 12px 8px' }}
                           ></div>
                         </div>
                       </div>
@@ -241,14 +239,14 @@ export default function CreateNotesPage() {
                         </div>
                         <div
                           className="h-16 bg-white rounded border-2 border-purple-200"
-                          style={{ borderRadius: "12px 8px 10px 14px" }}
+                          style={{ borderRadius: '12px 8px 10px 14px' }}
                         ></div>
                       </div>
                     </div>
 
                     <button
                       className="w-full h-10 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold rounded flex items-center justify-center gap-2 mt-4"
-                      style={{ borderRadius: "10px 14px 8px 16px" }}
+                      style={{ borderRadius: '10px 14px 8px 16px' }}
                     >
                       <Zap className="w-4 h-4" />
                       Generate Note
@@ -259,7 +257,7 @@ export default function CreateNotesPage() {
                   <div className="absolute bottom-4 right-4">
                     <div
                       className="bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md border border-green-200"
-                      style={{ borderRadius: "12px 16px 10px 14px" }}
+                      style={{ borderRadius: '12px 16px 10px 14px' }}
                     >
                       <div className="flex items-center gap-2">
                         <Brain className="w-4 h-4 text-blue-500" />
@@ -276,8 +274,8 @@ export default function CreateNotesPage() {
               <div
                 className="absolute -left-4 top-20 bg-blue-100 border-2 border-blue-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "16px 20px 14px 18px",
-                  transform: "rotate(-1.5deg)",
+                  borderRadius: '16px 20px 14px 18px',
+                  transform: 'rotate(-1.5deg)',
                 }}
               >
                 <div className="text-center">
@@ -291,8 +289,8 @@ export default function CreateNotesPage() {
               <div
                 className="absolute -right-6 bottom-16 bg-orange-100 border-2 border-orange-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "14px 18px 12px 16px",
-                  transform: "rotate(2deg)",
+                  borderRadius: '14px 18px 12px 16px',
+                  transform: 'rotate(2deg)',
                 }}
               >
                 <div className="text-center">
@@ -316,7 +314,7 @@ export default function CreateNotesPage() {
             <div className="space-y-8">
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-green-200"
-                style={{ borderRadius: "18px 24px 16px 28px" }}
+                style={{ borderRadius: '18px 24px 16px 28px' }}
               >
                 <div className="absolute -top-1.5 left-8 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-green-600 pt-1">
@@ -340,22 +338,22 @@ export default function CreateNotesPage() {
               <div className="space-y-6">
                 {[
                   {
-                    title: "Supports All ABA CPT Codes",
+                    title: 'Supports All ABA CPT Codes',
                     description:
                       "Generate compliant notes for codes 97153–97158, matching each service type's requirements.",
-                    color: "green",
+                    color: 'green',
                   },
                   {
-                    title: "BCBA & RBT Configurable Templates",
+                    title: 'BCBA & RBT Configurable Templates',
                     description:
                       "Customize templates to match your clinic's style and requirements.",
-                    color: "blue",
+                    color: 'blue',
                   },
                   {
-                    title: "Insurance-Ready Formatting",
+                    title: 'Insurance-Ready Formatting',
                     description:
-                      "Notes are structured to meet billing requirements and reduce claim rejections.",
-                    color: "orange",
+                      'Notes are structured to meet billing requirements and reduce claim rejections.',
+                    color: 'orange',
                   },
                 ].map((item, index) => (
                   <div
@@ -364,15 +362,15 @@ export default function CreateNotesPage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "20px 16px 24px 12px"
+                          ? '20px 16px 24px 12px'
                           : index === 1
-                          ? "16px 24px 12px 20px"
-                          : "24px 12px 20px 16px",
+                            ? '16px 24px 12px 20px'
+                            : '24px 12px 20px 16px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div
@@ -384,7 +382,7 @@ export default function CreateNotesPage() {
                     <div className="pt-2 flex items-start space-x-4">
                       <div
                         className={`bg-${item.color}-100 p-2 rounded-lg flex-shrink-0`}
-                        style={{ borderRadius: "8px 12px 6px 10px" }}
+                        style={{ borderRadius: '8px 12px 6px 10px' }}
                       >
                         <CheckCircle
                           className={`w-5 h-5 text-${item.color}-600`}
@@ -408,7 +406,7 @@ export default function CreateNotesPage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-blue-200"
-                style={{ borderRadius: "28px 32px 24px 36px" }}
+                style={{ borderRadius: '28px 32px 24px 36px' }}
               >
                 <div className="absolute -top-2 left-12 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-blue-400 shadow-sm"></div>
@@ -417,7 +415,7 @@ export default function CreateNotesPage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-green-50 to-blue-50 p-6"
-                  style={{ borderRadius: "20px 24px 16px 28px" }}
+                  style={{ borderRadius: '20px 24px 16px 28px' }}
                 >
                   <div className="text-center space-y-6">
                     <div className="text-5xl mb-4">⏱️</div>
@@ -480,7 +478,7 @@ export default function CreateNotesPage() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div
               className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-purple-200 mb-8"
-              style={{ borderRadius: "20px 26px 18px 30px" }}
+              style={{ borderRadius: '20px 26px 18px 30px' }}
             >
               <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-orange-400 shadow-sm"></div>
               <span className="text-sm font-quicksand font-semibold text-purple-600 pt-1">
@@ -504,27 +502,27 @@ export default function CreateNotesPage() {
             {[
               {
                 icon: Pencil,
-                title: "Enter Session Data",
+                title: 'Enter Session Data',
                 description:
-                  "Quickly input session information using our streamlined forms or record data during your session.",
-                color: "blue",
-                step: "01",
+                  'Quickly input session information using our streamlined forms or record data during your session.',
+                color: 'blue',
+                step: '01',
               },
               {
                 icon: Sparkles,
-                title: "AI Note Generation",
+                title: 'AI Note Generation',
                 description:
-                  "Our advanced AI processes your data and generates a complete, professional note in seconds.",
-                color: "purple",
-                step: "02",
+                  'Our advanced AI processes your data and generates a complete, professional note in seconds.',
+                color: 'purple',
+                step: '02',
               },
               {
                 icon: Save,
-                title: "Review & Finalize",
+                title: 'Review & Finalize',
                 description:
-                  "Make any needed adjustments and save your insurance-ready, compliant documentation.",
-                color: "green",
-                step: "03",
+                  'Make any needed adjustments and save your insurance-ready, compliant documentation.',
+                color: 'green',
+                step: '03',
               },
             ].map((step, index) => (
               <div
@@ -533,10 +531,10 @@ export default function CreateNotesPage() {
                 style={{
                   borderRadius:
                     index === 0
-                      ? "28px 24px 32px 20px"
+                      ? '28px 24px 32px 20px'
                       : index === 1
-                      ? "24px 32px 20px 28px"
-                      : "32px 20px 28px 24px",
+                        ? '24px 32px 20px 28px'
+                        : '32px 20px 28px 24px',
                 }}
               >
                 {/* Thumb tack */}
@@ -561,7 +559,7 @@ export default function CreateNotesPage() {
                 <div className="pt-4">
                   <div
                     className={`bg-${step.color}-100 p-4 rounded-xl w-fit mb-6`}
-                    style={{ borderRadius: "16px 20px 14px 18px" }}
+                    style={{ borderRadius: '16px 20px 14px 18px' }}
                   >
                     <step.icon className={`w-8 h-8 text-${step.color}-600`} />
                   </div>
@@ -598,45 +596,45 @@ export default function CreateNotesPage() {
             {[
               {
                 icon: FileText,
-                title: "Multiple Note Formats",
+                title: 'Multiple Note Formats',
                 description:
-                  "Support for SOAP notes, narrative notes, progress notes, and custom formats.",
-                color: "blue",
+                  'Support for SOAP notes, narrative notes, progress notes, and custom formats.',
+                color: 'blue',
               },
               {
                 icon: Clock,
-                title: "Quick-Entry Forms",
+                title: 'Quick-Entry Forms',
                 description:
-                  "Optimized data entry forms that minimize typing and maximize efficiency.",
-                color: "purple",
+                  'Optimized data entry forms that minimize typing and maximize efficiency.',
+                color: 'purple',
               },
               {
                 icon: User,
-                title: "Client Templates",
+                title: 'Client Templates',
                 description:
-                  "Save client-specific templates to streamline recurring documentation.",
-                color: "green",
+                  'Save client-specific templates to streamline recurring documentation.',
+                color: 'green',
               },
               {
                 icon: Shield,
-                title: "HIPAA Compliant",
+                title: 'HIPAA Compliant',
                 description:
-                  "End-to-end encryption and secure processing of all client information.",
-                color: "red",
+                  'End-to-end encryption and secure processing of all client information.',
+                color: 'red',
               },
               {
                 icon: Brain,
-                title: "Medical Vocabulary",
+                title: 'Medical Vocabulary',
                 description:
-                  "Professional clinical terminology appropriate for medical documentation.",
-                color: "amber",
+                  'Professional clinical terminology appropriate for medical documentation.',
+                color: 'amber',
               },
               {
                 icon: Zap,
-                title: "Smart Suggestions",
+                title: 'Smart Suggestions',
                 description:
-                  "AI-powered recommendations to improve the quality of your documentation.",
-                color: "indigo",
+                  'AI-powered recommendations to improve the quality of your documentation.',
+                color: 'indigo',
               },
             ].map((feature, index) => (
               <div
@@ -645,16 +643,16 @@ export default function CreateNotesPage() {
                 style={{
                   borderRadius:
                     index % 3 === 0
-                      ? "20px 16px 24px 12px"
+                      ? '20px 16px 24px 12px'
                       : index % 3 === 1
-                      ? "16px 24px 12px 20px"
-                      : "24px 12px 20px 16px",
+                        ? '16px 24px 12px 20px'
+                        : '24px 12px 20px 16px',
                 }}
               >
                 {/* Thumb tack */}
                 <div
                   className={`absolute -top-2 ${
-                    index % 2 === 0 ? "left-8" : "right-8"
+                    index % 2 === 0 ? 'left-8' : 'right-8'
                   }`}
                 >
                   <div
@@ -666,7 +664,7 @@ export default function CreateNotesPage() {
                 <div className="pt-4">
                   <div
                     className={`bg-${feature.color}-100 p-3 rounded-xl w-fit mb-4`}
-                    style={{ borderRadius: "12px 16px 10px 14px" }}
+                    style={{ borderRadius: '12px 16px 10px 14px' }}
                   >
                     <feature.icon
                       className={`w-6 h-6 text-${feature.color}-600`}

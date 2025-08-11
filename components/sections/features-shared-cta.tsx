@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowRight, Sparkles, Users, Zap } from "lucide-react";
+import Link from 'next/link';
+import { ArrowRight, Sparkles, Users, Zap } from 'lucide-react';
 
 type FeaturesCTAProps = {
   title?: string;
@@ -7,8 +7,8 @@ type FeaturesCTAProps = {
 };
 
 const FeaturesCTA = ({
-  title = "Ready to Transform Your ABA Documentation?",
-  description = "Join thousands of ABA professionals who have streamlined their workflow and reclaimed time for what matters most.",
+  title = 'Ready to Transform Your ABA Documentation?',
+  description = 'Join thousands of ABA professionals who have streamlined their workflow and reclaimed time for what matters most.',
 }: FeaturesCTAProps) => {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
@@ -19,13 +19,13 @@ const FeaturesCTA = ({
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute left-16 top-20 h-12 w-12 rounded-full border-2 border-blue-300 opacity-30 hidden lg:block"
-          style={{ transform: "rotate(0.2deg)" }}
+          style={{ transform: 'rotate(0.2deg)' }}
         ></div>
         <div
           className="absolute right-20 top-32 h-8 w-8 border-2 border-green-300 opacity-25 hidden lg:block"
           style={{
-            transform: "rotate(-0.1deg)",
-            borderRadius: "12px 16px 10px 18px",
+            transform: 'rotate(-0.1deg)',
+            borderRadius: '12px 16px 10px 18px',
           }}
         ></div>
         <div className="absolute right-1/3 bottom-20 h-3 w-3 rounded-full bg-orange-300 opacity-40 hidden lg:block"></div>
@@ -37,7 +37,7 @@ const FeaturesCTA = ({
           {/* Main CTA Card */}
           <div
             className="relative bg-white p-8 md:p-12 shadow-2xl border-2 border-blue-200"
-            style={{ borderRadius: "32px 28px 36px 24px" }}
+            style={{ borderRadius: '32px 28px 36px 24px' }}
           >
             {/* Thumb tack */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2">
@@ -49,7 +49,7 @@ const FeaturesCTA = ({
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-gradient-to-r from-green-100 to-blue-100 shadow-lg w-fit border-2 border-green-200 mx-auto"
-                style={{ borderRadius: "20px 26px 18px 30px" }}
+                style={{ borderRadius: '20px 26px 18px 30px' }}
               >
                 <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-orange-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-green-600 pt-1">
@@ -73,21 +73,21 @@ const FeaturesCTA = ({
                 {[
                   {
                     icon: Users,
-                    number: "2,500+",
-                    label: "ABA Professionals",
-                    color: "blue",
+                    number: '2,500+',
+                    label: 'ABA Professionals',
+                    color: 'blue',
                   },
                   {
                     icon: Zap,
-                    number: "50,000+",
-                    label: "Notes Generated",
-                    color: "green",
+                    number: '50,000+',
+                    label: 'Notes Generated',
+                    color: 'green',
                   },
                   {
                     icon: ArrowRight,
-                    number: "75%",
-                    label: "Time Saved",
-                    color: "orange",
+                    number: '75%',
+                    label: 'Time Saved',
+                    color: 'orange',
                   },
                 ].map((stat, index) => (
                   <div
@@ -96,15 +96,15 @@ const FeaturesCTA = ({
                     style={{
                       borderRadius:
                         index === 0
-                          ? "20px 16px 24px 12px"
+                          ? '20px 16px 24px 12px'
                           : index === 1
-                          ? "16px 24px 12px 20px"
-                          : "24px 12px 20px 16px",
+                            ? '16px 24px 12px 20px'
+                            : '24px 12px 20px 16px',
                     }}
                   >
                     <div
                       className={`absolute -top-1 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div
@@ -135,15 +135,12 @@ const FeaturesCTA = ({
                   href="https://app.praxisnotes.com?utm_source=website&utm_medium=cta&utm_campaign=features_page"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-14 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5"
+                  style={{ borderRadius: '16px 20px 14px 22px' }}
                 >
-                  <button
-                    className="h-14 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center"
-                    style={{ borderRadius: "16px 20px 14px 22px" }}
-                  >
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    Start Creating Notes Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Start Creating Notes Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </div>
 
@@ -169,8 +166,8 @@ const FeaturesCTA = ({
           <div
             className="absolute -left-6 top-32 bg-green-100 border-2 border-green-200 p-4 shadow-lg hidden xl:block"
             style={{
-              borderRadius: "18px 22px 16px 20px",
-              transform: "rotate(-2deg)",
+              borderRadius: '18px 22px 16px 20px',
+              transform: 'rotate(-2deg)',
             }}
           >
             <div className="text-center">
@@ -187,8 +184,8 @@ const FeaturesCTA = ({
           <div
             className="absolute -right-8 bottom-20 bg-orange-100 border-2 border-orange-200 p-4 shadow-lg hidden xl:block"
             style={{
-              borderRadius: "16px 20px 14px 18px",
-              transform: "rotate(1.5deg)",
+              borderRadius: '16px 20px 14px 18px',
+              transform: 'rotate(1.5deg)',
             }}
           >
             <div className="text-center">

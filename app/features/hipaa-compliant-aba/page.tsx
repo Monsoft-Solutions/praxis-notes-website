@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from 'next';
+import Link from 'next/link';
 import {
   ChevronLeft,
   Check,
@@ -18,13 +18,13 @@ import {
   Eye,
   Fingerprint,
   Key,
-} from "lucide-react";
-import FeaturesCTA from "website/components/sections/features-shared-cta";
+} from 'lucide-react';
+import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: "HIPAA Compliant ABA Documentation | Praxis Notes",
+  title: 'HIPAA Compliant ABA Documentation | Praxis Notes',
   description:
-    "Ensure HIPAA compliance in your ABA practice with secure, encrypted documentation and storage. Meet all regulatory requirements while protecting client information.",
+    'Ensure HIPAA compliance in your ABA practice with secure, encrypted documentation and storage. Meet all regulatory requirements while protecting client information.',
 };
 
 export default function HipaaCompliancePage() {
@@ -39,13 +39,13 @@ export default function HipaaCompliancePage() {
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute left-20 top-28 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30 hidden lg:block"
-            style={{ transform: "rotate(0.15deg)" }}
+            style={{ transform: 'rotate(0.15deg)' }}
           ></div>
           <div
             className="absolute right-24 top-36 h-8 w-8 border-2 border-orange-200 opacity-25 hidden lg:block"
             style={{
-              transform: "rotate(-0.1deg)",
-              borderRadius: "12px 16px 10px 18px",
+              transform: 'rotate(-0.1deg)',
+              borderRadius: '12px 16px 10px 18px',
             }}
           ></div>
           <div className="absolute right-1/4 top-2/3 h-3 w-3 rounded-full bg-blue-300 opacity-40 hidden lg:block"></div>
@@ -69,7 +69,7 @@ export default function HipaaCompliancePage() {
               {/* Badge */}
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-blue-200"
-                style={{ borderRadius: "22px 28px 20px 32px" }}
+                style={{ borderRadius: '22px 28px 20px 32px' }}
               >
                 <div className="absolute -top-1.5 left-8 h-3 w-3 rotate-45 transform bg-orange-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-blue-600 pt-1">
@@ -99,21 +99,21 @@ export default function HipaaCompliancePage() {
                 {[
                   {
                     icon: Lock,
-                    text: "AES-256",
-                    label: "Encryption",
-                    color: "blue",
+                    text: 'AES-256',
+                    label: 'Encryption',
+                    color: 'blue',
                   },
                   {
                     icon: ShieldCheck,
-                    text: "SOC2",
-                    label: "Certified",
-                    color: "green",
+                    text: 'SOC2',
+                    label: 'Certified',
+                    color: 'green',
                   },
                   {
                     icon: Eye,
-                    text: "24/7",
-                    label: "Monitoring",
-                    color: "orange",
+                    text: '24/7',
+                    label: 'Monitoring',
+                    color: 'orange',
                   },
                 ].map((stat, index) => (
                   <div
@@ -122,19 +122,19 @@ export default function HipaaCompliancePage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "18px 22px 16px 24px"
+                          ? '18px 22px 16px 24px'
                           : index === 1
-                          ? "20px 16px 22px 18px"
-                          : "22px 18px 20px 26px",
+                            ? '20px 16px 22px 18px'
+                            : '22px 18px 20px 26px',
                     }}
                   >
                     <div
                       className={`absolute -top-1 ${
                         index === 0
-                          ? "left-1/2 -translate-x-1/2"
+                          ? 'left-1/2 -translate-x-1/2'
                           : index === 1
-                          ? "right-4"
-                          : "left-4"
+                            ? 'right-4'
+                            : 'left-4'
                       }`}
                     >
                       <div
@@ -165,24 +165,20 @@ export default function HipaaCompliancePage() {
                   href="https://app.praxisnotes.com?utm_source=website&utm_medium=cta&utm_campaign=hipaa_compliance_page"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '18px 22px 16px 24px' }}
                 >
-                  <button
-                    className="h-12 px-8 bg-blue-400 hover:bg-blue-500 text-white font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "18px 22px 16px 24px" }}
-                  >
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    Start Free Trial
-                  </button>
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Start Free Trial
                 </Link>
 
-                <Link href="#security-features">
-                  <button
-                    className="h-12 px-8 border-2 border-orange-300 text-orange-600 hover:bg-orange-50 font-quicksand font-semibold transition-all hover:shadow-md"
-                    style={{ borderRadius: "16px 20px 14px 22px" }}
-                  >
-                    View Security Features
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
+                <Link
+                  href="#security-features"
+                  className="inline-flex items-center justify-center h-12 px-8 border-2 border-orange-300 text-orange-600 hover:bg-orange-50 font-quicksand font-semibold transition-all hover:shadow-md"
+                  style={{ borderRadius: '16px 20px 14px 22px' }}
+                >
+                  View Security Features
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -191,7 +187,7 @@ export default function HipaaCompliancePage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-blue-200"
-                style={{ borderRadius: "34px 30px 38px 26px" }}
+                style={{ borderRadius: '34px 30px 38px 26px' }}
               >
                 <div className="absolute -top-2 left-20 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-blue-400 shadow-sm"></div>
@@ -200,7 +196,7 @@ export default function HipaaCompliancePage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-blue-50 to-orange-50 overflow-hidden p-6"
-                  style={{ borderRadius: "26px 22px 30px 18px" }}
+                  style={{ borderRadius: '26px 22px 30px 18px' }}
                 >
                   {/* Security Dashboard Interface Mockup */}
                   <div className="space-y-4">
@@ -222,7 +218,7 @@ export default function HipaaCompliancePage() {
                       </span>
                       <span
                         className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full"
-                        style={{ borderRadius: "8px 12px 6px 10px" }}
+                        style={{ borderRadius: '8px 12px 6px 10px' }}
                       >
                         All Systems Secured
                       </span>
@@ -231,7 +227,7 @@ export default function HipaaCompliancePage() {
                     {/* Encryption status */}
                     <div
                       className="bg-white p-3 shadow-sm border border-blue-200"
-                      style={{ borderRadius: "12px 16px 10px 14px" }}
+                      style={{ borderRadius: '12px 16px 10px 14px' }}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-nunito">Encryption</span>
@@ -240,7 +236,7 @@ export default function HipaaCompliancePage() {
                       <div className="w-full h-2 bg-gray-200 rounded-full">
                         <div
                           className="h-full bg-green-500 rounded-full"
-                          style={{ width: "100%" }}
+                          style={{ width: '100%' }}
                         ></div>
                       </div>
                     </div>
@@ -249,7 +245,7 @@ export default function HipaaCompliancePage() {
                     <div className="grid grid-cols-2 gap-3">
                       <div
                         className="p-3 bg-white shadow-sm border border-blue-200"
-                        style={{ borderRadius: "10px 14px 8px 12px" }}
+                        style={{ borderRadius: '10px 14px 8px 12px' }}
                       >
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-1.5">
@@ -263,7 +259,7 @@ export default function HipaaCompliancePage() {
                       </div>
                       <div
                         className="p-3 bg-white shadow-sm border border-blue-200"
-                        style={{ borderRadius: "8px 12px 6px 14px" }}
+                        style={{ borderRadius: '8px 12px 6px 14px' }}
                       >
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-1.5">
@@ -282,7 +278,7 @@ export default function HipaaCompliancePage() {
                     {/* Security report button */}
                     <button
                       className="w-full py-2 bg-blue-400 text-white font-quicksand font-medium flex items-center justify-center gap-2 transition-all hover:bg-blue-500"
-                      style={{ borderRadius: "10px 14px 8px 12px" }}
+                      style={{ borderRadius: '10px 14px 8px 12px' }}
                     >
                       <ShieldCheck className="w-4 h-4" />
                       <span>View Security Report</span>
@@ -293,7 +289,7 @@ export default function HipaaCompliancePage() {
                   <div className="absolute bottom-4 right-4">
                     <div
                       className="bg-white/95 backdrop-blur-sm px-3 py-2 shadow-md border border-blue-200"
-                      style={{ borderRadius: "14px 18px 12px 16px" }}
+                      style={{ borderRadius: '14px 18px 12px 16px' }}
                     >
                       <div className="flex items-center gap-2">
                         <Shield className="w-4 h-4 text-blue-500" />
@@ -310,8 +306,8 @@ export default function HipaaCompliancePage() {
               <div
                 className="absolute -left-6 top-20 bg-green-100 border-2 border-green-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "18px 22px 16px 20px",
-                  transform: "rotate(-1.8deg)",
+                  borderRadius: '18px 22px 16px 20px',
+                  transform: 'rotate(-1.8deg)',
                 }}
               >
                 <div className="text-center">
@@ -325,8 +321,8 @@ export default function HipaaCompliancePage() {
               <div
                 className="absolute -right-4 bottom-16 bg-orange-100 border-2 border-orange-200 p-3 shadow-lg hidden lg:block"
                 style={{
-                  borderRadius: "16px 20px 14px 18px",
-                  transform: "rotate(2.2deg)",
+                  borderRadius: '16px 20px 14px 18px',
+                  transform: 'rotate(2.2deg)',
                 }}
               >
                 <div className="text-center">
@@ -350,7 +346,7 @@ export default function HipaaCompliancePage() {
             <div className="space-y-8">
               <div
                 className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-green-200"
-                style={{ borderRadius: "20px 26px 18px 30px" }}
+                style={{ borderRadius: '20px 26px 18px 30px' }}
               >
                 <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
                 <span className="text-sm font-quicksand font-semibold text-green-600 pt-1">
@@ -375,22 +371,22 @@ export default function HipaaCompliancePage() {
               <div className="space-y-6">
                 {[
                   {
-                    title: "End-to-End Encryption",
+                    title: 'End-to-End Encryption',
                     description:
-                      "All data is encrypted both in transit and at rest using AES-256 bit encryption.",
-                    color: "blue",
+                      'All data is encrypted both in transit and at rest using AES-256 bit encryption.',
+                    color: 'blue',
                   },
                   {
-                    title: "Access Controls & Audit Trails",
+                    title: 'Access Controls & Audit Trails',
                     description:
-                      "Role-based permissions and detailed logging of all user activities and data access.",
-                    color: "green",
+                      'Role-based permissions and detailed logging of all user activities and data access.',
+                    color: 'green',
                   },
                   {
-                    title: "Secure Cloud Infrastructure",
+                    title: 'Secure Cloud Infrastructure',
                     description:
-                      "Hosted on SOC 2 Type II certified cloud infrastructure with multiple redundancies.",
-                    color: "orange",
+                      'Hosted on SOC 2 Type II certified cloud infrastructure with multiple redundancies.',
+                    color: 'orange',
                   },
                 ].map((item, index) => (
                   <div
@@ -399,15 +395,15 @@ export default function HipaaCompliancePage() {
                     style={{
                       borderRadius:
                         index === 0
-                          ? "22px 18px 26px 14px"
+                          ? '22px 18px 26px 14px'
                           : index === 1
-                          ? "18px 26px 14px 22px"
-                          : "26px 14px 22px 18px",
+                            ? '18px 26px 14px 22px'
+                            : '26px 14px 22px 18px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div
@@ -419,7 +415,7 @@ export default function HipaaCompliancePage() {
                     <div className="pt-2 flex items-start space-x-4">
                       <div
                         className={`bg-${item.color}-100 p-2 rounded-lg flex-shrink-0`}
-                        style={{ borderRadius: "10px 14px 8px 12px" }}
+                        style={{ borderRadius: '10px 14px 8px 12px' }}
                       >
                         <Check className={`w-5 h-5 text-${item.color}-600`} />
                       </div>
@@ -441,7 +437,7 @@ export default function HipaaCompliancePage() {
             <div className="relative">
               <div
                 className="relative bg-white p-6 shadow-2xl border-2 border-green-200"
-                style={{ borderRadius: "30px 26px 34px 22px" }}
+                style={{ borderRadius: '30px 26px 34px 22px' }}
               >
                 <div className="absolute -top-2 right-16 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-green-400 shadow-sm"></div>
@@ -450,7 +446,7 @@ export default function HipaaCompliancePage() {
 
                 <div
                   className="relative h-80 lg:h-96 w-full bg-gradient-to-br from-green-50 to-blue-50 p-6"
-                  style={{ borderRadius: "22px 18px 26px 14px" }}
+                  style={{ borderRadius: '22px 18px 26px 14px' }}
                 >
                   <div className="text-center space-y-6">
                     <div className="text-5xl mb-4">🔐</div>
@@ -464,25 +460,25 @@ export default function HipaaCompliancePage() {
                       <div className="space-y-3">
                         {[
                           {
-                            label: "Transport Layer",
-                            status: "AES-256",
-                            color: "blue",
+                            label: 'Transport Layer',
+                            status: 'AES-256',
+                            color: 'blue',
                           },
                           {
-                            label: "Storage Layer",
-                            status: "Encrypted",
-                            color: "green",
+                            label: 'Storage Layer',
+                            status: 'Encrypted',
+                            color: 'green',
                           },
                           {
-                            label: "Access Layer",
-                            status: "Protected",
-                            color: "orange",
+                            label: 'Access Layer',
+                            status: 'Protected',
+                            color: 'orange',
                           },
                         ].map((layer, i) => (
                           <div
                             key={i}
                             className="bg-white p-3 shadow-sm border border-gray-200"
-                            style={{ borderRadius: "10px 14px 8px 12px" }}
+                            style={{ borderRadius: '10px 14px 8px 12px' }}
                           >
                             <div className="flex justify-between items-center">
                               <span className="text-sm font-nunito text-gray-600">
@@ -490,7 +486,7 @@ export default function HipaaCompliancePage() {
                               </span>
                               <span
                                 className={`text-xs bg-${layer.color}-100 text-${layer.color}-600 px-2 py-1 rounded`}
-                                style={{ borderRadius: "6px 8px 4px 10px" }}
+                                style={{ borderRadius: '6px 8px 4px 10px' }}
                               >
                                 {layer.status}
                               </span>
@@ -502,8 +498,8 @@ export default function HipaaCompliancePage() {
                       {/* Security metrics */}
                       <div className="flex justify-center space-x-4 mt-6">
                         {[
-                          { label: "Uptime", value: "99.9%", color: "green" },
-                          { label: "Security", value: "100%", color: "blue" },
+                          { label: 'Uptime', value: '99.9%', color: 'green' },
+                          { label: 'Security', value: '100%', color: 'blue' },
                         ].map((metric, i) => (
                           <div key={i} className="text-center">
                             <div
@@ -541,7 +537,7 @@ export default function HipaaCompliancePage() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div
               className="relative inline-flex items-center px-5 py-3 bg-white shadow-lg w-fit border-2 border-orange-200 mb-8"
-              style={{ borderRadius: "24px 30px 22px 34px" }}
+              style={{ borderRadius: '24px 30px 22px 34px' }}
             >
               <div className="absolute -top-1.5 left-10 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
               <span className="text-sm font-quicksand font-semibold text-orange-600 pt-1">
@@ -551,7 +547,7 @@ export default function HipaaCompliancePage() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-quicksand font-bold mb-6 text-gray-800">
-              Comprehensive <span className="text-orange-500">HIPAA</span>{" "}
+              Comprehensive <span className="text-orange-500">HIPAA</span>{' '}
               Safeguards
             </h2>
 
@@ -566,24 +562,24 @@ export default function HipaaCompliancePage() {
             {[
               {
                 icon: Lock,
-                title: "Technical Safeguards",
+                title: 'Technical Safeguards',
                 description:
-                  "Technology-based measures that protect and control access to PHI.",
-                color: "blue",
+                  'Technology-based measures that protect and control access to PHI.',
+                color: 'blue',
               },
               {
                 icon: Server,
-                title: "Physical Safeguards",
+                title: 'Physical Safeguards',
                 description:
-                  "Physical measures to protect your data from unauthorized access.",
-                color: "orange",
+                  'Physical measures to protect your data from unauthorized access.',
+                color: 'orange',
               },
               {
                 icon: FileCheck,
-                title: "Administrative Safeguards",
+                title: 'Administrative Safeguards',
                 description:
-                  "Policies and procedures designed to manage the security of PHI.",
-                color: "green",
+                  'Policies and procedures designed to manage the security of PHI.',
+                color: 'green',
               },
             ].map((category, index) => (
               <div
@@ -592,20 +588,20 @@ export default function HipaaCompliancePage() {
                 style={{
                   borderRadius:
                     index === 0
-                      ? "26px 22px 30px 18px"
+                      ? '26px 22px 30px 18px'
                       : index === 1
-                      ? "22px 30px 18px 26px"
-                      : "30px 18px 26px 22px",
+                        ? '22px 30px 18px 26px'
+                        : '30px 18px 26px 22px',
                 }}
               >
                 {/* Thumb tack */}
                 <div
                   className={`absolute -top-2 ${
                     index === 1
-                      ? "left-1/2 -translate-x-1/2"
+                      ? 'left-1/2 -translate-x-1/2'
                       : index === 0
-                      ? "left-8"
-                      : "right-8"
+                        ? 'left-8'
+                        : 'right-8'
                   }`}
                 >
                   <div
@@ -617,7 +613,7 @@ export default function HipaaCompliancePage() {
                 <div className="pt-4">
                   <div
                     className={`bg-${category.color}-100 p-3 rounded-xl w-fit mb-4`}
-                    style={{ borderRadius: "16px 20px 14px 18px" }}
+                    style={{ borderRadius: '16px 20px 14px 18px' }}
                   >
                     <category.icon
                       className={`w-8 h-8 text-${category.color}-600`}
@@ -634,7 +630,7 @@ export default function HipaaCompliancePage() {
                   <Link
                     href={`#${category.title
                       .toLowerCase()
-                      .replace(/\s/g, "-")}`}
+                      .replace(/\s/g, '-')}`}
                     className={`text-${category.color}-600 font-quicksand font-medium hover:underline flex items-center`}
                   >
                     Learn more
@@ -665,27 +661,27 @@ export default function HipaaCompliancePage() {
               <div className="space-y-6">
                 {[
                   {
-                    title: "Access Controls",
+                    title: 'Access Controls',
                     description:
-                      "Role-based permissions that limit access to PHI only to authorized users.",
+                      'Role-based permissions that limit access to PHI only to authorized users.',
                     icon: Key,
                   },
                   {
-                    title: "Encryption & Decryption",
+                    title: 'Encryption & Decryption',
                     description:
-                      "AES-256 bit encryption for all data in transit and at rest.",
+                      'AES-256 bit encryption for all data in transit and at rest.',
                     icon: Shield,
                   },
                   {
-                    title: "Authentication",
+                    title: 'Authentication',
                     description:
-                      "Multi-factor authentication to verify user identities.",
+                      'Multi-factor authentication to verify user identities.',
                     icon: Fingerprint,
                   },
                   {
-                    title: "Audit Controls",
+                    title: 'Audit Controls',
                     description:
-                      "Complete logging of all activities related to PHI access.",
+                      'Complete logging of all activities related to PHI access.',
                     icon: Eye,
                   },
                 ].map((item, index) => (
@@ -695,13 +691,13 @@ export default function HipaaCompliancePage() {
                     style={{
                       borderRadius:
                         index % 2 === 0
-                          ? "20px 16px 24px 12px"
-                          : "16px 24px 12px 20px",
+                          ? '20px 16px 24px 12px'
+                          : '16px 24px 12px 20px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div className="h-4 w-4 rounded-full bg-blue-400 shadow-sm"></div>
@@ -711,7 +707,7 @@ export default function HipaaCompliancePage() {
                     <div className="pt-2 flex items-start space-x-4">
                       <div
                         className="bg-blue-100 p-2 rounded-lg flex-shrink-0"
-                        style={{ borderRadius: "10px 14px 8px 12px" }}
+                        style={{ borderRadius: '10px 14px 8px 12px' }}
                       >
                         <item.icon className="w-5 h-5 text-blue-600" />
                       </div>
@@ -732,7 +728,7 @@ export default function HipaaCompliancePage() {
             <div className="space-y-6">
               <div
                 className="bg-white p-6 shadow-xl border-2 border-blue-200"
-                style={{ borderRadius: "28px 24px 32px 20px" }}
+                style={{ borderRadius: '28px 24px 32px 20px' }}
               >
                 <div className="absolute -top-2 left-12 h-4 w-4 -translate-x-1/2 transform">
                   <div className="h-full w-full rounded-full bg-blue-400 shadow-sm"></div>
@@ -746,27 +742,27 @@ export default function HipaaCompliancePage() {
                   {[
                     {
                       icon: ShieldCheck,
-                      title: "Multi-Factor Authentication",
+                      title: 'Multi-Factor Authentication',
                       description:
-                        "Secure login requiring something you know (password) and something you have (mobile device) to verify your identity.",
+                        'Secure login requiring something you know (password) and something you have (mobile device) to verify your identity.',
                     },
                     {
                       icon: Database,
-                      title: "Data Encryption",
+                      title: 'Data Encryption',
                       description:
-                        "AES-256 bit encryption for all data, exceeding HIPAA requirements, with secure key management and rotation procedures.",
+                        'AES-256 bit encryption for all data, exceeding HIPAA requirements, with secure key management and rotation procedures.',
                     },
                     {
                       icon: Shield,
-                      title: "Intrusion Detection",
+                      title: 'Intrusion Detection',
                       description:
-                        "Real-time monitoring and alerts for any suspicious access attempts or potential security breaches.",
+                        'Real-time monitoring and alerts for any suspicious access attempts or potential security breaches.',
                     },
                   ].map((item, i) => (
                     <div
                       key={i}
                       className="bg-blue-50 p-4 border border-blue-200"
-                      style={{ borderRadius: "12px 16px 10px 14px" }}
+                      style={{ borderRadius: '12px 16px 10px 14px' }}
                     >
                       <div className="flex items-start gap-3">
                         <item.icon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
@@ -803,11 +799,11 @@ export default function HipaaCompliancePage() {
 
               <div className="space-y-6">
                 {[
-                  "Secure Data Centers",
-                  "Device & Media Controls",
-                  "Workstation Security",
-                  "Disaster Recovery",
-                  "Environmental Safeguards",
+                  'Secure Data Centers',
+                  'Device & Media Controls',
+                  'Workstation Security',
+                  'Disaster Recovery',
+                  'Environmental Safeguards',
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -815,13 +811,13 @@ export default function HipaaCompliancePage() {
                     style={{
                       borderRadius:
                         index % 2 === 0
-                          ? "22px 18px 26px 14px"
-                          : "18px 26px 14px 22px",
+                          ? '22px 18px 26px 14px'
+                          : '18px 26px 14px 22px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div className="h-4 w-4 rounded-full bg-orange-400 shadow-sm"></div>
@@ -831,7 +827,7 @@ export default function HipaaCompliancePage() {
                     <div className="pt-2 flex items-center space-x-4">
                       <div
                         className="bg-orange-100 p-2 rounded-lg flex-shrink-0"
-                        style={{ borderRadius: "8px 12px 6px 10px" }}
+                        style={{ borderRadius: '8px 12px 6px 10px' }}
                       >
                         <Check className="w-5 h-5 text-orange-600" />
                       </div>
@@ -853,11 +849,11 @@ export default function HipaaCompliancePage() {
 
               <div className="space-y-6">
                 {[
-                  "Security Management Process",
-                  "Security Personnel",
-                  "Information Access Management",
-                  "Workforce Training",
-                  "Contingency Planning",
+                  'Security Management Process',
+                  'Security Personnel',
+                  'Information Access Management',
+                  'Workforce Training',
+                  'Contingency Planning',
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -865,13 +861,13 @@ export default function HipaaCompliancePage() {
                     style={{
                       borderRadius:
                         index % 2 === 0
-                          ? "20px 16px 24px 12px"
-                          : "16px 24px 12px 20px",
+                          ? '20px 16px 24px 12px'
+                          : '16px 24px 12px 20px',
                     }}
                   >
                     <div
                       className={`absolute -top-2 ${
-                        index % 2 === 0 ? "left-6" : "right-6"
+                        index % 2 === 0 ? 'left-6' : 'right-6'
                       }`}
                     >
                       <div className="h-4 w-4 rounded-full bg-green-400 shadow-sm"></div>
@@ -881,7 +877,7 @@ export default function HipaaCompliancePage() {
                     <div className="pt-2 flex items-center space-x-4">
                       <div
                         className="bg-green-100 p-2 rounded-lg flex-shrink-0"
-                        style={{ borderRadius: "10px 14px 8px 12px" }}
+                        style={{ borderRadius: '10px 14px 8px 12px' }}
                       >
                         <Check className="w-5 h-5 text-green-600" />
                       </div>
@@ -899,7 +895,7 @@ export default function HipaaCompliancePage() {
           <div className="mt-16">
             <div
               className="relative bg-white p-8 shadow-2xl border-2 border-blue-200 mx-auto max-w-4xl"
-              style={{ borderRadius: "32px 28px 36px 24px" }}
+              style={{ borderRadius: '32px 28px 36px 24px' }}
             >
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 h-4 w-4">
                 <div className="h-full w-full rounded-full bg-blue-400 shadow-sm"></div>
@@ -915,30 +911,30 @@ export default function HipaaCompliancePage() {
                   {[
                     {
                       icon: FileCheck,
-                      title: "Business Associate Agreement",
+                      title: 'Business Associate Agreement',
                       description:
                         "Comprehensive BAA detailing our obligations to protect your clients' PHI.",
-                      color: "blue",
+                      color: 'blue',
                     },
                     {
                       icon: Users,
-                      title: "User Activity Reports",
+                      title: 'User Activity Reports',
                       description:
-                        "Detailed logs and audit trails for compliance reporting and investigations.",
-                      color: "green",
+                        'Detailed logs and audit trails for compliance reporting and investigations.',
+                      color: 'green',
                     },
                     {
                       icon: ShieldCheck,
-                      title: "Security Incident Procedures",
+                      title: 'Security Incident Procedures',
                       description:
-                        "Documented processes for identifying and responding to security incidents.",
-                      color: "orange",
+                        'Documented processes for identifying and responding to security incidents.',
+                      color: 'orange',
                     },
                   ].map((item, i) => (
                     <div
                       key={i}
                       className={`bg-${item.color}-50 p-4 border border-${item.color}-200`}
-                      style={{ borderRadius: "16px 20px 14px 18px" }}
+                      style={{ borderRadius: '16px 20px 14px 18px' }}
                     >
                       <div className="flex items-start gap-3">
                         <item.icon
