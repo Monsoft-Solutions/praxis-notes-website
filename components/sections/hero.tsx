@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from 'website/components/ui/button';
 import {
@@ -164,18 +163,7 @@ const Hero = () => {
           </div>
 
           {/* Image card with dashed border */}
-          <div className="relative bg-white shadow-xl card-hand-drawn-3 border-dashed-blue rounded-xl">
-            {/* Round thumb tack */}
-
-            <div className="relative aspect-video rounded-xl overflow-hidden">
-              <Image
-                src="/images/illustrations/praxis-notes-hero.png"
-                alt="ABA professional working on documentation"
-                fill
-                className="object-cover rounded-xl"
-              />
-            </div>
-          </div>
+          <div className="">{/* Round thumb tack */}</div>
         </div>
       </div>
     </div>

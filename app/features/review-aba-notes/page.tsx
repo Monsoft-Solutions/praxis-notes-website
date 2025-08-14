@@ -477,13 +477,12 @@ export default function ReviewNotesPage() {
                         className="text-xs bg-white p-3 rounded-lg border border-gray-200"
                         style={{ borderRadius: '12px 8px 14px 10px' }}
                       >
-                        &quot;Client exhibited frustration behaviors (crying,
-                        throwing materials) when presented with non-preferred
-                        tasks. Implemented differential reinforcement procedure
-                        with token economy (1 token per 5 minutes of
-                        engagement). Client demonstrated 70% compliance with
-                        program objectives, an increase from 55% in previous
-                        session.&quot;
+                        &quot;Client exhibited crying and throwing materials
+                        when presented with non-preferred tasks. Implemented
+                        differential reinforcement procedure with token economy
+                        (1 token per 5 minutes of engagement). Client
+                        demonstrated 70% compliance with program objectives, an
+                        increase from 55% in previous session.&quot;
                       </div>
                     </div>
                   </div>

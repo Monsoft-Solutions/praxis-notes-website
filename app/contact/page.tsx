@@ -11,6 +11,7 @@ import {
 import FAQ from 'website/components/sections/faq';
 import ContactForm from 'website/components/forms/contact-form';
 import CTAPlain from 'website/components/sections/cta-plain';
+import { CONTACT_INFO } from 'website/lib/contact-info';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Praxis Notes',
@@ -181,10 +182,10 @@ export default function ContactPage() {
                             Email
                           </h3>
                           <a
-                            href="mailto:support@praxisnotes.com"
+                            href={`mailto:${CONTACT_INFO.email}`}
                             className="text-gray-600 hover:text-blue-500 font-nunito transition-colors"
                           >
-                            support@praxisnotes.com
+                            {CONTACT_INFO.email}
                           </a>
                         </div>
                       </div>
@@ -199,10 +200,10 @@ export default function ContactPage() {
                             Phone
                           </h3>
                           <a
-                            href="tel:+13057974357"
+                            href={`tel:${CONTACT_INFO.phone.e164}`}
                             className="text-gray-600 hover:text-green-500 font-nunito transition-colors"
                           >
-                            +1 (305) 797-4357
+                            {CONTACT_INFO.phone.display}
                           </a>
                         </div>
                       </div>
@@ -217,9 +218,10 @@ export default function ContactPage() {
                             Office
                           </h3>
                           <p className="text-gray-600 font-nunito">
-                            Miami, FL
+                            {CONTACT_INFO.address.city},{' '}
+                            {CONTACT_INFO.address.state}
                             <br />
-                            United States
+                            {CONTACT_INFO.address.country}
                           </p>
                         </div>
                       </div>

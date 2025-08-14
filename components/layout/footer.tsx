@@ -1,42 +1,34 @@
-import Link from "next/link";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Lock,
-  Shield,
-  Download,
-} from "lucide-react";
-import Image from "next/image";
+import Link from 'next/link';
+import { Mail, Lock, Shield, Download } from 'lucide-react';
+import Image from 'next/image';
+import { CONTACT_INFO } from 'website/lib/contact-info';
 
 const resources = [
-  { name: "Features", href: "/features" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Login", href: "https://app.praxisnotes.com/auth/log-in" },
-  { name: "Sign Up", href: "https://app.praxisnotes.com/auth/sign-up" },
+  { name: 'Features', href: '/features' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Login', href: 'https://app.praxisnotes.com/auth/log-in' },
+  { name: 'Sign Up', href: 'https://app.praxisnotes.com/auth/sign-up' },
 ];
 
 const company = [
-  { name: "About Us", href: "/about" },
-  { name: "Contact", href: "/contact" },
-  { name: "Privacy Policy", href: "/privacy" },
-  { name: "Terms of Service", href: "/terms" },
+  { name: 'About Us', href: '/about' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Privacy Policy', href: '/privacy' },
+  { name: 'Terms of Service', href: '/terms' },
 ];
 
 const highlights = [
   {
     icon: <Shield className="h-4 w-4 mr-2 text-blue-500" />,
-    text: "HIPAA Compliant",
+    text: 'HIPAA Compliant',
   },
   {
     icon: <Lock className="h-4 w-4 mr-2 text-green-500" />,
-    text: "Secure Data Storage",
+    text: 'Secure Data Storage',
   },
   {
     icon: <Download className="h-4 w-4 mr-2 text-orange-500" />,
-    text: "Export to PDF/Word",
+    text: 'Export to PDF/Word',
   },
 ];
 
@@ -47,7 +39,7 @@ const Footer = () => {
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute left-10 top-20 h-12 w-12 rounded-full border-2 border-blue-200 opacity-30 hidden sm:block"
-          style={{ transform: "rotate(0.1deg)" }}
+          style={{ transform: 'rotate(0.1deg)' }}
         ></div>
         <div className="absolute right-16 bottom-32 h-8 w-8 rounded border border-green-200 opacity-40 hidden sm:block"></div>
         <div className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-orange-200 opacity-50"></div>
@@ -61,7 +53,7 @@ const Footer = () => {
             <div
               className="relative rounded-3xl border-2 border-blue-200 bg-white p-6 shadow-lg"
               style={{
-                borderRadius: "25px 30px 20px 35px",
+                borderRadius: '25px 30px 20px 35px',
               }}
             >
               {/* Round thumb tack */}
@@ -101,32 +93,49 @@ const Footer = () => {
 
                 <div className="flex items-center space-x-4">
                   <a
-                    href="#"
+                    href={CONTACT_INFO.social.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-blue-500 transition-all duration-200 hover:scale-110"
-                    aria-label="Facebook"
+                    aria-label="TikTok"
                   >
-                    <Facebook className="h-5 w-5" />
+                    <Image
+                      src="/tiktok.svg"
+                      alt="TikTok"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
                   </a>
                   <a
-                    href="#"
-                    className="text-gray-400 hover:text-blue-500 transition-all duration-200 hover:scale-110"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="#"
+                    href={CONTACT_INFO.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-blue-500 transition-all duration-200 hover:scale-110"
                     aria-label="Instagram"
                   >
-                    <Instagram className="h-5 w-5" />
+                    <Image
+                      src="/instagram.svg"
+                      alt="Instagram"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
                   </a>
                   <a
-                    href="#"
+                    href={CONTACT_INFO.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-blue-500 transition-all duration-200 hover:scale-110"
-                    aria-label="LinkedIn"
+                    aria-label="Facebook"
                   >
-                    <Linkedin className="h-5 w-5" />
+                    <Image
+                      src="/facebook.svg"
+                      alt="Facebook"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
                   </a>
                 </div>
               </div>
@@ -138,7 +147,7 @@ const Footer = () => {
             <div
               className="relative rounded-3xl border-2 border-green-200 bg-white p-6 shadow-lg h-full"
               style={{
-                borderRadius: "22px 28px 18px 32px",
+                borderRadius: '22px 28px 18px 32px',
               }}
             >
               {/* Square thumb tack */}
@@ -169,7 +178,7 @@ const Footer = () => {
             <div
               className="relative rounded-3xl border-2 border-orange-200 bg-white p-6 shadow-lg h-full"
               style={{
-                borderRadius: "25px 20px 28px 22px",
+                borderRadius: '25px 20px 28px 22px',
               }}
             >
               {/* Triangle thumb tack */}
@@ -203,7 +212,7 @@ const Footer = () => {
           <div
             className="relative rounded-3xl border-2 border-yellow-200 bg-white p-6 shadow-lg max-w-md mx-auto"
             style={{
-              borderRadius: "28px 35px 22px 38px",
+              borderRadius: '28px 35px 22px 38px',
             }}
           >
             {/* Round thumb tack with different color */}
@@ -223,10 +232,10 @@ const Footer = () => {
                 <div className="flex items-center justify-center space-x-2">
                   <Mail className="h-4 w-4 text-yellow-500" />
                   <a
-                    href="mailto:support@praxisnotes.com"
+                    href={`mailto:${CONTACT_INFO.email}`}
                     className="text-sm font-medium text-gray-600 hover:text-yellow-500 transition-colors font-nunito"
                   >
-                    support@praxisnotes.com
+                    {CONTACT_INFO.email}
                   </a>
                 </div>
                 <div className="pt-4">
@@ -234,7 +243,7 @@ const Footer = () => {
                     href="/contact"
                     className="inline-flex items-center justify-center px-6 py-3 text-sm font-quicksand font-semibold bg-yellow-400 text-gray-800 transition-all hover:bg-yellow-500 hover:shadow-md hover:-translate-y-0.5"
                     style={{
-                      borderRadius: "12px 14px 12px 16px",
+                      borderRadius: '12px 14px 12px 16px',
                     }}
                   >
                     Contact Support
