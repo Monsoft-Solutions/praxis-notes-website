@@ -13,10 +13,10 @@ import {
   Target,
 } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
-import { type Resource } from '../../../db/schema/resources';
+import type { ResourceWithRelations } from '../../../lib/types';
 
 interface ResourcesGridProps {
-  resources: Resource[];
+  resources: ResourceWithRelations[];
   currentPage: number;
   totalPages: number;
 }
@@ -178,11 +178,11 @@ export default function ResourcesGrid({
 
                     {/* Content starts below thumb tack */}
                     <div className="pt-2 flex-1 flex flex-col">
-                      {resource.image && (
+                      {resource.featuredImage && (
                         <div className="relative h-48 w-full overflow-hidden mb-6 rounded-xl border border-gray-100">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
                           <Image
-                            src={resource.image}
+                            src={resource.featuredImage}
                             alt={resource.title}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -196,7 +196,7 @@ export default function ResourcesGrid({
                                   textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                                 }}
                               >
-                                {resource.tags[0]}
+                                {resource.tags[0].name}
                               </span>
                             </div>
                           )}

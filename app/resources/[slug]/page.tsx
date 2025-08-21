@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'website/components/ui/button';
 import { getResourceBySlug } from 'website/lib/resources';
+import type { BaseTag } from 'website/lib/types';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -101,15 +102,15 @@ export default async function ResourcePage({
                   {/* Tags */}
                   {resource.tags && resource.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {resource.tags.map(tag => (
+                      {resource.tags.map((tag: BaseTag) => (
                         <span
-                          key={tag}
+                          key={tag.id}
                           className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium font-quicksand"
                           style={{
                             borderRadius: '18px 25px 15px 22px',
                           }}
                         >
-                          {tag}
+                          {tag.name}
                         </span>
                       ))}
                     </div>
@@ -136,9 +137,9 @@ export default async function ResourcePage({
                           <div className="font-medium font-quicksand text-gray-900">
                             {resource.author.name}
                           </div>
-                          {resource.author.title && (
+                          {resource.author.bio && (
                             <div className="text-sm text-gray-600 font-nunito">
-                              {resource.author.title}
+                              {resource.author.bio}
                             </div>
                           )}
                         </div>
@@ -166,7 +167,7 @@ export default async function ResourcePage({
         </section>
 
         {/* Image section */}
-        {resource.image && (
+        {resource.featuredImage && (
           <section className="pb-12">
             <div className="container mx-auto max-w-7xl px-4 sm:px-6">
               <div className="mx-auto max-w-4xl">
@@ -180,7 +181,7 @@ export default async function ResourcePage({
                   <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm z-10" />
 
                   <Image
-                    src={resource.image}
+                    src={resource.featuredImage}
                     alt={resource.title}
                     fill
                     priority
@@ -222,7 +223,7 @@ export default async function ResourcePage({
         </section>
 
         {/* CTA section */}
-        {resource.cta && (
+        {true && (
           <section className="py-12">
             <div className="container mx-auto max-w-7xl px-4 sm:px-6">
               <div className="mx-auto max-w-4xl">
@@ -245,10 +246,11 @@ export default async function ResourcePage({
                         textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                       }}
                     >
-                      {resource.cta.title}
+                      Ready to streamline your ABA practice?
                     </h3>
                     <p className="text-lg mb-6 text-gray-700 font-nunito">
-                      {resource.cta.content}
+                      Start creating professional session notes with our
+                      easy-to-use platform.
                     </p>
                     <Link
                       href={`https://app.praxisnotes.com?utm_source=website&utm_medium=resources&utm_campaign=resource-cta&utm_content=${slug}`}
@@ -262,7 +264,7 @@ export default async function ResourcePage({
                           borderRadius: '15px 18px 12px 20px',
                         }}
                       >
-                        {resource.cta.buttonText}
+                        Get Started Free
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </Link>

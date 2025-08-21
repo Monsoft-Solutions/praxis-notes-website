@@ -1,6 +1,7 @@
 import { db } from 'website/db/config';
-import { resources, type Resource } from 'website/db/schema';
+import { resources } from 'website/db/schema';
 import { eq, desc, count } from 'drizzle-orm';
+import type { ResourceWithRelations } from './types';
 
 /**
  * Loads resources from the database with pagination
@@ -12,18 +13,31 @@ export async function getPaginatedResources(
   page = 1,
   pageSize = 6
 ): Promise<{
-  resources: Resource[];
+  resources: ResourceWithRelations[];
   totalCount: number;
   totalPages: number;
 }> {
   try {
     const offset = (page - 1) * pageSize;
 
-    // Get the resources for the current page
+    // Get the resources for the current page with relations
     const result = await db.query.resources.findMany({
       orderBy: resources => [desc(resources.date)],
       limit: pageSize,
       offset: offset,
+      with: {
+        author: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
     // Get the total count of resources for pagination
@@ -32,10 +46,16 @@ export async function getPaginatedResources(
     const totalPages = Math.ceil(totalCount / pageSize);
 
     return {
-      resources: result.map(resource => ({
-        ...resource,
-        readingTime: resource.readingTime || '',
-      })),
+      resources: result.map(resource => {
+        // Transform the data to match ResourceWithRelations structure
+        const { resourceCategories, resourceTags, ...baseResource } = resource;
+        return {
+          ...baseResource,
+          readingTime: baseResource.readingTime || '',
+          categories: resourceCategories.map(rc => rc.category),
+          tags: resourceTags.map(rt => rt.tag),
+        };
+      }),
       totalCount,
       totalPages,
     };
@@ -52,16 +72,35 @@ export async function getPaginatedResources(
 /**
  * Loads all resources from the database
  */
-export async function getAllResources(): Promise<Resource[]> {
+export async function getAllResources(): Promise<ResourceWithRelations[]> {
   try {
     const result = await db.query.resources.findMany({
       orderBy: resources => [desc(resources.date)],
+      with: {
+        author: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
-    return result.map(resource => ({
-      ...resource,
-      readingTime: resource.readingTime || '',
-    }));
+    return result.map(resource => {
+      // Transform the data to match ResourceWithRelations structure
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
   } catch (error) {
     console.error('Error fetching resources:', error);
     return [];
@@ -73,7 +112,7 @@ export async function getAllResources(): Promise<Resource[]> {
  */
 export async function getResourceBySlug(
   slug: string | string[] | undefined
-): Promise<Resource | undefined> {
+): Promise<ResourceWithRelations | undefined> {
   if (!slug) return undefined;
 
   // Handle if slug is an array (for backward compatibility)
@@ -82,14 +121,34 @@ export async function getResourceBySlug(
   try {
     const resource = await db.query.resources.findFirst({
       where: eq(resources.slug, slugValue),
+      with: {
+        author: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
     if (!resource) return undefined;
 
-    return {
-      ...resource,
-      readingTime: resource.readingTime || '',
+    // Transform the data to match the expected structure
+    const { resourceCategories, resourceTags, ...baseResource } = resource;
+
+    const transformedResource = {
+      ...baseResource,
+      readingTime: baseResource.readingTime || '',
+      categories: resourceCategories.map(rc => rc.category),
+      tags: resourceTags.map(rt => rt.tag),
     };
+
+    return transformedResource as ResourceWithRelations;
   } catch (error) {
     console.error(`Error fetching resource with slug ${slugValue}:`, error);
     return undefined;
