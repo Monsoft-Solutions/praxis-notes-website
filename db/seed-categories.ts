@@ -5,57 +5,47 @@ import { eq } from 'drizzle-orm';
 export default async function seedCategories() {
   console.log('Starting categories seeding...');
 
-  // Define categories related to ABA industry and mental health care
+  // Define categories based on Praxis Notes business goals and content strategy
   const categoryData = [
     {
-      name: 'ABA Therapy',
+      name: 'ABA Session Notes & Tools',
       description:
-        'Articles about Applied Behavior Analysis therapy techniques, methodologies, and best practices.',
+        'Comprehensive resources on ABA session documentation, note-taking techniques, and free tools like our session notes generator. Perfect for RBTs and BCBAs looking to streamline their documentation process.',
     },
     {
-      name: 'Clinical Documentation',
+      name: 'CPT Codes & Billing',
       description:
-        'Resources on proper documentation practices for ABA sessions, assessments, and treatment plans.',
+        'In-depth guides on CPT codes 97151-97158 for ABA services, billing requirements, insurance compliance, and revenue cycle management for ABA practices.',
     },
     {
-      name: 'Billing & Insurance',
+      name: 'Behavior Analysis Concepts',
       description:
-        'Information about CPT codes, insurance requirements, and billing practices for ABA services.',
+        'Educational content covering fundamental ABA concepts including maladaptive behaviors, reinforcement strategies, behavior modification techniques, and evidence-based interventions.',
+    },
+    {
+      name: 'Compliance & HIPAA',
+      description:
+        'Essential resources on HIPAA compliance for ABA providers, documentation standards, privacy protection, and regulatory requirements for behavioral health services.',
+    },
+    {
+      name: 'Study Guides & Training',
+      description:
+        'Study materials, practice exercises, and training resources for RBT certification, BCBA exam preparation, and continuing education in applied behavior analysis.',
+    },
+    {
+      name: 'Family Resources',
+      description:
+        "Plain-language guides and resources for families of individuals receiving ABA services, including progress tracking, home strategies, and understanding your child's therapy.",
     },
     {
       name: 'Professional Development',
       description:
-        'Resources for RBTs, BCBAs, and other ABA professionals to develop their skills and advance their careers.',
+        'Career advancement resources for RBTs, BCBAs, and other ABA professionals including skills development, certification requirements, and industry best practices.',
     },
     {
-      name: 'Mental Health',
+      name: 'Research & Evidence',
       description:
-        'Articles about mental health topics, including anxiety, depression, and general wellness.',
-    },
-    {
-      name: 'Autism Spectrum Disorder',
-      description:
-        'Resources specific to autism spectrum disorder, including research, interventions, and support strategies.',
-    },
-    {
-      name: 'Behavioral Interventions',
-      description:
-        'Information about various behavioral intervention techniques, strategies, and applications.',
-    },
-    {
-      name: 'Parent Resources',
-      description:
-        'Guides and resources for parents and caregivers of individuals receiving ABA therapy or mental health services.',
-    },
-    {
-      name: 'Research & Studies',
-      description:
-        'Latest research findings, studies, and scientific advancements in ABA and mental health fields.',
-    },
-    {
-      name: 'Case Studies',
-      description:
-        'Real-world examples and case studies demonstrating effective application of ABA techniques.',
+        'Latest research findings, evidence-based practices, and scientific advancements in applied behavior analysis and autism intervention strategies.',
     },
   ];
 
