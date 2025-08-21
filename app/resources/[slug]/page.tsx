@@ -4,17 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'website/components/ui/button';
 import { getResourceBySlug } from 'website/lib/resources';
-import type { BaseTag } from 'website/lib/types';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import {
-  ChevronLeft,
-  ArrowRight,
-  Calendar,
-  Clock,
-  Share,
-  User,
-} from 'lucide-react';
+import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
 
 type ResourceParams = {
   slug: string;
@@ -53,7 +45,7 @@ export default async function ResourcePage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative pt-16 pb-16">
       {/* Subtle background decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
@@ -67,19 +59,6 @@ export default async function ResourcePage({
       {/* Main content */}
       <div className="relative z-10">
         {/* Header with breadcrumb */}
-        <section className="pt-16 md:pt-24 pb-8">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mx-auto max-w-4xl">
-              <Link
-                href="/resources"
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 mb-8 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-quicksand font-medium group"
-              >
-                <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
-                Back to Resources
-              </Link>
-            </div>
-          </div>
-        </section>
 
         {/* Hero section with article info */}
         <section className="pb-12">
@@ -87,7 +66,7 @@ export default async function ResourcePage({
             <div className="mx-auto max-w-4xl">
               {/* Main content card */}
               <div
-                className="relative rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-xl"
+                className="relative rounded-3xl border-2 border-blue-200 bg-white p-12 shadow-xl"
                 style={{
                   borderRadius: '25px 30px 20px 35px',
                 }}
@@ -99,23 +78,6 @@ export default async function ResourcePage({
                 </div>
 
                 <div className="pt-2">
-                  {/* Tags */}
-                  {resource.tags && resource.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {resource.tags.map((tag: BaseTag) => (
-                        <span
-                          key={tag.id}
-                          className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium font-quicksand"
-                          style={{
-                            borderRadius: '18px 25px 15px 22px',
-                          }}
-                        >
-                          {tag.name}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
                   {/* Title */}
                   <h1
                     className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900"
@@ -127,7 +89,7 @@ export default async function ResourcePage({
                   </h1>
 
                   {/* Meta info */}
-                  <div className="flex flex-wrap items-center gap-6 text-gray-600">
+                  <div className="flex flex-wrap items-center gap-6 text-gray-600 w-full justify-center">
                     {resource.author && (
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -137,21 +99,11 @@ export default async function ResourcePage({
                           <div className="font-medium font-quicksand text-gray-900">
                             {resource.author.name}
                           </div>
-                          {resource.author.bio && (
-                            <div className="text-sm text-gray-600 font-nunito">
-                              {resource.author.bio}
-                            </div>
-                          )}
                         </div>
                       </div>
                     )}
 
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center text-sm font-nunito">
-                        <Calendar className="w-4 h-4 mr-2 text-blue-500" />
-                        {resource.date}
-                      </div>
-
                       {resource.readingTime && (
                         <div className="flex items-center text-sm font-nunito">
                           <Clock className="w-4 h-4 mr-2 text-green-500" />
