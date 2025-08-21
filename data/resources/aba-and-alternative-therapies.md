@@ -1,18 +1,13 @@
 ---
-id: "aba-and-alternative-therapies"
-slug: "aba-and-alternative-therapies"
-title: "Applied Behavior Analysis (ABA) and Alternative Therapies: Understanding Your Options"
-description: "Explore the role of Applied Behavior Analysis (ABA) and alternative therapies in supporting individuals with autism, including their benefits, criticisms, and the importance of personalized treatment plans."
-date: "April 8, 2025"
-readingTime: "8 min read"
+id: 'aba-and-alternative-therapies'
+slug: 'aba-and-alternative-therapies'
+title: 'Applied Behavior Analysis (ABA) and Alternative Therapies: Understanding Your Options'
+description: 'Explore the role of Applied Behavior Analysis (ABA) and alternative therapies in supporting individuals with autism, including their benefits, criticisms, and the importance of personalized treatment plans.'
+date: 'April 8, 2025'
+readingTime: '8 min read'
 tags:
-  - "ABA"
-  - "Autism Therapies"
-cta:
-  title: "Enhance Your Understanding of Autism Therapies"
-  content: "Learn how different therapeutic approaches can be tailored to meet the unique needs of individuals with autism."
-  buttonText: "Explore More"
-  buttonLink: "/autism-therapies"
+  - 'ABA'
+  - 'Autism Therapies'
 ---
 
 # Applied Behavior Analysis (ABA) and Alternative Therapies: Understanding Your Options
