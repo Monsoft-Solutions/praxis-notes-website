@@ -1,10 +1,65 @@
-import { Metadata } from "next";
-import { DesignSystemShowcase } from "../../components/ui/design-system/showcase";
+import { Metadata } from 'next';
+import { DesignSystemShowcase } from '../../components/ui/design-system/showcase';
 
 export const metadata: Metadata = {
-  title: "Praxis Notes ABA-Inspired Design System",
+  title: 'Design System - ABA-Inspired UI Components & Patterns',
   description:
-    "ABA-industry focused design system with a pastel color palette and minimalist approach for the Praxis Notes platform",
+    'Explore our ABA-industry focused design system with a pastel color palette and minimalist approach. View UI components, design tokens, and styling guidelines for the Praxis Notes platform.',
+
+  // Keywords for SEO
+  keywords: [
+    'design system',
+    'UI components',
+    'design patterns',
+    'ABA design',
+    'pastel colors',
+    'minimalist design',
+    'component library',
+    'design tokens',
+    'UI guidelines',
+    'frontend design',
+    'web components',
+    'style guide',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/design-system',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Design System - ABA-Inspired UI Components',
+    description:
+      'Explore our ABA-focused design system with pastel colors, minimalist approach, and comprehensive UI components.',
+    url: 'https://praxisnotes.com/design-system',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Praxis Notes Design System',
+    description:
+      'ABA-inspired design system with pastel colors and minimalist UI components.',
+  },
+
+  // Additional metadata
+  category: 'Design & Development',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function DesignSystemPage() {

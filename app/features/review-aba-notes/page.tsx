@@ -23,9 +23,64 @@ import {
 import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: 'Review ABA Notes | Praxis Notes',
+  title: 'Review ABA Notes - AI-Powered Quality Enhancement',
   description:
-    'Upload existing ABA session notes for AI-powered analysis, improvement suggestions, and compliance verification to ensure clinical and billing standards.',
+    'Upload existing ABA session notes for AI-powered analysis, improvement suggestions, and compliance verification. Enhance documentation quality and ensure billing standards.',
+
+  // Keywords for SEO
+  keywords: [
+    'review ABA notes',
+    'note quality improvement',
+    'ABA documentation review',
+    'compliance verification',
+    'note enhancement AI',
+    'clinical review tools',
+    'documentation analysis',
+    'note improvement suggestions',
+    'billing compliance check',
+    'ABA note audit',
+    'quality assurance notes',
+    'documentation standards',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/features/review-aba-notes',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Review ABA Notes - AI-Powered Quality Enhancement',
+    description:
+      'Upload existing session notes for AI analysis, improvement suggestions, and compliance verification.',
+    url: 'https://praxisnotes.com/features/review-aba-notes',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Review & Enhance ABA Notes with AI',
+    description:
+      'Get AI-powered suggestions to improve your session notes quality and compliance.',
+  },
+
+  // Additional metadata
+  category: 'Product Features',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function ReviewNotesPage() {

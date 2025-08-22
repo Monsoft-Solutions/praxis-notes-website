@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 import {
   BookOpenText,
   Brain,
@@ -6,19 +6,72 @@ import {
   LineChart,
   PencilRuler,
   Puzzle,
-} from "lucide-react";
-import CTAPlain from "website/components/sections/cta-plain";
+} from 'lucide-react';
+import CTAPlain from 'website/components/sections/cta-plain';
 import {
   ComparisonBox,
   InfoBox,
   Section,
   TeamCard,
   ValueCard,
-} from "website/components/sections/cards";
+} from 'website/components/sections/cards';
 
 export const metadata: Metadata = {
-  title: "Dark Theme Example | Praxis Notes",
-  description: "An example of our dark-themed components",
+  title: 'Dark Theme Example - UI Components Showcase',
+  description:
+    'Explore our dark-themed UI components and design patterns. See how our ABA-inspired design system adapts to dark mode with beautiful contrast and accessibility.',
+
+  // Keywords for SEO
+  keywords: [
+    'dark theme',
+    'dark mode',
+    'UI components',
+    'design examples',
+    'dark UI',
+    'component showcase',
+    'theme examples',
+    'accessibility design',
+    'dark interface',
+    'UI demonstration',
+    'design patterns',
+    'component library',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/examples/dark-theme',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Dark Theme Example - UI Components Showcase',
+    description:
+      'Explore our dark-themed UI components and design patterns with beautiful contrast and accessibility.',
+    url: 'https://praxisnotes.com/examples/dark-theme',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Praxis Notes Dark Theme Showcase',
+    description:
+      'Beautiful dark-themed UI components with accessible design patterns.',
+  },
+
+  // Additional metadata
+  category: 'Examples & Demos',
+
+  // Robots directive
+  robots: {
+    index: false,
+    follow: true,
+    googleBot: {
+      index: false,
+      follow: true,
+    },
+  },
 };
 
 export default function DarkThemeExamplePage() {
@@ -77,19 +130,19 @@ export default function DarkThemeExamplePage() {
           {[
             {
               icon: <Brain className="w-8 h-8 text-soft-blue" />,
-              title: "Behavioral Expertise",
+              title: 'Behavioral Expertise',
               description:
-                "Our team includes BCBAs and RBTs who understand the daily challenges of ABA documentation.",
+                'Our team includes BCBAs and RBTs who understand the daily challenges of ABA documentation.',
             },
             {
               icon: <PencilRuler className="w-8 h-8 text-lavender" />,
-              title: "Design Focus",
+              title: 'Design Focus',
               description:
-                "We create calming, intuitive interfaces that reduce cognitive load for busy practitioners.",
+                'We create calming, intuitive interfaces that reduce cognitive load for busy practitioners.',
             },
             {
               icon: <Puzzle className="w-8 h-8 text-mint-green" />,
-              title: "Innovation Mindset",
+              title: 'Innovation Mindset',
               description:
                 "We're constantly exploring new ways to solve the documentation challenges in ABA.",
             },
@@ -116,15 +169,15 @@ export default function DarkThemeExamplePage() {
             items={[
               {
                 text: "Generic notes templates that don't fit ABA needs",
-                type: "negative",
+                type: 'negative',
               },
               {
-                text: "Hours spent writing detailed behavioral observations",
-                type: "negative",
+                text: 'Hours spent writing detailed behavioral observations',
+                type: 'negative',
               },
               {
-                text: "Disconnected systems for session notes and data collection",
-                type: "negative",
+                text: 'Disconnected systems for session notes and data collection',
+                type: 'negative',
               },
             ]}
           />
@@ -134,16 +187,16 @@ export default function DarkThemeExamplePage() {
             bgColor="bg-steel-blue/30"
             items={[
               {
-                text: "ABA-specific templates with smart completion",
-                type: "positive",
+                text: 'ABA-specific templates with smart completion',
+                type: 'positive',
               },
               {
-                text: "Complete notes in minutes, not hours",
-                type: "positive",
+                text: 'Complete notes in minutes, not hours',
+                type: 'positive',
               },
               {
-                text: "Seamless integration of data and narrative reporting",
-                type: "positive",
+                text: 'Seamless integration of data and narrative reporting',
+                type: 'positive',
               },
             ]}
           />
@@ -160,27 +213,27 @@ export default function DarkThemeExamplePage() {
           {[
             {
               icon: <Heart className="w-8 h-8 text-light-pink" />,
-              title: "Client-Centered",
+              title: 'Client-Centered',
               description:
-                "We build tools that help therapists spend more time with clients and less time on paperwork.",
+                'We build tools that help therapists spend more time with clients and less time on paperwork.',
               points: [
-                "Designed by ABA professionals",
-                "Focus on clinical outcomes",
+                'Designed by ABA professionals',
+                'Focus on clinical outcomes',
               ],
             },
             {
               icon: <LineChart className="w-8 h-8 text-soft-blue" />,
-              title: "Data-Driven",
+              title: 'Data-Driven',
               description:
-                "We believe in the power of data to inform treatment decisions and demonstrate progress.",
-              points: ["Automatic data analysis", "Visual progress tracking"],
+                'We believe in the power of data to inform treatment decisions and demonstrate progress.',
+              points: ['Automatic data analysis', 'Visual progress tracking'],
             },
             {
               icon: <BookOpenText className="w-8 h-8 text-lavender" />,
-              title: "Continuous Learning",
+              title: 'Continuous Learning',
               description:
                 "We're constantly learning from our users and the latest research in behavioral science.",
-              points: ["Regular feature updates", "Evidence-based approach"],
+              points: ['Regular feature updates', 'Evidence-based approach'],
             },
           ].map((value, index) => (
             <ValueCard

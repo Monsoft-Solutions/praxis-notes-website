@@ -10,9 +10,77 @@ import {
 } from '../../lib/jsonld';
 
 export const metadata: Metadata = {
-  title: 'Pricing | Praxis Notes',
+  title: 'Pricing Plans - Affordable ABA Documentation Software',
   description:
-    'Simple, transparent pricing plans for Praxis Notes - the AI-powered ABA session notes tool for RBTs, BCBAs, and clinics.',
+    'Simple, transparent pricing plans for Praxis Notes - the AI-powered ABA session notes tool for RBTs, BCBAs, and clinics. Start free, scale as you grow.',
+
+  // Keywords for SEO
+  keywords: [
+    'ABA software pricing',
+    'session notes cost',
+    'BCBA software plans',
+    'RBT documentation pricing',
+    'behavioral analysis software cost',
+    'ABA clinic pricing',
+    'therapy documentation plans',
+    'HIPAA compliant software pricing',
+    'AI-powered ABA cost',
+    'subscription plans',
+    'free ABA trial',
+    'affordable ABA software',
+  ].join(', '),
+
+  // Author information
+  authors: [{ name: 'PraxisNote Team' }],
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/pricing',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title:
+      'Pricing Plans | Praxis Notes - Affordable ABA Documentation Software',
+    description:
+      'Simple, transparent pricing for AI-powered ABA session notes. Plans starting from free for RBTs, BCBAs, and clinics.',
+    url: 'https://praxisnotes.com/pricing',
+    siteName: 'Praxis Notes',
+    type: 'website',
+    images: [
+      {
+        url: 'https://praxisnotes.com/images/pricing-hero.jpg',
+        alt: 'Praxis Notes Pricing Plans - Affordable ABA Documentation',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Praxis Notes Pricing - Affordable ABA Documentation',
+    description:
+      'Simple, transparent pricing for AI-powered ABA session notes. Plans starting from free.',
+    images: ['https://praxisnotes.com/images/pricing-hero.jpg'],
+  },
+
+  // Additional metadata
+  category: 'Pricing',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function PricingPage() {

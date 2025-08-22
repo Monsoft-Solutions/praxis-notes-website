@@ -1,9 +1,64 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Praxis Notes",
+  title: 'Cookie Policy - Website Cookies & Tracking Information',
   description:
-    "Learn about how Praxis Notes uses cookies and other tracking technologies on our website.",
+    'Learn about how Praxis Notes uses cookies and other tracking technologies on our website. Understand our cookie usage, privacy controls, and your preferences.',
+
+  // Keywords for SEO
+  keywords: [
+    'cookie policy',
+    'website cookies',
+    'tracking technologies',
+    'privacy controls',
+    'cookie preferences',
+    'web analytics',
+    'cookie consent',
+    'browser cookies',
+    'tracking pixels',
+    'cookie management',
+    'privacy settings',
+    'web tracking',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/cookies',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Cookie Policy - Praxis Notes',
+    description:
+      'Learn about our cookie usage and tracking technologies. Manage your cookie preferences and privacy settings.',
+    url: 'https://praxisnotes.com/cookies',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Praxis Notes Cookie Policy',
+    description:
+      'Our cookie policy explaining website tracking and your privacy controls.',
+  },
+
+  // Additional metadata
+  category: 'Legal',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function CookiesPage() {
@@ -168,14 +223,14 @@ export default function CookiesPage() {
           <p>
             In addition, most advertising networks offer you a way to opt out of
             targeted advertising. If you would like to find out more
-            information, please visit{" "}
+            information, please visit{' '}
             <a
               href="http://www.aboutads.info/choices/"
               className="text-blue-600 hover:underline"
             >
               http://www.aboutads.info/choices/
-            </a>{" "}
-            or{" "}
+            </a>{' '}
+            or{' '}
             <a
               href="http://www.youronlinechoices.com"
               className="text-blue-600 hover:underline"
@@ -221,7 +276,7 @@ export default function CookiesPage() {
           <p>
             If you have any questions about our use of cookies or other
             technologies, please email us at privacy@praxisnotes.com or contact
-            us via our website at{" "}
+            us via our website at{' '}
             <a href="/contact" className="text-blue-600 hover:underline">
               Contact Us
             </a>

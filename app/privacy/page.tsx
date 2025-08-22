@@ -1,9 +1,64 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Praxis Notes",
+  title: 'Privacy Policy - Data Protection & HIPAA Compliance',
   description:
-    "Our privacy policy details how we collect, use, and protect your personal information when using Praxis Notes.",
+    'Our privacy policy details how we collect, use, and protect your personal information when using Praxis Notes. Learn about our HIPAA compliance and data security measures.',
+
+  // Keywords for SEO
+  keywords: [
+    'privacy policy',
+    'data protection',
+    'HIPAA compliance',
+    'personal information',
+    'data security',
+    'client privacy',
+    'protected health information',
+    'data collection',
+    'information security',
+    'privacy rights',
+    'data handling',
+    'healthcare privacy',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/privacy',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Privacy Policy - Praxis Notes',
+    description:
+      'Learn how we protect your personal information and ensure HIPAA compliance with our comprehensive privacy policy.',
+    url: 'https://praxisnotes.com/privacy',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Praxis Notes Privacy Policy',
+    description:
+      'Our comprehensive privacy policy covering data protection and HIPAA compliance.',
+  },
+
+  // Additional metadata
+  category: 'Legal',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function PrivacyPage() {
@@ -190,7 +245,7 @@ export default function PrivacyPage() {
           <ul className="list-none ml-4 space-y-2">
             <li>By email: privacy@praxisnotes.com</li>
             <li>
-              By visiting the contact page on our website:{" "}
+              By visiting the contact page on our website:{' '}
               <a href="/contact" className="text-blue-600 hover:underline">
                 Contact Us
               </a>

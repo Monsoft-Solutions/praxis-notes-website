@@ -32,9 +32,94 @@ export async function generateMetadata({
     };
   }
 
+  const resourceUrl = `https://praxisnotes.com/resources/${slug}`;
+
   return {
-    title: `${resource.title} | PraxisNote Resources`,
+    title: `${resource.title}`,
     description: resource.metaDescription,
+
+    // Keywords for SEO
+    keywords: [
+      ...(resource.metaKeywords?.split(',').map(k => k.trim()) || []),
+      ...resource.categories.map(cat => cat.name),
+      ...resource.tags.map(tag => tag.name),
+      'ABA therapy',
+      'session notes',
+      'applied behavior analysis',
+      'behavioral analysis',
+      'therapy documentation',
+    ].join(', '),
+
+    // Author information
+    authors: resource.author
+      ? [
+          {
+            name: resource.author.name,
+          },
+        ]
+      : [{ name: 'PraxisNote Team' }],
+
+    // Canonical URL
+    alternates: {
+      canonical: resourceUrl,
+    },
+
+    // Open Graph for social sharing
+    openGraph: {
+      title: resource.title,
+      description: resource.metaDescription,
+      url: resourceUrl,
+      siteName: 'PraxisNote Resources',
+      type: 'article',
+      publishedTime: resource.date
+        ? new Date(resource.date).toISOString()
+        : undefined,
+      modifiedTime: resource.updatedAt
+        ? new Date(resource.updatedAt).toISOString()
+        : undefined,
+      authors: resource.author ? [resource.author.name] : ['PraxisNote Team'],
+      tags: resource.tags.map(tag => tag.name),
+      ...(resource.featuredImage && {
+        images: [
+          {
+            url: resource.featuredImage.url,
+            alt: resource.featuredImage.alt,
+            ...(resource.featuredImage.width && {
+              width: resource.featuredImage.width,
+            }),
+            ...(resource.featuredImage.height && {
+              height: resource.featuredImage.height,
+            }),
+          },
+        ],
+      }),
+    },
+
+    // Twitter Card
+    twitter: {
+      card: 'summary_large_image',
+      title: resource.title,
+      description: resource.metaDescription,
+      ...(resource.featuredImage && {
+        images: [resource.featuredImage.url],
+      }),
+    },
+
+    // Additional metadata
+    category: resource.categories[0]?.name,
+
+    // Robots directive
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 

@@ -1,0 +1,33 @@
+{
+  "name": "Praxis Notes - AI-Powered ABA Session Notes",
+  "short_name": "Praxis Notes",
+  "description": "Transform your ABA documentation with AI-powered session notes. HIPAA-compliant, insurance-ready notes that save hours of paperwork for RBTs, BCBAs, and ABA clinics.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "medical", "productivity", "business"],
+  "icons": [
+    {
+      "src": "/images/logo/praxis-note-logo-main.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo/praxis-note-logo-main.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo/praxis-note-logo-main.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

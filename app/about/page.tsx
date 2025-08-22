@@ -20,9 +20,76 @@ import { Button } from 'website/components/ui/button';
 import { generateAboutPageSchema, JsonLdScript } from '../../lib/jsonld';
 
 export const metadata: Metadata = {
-  title: 'About Us | Praxis Notes',
+  title: 'About Us - Meet the Team Behind ABA Documentation Revolution',
   description:
-    'Learn about Praxis Notes - our mission is to help ABA professionals focus on therapy, not paperwork.',
+    'Learn about Praxis Notes - our mission is to help ABA professionals focus on therapy, not paperwork. Meet our passionate team of ABA professionals, designers, and technologists.',
+
+  // Keywords for SEO
+  keywords: [
+    'About Praxis Notes',
+    'ABA documentation team',
+    'behavioral analysis professionals',
+    'ABA software development',
+    'healthcare technology mission',
+    'BCBA founded company',
+    'ABA therapy innovation',
+    'documentation revolution',
+    'clinical expertise',
+    'behavioral health technology',
+    'therapy documentation solutions',
+  ].join(', '),
+
+  // Author information
+  authors: [{ name: 'PraxisNote Team' }],
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/about',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title:
+      'About Us | Praxis Notes - Meet the Team Behind ABA Documentation Revolution',
+    description:
+      'Learn about our mission to help ABA professionals focus on therapy, not paperwork. Meet our passionate team of ABA professionals, designers, and technologists.',
+    url: 'https://praxisnotes.com/about',
+    siteName: 'Praxis Notes',
+    type: 'website',
+    images: [
+      {
+        url: 'https://praxisnotes.com/images/about-hero-section.png',
+        alt: 'Praxis Notes team - ABA professionals and technology experts',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Praxis Notes - ABA Documentation Revolution',
+    description:
+      'Meet our passionate team of ABA professionals, designers, and technologists revolutionizing behavioral therapy documentation.',
+    images: ['https://praxisnotes.com/images/about-hero-section.png'],
+  },
+
+  // Additional metadata
+  category: 'About',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function AboutPage() {

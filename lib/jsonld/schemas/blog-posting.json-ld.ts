@@ -11,7 +11,8 @@ export function generateBlogPostingSchema({
   resource,
   url,
 }: BlogPostingSchemaProps) {
-  return {
+  console.log('Generating blog posting schema for resource:', resource.title);
+  const output = {
     '@context': SCHEMA_CONTEXT,
     '@type': 'BlogPosting',
     headline: resource.title,
@@ -65,4 +66,6 @@ export function generateBlogPostingSchema({
       timeRequired: resource.readingTime,
     }),
   };
+
+  return output;
 }
