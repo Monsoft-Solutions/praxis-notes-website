@@ -1,29 +1,34 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "website/components/layout/header";
-import Footer from "website/components/layout/footer";
-import { ThemeProvider } from "../components/ui/design-system/theme-provider";
-import { GoogleAnalytics } from "../components/ui/analytics/google-analytics";
-import { AnalyticsProvider } from "../components/ui/analytics/analytics-provider";
-import { Toaster } from "website/components/ui/toaster";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
+import Header from 'website/components/layout/header';
+import Footer from 'website/components/layout/footer';
+import { ThemeProvider } from '../components/ui/design-system/theme-provider';
+import { GoogleAnalytics } from '../components/ui/analytics/google-analytics';
+import { AnalyticsProvider } from '../components/ui/analytics/analytics-provider';
+import { Toaster } from 'website/components/ui/toaster';
+import {
+  generateOrganizationSchema,
+  generateWebsiteSchema,
+  JsonLdProvider,
+} from '../lib/jsonld';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Praxis Notes | AI-Powered ABA Session Notes",
+  title: 'Praxis Notes | AI-Powered ABA Session Notes',
   description:
-    "Generate detailed, insurance-ready ABA session notes with AI. For RBTs, BCBAs, and clinics.",
+    'Generate detailed, insurance-ready ABA session notes with AI. For RBTs, BCBAs, and clinics.',
   keywords:
-    "ABA notes, session notes, applied behavior analysis, RBT notes, BCBA documentation, ABA therapy documentation",
+    'ABA notes, session notes, applied behavior analysis, RBT notes, BCBA documentation, ABA therapy documentation',
 };
 
 export default function RootLayout({
@@ -31,10 +36,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
+  // Base schemas for all pages
+  const baseSchemas = [generateOrganizationSchema(), generateWebsiteSchema()];
 
   return (
     <html lang="en" className="scroll-smooth w-full">
+      <head>
+        <JsonLdProvider schemas={baseSchemas} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
