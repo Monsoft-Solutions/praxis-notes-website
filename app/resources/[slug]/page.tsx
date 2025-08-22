@@ -12,6 +12,7 @@ import {
   generateBlogPostingSchema,
   generateBreadcrumbSchema,
   JsonLdScript,
+  SchemaValidator,
 } from '../../../lib/jsonld';
 
 type ResourceParams = {
@@ -149,6 +150,9 @@ export default async function ResourcePage({
       { name: resource.title, url: resourceUrl },
     ],
   });
+
+  SchemaValidator.validateInDevelopment(blogPostingSchema, 'BlogPosting');
+  SchemaValidator.validateInDevelopment(breadcrumbSchema, 'BreadcrumbList');
 
   return (
     <>

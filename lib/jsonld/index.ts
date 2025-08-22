@@ -17,6 +17,11 @@ export { JsonLdProvider } from './components/json-ld-provider';
 // Utils
 export { combineSchemas, validateSchema, sanitizeJsonLd } from './utils';
 
+// Advanced Utils (Phase 5)
+export { SchemaValidator } from './validation';
+export { MetadataSync } from './metadata-sync';
+export { SchemaPerformance } from './performance';
+
 // Types
 export type { OrganizationSchemaProps } from './schemas/organization.json-ld';
 export type { WebsiteSchemaProps } from './schemas/website.json-ld';

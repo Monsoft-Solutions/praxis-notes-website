@@ -11,6 +11,8 @@ import {
   generateOrganizationSchema,
   generateWebsiteSchema,
   JsonLdProvider,
+  SchemaPerformance,
+  SchemaValidator,
 } from '../lib/jsonld';
 
 const geistSans = Geist({
@@ -154,15 +156,26 @@ export default function RootLayout({
 }>) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
-  // Base schemas for all pages
-  const baseSchemas = [generateOrganizationSchema(), generateWebsiteSchema()];
+  // Generate base schemas for all pages
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebsiteSchema();
+
+  // Use performance utilities to deduplicate and optimize base schemas
+  const optimizedBaseSchemas = SchemaPerformance.deduplicateSchemas([
+    organizationSchema,
+    websiteSchema,
+  ]);
+
+  // Validate schemas in development mode
+  SchemaValidator.validateInDevelopment(organizationSchema, 'Organization');
+  SchemaValidator.validateInDevelopment(websiteSchema, 'Website');
 
   return (
     <html lang="en" className="scroll-smooth w-full">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <JsonLdProvider schemas={baseSchemas} />
+        <JsonLdProvider schemas={optimizedBaseSchemas} />
         {GA_MEASUREMENT_ID && (
           <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         )}
