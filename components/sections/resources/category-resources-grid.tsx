@@ -1,18 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  BookOpen,
-  FolderOpen,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, FolderOpen } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
-import { formatDateToStandard } from 'website/lib/utils/date-formatter';
+import ResourceCard from 'website/components/ui/resource-card';
 import type { ResourceWithRelations, Category } from '../../../lib/types';
 
 interface CategoryResourcesGridProps {
@@ -125,170 +117,13 @@ export default function CategoryResourcesGrid({
           <>
             {/* Resources grid */}
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {resources.map((resource, index) => {
-                // Cycle through ABA colors and thumb tack styles
-                const colors = [
-                  {
-                    border: 'border-green-200',
-                    tag: 'bg-green-400',
-                    tack: 'bg-green-400',
-                    tri: 'border-b-green-400',
-                    hover: 'group-hover:border-green-300',
-                  },
-                  {
-                    border: 'border-blue-200',
-                    tag: 'bg-blue-400',
-                    tack: 'bg-blue-400',
-                    tri: 'border-b-blue-400',
-                    hover: 'group-hover:border-blue-300',
-                  },
-                  {
-                    border: 'border-yellow-200',
-                    tag: 'bg-yellow-400',
-                    tack: 'bg-yellow-400',
-                    tri: 'border-b-yellow-400',
-                    hover: 'group-hover:border-yellow-300',
-                  },
-                  {
-                    border: 'border-orange-200',
-                    tag: 'bg-orange-400',
-                    tack: 'bg-orange-400',
-                    tri: 'border-b-orange-400',
-                    hover: 'group-hover:border-orange-300',
-                  },
-                ];
-                const colorSet = colors[index % colors.length];
-
-                // Irregular border radius variations
-                const borderRadiusOptions = [
-                  '25px 30px 20px 35px',
-                  '28px 22px 32px 26px',
-                  '22px 35px 18px 30px',
-                  '30px 20px 28px 24px',
-                  '26px 32px 22px 28px',
-                  '20px 28px 24px 32px',
-                ];
-                const borderRadius =
-                  borderRadiusOptions[index % borderRadiusOptions.length];
-
-                // Thumb tack styles
-                const thumbTackStyles = [
-                  { type: 'round', position: 'left-1/2 -translate-x-1/2' },
-                  { type: 'square', position: 'right-8' },
-                  { type: 'triangle', position: 'left-8' },
-                ];
-                const thumbTack =
-                  thumbTackStyles[index % thumbTackStyles.length];
-
-                return (
-                  <Link
-                    key={resource.slug}
-                    href={`/resources/${resource.slug}`}
-                    className="group block"
-                  >
-                    <div
-                      className={`relative bg-white p-8 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 ${colorSet.border} ${colorSet.hover} h-full flex flex-col`}
-                      style={{
-                        borderRadius,
-                        borderStyle: 'solid',
-                      }}
-                    >
-                      {/* Thumb tack */}
-                      {thumbTack.type === 'round' && (
-                        <div
-                          className={`absolute -top-2 ${thumbTack.position} h-4 w-4 transform`}
-                        >
-                          <div
-                            className={`h-full w-full rounded-full ${colorSet.tack} shadow-md`}
-                          ></div>
-                          <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-                        </div>
-                      )}
-                      {thumbTack.type === 'square' && (
-                        <div
-                          className={`absolute -top-1.5 ${thumbTack.position} h-3 w-3 rotate-45 transform ${colorSet.tack} shadow-md`}
-                        ></div>
-                      )}
-                      {thumbTack.type === 'triangle' && (
-                        <div
-                          className={`absolute -top-2 ${thumbTack.position}`}
-                        >
-                          <div
-                            className={`h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent ${colorSet.tri} shadow-sm`}
-                          ></div>
-                        </div>
-                      )}
-
-                      {/* Content starts below thumb tack */}
-                      <div className="pt-2 flex-1 flex flex-col">
-                        {resource.featuredImage && (
-                          <div className="relative h-48 w-full overflow-hidden mb-6 rounded-xl border border-gray-100">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
-                            <Image
-                              src={resource.featuredImage.url}
-                              alt={resource.featuredImage.alt}
-                              title={resource.featuredImage.title || undefined}
-                              fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-110"
-                              blurDataURL={
-                                resource.featuredImage.blurDataUrl || undefined
-                              }
-                              placeholder={
-                                resource.featuredImage.blurDataUrl
-                                  ? 'blur'
-                                  : 'empty'
-                              }
-                            />
-                            {resource.tags && resource.tags.length > 0 && (
-                              <div className="absolute top-3 right-3 z-20">
-                                <span
-                                  className={`px-3 py-1.5 ${colorSet.tag} text-white text-xs font-quicksand font-semibold shadow-md`}
-                                  style={{
-                                    borderRadius: '12px 16px 10px 14px',
-                                    textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-                                  }}
-                                >
-                                  {resource.tags[0].name}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        <h2
-                          className="text-xl font-quicksand font-bold mb-4 text-gray-800 group-hover:text-green-500 transition-colors duration-200 leading-tight"
-                          style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.05)' }}
-                        >
-                          {resource.title}
-                        </h2>
-
-                        <p className="font-nunito text-gray-600 mb-6 flex-1 leading-relaxed text-sm">
-                          {resource.metaDescription}
-                        </p>
-
-                        <div className="mt-auto space-y-4">
-                          <div className="flex items-center text-sm text-gray-500 font-nunito">
-                            <Clock className="w-4 h-4 mr-2 text-gray-400" />
-                            <span>
-                              {formatDateToStandard(resource.date)}{' '}
-                              {resource.readingTime &&
-                                `• ${resource.readingTime}`}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                            <div className="flex items-center text-green-500 font-quicksand font-semibold text-sm group-hover:text-green-600 transition-colors">
-                              <BookOpen className="w-4 h-4 mr-2" />
-                              Read article
-                            </div>
-                            <ArrowRight className="w-5 h-5 text-green-400 group-hover:text-green-500 group-hover:translate-x-1 transition-all duration-200" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
+              {resources.map((resource, index) => (
+                <ResourceCard
+                  key={resource.slug}
+                  resource={resource}
+                  index={index}
+                />
+              ))}
             </div>
 
             {/* Pagination */}

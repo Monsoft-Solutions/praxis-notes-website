@@ -15,8 +15,6 @@
     "type-check": "tsc --noEmit --skipLibCheck",
     "pre-commit-check": "pnpm type-check && pnpm lint && pnpm build:force",
     "prepare": "husky",
-    "sitemap:copy": "node scripts/copySitemapToPublic.js",
-    "sitemap:generate": "env-cmd node scripts/generateStaticSitemap.js",
     "sitemap:notify": "env-cmd node scripts/notifyGoogleAppRouter.js",
     "update-google-index": "env-cmd node scripts/update-google-index.js",
     "db:generate": "drizzle-kit generate",
