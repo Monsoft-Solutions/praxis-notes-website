@@ -237,7 +237,7 @@ export default async function ResourcePage({
               <div className="container mx-auto max-w-7xl px-4 sm:px-6">
                 <div className="mx-auto max-w-4xl">
                   <div
-                    className="relative rounded-3xl overflow-hidden h-[300px] md:h-[400px] lg:h-[500px] shadow-xl border-2 border-green-200 transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]"
+                    className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] lg:aspect-[3/2] shadow-xl border-2 border-green-200 transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]"
                     style={{
                       borderRadius: '22px 28px 18px 32px',
                     }}
