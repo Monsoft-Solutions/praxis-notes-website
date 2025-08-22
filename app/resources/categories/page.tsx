@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { getAllCategoriesWithCounts } from 'website/lib/categories';
+import CTAPlain from 'website/components/sections/cta-plain';
 import CategoriesHero from 'website/components/sections/resources/categories-hero';
 import CategoriesGrid from 'website/components/sections/resources/categories-grid';
-import CTAPlain from 'website/components/sections/cta-plain';
 
 export const metadata: Metadata = {
   title: 'ABA Resource Categories | Browse by Topic',

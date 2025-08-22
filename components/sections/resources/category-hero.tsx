@@ -98,41 +98,6 @@ export default function CategoryHero({
               </div>
             </div>
           </div>
-
-          {/* Subtitle card */}
-          {totalResources > 0 ? (
-            <div
-              className="max-w-2xl mx-auto bg-white p-8 shadow-xl border-2 border-blue-200"
-              style={{
-                borderRadius: '25px 30px 20px 28px',
-                borderStyle: 'solid',
-              }}
-            >
-              {/* Small thumb tack */}
-              <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-blue-400 shadow-sm"></div>
-
-              <p className="text-lg font-nunito text-gray-700 leading-relaxed">
-                Discover carefully curated resources designed to enhance your
-                understanding and practice in this specialized area of ABA.
-              </p>
-            </div>
-          ) : (
-            <div
-              className="max-w-2xl mx-auto bg-white p-8 shadow-xl border-2 border-gray-200"
-              style={{
-                borderRadius: '25px 30px 20px 28px',
-                borderStyle: 'solid',
-              }}
-            >
-              {/* Small thumb tack */}
-              <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-gray-400 shadow-sm"></div>
-
-              <p className="text-lg font-nunito text-gray-700 leading-relaxed">
-                This category is being developed. Check back soon for
-                specialized resources, or explore other categories.
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </section>

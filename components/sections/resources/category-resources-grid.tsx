@@ -123,22 +123,6 @@ export default function CategoryResourcesGrid({
           </div>
         ) : (
           <>
-            {/* Section header */}
-            <div className="text-center mb-16">
-              <h2
-                className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 mb-4"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}
-              >
-                {category.name}{' '}
-                <span className="text-green-500">Resources</span>
-              </h2>
-              <p className="text-lg font-nunito text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                {resources.length}{' '}
-                {resources.length === 1 ? 'resource' : 'resources'} to help you
-                excel in this area
-              </p>
-            </div>
-
             {/* Resources grid */}
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {resources.map((resource, index) => {
@@ -411,7 +395,7 @@ export default function CategoryResourcesGrid({
         )}
 
         {/* Related actions section */}
-        <div className="mt-20 text-center">
+        <div className="mt-32 text-center">
           <div
             className="max-w-4xl mx-auto bg-white p-10 shadow-2xl border-2 border-blue-200"
             style={{
@@ -419,12 +403,6 @@ export default function CategoryResourcesGrid({
               borderStyle: 'solid',
             }}
           >
-            {/* Thumb tack for related actions */}
-            <div className="absolute -top-2 left-1/2 h-5 w-5 -translate-x-1/2 transform">
-              <div className="h-full w-full rounded-full bg-blue-400 shadow-lg"></div>
-              <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-            </div>
-
             <div className="pt-6">
               <h3
                 className="text-2xl font-quicksand font-bold text-gray-800 mb-6"

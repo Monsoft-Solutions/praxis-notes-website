@@ -74,24 +74,6 @@ export default function CategoriesHero() {
               </div>
             </div>
           </div>
-
-          {/* Subtitle card */}
-          <div
-            className="max-w-2xl mx-auto bg-white p-8 shadow-xl border-2 border-green-200"
-            style={{
-              borderRadius: '25px 30px 20px 28px',
-              borderStyle: 'solid',
-            }}
-          >
-            {/* Small thumb tack */}
-            <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm"></div>
-
-            <p className="text-lg font-nunito text-gray-700 leading-relaxed">
-              Each category contains curated articles, guides, and resources to
-              help you excel in your ABA practice. Choose a category below to
-              explore specialized content.
-            </p>
-          </div>
         </div>
       </div>
     </section>
