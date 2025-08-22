@@ -1,10 +1,7 @@
 import { NextRequest } from 'next/server';
-import { db } from '../../../db/config';
-import { tags } from '../../../db/schema';
-import {
-  withApiAuth,
-  createSuccessResponse,
-} from '../../../lib/api/middleware';
+import { db } from 'website/db/config';
+import { tags } from 'website/db/schema';
+import { withApiAuth, createSuccessResponse } from 'website/lib/api/middleware';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function getHandler(_: NextRequest) {

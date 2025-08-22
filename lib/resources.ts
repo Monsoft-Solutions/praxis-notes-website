@@ -1,15 +1,13 @@
+import { unstable_cache } from 'next/cache';
 import { db } from 'website/db/config';
 import { resources, resourceCategories, resourceTags } from 'website/db/schema';
 import { eq, desc, count, inArray } from 'drizzle-orm';
 import type { ResourceWithRelations } from './types';
 
 /**
- * Loads resources from the database with pagination
- * @param page The page number (starts at 1)
- * @param pageSize Number of items per page
- * @returns Paginated resources and total count
+ * Internal function to fetch paginated resources from database
  */
-export async function getPaginatedResources(
+async function _getPaginatedResources(
   page = 1,
   pageSize = 6
 ): Promise<{
@@ -249,3 +247,18 @@ export async function getRelatedResources(
     return [];
   }
 }
+
+/**
+ * Loads resources from the database with pagination (cached)
+ * @param page The page number (starts at 1)
+ * @param pageSize Number of items per page
+ * @returns Paginated resources and total count
+ */
+export const getPaginatedResources = unstable_cache(
+  _getPaginatedResources,
+  ['paginated-resources'],
+  {
+    tags: ['resources'],
+    revalidate: 43200, // 12 hours
+  }
+);

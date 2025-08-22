@@ -60,6 +60,9 @@ export type {
   CategoryNode,
 } from './category';
 
+// Re-export Category as alias for BaseCategory for convenience
+export type { BaseCategory as Category } from './category';
+
 // Tag types
 export type {
   BaseTag,

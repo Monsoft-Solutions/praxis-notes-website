@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { put } from '@vercel/blob';
-import { db } from '../../../db/config';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import { db } from 'website/db/config';
 import {
   resources,
   resourceCategories,
@@ -9,14 +10,14 @@ import {
   tags,
   authors,
   images,
-} from '../../../db/schema';
+} from 'website/db/schema';
 import {
   withApiAuth,
   createSuccessResponse,
   createErrorResponse,
-} from '../../../lib/api/middleware';
-import { createResourceSchema } from '../../../lib/validations/api';
-import { calculateReadingTime } from '../../../lib/utils/reading-time';
+} from 'website/lib/api/middleware';
+import { createResourceSchema } from 'website/lib/validations/api';
+import { calculateReadingTime } from 'website/lib/utils/reading-time';
 import { eq, inArray } from 'drizzle-orm';
 
 /**
@@ -229,6 +230,34 @@ async function postHandler(request: NextRequest) {
 
       return newResource;
     });
+
+    // Revalidate relevant pages after successful creation
+    try {
+      // Revalidate main resources page
+      revalidatePath('/resources');
+
+      // Revalidate categories listing page
+      revalidatePath('/resources/categories');
+
+      // Revalidate specific category pages that this resource belongs to
+      if (data.categoryIds.length > 0) {
+        const categorySlugResults = await db
+          .select({ slug: categories.slug })
+          .from(categories)
+          .where(inArray(categories.id, data.categoryIds));
+
+        for (const category of categorySlugResults) {
+          revalidatePath(`/resources/categories/${category.slug}`);
+        }
+      }
+
+      // Revalidate cache tags
+      revalidateTag('resources');
+      revalidateTag('categories');
+    } catch (revalidationError) {
+      console.warn('Revalidation failed:', revalidationError);
+      // Don't fail the request if revalidation fails
+    }
 
     return createSuccessResponse(
       {

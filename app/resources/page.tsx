@@ -74,6 +74,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Enable ISR with 12 hour revalidation (43200 seconds)
+// On-demand revalidation via API ensures immediate updates when content is added
+export const revalidate = 43200;
+
 export default async function ResourcesPage({
   searchParams,
 }: {

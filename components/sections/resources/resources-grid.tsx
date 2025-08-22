@@ -12,6 +12,7 @@ import {
   BookOpen,
   Target,
 } from 'lucide-react';
+import { formatDateToStandard } from 'website/lib/utils/date-formatter';
 import { Button } from 'website/components/ui/button';
 import type { ResourceWithRelations } from '../../../lib/types';
 
@@ -227,7 +228,7 @@ export default function ResourcesGrid({
                         <div className="flex items-center text-sm text-gray-500 font-nunito">
                           <Clock className="w-4 h-4 mr-2 text-gray-400" />
                           <span>
-                            {resource.date}{' '}
+                            {formatDateToStandard(resource.date)}{' '}
                             {resource.readingTime &&
                               `• ${resource.readingTime}`}
                           </span>
@@ -418,7 +419,7 @@ export default function ResourcesGrid({
                       <div className="flex items-center mt-3 text-sm text-gray-500 font-nunito">
                         <Clock className="w-4 h-4 mr-2 text-gray-400" />
                         <span>
-                          {resource.date}{' '}
+                          {formatDateToStandard(resource.date)}{' '}
                           {resource.readingTime && `• ${resource.readingTime}`}
                         </span>
                       </div>
