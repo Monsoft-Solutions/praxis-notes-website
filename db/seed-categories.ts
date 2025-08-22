@@ -65,7 +65,11 @@ export default async function seedCategories() {
       await db.insert(categories).values({
         name: category.name,
         description: category.description,
-        slug: category.name.toLowerCase().replace(/ /g, '-'),
+        slug: category.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-') // Replace any non-alphanumeric characters with hyphens
+          .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+          .replace(/-{2,}/g, '-'), // Replace multiple consecutive hyphens with single hyphen
       });
 
       console.log(`Inserted category: ${category.name}`);
