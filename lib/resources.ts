@@ -1,6 +1,6 @@
 import { db } from 'website/db/config';
-import { resources } from 'website/db/schema';
-import { eq, desc, count } from 'drizzle-orm';
+import { resources, resourceCategories, resourceTags } from 'website/db/schema';
+import { eq, desc, count, inArray } from 'drizzle-orm';
 import type { ResourceWithRelations } from './types';
 
 /**
@@ -152,5 +152,96 @@ export async function getResourceBySlug(
   } catch (error) {
     console.error(`Error fetching resource with slug ${slugValue}:`, error);
     return undefined;
+  }
+}
+
+/**
+ * Gets related resources based on shared categories or tags
+ * @param currentResourceId The ID of the current resource to exclude
+ * @param categoryIds Array of category IDs to match
+ * @param tagIds Array of tag IDs to match
+ * @param limit Maximum number of results to return (default: 3)
+ */
+export async function getRelatedResources(
+  currentResourceId: string,
+  categoryIds: string[],
+  tagIds: string[],
+  limit = 3
+): Promise<ResourceWithRelations[]> {
+  try {
+    // If no categories or tags, return empty array
+    if (categoryIds.length === 0 && tagIds.length === 0) {
+      return [];
+    }
+
+    // Build a query to find resources that share categories or tags
+    const relatedResourceIds = new Set<string>();
+
+    // Find resources with shared categories
+    if (categoryIds.length > 0) {
+      const resourcesWithSharedCategories = await db
+        .select({ resourceId: resourceCategories.resourceId })
+        .from(resourceCategories)
+        .where(inArray(resourceCategories.categoryId, categoryIds));
+
+      resourcesWithSharedCategories.forEach(row => {
+        if (row.resourceId !== currentResourceId) {
+          relatedResourceIds.add(row.resourceId);
+        }
+      });
+    }
+
+    // Find resources with shared tags
+    if (tagIds.length > 0) {
+      const resourcesWithSharedTags = await db
+        .select({ resourceId: resourceTags.resourceId })
+        .from(resourceTags)
+        .where(inArray(resourceTags.tagId, tagIds));
+
+      resourcesWithSharedTags.forEach(row => {
+        if (row.resourceId !== currentResourceId) {
+          relatedResourceIds.add(row.resourceId);
+        }
+      });
+    }
+
+    // If no related resources found, return empty array
+    if (relatedResourceIds.size === 0) {
+      return [];
+    }
+
+    // Get the actual resources with their relations
+    const relatedResources = await db.query.resources.findMany({
+      where: inArray(resources.id, Array.from(relatedResourceIds)),
+      orderBy: [desc(resources.date)],
+      limit: limit,
+      with: {
+        author: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
+
+    return relatedResources.map(resource => {
+      // Transform the data to match ResourceWithRelations structure
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching related resources:', error);
+    return [];
   }
 }

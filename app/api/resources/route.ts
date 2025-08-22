@@ -15,6 +15,7 @@ import {
   createErrorResponse,
 } from '../../../lib/api/middleware';
 import { createResourceSchema } from '../../../lib/validations/api';
+import { calculateReadingTime } from '../../../lib/utils/reading-time';
 import { eq, inArray } from 'drizzle-orm';
 
 /**
@@ -130,6 +131,9 @@ async function postHandler(request: NextRequest) {
       }
     }
 
+    // Calculate reading time if not provided
+    const readingTime = data.readingTime || calculateReadingTime(data.content);
+
     // Start a transaction to create the resource and its relationships
     const result = await db.transaction(async tx => {
       // Create the resource
@@ -143,7 +147,7 @@ async function postHandler(request: NextRequest) {
           metaKeywords: data.metaKeywords,
           excerpt: data.excerpt,
           date: data.date,
-          readingTime: data.readingTime,
+          readingTime: readingTime,
           content: data.content,
           status: data.status,
           authorId: data.authorId,

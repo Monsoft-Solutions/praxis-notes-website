@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'website/components/ui/button';
 import { getResourceBySlug } from 'website/lib/resources';
+import RelatedResources from 'website/components/sections/related-resources';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
@@ -80,7 +81,7 @@ export default async function ResourcePage({
                 <div className="pt-2">
                   {/* Title */}
                   <h1
-                    className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900"
+                    className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900 text-center"
                     style={{
                       textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                     }}
@@ -89,7 +90,7 @@ export default async function ResourcePage({
                   </h1>
 
                   {/* Meta info */}
-                  <div className="flex flex-wrap items-center gap-6 text-gray-600 w-full justify-center">
+                  <div className="flex flex-wrap flex-col items-center gap-6 text-gray-600 w-full justify-center">
                     {resource.author && (
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -226,6 +227,9 @@ export default async function ResourcePage({
             </div>
           </section>
         )}
+
+        {/* Related Resources */}
+        <RelatedResources currentResource={resource} />
 
         {/* Bottom navigation */}
         <section className="py-16 pb-24">
