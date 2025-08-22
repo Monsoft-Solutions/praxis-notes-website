@@ -2,7 +2,6 @@ import 'dotenv/config';
 import seedCategories from './seed-categories';
 import seedTags from './seed-tags';
 import seedAuthors from './seed-authors';
-import seedResources from './seed-resources';
 
 // Seed function to populate database with initial data
 async function seed() {
@@ -12,7 +11,6 @@ async function seed() {
     await seedCategories();
     await seedTags();
     await seedAuthors();
-    await seedResources();
 
     console.log('✅ Seeding completed successfully');
   } catch (error) {
