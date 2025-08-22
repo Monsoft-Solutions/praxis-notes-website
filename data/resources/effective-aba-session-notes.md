@@ -1,24 +1,19 @@
 ---
-id: "effective-aba-session-notes"
-slug: "effective-aba-session-notes"
-title: "Writing Effective ABA Session Notes for CPT Code 97153"
-description: "Learn how to create comprehensive and compliant ABA session notes for CPT code 97153 that support quality care and streamline billing."
-date: "April 12, 2025"
-readingTime: "8 min read"
-image: "/images/resources/ABA-principles-Techniques-and-pplications.png"
+id: 'effective-aba-session-notes'
+slug: 'effective-aba-session-notes'
+title: 'Writing Effective ABA Session Notes for CPT Code 97153'
+description: 'Learn how to create comprehensive and compliant ABA session notes for CPT code 97153 that support quality care and streamline billing.'
+date: 'April 12, 2025'
+readingTime: '8 min read'
+image: '/images/resources/ABA-principles-Techniques-and-pplications.png'
 author:
-  name: "Dr. Sarah Johnson"
-  title: "BCBA-D, Clinical Director"
+  name: 'Dr. Sarah Johnson'
+  title: 'BCBA-D, Clinical Director'
 tags:
-  - "ABA Therapy"
-  - "Documentation"
-  - "Billing"
-  - "Compliance"
-cta:
-  title: "Simplify Your ABA Documentation"
-  content: "PraxisNote offers customizable templates specifically designed for CPT code 97153, ensuring your session notes are always complete, compliant, and clinically valuable."
-  buttonText: "Try PraxisNote Today"
-  buttonLink: "/pricing"
+  - 'ABA Therapy'
+  - 'Documentation'
+  - 'Billing'
+  - 'Compliance'
 ---
 
 CPT code 97153 covers direct one-on-one ABA therapy sessions. Creating effective documentation for these sessions is critical for clinical quality, ethical practice, and insurance reimbursement. This guide will help you craft session notes that meet all requirements while enhancing client care.

@@ -1,19 +1,14 @@
 ---
-id: "functional-assessment"
-slug: "functional-assessment"
-title: "Functional Behavior Assessment in ABA Therapy"
-description: "Learn about the importance of functional behavior assessment in ABA therapy and how to conduct one effectively."
-date: "April 5, 2025"
-readingTime: "10 min read"
+id: 'functional-assessment'
+slug: 'functional-assessment'
+title: 'Functional Behavior Assessment in ABA Therapy'
+description: 'Learn about the importance of functional behavior assessment in ABA therapy and how to conduct one effectively.'
+date: 'April 5, 2025'
+readingTime: '10 min read'
 tags:
-  - "ABA Therapy"
-  - "Behavior Analysis"
-  - "Clinical Assessment"
-cta:
-  title: "Streamlined Documentation with PraxisNote"
-  content: "PraxisNote helps you document functional assessments with built-in templates and tools that guide you through the process, ensuring nothing is missed."
-  buttonText: "Explore Our Features"
-  buttonLink: "/features/create-aba-notes"
+  - 'ABA Therapy'
+  - 'Behavior Analysis'
+  - 'Clinical Assessment'
 ---
 
 A Functional Behavior Assessment (FBA) is a systematic process used to identify the purpose or function of a behavior. It's a cornerstone of effective ABA therapy and provides the foundation for developing meaningful intervention strategies.

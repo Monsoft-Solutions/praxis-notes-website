@@ -4,42 +4,37 @@ import {
   timestamp,
   varchar,
   uniqueIndex,
-} from "drizzle-orm/pg-core";
-import { createId } from "@paralleldrive/cuid2";
-import { resources } from "./resources";
+  uuid,
+  primaryKey,
+} from 'drizzle-orm/pg-core';
+import { resources } from './resources';
 
-export const categories = pgTable("categories", {
-  id: varchar("id", { length: 128 })
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  name: varchar("name", { length: 255 }).notNull().unique(),
-  description: text("description"),
-  slug: varchar("slug", { length: 255 }).notNull().unique(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+export const categories = pgTable('categories', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  name: varchar('name', { length: 255 }).notNull().unique(),
+  description: text('description'),
+  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
 });
 
 export const resourceCategories = pgTable(
-  "resource_categories",
+  'resource_categories',
   {
-    id: varchar("id", { length: 128 })
-      .primaryKey()
-      .$defaultFn(() => createId()),
-    resourceId: varchar("resource_id", { length: 128 })
+    resourceId: uuid('resource_id')
       .notNull()
-      .references(() => resources.id, { onDelete: "cascade" }),
-    categoryId: varchar("category_id", { length: 128 })
+      .references(() => resources.id, { onDelete: 'cascade' }),
+    categoryId: uuid('category_id')
       .notNull()
-      .references(() => categories.id, { onDelete: "cascade" }),
+      .references(() => categories.id, { onDelete: 'cascade' }),
   },
-  (table) => {
-    return {
-      unique: uniqueIndex("unique_resource_category").on(
-        table.resourceId,
-        table.categoryId
-      ),
-    };
-  }
+  table => ({
+    unique: uniqueIndex('unique_resource_category').on(
+      table.resourceId,
+      table.categoryId
+    ),
+    pk: primaryKey({ columns: [table.resourceId, table.categoryId] }),
+  })
 );
 
 export type Category = typeof categories.$inferSelect;

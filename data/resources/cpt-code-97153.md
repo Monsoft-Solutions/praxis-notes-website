@@ -1,20 +1,15 @@
 ---
-id: "cpt-code-97153"
-slug: "cpt-code-97153"
-title: "Understanding CPT Code 97153 in ABA Therapy"
-description: "Learn about the proper use and application of CPT code 97153 for billing ABA therapy services."
-date: "April 15, 2025"
-readingTime: "8 min read"
+id: 'cpt-code-97153'
+slug: 'cpt-code-97153'
+title: 'Understanding CPT Code 97153 in ABA Therapy'
+description: 'Learn about the proper use and application of CPT code 97153 for billing ABA therapy services.'
+date: 'April 15, 2025'
+readingTime: '8 min read'
 tags:
-  - "ABA Therapy"
-  - "Billing"
-  - "CPT Codes"
-  - "Clinical Documentation"
-cta:
-  title: "Streamlined Billing with PraxisNote"
-  content: "PraxisNote helps you track and document ABA therapy sessions with built-in CPT code integration, ensuring accurate billing and compliance."
-  buttonText: "Explore Our Features"
-  buttonLink: "/features/aba-billing"
+  - 'ABA Therapy'
+  - 'Billing'
+  - 'CPT Codes'
+  - 'Clinical Documentation'
 ---
 
 When you delve into the world of Applied Behavior Analysis (ABA) therapy billing, you’ll frequently encounter **CPT Code 97153**. This particular code is used for direct, one-on-one ABA therapy services provided by paraprofessionals—often Registered Behavior Technicians (RBTs)—under the supervision of a Board Certified Behavior Analyst (BCBA). Below, we explore how CPT Code 97153 applies to RBT sessions, what takes place in these sessions, and why thorough documentation is crucial for both clinical efficacy and insurance compliance.

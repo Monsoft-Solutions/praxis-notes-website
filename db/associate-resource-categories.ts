@@ -1,14 +1,21 @@
-import { db } from "./config";
-import { resourceCategories } from "./schema";
-import { eq } from "drizzle-orm";
-import { createId } from "@paralleldrive/cuid2";
+import { db } from './config';
+import { resourceCategories } from './schema';
+import { eq } from 'drizzle-orm';
 
 async function associateResourceCategories() {
-  console.log("Starting resource-category association...");
+  console.log('Starting resource-category association...');
 
   try {
-    // Get all resources
-    const allResources = await db.query.resources.findMany();
+    // Get all resources with their relations
+    const allResources = await db.query.resources.findMany({
+      with: {
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
     console.log(`Found ${allResources.length} resources to process`);
 
     // Get all categories
@@ -17,40 +24,40 @@ async function associateResourceCategories() {
 
     // Create category name to ID mapping for easier lookup
     const categoryMap = new Map(
-      allCategories.map((category) => [category.name, category.id])
+      allCategories.map(category => [category.name, category.id])
     );
 
     // Process each resource
     for (const resource of allResources) {
       console.log(`Processing resource: ${resource.title}`);
 
-      // Extract tags from the resource
-      const resourceTags = (resource.tags as string[]) || [];
+      // Extract tags from the resource relations
+      const resourceTags = resource.resourceTags.map(rt => rt.tag.name) || [];
 
       // Set to track categories we've already associated with this resource
       const associatedCategories = new Set<string>();
 
       // Map tags to relevant categories
       const categoryMappings: Record<string, string[]> = {
-        "ABA Therapy": ["ABA Therapy", "ABA", "Applied Behavior Analysis"],
-        "Clinical Documentation": [
-          "Documentation",
-          "Clinical Notes",
-          "Session Notes",
+        'ABA Therapy': ['ABA Therapy', 'ABA', 'Applied Behavior Analysis'],
+        'Clinical Documentation': [
+          'Documentation',
+          'Clinical Notes',
+          'Session Notes',
         ],
-        "Billing & Insurance": ["Billing", "Insurance", "CPT Codes", "CPT"],
-        "Professional Development": ["Professional", "Career", "RBT", "BCBA"],
-        "Mental Health": ["Mental Health", "Wellness", "Anxiety", "Depression"],
-        "Autism Spectrum Disorder": ["Autism", "ASD", "Spectrum Disorder"],
-        "Behavioral Interventions": [
-          "Behavior",
-          "Intervention",
-          "BIP",
-          "Functional",
+        'Billing & Insurance': ['Billing', 'Insurance', 'CPT Codes', 'CPT'],
+        'Professional Development': ['Professional', 'Career', 'RBT', 'BCBA'],
+        'Mental Health': ['Mental Health', 'Wellness', 'Anxiety', 'Depression'],
+        'Autism Spectrum Disorder': ['Autism', 'ASD', 'Spectrum Disorder'],
+        'Behavioral Interventions': [
+          'Behavior',
+          'Intervention',
+          'BIP',
+          'Functional',
         ],
-        "Parent Resources": ["Parent", "Caregiver", "Family"],
-        "Research & Studies": ["Research", "Study", "Analysis", "Data"],
-        "Case Studies": ["Case Study", "Example", "Real-world"],
+        'Parent Resources': ['Parent', 'Caregiver', 'Family'],
+        'Research & Studies': ['Research', 'Study', 'Analysis', 'Data'],
+        'Case Studies': ['Case Study', 'Example', 'Real-world'],
       };
 
       // Check the title and content for category matches
@@ -63,10 +70,10 @@ async function associateResourceCategories() {
           resource.title.toLowerCase(),
           resource.metaDescription.toLowerCase(),
           resource.content.toLowerCase(),
-          ...resourceTags.map((tag) => tag.toLowerCase()),
-        ].join(" ");
+          ...resourceTags.map(tag => tag.toLowerCase()),
+        ].join(' ');
 
-        const hasMatch = keywords.some((keyword) =>
+        const hasMatch = keywords.some(keyword =>
           contentToCheck.includes(keyword.toLowerCase())
         );
 
@@ -74,7 +81,7 @@ async function associateResourceCategories() {
           // Check if association already exists
           const existingAssociation =
             await db.query.resourceCategories.findFirst({
-              where: (table) =>
+              where: table =>
                 eq(table.resourceId, resource.id) &&
                 eq(table.categoryId, categoryId),
             });
@@ -82,7 +89,6 @@ async function associateResourceCategories() {
           if (!existingAssociation) {
             // Create new association
             await db.insert(resourceCategories).values({
-              id: createId(),
               resourceId: resource.id,
               categoryId: categoryId,
             });
@@ -98,10 +104,9 @@ async function associateResourceCategories() {
 
       // If no categories were associated, add a default category
       if (associatedCategories.size === 0) {
-        const defaultCategoryId = categoryMap.get("ABA Therapy");
+        const defaultCategoryId = categoryMap.get('ABA Therapy');
         if (defaultCategoryId) {
           await db.insert(resourceCategories).values({
-            id: createId(),
             resourceId: resource.id,
             categoryId: defaultCategoryId,
           });
@@ -110,19 +115,19 @@ async function associateResourceCategories() {
       }
     }
 
-    console.log("Resource-category association completed successfully");
+    console.log('Resource-category association completed successfully');
   } catch (error) {
-    console.error("Error associating resources with categories:", error);
+    console.error('Error associating resources with categories:', error);
   }
 }
 
 // Run the association function
 associateResourceCategories()
   .then(() => {
-    console.log("✅ Resource-category association process finished");
+    console.log('✅ Resource-category association process finished');
     process.exit(0);
   })
-  .catch((error) => {
-    console.error("❌ Resource-category association failed:", error);
+  .catch(error => {
+    console.error('❌ Resource-category association failed:', error);
     process.exit(1);
   });

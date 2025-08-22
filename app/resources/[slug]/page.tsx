@@ -4,16 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'website/components/ui/button';
 import { getResourceBySlug } from 'website/lib/resources';
+import RelatedResources from 'website/components/sections/related-resources';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import {
-  ChevronLeft,
-  ArrowRight,
-  Calendar,
-  Clock,
-  Share,
-  User,
-} from 'lucide-react';
+import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
 
 type ResourceParams = {
   slug: string;
@@ -52,7 +46,7 @@ export default async function ResourcePage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative pt-16 pb-16">
       {/* Subtle background decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div
@@ -66,19 +60,6 @@ export default async function ResourcePage({
       {/* Main content */}
       <div className="relative z-10">
         {/* Header with breadcrumb */}
-        <section className="pt-16 md:pt-24 pb-8">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="mx-auto max-w-4xl">
-              <Link
-                href="/resources"
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 mb-8 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-quicksand font-medium group"
-              >
-                <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" />
-                Back to Resources
-              </Link>
-            </div>
-          </div>
-        </section>
 
         {/* Hero section with article info */}
         <section className="pb-12">
@@ -86,7 +67,7 @@ export default async function ResourcePage({
             <div className="mx-auto max-w-4xl">
               {/* Main content card */}
               <div
-                className="relative rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-xl"
+                className="relative rounded-3xl border-2 border-blue-200 bg-white p-12 shadow-xl"
                 style={{
                   borderRadius: '25px 30px 20px 35px',
                 }}
@@ -98,26 +79,9 @@ export default async function ResourcePage({
                 </div>
 
                 <div className="pt-2">
-                  {/* Tags */}
-                  {resource.tags && resource.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {resource.tags.map(tag => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium font-quicksand"
-                          style={{
-                            borderRadius: '18px 25px 15px 22px',
-                          }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
                   {/* Title */}
                   <h1
-                    className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900"
+                    className="text-4xl md:text-5xl font-bold tracking-tight mb-6 font-quicksand text-gray-900 text-center"
                     style={{
                       textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                     }}
@@ -126,7 +90,7 @@ export default async function ResourcePage({
                   </h1>
 
                   {/* Meta info */}
-                  <div className="flex flex-wrap items-center gap-6 text-gray-600">
+                  <div className="flex flex-wrap flex-col items-center gap-6 text-gray-600 w-full justify-center">
                     {resource.author && (
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -136,21 +100,11 @@ export default async function ResourcePage({
                           <div className="font-medium font-quicksand text-gray-900">
                             {resource.author.name}
                           </div>
-                          {resource.author.title && (
-                            <div className="text-sm text-gray-600 font-nunito">
-                              {resource.author.title}
-                            </div>
-                          )}
                         </div>
                       </div>
                     )}
 
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center text-sm font-nunito">
-                        <Calendar className="w-4 h-4 mr-2 text-blue-500" />
-                        {resource.date}
-                      </div>
-
                       {resource.readingTime && (
                         <div className="flex items-center text-sm font-nunito">
                           <Clock className="w-4 h-4 mr-2 text-green-500" />
@@ -166,7 +120,7 @@ export default async function ResourcePage({
         </section>
 
         {/* Image section */}
-        {resource.image && (
+        {resource.featuredImage && (
           <section className="pb-12">
             <div className="container mx-auto max-w-7xl px-4 sm:px-6">
               <div className="mx-auto max-w-4xl">
@@ -180,12 +134,19 @@ export default async function ResourcePage({
                   <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm z-10" />
 
                   <Image
-                    src={resource.image}
-                    alt={resource.title}
+                    src={resource.featuredImage.url}
+                    alt={resource.featuredImage.alt}
+                    title={resource.featuredImage.title || undefined}
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                     className="object-cover object-center"
+                    blurDataURL={
+                      resource.featuredImage.blurDataUrl || undefined
+                    }
+                    placeholder={
+                      resource.featuredImage.blurDataUrl ? 'blur' : 'empty'
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-50" />
                 </div>
@@ -222,7 +183,7 @@ export default async function ResourcePage({
         </section>
 
         {/* CTA section */}
-        {resource.cta && (
+        {true && (
           <section className="py-12">
             <div className="container mx-auto max-w-7xl px-4 sm:px-6">
               <div className="mx-auto max-w-4xl">
@@ -245,10 +206,11 @@ export default async function ResourcePage({
                         textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                       }}
                     >
-                      {resource.cta.title}
+                      Ready to streamline your ABA practice?
                     </h3>
                     <p className="text-lg mb-6 text-gray-700 font-nunito">
-                      {resource.cta.content}
+                      Start creating professional session notes with our
+                      easy-to-use platform.
                     </p>
                     <Link
                       href={`https://app.praxisnotes.com?utm_source=website&utm_medium=resources&utm_campaign=resource-cta&utm_content=${slug}`}
@@ -262,7 +224,7 @@ export default async function ResourcePage({
                           borderRadius: '15px 18px 12px 20px',
                         }}
                       >
-                        {resource.cta.buttonText}
+                        Get Started Free
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </Link>
@@ -272,6 +234,9 @@ export default async function ResourcePage({
             </div>
           </section>
         )}
+
+        {/* Related Resources */}
+        <RelatedResources currentResource={resource} />
 
         {/* Bottom navigation */}
         <section className="py-16 pb-24">

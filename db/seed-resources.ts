@@ -1,24 +1,24 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { db } from "./config";
-import { resources } from "./schema";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { db } from './config';
+import { resources, images } from './schema';
 
-async function seedResources() {
-  console.log("Starting resources seeding...");
+export default async function seedResources() {
+  console.log('Starting resources seeding...');
 
-  const resourcesDirectory = path.join(process.cwd(), "data/resources");
+  const resourcesDirectory = path.join(process.cwd(), 'data/resources');
 
   // Check if directory exists
   if (!fs.existsSync(resourcesDirectory)) {
-    console.log("Resources directory not found");
+    console.log('Resources directory not found');
     return;
   }
 
   // Get all .md files from the resources directory
   const fileNames = fs
     .readdirSync(resourcesDirectory)
-    .filter((fileName) => fileName.endsWith(".md"));
+    .filter(fileName => fileName.endsWith('.md'));
 
   console.log(`Found ${fileNames.length} resource files`);
 
@@ -26,7 +26,7 @@ async function seedResources() {
     for (const fileName of fileNames) {
       // Read file content
       const filePath = path.join(resourcesDirectory, fileName);
-      const fileContent = fs.readFileSync(filePath, "utf8");
+      const fileContent = fs.readFileSync(filePath, 'utf8');
 
       // Parse frontmatter and content
       const { data, content } = matter(fileContent);
@@ -34,7 +34,7 @@ async function seedResources() {
       // Check if resource already exists
       const existingResource = await db.query.resources.findFirst({
         where: (resources, { eq }) =>
-          eq(resources.slug, data.slug || fileName.replace(/\.md$/, "")),
+          eq(resources.slug, data.slug || fileName.replace(/\.md$/, '')),
       });
 
       if (existingResource) {
@@ -44,29 +44,40 @@ async function seedResources() {
         continue;
       }
 
+      // Handle featured image if provided
+      let featuredImageId: string | null = null;
+      if (data.featuredImage) {
+        // Create image record first
+        const [imageRecord] = await db
+          .insert(images)
+          .values({
+            url: data.featuredImage,
+            alt: data.title || 'Featured image',
+            title: data.title || undefined,
+            description: `Featured image for ${data.title}` || undefined,
+          })
+          .returning();
+
+        featuredImageId = imageRecord.id;
+      }
+
       // Insert resource into database
       await db.insert(resources).values({
-        id: data.id || fileName.replace(/\.md$/, ""),
-        slug: data.slug || fileName.replace(/\.md$/, ""),
-        title: data.title || "",
-        metaDescription: data.description || "",
-        date: data.date || "",
-        readingTime: data.readingTime || "",
+        slug: data.slug || fileName.replace(/\.md$/, ''),
+        title: data.title || '',
+        metaDescription: data.description || '',
+        date: data.date || '',
+        readingTime: data.readingTime || '',
         content: content,
-        cta: data.cta || null,
-        author: data.author || null,
-        tags: data.tags || null,
-        image: data.image || null,
+        authorId: data.authorId || null,
+        featuredImageId: featuredImageId,
       });
 
       console.log(`Inserted resource: ${data.title || fileName}`);
     }
 
-    console.log("Resources seeding completed successfully");
+    console.log('Resources seeding completed successfully');
   } catch (error) {
-    console.error("Error seeding resources:", error);
+    console.error('Error seeding resources:', error);
   }
 }
-
-// Run the seed function
-seedResources().catch(console.error);

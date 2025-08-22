@@ -1,19 +1,14 @@
 ---
-id: "introduction-to-applied-behavior-analysis"
-slug: "applied-behavior-analysis-guide"
-title: "Applied Behavior Analysis (ABA): Principles, Techniques, and Applications"
-description: "Discover the fundamentals of Applied Behavior Analysis (ABA), its core techniques, and broad applications beyond clinical settings."
-date: "April 8, 2025"
-readingTime: "8 min read"
+id: 'introduction-to-applied-behavior-analysis'
+slug: 'applied-behavior-analysis-guide'
+title: 'Applied Behavior Analysis (ABA): Principles, Techniques, and Applications'
+description: 'Discover the fundamentals of Applied Behavior Analysis (ABA), its core techniques, and broad applications beyond clinical settings.'
+date: 'April 8, 2025'
+readingTime: '8 min read'
 image: /images/resources/ABA-principles-Techniques-and-pplications.png
 tags:
-  - "ABA"
-  - "Behavioral Science"
-cta:
-  title: "Optimize Your ABA Practice"
-  content: "Leverage PraxisNote to simplify ABA documentation, streamline workflows, and enhance service quality."
-  buttonText: "Explore PraxisNote"
-  buttonLink: "/praxisnote"
+  - 'ABA'
+  - 'Behavioral Science'
 ---
 
 ## What is ABA?

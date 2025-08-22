@@ -1,19 +1,14 @@
 ---
-id: "maladaptive-behavior"
-slug: "maladaptive-behavior"
-title: "Understanding Maladaptive Behavior"
-description: "Learn about maladaptive behaviors, their causes, and effective intervention strategies in ABA therapy."
-date: "April 7, 2025"
-readingTime: "8 min read"
+id: 'maladaptive-behavior'
+slug: 'maladaptive-behavior'
+title: 'Understanding Maladaptive Behavior'
+description: 'Learn about maladaptive behaviors, their causes, and effective intervention strategies in ABA therapy.'
+date: 'April 7, 2025'
+readingTime: '8 min read'
 tags:
-  - "ABA Therapy"
-  - "Behavior Analysis"
-  - "Clinical Documentation"
-cta:
-  title: "How PraxisNote Helps"
-  content: "Our platform provides specialized tools for tracking maladaptive behaviors, implementing intervention strategies, and measuring progress. With PraxisNote, you can create comprehensive behavior intervention plans and maintain detailed documentation for insurance and clinical purposes."
-  buttonText: "Learn More About Our Features"
-  buttonLink: "/features/create-aba-notes"
+  - 'ABA Therapy'
+  - 'Behavior Analysis'
+  - 'Clinical Documentation'
 ---
 
 Maladaptive behavior refers to actions that stop you from adapting to new or difficult circumstances. In the context of ABA therapy, these behaviors interfere with an individual's daily functioning, learning, and social interactions. They're often viewed as behaviors that prevent a person from adjusting appropriately to situations.
