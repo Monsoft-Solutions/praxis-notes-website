@@ -1,29 +1,42 @@
+import { unstable_cache } from 'next/cache';
 import { db } from 'website/db/config';
-import { resources, type Resource } from 'website/db/schema';
-import { eq, desc, count } from 'drizzle-orm';
+import { resources, resourceCategories, resourceTags } from 'website/db/schema';
+import { eq, desc, count, inArray } from 'drizzle-orm';
+import type { ResourceWithRelations } from './types';
 
 /**
- * Loads resources from the database with pagination
- * @param page The page number (starts at 1)
- * @param pageSize Number of items per page
- * @returns Paginated resources and total count
+ * Internal function to fetch paginated resources from database
  */
-export async function getPaginatedResources(
+async function _getPaginatedResources(
   page = 1,
   pageSize = 6
 ): Promise<{
-  resources: Resource[];
+  resources: ResourceWithRelations[];
   totalCount: number;
   totalPages: number;
 }> {
   try {
     const offset = (page - 1) * pageSize;
 
-    // Get the resources for the current page
+    // Get the resources for the current page with relations
     const result = await db.query.resources.findMany({
       orderBy: resources => [desc(resources.date)],
       limit: pageSize,
       offset: offset,
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
     // Get the total count of resources for pagination
@@ -32,10 +45,16 @@ export async function getPaginatedResources(
     const totalPages = Math.ceil(totalCount / pageSize);
 
     return {
-      resources: result.map(resource => ({
-        ...resource,
-        readingTime: resource.readingTime || '',
-      })),
+      resources: result.map(resource => {
+        // Transform the data to match ResourceWithRelations structure
+        const { resourceCategories, resourceTags, ...baseResource } = resource;
+        return {
+          ...baseResource,
+          readingTime: baseResource.readingTime || '',
+          categories: resourceCategories.map(rc => rc.category),
+          tags: resourceTags.map(rt => rt.tag),
+        };
+      }),
       totalCount,
       totalPages,
     };
@@ -52,16 +71,36 @@ export async function getPaginatedResources(
 /**
  * Loads all resources from the database
  */
-export async function getAllResources(): Promise<Resource[]> {
+export async function getAllResources(): Promise<ResourceWithRelations[]> {
   try {
     const result = await db.query.resources.findMany({
       orderBy: resources => [desc(resources.date)],
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
-    return result.map(resource => ({
-      ...resource,
-      readingTime: resource.readingTime || '',
-    }));
+    return result.map(resource => {
+      // Transform the data to match ResourceWithRelations structure
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
   } catch (error) {
     console.error('Error fetching resources:', error);
     return [];
@@ -73,7 +112,7 @@ export async function getAllResources(): Promise<Resource[]> {
  */
 export async function getResourceBySlug(
   slug: string | string[] | undefined
-): Promise<Resource | undefined> {
+): Promise<ResourceWithRelations | undefined> {
   if (!slug) return undefined;
 
   // Handle if slug is an array (for backward compatibility)
@@ -82,16 +121,144 @@ export async function getResourceBySlug(
   try {
     const resource = await db.query.resources.findFirst({
       where: eq(resources.slug, slugValue),
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
     });
 
     if (!resource) return undefined;
 
-    return {
-      ...resource,
-      readingTime: resource.readingTime || '',
+    // Transform the data to match the expected structure
+    const { resourceCategories, resourceTags, ...baseResource } = resource;
+
+    const transformedResource = {
+      ...baseResource,
+      readingTime: baseResource.readingTime || '',
+      categories: resourceCategories.map(rc => rc.category),
+      tags: resourceTags.map(rt => rt.tag),
     };
+
+    return transformedResource as ResourceWithRelations;
   } catch (error) {
     console.error(`Error fetching resource with slug ${slugValue}:`, error);
     return undefined;
   }
 }
+
+/**
+ * Gets related resources based on shared categories or tags
+ * @param currentResourceId The ID of the current resource to exclude
+ * @param categoryIds Array of category IDs to match
+ * @param tagIds Array of tag IDs to match
+ * @param limit Maximum number of results to return (default: 3)
+ */
+export async function getRelatedResources(
+  currentResourceId: string,
+  categoryIds: string[],
+  tagIds: string[],
+  limit = 3
+): Promise<ResourceWithRelations[]> {
+  try {
+    // If no categories or tags, return empty array
+    if (categoryIds.length === 0 && tagIds.length === 0) {
+      return [];
+    }
+
+    // Build a query to find resources that share categories or tags
+    const relatedResourceIds = new Set<string>();
+
+    // Find resources with shared categories
+    if (categoryIds.length > 0) {
+      const resourcesWithSharedCategories = await db
+        .select({ resourceId: resourceCategories.resourceId })
+        .from(resourceCategories)
+        .where(inArray(resourceCategories.categoryId, categoryIds));
+
+      resourcesWithSharedCategories.forEach(row => {
+        if (row.resourceId !== currentResourceId) {
+          relatedResourceIds.add(row.resourceId);
+        }
+      });
+    }
+
+    // Find resources with shared tags
+    if (tagIds.length > 0) {
+      const resourcesWithSharedTags = await db
+        .select({ resourceId: resourceTags.resourceId })
+        .from(resourceTags)
+        .where(inArray(resourceTags.tagId, tagIds));
+
+      resourcesWithSharedTags.forEach(row => {
+        if (row.resourceId !== currentResourceId) {
+          relatedResourceIds.add(row.resourceId);
+        }
+      });
+    }
+
+    // If no related resources found, return empty array
+    if (relatedResourceIds.size === 0) {
+      return [];
+    }
+
+    // Get the actual resources with their relations
+    const relatedResources = await db.query.resources.findMany({
+      where: inArray(resources.id, Array.from(relatedResourceIds)),
+      orderBy: [desc(resources.date)],
+      limit: limit,
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
+
+    return relatedResources.map(resource => {
+      // Transform the data to match ResourceWithRelations structure
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching related resources:', error);
+    return [];
+  }
+}
+
+/**
+ * Loads resources from the database with pagination (cached)
+ * @param page The page number (starts at 1)
+ * @param pageSize Number of items per page
+ * @returns Paginated resources and total count
+ */
+export const getPaginatedResources = unstable_cache(
+  _getPaginatedResources,
+  ['paginated-resources'],
+  {
+    tags: ['resources'],
+    revalidate: 43200, // 12 hours
+  }
+);

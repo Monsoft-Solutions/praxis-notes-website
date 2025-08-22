@@ -23,9 +23,64 @@ import {
 import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: 'Track ABA Progress | Praxis Notes',
+  title: 'Track ABA Progress - Advanced Analytics & Reporting',
   description:
-    "Monitor client progress, track behavioral trends, and generate comprehensive reports for ABA therapy with Praxis Notes's powerful analytics tools.",
+    'Monitor client progress, track behavioral trends, and generate comprehensive reports for ABA therapy with powerful analytics tools. Make data-driven clinical decisions.',
+
+  // Keywords for SEO
+  keywords: [
+    'ABA progress tracking',
+    'behavioral data analytics',
+    'client progress monitoring',
+    'ABA therapy reports',
+    'behavior trend analysis',
+    'clinical data tracking',
+    'therapy outcome measurement',
+    'behavioral progress charts',
+    'ABA data visualization',
+    'treatment progress reports',
+    'behavioral analysis metrics',
+    'client outcome tracking',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/features/track-aba-progress',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Track ABA Progress - Advanced Analytics & Reporting',
+    description:
+      'Monitor client progress and track behavioral trends with powerful analytics tools for ABA therapy.',
+    url: 'https://praxisnotes.com/features/track-aba-progress',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Track ABA Progress with Advanced Analytics',
+    description:
+      'Monitor client progress and make data-driven clinical decisions with powerful analytics.',
+  },
+
+  // Additional metadata
+  category: 'Product Features',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function TrackProgressPage() {

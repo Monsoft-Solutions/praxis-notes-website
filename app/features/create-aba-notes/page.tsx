@@ -19,9 +19,64 @@ import {
 import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: 'Create ABA Notes | Praxis Notes',
+  title: 'Create ABA Notes - AI-Powered Session Documentation',
   description:
-    'Generate detailed ABA session notes in seconds with our AI-powered tools. Save time on documentation and focus more on client care.',
+    'Generate detailed ABA session notes in seconds with AI-powered tools. Save 75% of documentation time while maintaining clinical quality and insurance compliance.',
+
+  // Keywords for SEO
+  keywords: [
+    'create ABA notes',
+    'AI session notes',
+    'ABA note generation',
+    'automated documentation',
+    'session note creator',
+    'behavioral analysis notes',
+    'clinical documentation AI',
+    'therapy note generator',
+    'ABA session writing',
+    'documentation automation',
+    'SOAP notes ABA',
+    'progress notes AI',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/features/create-aba-notes',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Create ABA Notes - AI-Powered Session Documentation',
+    description:
+      'Generate detailed ABA session notes in seconds with AI. Save 75% of documentation time while maintaining clinical quality.',
+    url: 'https://praxisnotes.com/features/create-aba-notes',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Create ABA Notes with AI',
+    description:
+      'Generate detailed session notes in seconds. Save time, maintain quality.',
+  },
+
+  // Additional metadata
+  category: 'Product Features',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function CreateNotesPage() {

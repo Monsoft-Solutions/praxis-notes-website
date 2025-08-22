@@ -22,9 +22,64 @@ import {
 import FeaturesCTA from 'website/components/sections/features-shared-cta';
 
 export const metadata: Metadata = {
-  title: 'HIPAA Compliant ABA Documentation | Praxis Notes',
+  title: 'HIPAA Compliant ABA Documentation - Secure & Encrypted',
   description:
-    'Ensure HIPAA compliance in your ABA practice with secure, encrypted documentation and storage. Meet all regulatory requirements while protecting client information.',
+    'Ensure HIPAA compliance in your ABA practice with secure, encrypted documentation and storage. Meet all regulatory requirements while protecting client information with enterprise-grade security.',
+
+  // Keywords for SEO
+  keywords: [
+    'HIPAA compliant ABA',
+    'secure ABA documentation',
+    'encrypted therapy notes',
+    'ABA data security',
+    'PHI protection',
+    'healthcare compliance',
+    'secure session notes',
+    'HIPAA ABA software',
+    'behavioral health security',
+    'client data protection',
+    'compliance documentation',
+    'encrypted storage ABA',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/features/hipaa-compliant-aba',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'HIPAA Compliant ABA Documentation - Secure & Encrypted',
+    description:
+      'Ensure HIPAA compliance with secure, encrypted ABA documentation. Meet regulatory requirements while protecting client information.',
+    url: 'https://praxisnotes.com/features/hipaa-compliant-aba',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'HIPAA Compliant ABA Documentation',
+    description:
+      'Secure, encrypted ABA documentation that meets all regulatory requirements.',
+  },
+
+  // Additional metadata
+  category: 'Product Features',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function HipaaCompliancePage() {

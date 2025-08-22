@@ -14,9 +14,76 @@ import CTAPlain from 'website/components/sections/cta-plain';
 import { CONTACT_INFO } from 'website/lib/contact-info';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Praxis Notes',
+  title: 'Contact Us - Get Support for ABA Documentation',
   description:
-    "Get in touch with the Praxis Notes team. We're here to help with any questions about our ABA session notes tool.",
+    "Get in touch with the Praxis Notes team. We're here to help with any questions about our ABA session notes tool. Expert support available for all users.",
+
+  // Keywords for SEO
+  keywords: [
+    'Contact Praxis Notes',
+    'ABA software support',
+    'customer service',
+    'technical support',
+    'ABA documentation help',
+    'session notes support',
+    'BCBA assistance',
+    'RBT help',
+    'demo request',
+    'ABA software questions',
+    'behavioral analysis support',
+    'therapy documentation assistance',
+  ].join(', '),
+
+  // Author information
+  authors: [{ name: 'PraxisNote Team' }],
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/contact',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Contact Us | Praxis Notes - Get Support for ABA Documentation',
+    description:
+      "Get in touch with our expert support team. We're here to help with any questions about our ABA session notes tool.",
+    url: 'https://praxisnotes.com/contact',
+    siteName: 'Praxis Notes',
+    type: 'website',
+    images: [
+      {
+        url: 'https://praxisnotes.com/images/logo/praxis-note-logo-main.png',
+        alt: 'Contact Praxis Notes - ABA Documentation Support',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Praxis Notes - ABA Documentation Support',
+    description:
+      'Get expert support for your ABA documentation needs. Our team is here to help with any questions.',
+    images: ['https://praxisnotes.com/images/logo/praxis-note-logo-main.png'],
+  },
+
+  // Additional metadata
+  category: 'Contact',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function ContactPage() {

@@ -1,9 +1,64 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Praxis Notes",
+  title: 'Terms of Service - Legal Terms & Conditions',
   description:
-    "Read the terms of service for Praxis Notes, our AI-powered ABA session notes platform.",
+    'Read the terms of service for Praxis Notes, our AI-powered ABA session notes platform. Understand user rights, responsibilities, and HIPAA compliance requirements.',
+
+  // Keywords for SEO
+  keywords: [
+    'terms of service',
+    'legal terms',
+    'user agreement',
+    'ABA software terms',
+    'privacy policy',
+    'user rights',
+    'service conditions',
+    'HIPAA terms',
+    'software license',
+    'platform agreement',
+    'usage policy',
+    'legal compliance',
+  ].join(', '),
+
+  // Canonical URL
+  alternates: {
+    canonical: 'https://praxisnotes.com/terms',
+  },
+
+  // Open Graph for social sharing
+  openGraph: {
+    title: 'Terms of Service - Praxis Notes',
+    description:
+      'Read our terms of service for AI-powered ABA documentation platform. Understanding your rights and responsibilities.',
+    url: 'https://praxisnotes.com/terms',
+    siteName: 'Praxis Notes',
+    type: 'website',
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary',
+    title: 'Praxis Notes Terms of Service',
+    description:
+      'Our terms of service and user agreement for the ABA documentation platform.',
+  },
+
+  // Additional metadata
+  category: 'Legal',
+
+  // Robots directive
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function TermsPage() {
@@ -343,7 +398,7 @@ export default function TermsPage() {
           <ul className="list-none ml-4 space-y-2">
             <li>By email: legal@praxisnotes.com</li>
             <li>
-              By visiting the contact page on our website:{" "}
+              By visiting the contact page on our website:{' '}
               <a href="/contact" className="text-blue-600 hover:underline">
                 Contact Us
               </a>

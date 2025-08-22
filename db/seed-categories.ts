@@ -1,61 +1,51 @@
-import { db } from "./config";
-import { categories } from "./schema";
-import { eq } from "drizzle-orm";
+import { db } from './config';
+import { categories } from './schema';
+import { eq } from 'drizzle-orm';
 
-async function seedCategories() {
-  console.log("Starting categories seeding...");
+export default async function seedCategories() {
+  console.log('Starting categories seeding...');
 
-  // Define categories related to ABA industry and mental health care
+  // Define categories based on Praxis Notes business goals and content strategy
   const categoryData = [
     {
-      name: "ABA Therapy",
+      name: 'ABA Session Notes & Tools',
       description:
-        "Articles about Applied Behavior Analysis therapy techniques, methodologies, and best practices.",
+        'Comprehensive resources on ABA session documentation, note-taking techniques, and free tools like our session notes generator. Perfect for RBTs and BCBAs looking to streamline their documentation process.',
     },
     {
-      name: "Clinical Documentation",
+      name: 'CPT Codes & Billing',
       description:
-        "Resources on proper documentation practices for ABA sessions, assessments, and treatment plans.",
+        'In-depth guides on CPT codes 97151-97158 for ABA services, billing requirements, insurance compliance, and revenue cycle management for ABA practices.',
     },
     {
-      name: "Billing & Insurance",
+      name: 'Behavior Analysis Concepts',
       description:
-        "Information about CPT codes, insurance requirements, and billing practices for ABA services.",
+        'Educational content covering fundamental ABA concepts including maladaptive behaviors, reinforcement strategies, behavior modification techniques, and evidence-based interventions.',
     },
     {
-      name: "Professional Development",
+      name: 'Compliance & HIPAA',
       description:
-        "Resources for RBTs, BCBAs, and other ABA professionals to develop their skills and advance their careers.",
+        'Essential resources on HIPAA compliance for ABA providers, documentation standards, privacy protection, and regulatory requirements for behavioral health services.',
     },
     {
-      name: "Mental Health",
+      name: 'Study Guides & Training',
       description:
-        "Articles about mental health topics, including anxiety, depression, and general wellness.",
+        'Study materials, practice exercises, and training resources for RBT certification, BCBA exam preparation, and continuing education in applied behavior analysis.',
     },
     {
-      name: "Autism Spectrum Disorder",
+      name: 'Family Resources',
       description:
-        "Resources specific to autism spectrum disorder, including research, interventions, and support strategies.",
+        "Plain-language guides and resources for families of individuals receiving ABA services, including progress tracking, home strategies, and understanding your child's therapy.",
     },
     {
-      name: "Behavioral Interventions",
+      name: 'Professional Development',
       description:
-        "Information about various behavioral intervention techniques, strategies, and applications.",
+        'Career advancement resources for RBTs, BCBAs, and other ABA professionals including skills development, certification requirements, and industry best practices.',
     },
     {
-      name: "Parent Resources",
+      name: 'Research & Evidence',
       description:
-        "Guides and resources for parents and caregivers of individuals receiving ABA therapy or mental health services.",
-    },
-    {
-      name: "Research & Studies",
-      description:
-        "Latest research findings, studies, and scientific advancements in ABA and mental health fields.",
-    },
-    {
-      name: "Case Studies",
-      description:
-        "Real-world examples and case studies demonstrating effective application of ABA techniques.",
+        'Latest research findings, evidence-based practices, and scientific advancements in applied behavior analysis and autism intervention strategies.',
     },
   ];
 
@@ -63,7 +53,7 @@ async function seedCategories() {
     // Check existing categories to avoid duplicates
     for (const category of categoryData) {
       const existingCategory = await db.query.categories.findFirst({
-        where: (table) => eq(table.name, category.name),
+        where: table => eq(table.name, category.name),
       });
 
       if (existingCategory) {
@@ -75,25 +65,18 @@ async function seedCategories() {
       await db.insert(categories).values({
         name: category.name,
         description: category.description,
-        slug: category.name.toLowerCase().replace(/ /g, "-"),
+        slug: category.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-') // Replace any non-alphanumeric characters with hyphens
+          .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+          .replace(/-{2,}/g, '-'), // Replace multiple consecutive hyphens with single hyphen
       });
 
       console.log(`Inserted category: ${category.name}`);
     }
 
-    console.log("Categories seeding completed successfully");
+    console.log('Categories seeding completed successfully');
   } catch (error) {
-    console.error("Error seeding categories:", error);
+    console.error('Error seeding categories:', error);
   }
 }
-
-// Run the seed function
-seedCategories()
-  .then(() => {
-    console.log("✅ Categories seeding process finished");
-    process.exit(0);
-  })
-  .catch((error) => {
-    console.error("❌ Categories seeding failed:", error);
-    process.exit(1);
-  });
