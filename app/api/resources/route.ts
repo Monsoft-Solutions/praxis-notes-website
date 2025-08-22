@@ -18,6 +18,7 @@ import {
 } from 'website/lib/api/middleware';
 import { createResourceSchema } from 'website/lib/validations/api';
 import { calculateReadingTime } from 'website/lib/utils/reading-time';
+import { notifyGoogleResourceCreated } from 'website/lib/google-indexing';
 import { eq, inArray } from 'drizzle-orm';
 
 /**
@@ -254,10 +255,22 @@ async function postHandler(request: NextRequest) {
       // Revalidate cache tags
       revalidateTag('resources');
       revalidateTag('categories');
+      revalidateTag('sitemap'); // Revalidate sitemap to include new resource
     } catch (revalidationError) {
       console.warn('Revalidation failed:', revalidationError);
       // Don't fail the request if revalidation fails
     }
+
+    // Notify Google about the new resource (async, non-blocking)
+    // This runs after successful creation and revalidation
+    notifyGoogleResourceCreated(result.slug).catch(error => {
+      // Log error but don't fail the request
+      console.warn(
+        'Google indexing notification failed for resource:',
+        result.slug,
+        error
+      );
+    });
 
     return createSuccessResponse(
       {
