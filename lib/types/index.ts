@@ -77,6 +77,16 @@ export type {
   TagStats,
 } from './tag';
 
+// Image types
+export type {
+  BaseImage,
+  CreateImage,
+  ImageWithMeta,
+  ImagePreview,
+  ImageUploadData,
+  ImageMeta,
+} from './image';
+
 /**
  * Common utility types for the application
  */

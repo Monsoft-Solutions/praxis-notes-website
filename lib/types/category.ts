@@ -23,7 +23,7 @@ export type CategoryWithCount = BaseCategory & {
 export type CategoryWithResources = BaseCategory & {
   resources: Pick<
     BaseResource,
-    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'featuredImage'
+    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'featuredImageId'
   >[];
 };
 

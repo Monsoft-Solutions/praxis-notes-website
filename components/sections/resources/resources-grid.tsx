@@ -182,10 +182,19 @@ export default function ResourcesGrid({
                         <div className="relative h-48 w-full overflow-hidden mb-6 rounded-xl border border-gray-100">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
                           <Image
-                            src={resource.featuredImage}
-                            alt={resource.title}
+                            src={resource.featuredImage.url}
+                            alt={resource.featuredImage.alt}
+                            title={resource.featuredImage.title || undefined}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            blurDataURL={
+                              resource.featuredImage.blurDataUrl || undefined
+                            }
+                            placeholder={
+                              resource.featuredImage.blurDataUrl
+                                ? 'blur'
+                                : 'empty'
+                            }
                           />
                           {resource.tags && resource.tags.length > 0 && (
                             <div className="absolute top-3 right-3 z-20">

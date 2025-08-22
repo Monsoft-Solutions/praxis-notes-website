@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { db } from './config';
-import { resources } from './schema';
+import { resources, images } from './schema';
 
 export default async function seedResources() {
   console.log('Starting resources seeding...');
@@ -44,6 +44,23 @@ export default async function seedResources() {
         continue;
       }
 
+      // Handle featured image if provided
+      let featuredImageId: string | null = null;
+      if (data.featuredImage) {
+        // Create image record first
+        const [imageRecord] = await db
+          .insert(images)
+          .values({
+            url: data.featuredImage,
+            alt: data.title || 'Featured image',
+            title: data.title || undefined,
+            description: `Featured image for ${data.title}` || undefined,
+          })
+          .returning();
+
+        featuredImageId = imageRecord.id;
+      }
+
       // Insert resource into database
       await db.insert(resources).values({
         slug: data.slug || fileName.replace(/\.md$/, ''),
@@ -53,7 +70,7 @@ export default async function seedResources() {
         readingTime: data.readingTime || '',
         content: content,
         authorId: data.authorId || null,
-        featuredImage: data.featuredImage || null,
+        featuredImageId: featuredImageId,
       });
 
       console.log(`Inserted resource: ${data.title || fileName}`);

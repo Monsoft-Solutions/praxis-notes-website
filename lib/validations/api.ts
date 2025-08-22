@@ -1,6 +1,22 @@
 import { z } from 'zod';
 
 /**
+ * Image data schema for API
+ */
+export const imageDataSchema = z.object({
+  url: z.string().url('Invalid image URL'),
+  alt: z.string().min(1, 'Alt text is required'),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  width: z.number().positive('Width must be positive').optional(),
+  height: z.number().positive('Height must be positive').optional(),
+  fileSize: z.number().positive('File size must be positive').optional(),
+  mimeType: z.string().optional(),
+  originalFilename: z.string().optional(),
+  blurDataUrl: z.string().optional(),
+});
+
+/**
  * Resource creation schema for API
  */
 export const createResourceSchema = z.object({
@@ -16,8 +32,10 @@ export const createResourceSchema = z.object({
   status: z.enum(['draft', 'readyToPublish', 'published']).default('draft'),
   authorId: z.string().uuid('Invalid author ID'),
   featuredImageUrl: z.string().url('Invalid featured image URL').optional(),
+  featuredImage: imageDataSchema.optional(),
   categoryIds: z.array(z.string().uuid('Invalid category ID')).default([]),
   tagIds: z.array(z.string().uuid('Invalid tag ID')).default([]),
 });
 
 export type CreateResourceRequest = z.infer<typeof createResourceSchema>;
+export type ImageDataRequest = z.infer<typeof imageDataSchema>;

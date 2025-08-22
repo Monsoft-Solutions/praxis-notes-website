@@ -2,6 +2,7 @@ import type { Resource, InsertResource } from '../../db/schema/resources';
 import type { BaseAuthor } from './author';
 import type { BaseCategory } from './category';
 import type { BaseTag } from './tag';
+import type { BaseImage } from './image';
 
 /**
  * Base resource types from database schema
@@ -40,6 +41,7 @@ export type ResourceWithTags = BaseResource & {
  */
 export type ResourceWithRelations = BaseResource & {
   author: BaseAuthor | null;
+  featuredImage: BaseImage | null;
   categories: BaseCategory[];
   tags: BaseTag[];
 };
@@ -49,9 +51,13 @@ export type ResourceWithRelations = BaseResource & {
  */
 export type ResourcePreview = Pick<
   BaseResource,
-  'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'readingTime' | 'featuredImage'
+  'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'readingTime'
 > & {
   author: Pick<BaseAuthor, 'id' | 'name' | 'avatarUrl'> | null;
+  featuredImage: Pick<
+    BaseImage,
+    'id' | 'url' | 'alt' | 'title' | 'width' | 'height' | 'blurDataUrl'
+  > | null;
   categories: Pick<BaseCategory, 'id' | 'name' | 'slug'>[];
 };
 
@@ -60,8 +66,10 @@ export type ResourcePreview = Pick<
  */
 export type ResourceMetadata = Pick<
   BaseResource,
-  'title' | 'metaDescription' | 'metaTitle' | 'metaKeywords' | 'featuredImage'
->;
+  'title' | 'metaDescription' | 'metaTitle' | 'metaKeywords'
+> & {
+  featuredImage: Pick<BaseImage, 'url' | 'alt' | 'title'> | null;
+};
 
 /**
  * Resource form data type for creating/editing resources

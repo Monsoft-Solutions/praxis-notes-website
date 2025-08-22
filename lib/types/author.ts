@@ -21,7 +21,7 @@ export type AuthorWithCount = BaseAuthor & {
 export type AuthorWithResources = BaseAuthor & {
   resources: Pick<
     BaseResource,
-    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'status' | 'featuredImage'
+    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'status' | 'featuredImageId'
   >[];
 };
 
@@ -85,7 +85,7 @@ export type AuthorProfile = BaseAuthor & {
   publishedResourceCount: number;
   recentResources: Pick<
     BaseResource,
-    'id' | 'slug' | 'title' | 'date' | 'excerpt' | 'featuredImage'
+    'id' | 'slug' | 'title' | 'date' | 'excerpt' | 'featuredImageId'
   >[];
   isActive: boolean;
 };

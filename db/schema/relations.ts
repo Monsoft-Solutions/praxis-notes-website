@@ -4,6 +4,7 @@ import { resources } from './resources';
 import { tags } from './tag.table';
 import { categories, resourceCategories } from './resource-category.table';
 import { authors } from './author.table';
+import { images } from './image.table';
 
 export const resourceTagsRelations = relations(resourceTags, ({ one }) => ({
   resource: one(resources, {
@@ -35,6 +36,10 @@ export const resourcesRelations = relations(resources, ({ one, many }) => ({
     fields: [resources.authorId],
     references: [authors.id],
   }),
+  featuredImage: one(images, {
+    fields: [resources.featuredImageId],
+    references: [images.id],
+  }),
   resourceCategories: many(resourceCategories),
   resourceTags: many(resourceTags),
 }));
@@ -48,5 +53,9 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
 }));
 
 export const authorsRelations = relations(authors, ({ many }) => ({
+  resources: many(resources),
+}));
+
+export const imagesRelations = relations(images, ({ many }) => ({
   resources: many(resources),
 }));

@@ -20,7 +20,7 @@ export type TagWithCount = BaseTag & {
 export type TagWithResources = BaseTag & {
   resources: Pick<
     BaseResource,
-    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'featuredImage'
+    'id' | 'slug' | 'title' | 'excerpt' | 'date' | 'featuredImageId'
   >[];
 };
 

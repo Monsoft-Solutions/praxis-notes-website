@@ -8,6 +8,7 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core';
 import { authors } from './author.table';
+import { images } from './image.table';
 
 export const resourceStatus = pgEnum('resource_status', [
   'draft',
@@ -30,7 +31,7 @@ export const resources = pgTable(
     content: text('content').notNull(),
     status: resourceStatus('status').default('draft'),
     authorId: uuid('author_id'),
-    featuredImage: varchar('featured_image', { length: 255 }),
+    featuredImageId: uuid('featured_image_id'),
     createdAt: timestamp('created_at').defaultNow(),
     updatedAt: timestamp('updated_at').defaultNow(),
   },
@@ -39,6 +40,11 @@ export const resources = pgTable(
       columns: [table.authorId],
       foreignColumns: [authors.id],
       name: 'resources_author_id_fk',
+    }).onDelete('set null'),
+    featuredImageFk: foreignKey({
+      columns: [table.featuredImageId],
+      foreignColumns: [images.id],
+      name: 'resources_featured_image_id_fk',
     }).onDelete('set null'),
   })
 );

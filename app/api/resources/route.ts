@@ -8,6 +8,7 @@ import {
   categories,
   tags,
   authors,
+  images,
 } from '../../../db/schema';
 import {
   withApiAuth,
@@ -19,11 +20,14 @@ import { calculateReadingTime } from '../../../lib/utils/reading-time';
 import { eq, inArray } from 'drizzle-orm';
 
 /**
- * Download image from URL and upload to Vercel Blob
+ * Download image from URL and upload to Vercel Blob, then create image record
  */
 async function downloadAndUploadImage(
   imageUrl: string,
-  slug: string
+  slug: string,
+  alt: string,
+  title?: string,
+  description?: string
 ): Promise<string> {
   try {
     // Download the image
@@ -51,7 +55,21 @@ async function downloadAndUploadImage(
       contentType,
     });
 
-    return url;
+    // Create image record in database
+    const [imageRecord] = await db
+      .insert(images)
+      .values({
+        url,
+        alt,
+        title,
+        description,
+        mimeType: contentType,
+        originalFilename: imageUrl.split('/').pop() || filename,
+        fileSize: blob.size,
+      })
+      .returning();
+
+    return imageRecord.id;
   } catch (error) {
     console.error('Error downloading and uploading image:', error);
     throw new Error(
@@ -114,18 +132,52 @@ async function postHandler(request: NextRequest) {
     }
 
     // Process featured image if provided
-    let featuredImageUrl: string | undefined;
+    let featuredImageId: string | undefined;
+
+    // Handle legacy featuredImageUrl for backward compatibility
     if (data.featuredImageUrl) {
       try {
-        featuredImageUrl = await downloadAndUploadImage(
+        featuredImageId = await downloadAndUploadImage(
           data.featuredImageUrl,
-          data.slug
+          data.slug,
+          data.title, // Use title as alt text for legacy images
+          data.title
         );
       } catch (error) {
         return createErrorResponse(
           error instanceof Error
             ? error.message
             : 'Failed to process featured image',
+          400
+        );
+      }
+    }
+
+    // Handle new featuredImage structure
+    if (data.featuredImage) {
+      try {
+        const [imageRecord] = await db
+          .insert(images)
+          .values({
+            url: data.featuredImage.url,
+            alt: data.featuredImage.alt,
+            title: data.featuredImage.title,
+            description: data.featuredImage.description,
+            width: data.featuredImage.width,
+            height: data.featuredImage.height,
+            fileSize: data.featuredImage.fileSize,
+            mimeType: data.featuredImage.mimeType,
+            originalFilename: data.featuredImage.originalFilename,
+            blurDataUrl: data.featuredImage.blurDataUrl,
+          })
+          .returning();
+
+        featuredImageId = imageRecord.id;
+      } catch (error) {
+        return createErrorResponse(
+          error instanceof Error
+            ? error.message
+            : 'Failed to create featured image record',
           400
         );
       }
@@ -151,7 +203,7 @@ async function postHandler(request: NextRequest) {
           content: data.content,
           status: data.status,
           authorId: data.authorId,
-          featuredImage: featuredImageUrl,
+          featuredImageId: featuredImageId,
         })
         .returning();
 
@@ -183,7 +235,7 @@ async function postHandler(request: NextRequest) {
         id: result.id,
         slug: result.slug,
         title: result.title,
-        featuredImage: result.featuredImage,
+        featuredImageId: result.featuredImageId,
         status: result.status,
         createdAt: result.createdAt,
       },

@@ -134,12 +134,19 @@ export default async function ResourcePage({
                   <div className="absolute -top-1.5 right-8 h-3 w-3 rotate-45 transform bg-green-400 shadow-sm z-10" />
 
                   <Image
-                    src={resource.featuredImage}
-                    alt={resource.title}
+                    src={resource.featuredImage.url}
+                    alt={resource.featuredImage.alt}
+                    title={resource.featuredImage.title || undefined}
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                     className="object-cover object-center"
+                    blurDataURL={
+                      resource.featuredImage.blurDataUrl || undefined
+                    }
+                    placeholder={
+                      resource.featuredImage.blurDataUrl ? 'blur' : 'empty'
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-50" />
                 </div>

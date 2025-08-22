@@ -27,6 +27,7 @@ export async function getPaginatedResources(
       offset: offset,
       with: {
         author: true,
+        featuredImage: true,
         resourceCategories: {
           with: {
             category: true,
@@ -78,6 +79,7 @@ export async function getAllResources(): Promise<ResourceWithRelations[]> {
       orderBy: resources => [desc(resources.date)],
       with: {
         author: true,
+        featuredImage: true,
         resourceCategories: {
           with: {
             category: true,
@@ -123,6 +125,7 @@ export async function getResourceBySlug(
       where: eq(resources.slug, slugValue),
       with: {
         author: true,
+        featuredImage: true,
         resourceCategories: {
           with: {
             category: true,
@@ -217,6 +220,7 @@ export async function getRelatedResources(
       limit: limit,
       with: {
         author: true,
+        featuredImage: true,
         resourceCategories: {
           with: {
             category: true,

@@ -5,4 +5,5 @@ export * from './resource-category.table';
 export * from './tag.table';
 export * from './resource-tag.table';
 export * from './author.table';
+export * from './image.table';
 export * from './relations';
