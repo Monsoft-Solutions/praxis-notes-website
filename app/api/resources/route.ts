@@ -494,6 +494,17 @@ async function patchHandler(request: NextRequest) {
       // Don't fail the request if revalidation fails
     }
 
+    // Notify Google about the new resource (async, non-blocking)
+    // This runs after successful creation and revalidation
+    notifyGoogleResourceCreated(result.slug).catch(error => {
+      // Log error but don't fail the request
+      console.warn(
+        'Google indexing notification failed for resource:',
+        result.slug,
+        error
+      );
+    });
+
     return createSuccessResponse(
       {
         id: result.id,
@@ -501,6 +512,7 @@ async function patchHandler(request: NextRequest) {
         title: result.title,
         status: result.status,
         updatedAt: result.updatedAt,
+        featuredImageId: result.featuredImageId,
       },
       'Resource updated successfully'
     );
