@@ -37,5 +37,26 @@ export const createResourceSchema = z.object({
   tagIds: z.array(z.string().uuid('Invalid tag ID')).default([]),
 });
 
+/**
+ * Resource update schema for API - allows partial updates
+ */
+export const updateResourceSchema = z.object({
+  postId: z.string().uuid('Invalid post ID'),
+  slug: z.string().min(1, 'Slug is required').optional(),
+  title: z.string().min(1, 'Title is required').optional(),
+  metaDescription: z.string().min(1, 'Meta description is required').optional(),
+  metaTitle: z.string().optional(),
+  metaKeywords: z.string().optional(),
+  excerpt: z.string().optional(),
+  date: z.string().min(1, 'Date is required').optional(),
+  readingTime: z.string().optional(),
+  content: z.string().min(1, 'Content is required').optional(),
+  status: z.enum(['draft', 'readyToPublish', 'published']).optional(),
+  authorId: z.string().uuid('Invalid author ID').optional(),
+  categoryIds: z.array(z.string().uuid('Invalid category ID')).optional(),
+  tagIds: z.array(z.string().uuid('Invalid tag ID')).optional(),
+});
+
 export type CreateResourceRequest = z.infer<typeof createResourceSchema>;
+export type UpdateResourceRequest = z.infer<typeof updateResourceSchema>;
 export type ImageDataRequest = z.infer<typeof imageDataSchema>;
