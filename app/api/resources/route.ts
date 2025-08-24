@@ -1,5 +1,4 @@
 import { NextRequest } from 'next/server';
-import { put } from '@vercel/blob';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from 'website/db/config';
 import {
@@ -9,7 +8,6 @@ import {
   categories,
   tags,
   authors,
-  images,
 } from 'website/db/schema';
 import {
   withApiAuth,
@@ -22,76 +20,11 @@ import {
 } from 'website/lib/validations/api';
 import { calculateReadingTime } from 'website/lib/utils/reading-time';
 import { notifyGoogleResourceCreated } from 'website/lib/google-indexing';
+import {
+  downloadAndUploadImage,
+  handleFeaturedImageUpdate,
+} from 'website/lib/utils/image-management';
 import { eq, inArray } from 'drizzle-orm';
-
-/**
- * Download image from URL and upload to Vercel Blob, then create image record
- * Enhanced version that supports full image metadata
- */
-async function downloadAndUploadImage(
-  imageUrl: string,
-  slug: string,
-  alt: string,
-  title?: string,
-  description?: string,
-  width?: number,
-  height?: number,
-  mimeType?: string,
-  originalFilename?: string,
-  blurDataUrl?: string
-): Promise<string> {
-  try {
-    // Download the image
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to download image: ${response.statusText}`);
-    }
-
-    // Get the content type from the response or use provided mimeType
-    const contentType =
-      mimeType || response.headers.get('content-type') || 'image/jpeg';
-
-    // Extract file extension from URL or use default
-    const extension = contentType.split('/')[1];
-
-    // Generate a unique filename
-    const timestamp = Date.now();
-    const filename = `resources/${slug}-${timestamp}.${extension}`;
-
-    // Convert response to blob
-    const blob = await response.blob();
-
-    // Upload to Vercel Blob
-    const { url } = await put(filename, blob, {
-      access: 'public',
-      contentType,
-    });
-
-    // Create image record in database with all provided metadata
-    const [imageRecord] = await db
-      .insert(images)
-      .values({
-        url,
-        alt,
-        title,
-        description,
-        width,
-        height,
-        fileSize: blob.size,
-        mimeType: contentType,
-        originalFilename: extractImageOriginalFilename(imageUrl),
-        blurDataUrl,
-      })
-      .returning();
-
-    return imageRecord.id;
-  } catch (error) {
-    console.error('Error downloading and uploading image:', error);
-    throw new Error(
-      `Failed to process featured image: ${error instanceof Error ? error.message : 'Unknown error'}`
-    );
-  }
-}
 
 async function postHandler(request: NextRequest) {
   try {
@@ -372,6 +305,68 @@ async function patchHandler(request: NextRequest) {
       readingTime = calculateReadingTime(updateData.content);
     }
 
+    // Handle featured image updates
+    let featuredImageId: string | null = currentResource.featuredImageId;
+    let imageUpdateError: string | null = null;
+
+    // Handle legacy featuredImageUrl for backward compatibility
+    if (updateData.featuredImageUrl) {
+      try {
+        const newImageId = await downloadAndUploadImage(
+          updateData.featuredImageUrl,
+          updateData.slug || currentResource.slug,
+          updateData.title || currentResource.title, // Use title as alt text for legacy images
+          updateData.title || currentResource.title
+        );
+
+        // If there was a previous image, delete it
+        if (currentResource.featuredImageId) {
+          const { deleteImage } = await import(
+            'website/lib/utils/image-management'
+          );
+          deleteImage(currentResource.featuredImageId).catch(error => {
+            console.warn(
+              `Failed to delete old image ${currentResource.featuredImageId}:`,
+              error
+            );
+          });
+        }
+
+        featuredImageId = newImageId;
+      } catch (error) {
+        imageUpdateError =
+          error instanceof Error
+            ? error.message
+            : 'Failed to process featured image';
+      }
+    }
+
+    // Handle new featuredImage structure with smart update logic
+    if (updateData.featuredImage && !imageUpdateError) {
+      try {
+        const resourceSlug = updateData.slug || currentResource.slug;
+        const { newImageId, shouldUpdate } = await handleFeaturedImageUpdate(
+          currentResource.featuredImageId,
+          updateData.featuredImage,
+          resourceSlug
+        );
+
+        if (shouldUpdate) {
+          featuredImageId = newImageId;
+        }
+      } catch (error) {
+        imageUpdateError =
+          error instanceof Error
+            ? error.message
+            : 'Failed to process featured image';
+      }
+    }
+
+    // Return error if image processing failed
+    if (imageUpdateError) {
+      return createErrorResponse(imageUpdateError, 400);
+    }
+
     // Prepare update data for resource table
     const resourceUpdateData: Partial<typeof resources.$inferInsert> = {};
 
@@ -397,6 +392,11 @@ async function patchHandler(request: NextRequest) {
       resourceUpdateData.status = updateData.status;
     if (updateData.authorId !== undefined)
       resourceUpdateData.authorId = updateData.authorId;
+
+    // Update featured image ID if it changed
+    if (featuredImageId !== currentResource.featuredImageId) {
+      resourceUpdateData.featuredImageId = featuredImageId;
+    }
 
     // Always update the updatedAt timestamp
     resourceUpdateData.updatedAt = new Date();
@@ -525,16 +525,6 @@ async function patchHandler(request: NextRequest) {
     console.error('Error updating resource:', error);
     throw error;
   }
-}
-
-/**
- * Extract the original filename from an image URL
- * @param imageUrl - The URL of the image
- * @returns The original filename
- */
-function extractImageOriginalFilename(imageUrl: string) {
-  const urlParts = imageUrl.split('/');
-  return urlParts[urlParts.length - 1];
 }
 
 export const POST = withApiAuth(postHandler);

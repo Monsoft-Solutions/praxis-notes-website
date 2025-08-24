@@ -53,6 +53,8 @@ export const updateResourceSchema = z.object({
   content: z.string().min(1, 'Content is required').optional(),
   status: z.enum(['draft', 'readyToPublish', 'published']).optional(),
   authorId: z.string().uuid('Invalid author ID').optional(),
+  featuredImageUrl: z.string().url('Invalid featured image URL').optional(),
+  featuredImage: imageDataSchema.optional(),
   categoryIds: z.array(z.string().uuid('Invalid category ID')).optional(),
   tagIds: z.array(z.string().uuid('Invalid tag ID')).optional(),
 });
