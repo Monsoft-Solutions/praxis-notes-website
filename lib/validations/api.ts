@@ -7,7 +7,7 @@ export const imageDataSchema = z.object({
   url: z.string().url('Invalid image URL'),
   alt: z.string().min(1, 'Alt text is required'),
   title: z.string().optional(),
-  description: z.string().optional(),
+  description: z.string().min(1, 'Description is required'),
   width: z.number().positive('Width must be positive').optional(),
   height: z.number().positive('Height must be positive').optional(),
   fileSize: z.number().positive('File size must be positive').optional(),

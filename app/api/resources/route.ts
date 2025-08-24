@@ -26,13 +26,19 @@ import { eq, inArray } from 'drizzle-orm';
 
 /**
  * Download image from URL and upload to Vercel Blob, then create image record
+ * Enhanced version that supports full image metadata
  */
 async function downloadAndUploadImage(
   imageUrl: string,
   slug: string,
   alt: string,
   title?: string,
-  description?: string
+  description?: string,
+  width?: number,
+  height?: number,
+  mimeType?: string,
+  originalFilename?: string,
+  blurDataUrl?: string
 ): Promise<string> {
   try {
     // Download the image
@@ -41,8 +47,9 @@ async function downloadAndUploadImage(
       throw new Error(`Failed to download image: ${response.statusText}`);
     }
 
-    // Get the content type from the response
-    const contentType = response.headers.get('content-type') || 'image/jpeg';
+    // Get the content type from the response or use provided mimeType
+    const contentType =
+      mimeType || response.headers.get('content-type') || 'image/jpeg';
 
     // Extract file extension from URL or use default
     const extension = contentType.split('/')[1];
@@ -60,7 +67,7 @@ async function downloadAndUploadImage(
       contentType,
     });
 
-    // Create image record in database
+    // Create image record in database with all provided metadata
     const [imageRecord] = await db
       .insert(images)
       .values({
@@ -68,9 +75,12 @@ async function downloadAndUploadImage(
         alt,
         title,
         description,
-        mimeType: contentType,
-        originalFilename: imageUrl.split('/').pop() || filename,
+        width,
+        height,
         fileSize: blob.size,
+        mimeType: contentType,
+        originalFilename: extractImageOriginalFilename(imageUrl),
+        blurDataUrl,
       })
       .returning();
 
@@ -158,31 +168,26 @@ async function postHandler(request: NextRequest) {
       }
     }
 
-    // Handle new featuredImage structure
+    // Handle new featuredImage structure - download and upload with metadata
     if (data.featuredImage) {
       try {
-        const [imageRecord] = await db
-          .insert(images)
-          .values({
-            url: data.featuredImage.url,
-            alt: data.featuredImage.alt,
-            title: data.featuredImage.title,
-            description: data.featuredImage.description,
-            width: data.featuredImage.width,
-            height: data.featuredImage.height,
-            fileSize: data.featuredImage.fileSize,
-            mimeType: data.featuredImage.mimeType,
-            originalFilename: data.featuredImage.originalFilename,
-            blurDataUrl: data.featuredImage.blurDataUrl,
-          })
-          .returning();
-
-        featuredImageId = imageRecord.id;
+        featuredImageId = await downloadAndUploadImage(
+          data.featuredImage.url,
+          data.slug,
+          data.featuredImage.alt,
+          data.featuredImage.title,
+          data.featuredImage.description,
+          data.featuredImage.width,
+          data.featuredImage.height,
+          data.featuredImage.mimeType,
+          data.featuredImage.originalFilename,
+          data.featuredImage.blurDataUrl
+        );
       } catch (error) {
         return createErrorResponse(
           error instanceof Error
             ? error.message
-            : 'Failed to create featured image record',
+            : 'Failed to process featured image',
           400
         );
       }
@@ -520,6 +525,16 @@ async function patchHandler(request: NextRequest) {
     console.error('Error updating resource:', error);
     throw error;
   }
+}
+
+/**
+ * Extract the original filename from an image URL
+ * @param imageUrl - The URL of the image
+ * @returns The original filename
+ */
+function extractImageOriginalFilename(imageUrl: string) {
+  const urlParts = imageUrl.split('/');
+  return urlParts[urlParts.length - 1];
 }
 
 export const POST = withApiAuth(postHandler);
