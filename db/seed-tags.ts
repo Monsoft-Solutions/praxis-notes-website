@@ -7,48 +7,43 @@ export default async function seedTags() {
 
   // Define tags based on Praxis Notes SEO targets and content strategy
   const tagData = [
-    // Generator & Notes cluster tags
+    // Generator & Notes cluster
     {
       name: 'ABA Session Notes Generator',
       slug: 'aba-session-notes-generator',
     },
-    { name: 'ABA Notes', slug: 'aba-notes' },
-    { name: 'ABA Note', slug: 'aba-note' },
+    { name: 'ABA Session Notes', slug: 'aba-session-notes' },
     {
       name: 'Applied Behavior Analysis Session Notes',
       slug: 'applied-behavior-analysis-session-notes',
     },
-    { name: 'ABA Smart Notes', slug: 'aba-smart-notes' },
-    { name: 'Free ABA Note Template', slug: 'free-aba-note-template' },
     { name: 'RBT Session Note Examples', slug: 'rbt-session-note-examples' },
     { name: 'Session Documentation', slug: 'session-documentation' },
-    { name: 'Free Tools', slug: 'free-tools' },
 
-    // CPT Codes cluster tags
+    // CPT Codes cluster
+    { name: 'CPT Code 97151', slug: 'cpt-code-97151' },
     { name: 'CPT Code 97153', slug: 'cpt-code-97153' },
-    { name: 'CPT 97153', slug: 'cpt-97153' },
-    { name: '97153 ABA Code', slug: '97153-aba-code' },
-    { name: 'CPT 97151', slug: 'cpt-97151' },
-    { name: 'CPT 97154', slug: 'cpt-97154' },
-    { name: 'CPT 97156', slug: 'cpt-97156' },
-    { name: 'CPT 97158', slug: 'cpt-97158' },
-    { name: 'CPT Codes', slug: 'cpt-codes' },
-    { name: 'Billing', slug: 'billing' },
-    { name: 'Insurance', slug: 'insurance' },
+    { name: 'CPT Code 97154', slug: 'cpt-code-97154' },
+    { name: 'CPT Code 97156', slug: 'cpt-code-97156' },
+    { name: 'CPT Code 97158', slug: 'cpt-code-97158' },
+    { name: 'ABA CPT Codes', slug: 'aba-cpt-codes' },
+    { name: 'ABA Billing', slug: 'aba-billing' },
+    { name: 'ABA Insurance', slug: 'aba-insurance' },
 
-    // Behavior Concepts cluster tags
+    // Behavior Concepts cluster
     { name: 'Maladaptive Behaviors', slug: 'maladaptive-behaviors' },
-    { name: 'Maladaptive Behavior', slug: 'maladaptive-behavior' },
     { name: 'Behavior Analysis', slug: 'behavior-analysis' },
     { name: 'Applied Behavior Analysis', slug: 'applied-behavior-analysis' },
-    { name: 'ABA', slug: 'aba' },
     { name: 'Behavioral Interventions', slug: 'behavioral-interventions' },
     { name: 'Reinforcement', slug: 'reinforcement' },
-    { name: 'Replacement Behavior', slug: 'replacement-behavior' },
+    { name: 'Replacement Behaviors', slug: 'replacement-behaviors' },
     { name: 'ABC Data', slug: 'abc-data' },
-    { name: 'Functional Assessment', slug: 'functional-assessment' },
+    {
+      name: 'Functional Behavior Assessment',
+      slug: 'functional-behavior-assessment',
+    },
 
-    // Compliance & HIPAA cluster tags
+    // Compliance & HIPAA cluster
     { name: 'HIPAA ABA', slug: 'hipaa-aba' },
     { name: 'ABA Compliance', slug: 'aba-compliance' },
     { name: 'AI Session Note Auditing', slug: 'ai-session-note-auditing' },
@@ -63,17 +58,19 @@ export default async function seedTags() {
     { name: 'BCBA Exam', slug: 'bcba-exam' },
     { name: 'RBT Certification', slug: 'rbt-certification' },
     { name: 'BCBA Certification', slug: 'bcba-certification' },
-    { name: 'Professional Development', slug: 'professional-development' },
+    {
+      name: 'ABA Professional Development',
+      slug: 'aba-professional-development',
+    },
     { name: 'Continuing Education', slug: 'continuing-education' },
 
     // Study materials and training
-    { name: 'Study Guides', slug: 'study-guides' },
+    { name: 'ABA Study Guides', slug: 'aba-study-guides' },
     { name: 'Study Materials', slug: 'study-materials' },
     { name: 'Practice Exercises', slug: 'practice-exercises' },
     { name: 'Training Resources', slug: 'training-resources' },
     { name: 'RBT Study Guide', slug: 'rbt-study-guide' },
     { name: 'BCBA Study Guide', slug: 'bcba-study-guide' },
-    { name: 'Examples', slug: 'examples' },
 
     // Family and autism-related
     { name: 'Family Resources', slug: 'family-resources' },
@@ -85,10 +82,10 @@ export default async function seedTags() {
     { name: 'Progress Tracking', slug: 'progress-tracking' },
 
     // Research and evidence
-    { name: 'Research', slug: 'research' },
+    { name: 'ABA Research', slug: 'aba-research' },
     { name: 'Evidence-Based Practice', slug: 'evidence-based-practice' },
-    { name: 'Case Studies', slug: 'case-studies' },
-    { name: 'Best Practices', slug: 'best-practices' },
+    { name: 'ABA Case Studies', slug: 'aba-case-studies' },
+    { name: 'ABA Best Practices', slug: 'aba-best-practices' },
     { name: 'Scientific Research', slug: 'scientific-research' },
 
     // General content types
@@ -97,7 +94,7 @@ export default async function seedTags() {
     { name: 'Glossary', slug: 'glossary' },
     { name: 'Definitions', slug: 'definitions' },
     { name: 'How-to Guide', slug: 'how-to-guide' },
-    { name: 'Tutorial', slug: 'tutorial' },
+    { name: 'Tutorials', slug: 'tutorials' },
   ];
 
   try {

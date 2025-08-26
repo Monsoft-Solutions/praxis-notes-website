@@ -1,59 +1,62 @@
 import { db } from './config';
 import { categories } from './schema';
-import { eq } from 'drizzle-orm';
+import { eq, or } from 'drizzle-orm';
 
 export default async function seedCategories() {
   console.log('Starting categories seeding...');
 
   // Define categories based on Praxis Notes business goals and content strategy
-  const categoryData = [
+  const blogCategories = [
     {
       name: 'ABA Session Notes & Tools',
+      slug: 'aba-session-notes-tools',
       description:
-        'Comprehensive resources on ABA session documentation, note-taking techniques, and free tools like our session notes generator. Perfect for RBTs and BCBAs looking to streamline their documentation process.',
+        'Comprehensive resources for ABA documentation: step-by-step note-writing, templates, examples, and free tools (e.g., session note generator). Built for RBTs and BCBAs to streamline workflows and produce insurance-ready notes.',
     },
     {
       name: 'CPT Codes & Billing',
+      slug: 'aba-cpt-codes-billing',
       description:
-        'In-depth guides on CPT codes 97151-97158 for ABA services, billing requirements, insurance compliance, and revenue cycle management for ABA practices.',
+        'Practical guides to ABA CPT codes 97151-97158, documentation requirements, coding scenarios, prior authorization basics, and billing best practices to support accurate reimbursement and cleaner revenue cycles.',
     },
     {
       name: 'Behavior Analysis Concepts',
+      slug: 'aba-behavior-analysis-concepts',
       description:
-        'Educational content covering fundamental ABA concepts including maladaptive behaviors, reinforcement strategies, behavior modification techniques, and evidence-based interventions.',
+        'Clear, applied explanations of ABA foundations: measurement (frequency, duration, latency, rate), reinforcement, skill acquisition, FBA/BIP basics, and evidence-based intervention strategies—with concrete examples.',
     },
     {
       name: 'Compliance & HIPAA',
+      slug: 'aba-compliance-hipaa',
       description:
-        'Essential resources on HIPAA compliance for ABA providers, documentation standards, privacy protection, and regulatory requirements for behavioral health services.',
+        'Essential guidance on HIPAA privacy/security, PHI handling, consent, audit readiness, telehealth considerations, and documentation standards tailored to ABA providers and clinics.',
     },
     {
-      name: 'Study Guides & Training',
+      name: 'Study Guides & Exam Prep',
+      slug: 'study-guides-exam-prep',
       description:
-        'Study materials, practice exercises, and training resources for RBT certification, BCBA exam preparation, and continuing education in applied behavior analysis.',
+        'Unified prep hub for RBT and BCBA: task-list study guides, practice questions, mock exams, flashcards, ethics scenarios, and competency/exam readiness checklists.',
     },
     {
       name: 'Family Resources',
+      slug: 'family-resources',
       description:
-        "Plain-language guides and resources for families of individuals receiving ABA services, including progress tracking, home strategies, and understanding your child's therapy.",
+        'Plain-language guides for families: how ABA works, progress tracking, understanding data and session notes, home strategies, and collaborating effectively with your care team.',
     },
     {
-      name: 'Professional Development',
+      name: 'Professional Development & Research',
+      slug: 'professional-development-research',
       description:
-        'Career advancement resources for RBTs, BCBAs, and other ABA professionals including skills development, certification requirements, and industry best practices.',
-    },
-    {
-      name: 'Research & Evidence',
-      description:
-        'Latest research findings, evidence-based practices, and scientific advancements in applied behavior analysis and autism intervention strategies.',
+        'Career growth and evidence in one place: CEU topics, supervision/leadership tips, clinic operations, plus digestible summaries of new ABA research translated into everyday practice.',
     },
   ];
 
   try {
     // Check existing categories to avoid duplicates
-    for (const category of categoryData) {
+    for (const category of blogCategories) {
       const existingCategory = await db.query.categories.findFirst({
-        where: table => eq(table.name, category.name),
+        where: table =>
+          or(eq(table.slug, category.slug), eq(table.name, category.name)),
       });
 
       if (existingCategory) {
@@ -65,11 +68,7 @@ export default async function seedCategories() {
       await db.insert(categories).values({
         name: category.name,
         description: category.description,
-        slug: category.name
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-') // Replace any non-alphanumeric characters with hyphens
-          .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
-          .replace(/-{2,}/g, '-'), // Replace multiple consecutive hyphens with single hyphen
+        slug: category.slug,
       });
 
       console.log(`Inserted category: ${category.name}`);
