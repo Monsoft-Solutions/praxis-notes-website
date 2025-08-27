@@ -249,6 +249,62 @@ export async function getRelatedResources(
 }
 
 /**
+ * Internal function to fetch latest resources from database
+ */
+async function _getLatestResources(
+  limit = 6
+): Promise<ResourceWithRelations[]> {
+  try {
+    const result = await db.query.resources.findMany({
+      orderBy: resources => [desc(resources.date)],
+      limit: limit,
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
+
+    return result.map(resource => {
+      // Transform the data to match ResourceWithRelations structure
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching latest resources:', error);
+    return [];
+  }
+}
+
+/**
+ * Gets the latest resources (cached)
+ * @param limit Number of latest resources to fetch (default: 6)
+ * @returns Latest resources
+ */
+export const getLatestResources = unstable_cache(
+  _getLatestResources,
+  ['latest-resources'],
+  {
+    tags: ['resources'],
+    revalidate: 43200, // 12 hours
+  }
+);
+
+/**
  * Loads resources from the database with pagination (cached)
  * @param page The page number (starts at 1)
  * @param pageSize Number of items per page
