@@ -49,7 +49,6 @@ export async function GET() {
     // Generate XML sitemap for resources
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Resources Main Page -->
   <url>
     <loc>${baseUrl}/resources</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -57,7 +56,6 @@ export async function GET() {
     <priority>0.9</priority>
   </url>
   
-  <!-- Categories Main Page -->
   <url>
     <loc>${baseUrl}/resources/categories</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -65,7 +63,6 @@ export async function GET() {
     <priority>0.8</priority>
   </url>
 
-  <!-- Individual Resource Pages -->
 ${allResources
   .map(
     resource => `  <url>
@@ -77,7 +74,6 @@ ${allResources
   )
   .join('\n')}
 
-  <!-- Individual Category Pages -->
 ${allCategories
   .map(
     category => `  <url>
