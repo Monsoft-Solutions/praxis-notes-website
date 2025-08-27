@@ -67,7 +67,7 @@ ${allResources
   .map(
     resource => `  <url>
     <loc>${baseUrl}/resources/${resource.slug}</loc>
-    <lastmod>${(resource.updatedAt || resource.createdAt || new Date()).toISOString()}</lastmod>
+    <lastmod>${resource.updatedAt ? new Date(resource.updatedAt).toISOString() : resource.createdAt ? new Date(resource.createdAt).toISOString() : new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`
@@ -78,7 +78,7 @@ ${allCategories
   .map(
     category => `  <url>
     <loc>${baseUrl}/resources/categories/${category.slug}</loc>
-    <lastmod>${(category.updatedAt || category.createdAt || new Date()).toISOString()}</lastmod>
+    <lastmod>${category.updatedAt ? new Date(category.updatedAt).toISOString() : category.createdAt ? new Date(category.createdAt).toISOString() : new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>`
