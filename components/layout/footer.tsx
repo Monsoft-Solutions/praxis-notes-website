@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { Mail, Lock, Shield, Download } from 'lucide-react';
+import { Mail, Lock, Shield, Download, BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import { CONTACT_INFO } from 'website/lib/contact-info';
+import { getAllCategoriesWithCounts } from 'website/lib/categories';
 
 const resources = [
   { name: 'Features', href: '/features' },
@@ -32,7 +33,11 @@ const highlights = [
   },
 ];
 
-const Footer = () => {
+const Footer = async () => {
+  // Get top categories for the blog card
+  const allCategories = await getAllCategoriesWithCounts();
+  const topCategories = allCategories.slice(0, 4); // Get top 4 categories
+
   return (
     <footer className="bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100 relative overflow-hidden">
       {/* Very subtle background decorations */}
@@ -46,8 +51,8 @@ const Footer = () => {
         <div className="absolute right-1/3 top-40 h-3 w-3 rounded-full bg-yellow-300 opacity-40 hidden sm:block"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-16 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="container mx-auto max-w-8xl px-4 sm:px-6 py-16 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Company Info Card */}
           <div className="lg:col-span-2">
             <div
@@ -205,6 +210,57 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
+          {/* Blog Card */}
+          <div>
+            <div
+              className="relative rounded-3xl border-2 border-yellow-200 bg-white p-6 shadow-lg h-full"
+              style={{
+                borderRadius: '30px 25px 35px 20px',
+              }}
+            >
+              {/* Round thumb tack */}
+              <div className="absolute -top-2 right-1/3 h-4 w-4 transform">
+                <div className="h-full w-full rounded-full bg-yellow-400 shadow-sm"></div>
+                <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+              </div>
+
+              <div className="pt-2">
+                <h4 className="text-sm font-quicksand font-bold uppercase tracking-wider mb-4 text-gray-800 flex items-center">
+                  <BookOpen className="h-4 w-4 mr-2 text-yellow-500" />
+                  Blog
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/resources"
+                      className="text-gray-600 hover:text-yellow-500 transition-colors font-nunito hover:font-medium"
+                    >
+                      All Resources
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/resources/categories"
+                      className="text-gray-600 hover:text-yellow-500 transition-colors font-nunito hover:font-medium"
+                    >
+                      Browse Categories
+                    </Link>
+                  </li>
+                  {topCategories.slice(0, 2).map((category, index) => (
+                    <li key={index}>
+                      <Link
+                        href={`/resources/categories/${category.slug}`}
+                        className="text-gray-600 hover:text-yellow-500 transition-colors font-nunito hover:font-medium text-sm"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Contact Section Card */}
@@ -277,6 +333,12 @@ const Footer = () => {
               className="text-xs text-gray-500 hover:text-blue-500 transition-colors font-nunito"
             >
               Cookies
+            </Link>
+            <Link
+              href="/sitemap"
+              className="text-xs text-gray-500 hover:text-blue-500 transition-colors font-nunito"
+            >
+              Sitemap
             </Link>
           </div>
         </div>
