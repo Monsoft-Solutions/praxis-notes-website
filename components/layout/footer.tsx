@@ -247,7 +247,7 @@ const Footer = async () => {
                       Browse Categories
                     </Link>
                   </li>
-                  {topCategories.slice(0, 2).map((category, index) => (
+                  {topCategories.map((category, index) => (
                     <li key={index}>
                       <Link
                         href={`/resources/categories/${category.slug}`}
