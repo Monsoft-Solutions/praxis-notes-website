@@ -15,6 +15,13 @@
       "when": 1755867358679,
       "tag": "0001_cultured_nightshade",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1756904475513,
+      "tag": "0002_talented_chameleon",
+      "breakpoints": true
     }
   ]
 }

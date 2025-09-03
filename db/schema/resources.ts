@@ -6,6 +6,7 @@ import {
   pgEnum,
   foreignKey,
   uuid,
+  integer,
 } from 'drizzle-orm/pg-core';
 import { authors } from './author.table';
 import { images } from './image.table';
@@ -30,6 +31,7 @@ export const resources = pgTable(
     readingTime: varchar('reading_time', { length: 50 }),
     content: text('content').notNull(),
     status: resourceStatus('status').default('draft'),
+    views: integer('views').default(0).notNull(),
     authorId: uuid('author_id'),
     featuredImageId: uuid('featured_image_id'),
     createdAt: timestamp('created_at').defaultNow(),

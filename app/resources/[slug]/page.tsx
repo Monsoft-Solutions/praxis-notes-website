@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from 'website/components/ui/button';
-import { getResourceBySlug } from 'website/lib/resources';
+import {
+  getResourceBySlug,
+  getResourceBySlugForMetadata,
+} from 'website/lib/resources';
 import RelatedResources from 'website/components/sections/related-resources';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -25,7 +28,7 @@ export async function generateMetadata({
   params: Promise<ResourceParams>;
 }): Promise<Metadata> {
   const slug = (await params).slug;
-  const resource = await getResourceBySlug(slug);
+  const resource = await getResourceBySlugForMetadata(slug);
 
   if (!resource) {
     return {
@@ -33,7 +36,7 @@ export async function generateMetadata({
     };
   }
 
-  const resourceUrl = `https://praxisnotes.com/resources/${slug}`;
+  const resourceUrl = `https://www.praxisnotes.com/resources/${slug}`;
 
   return {
     title: `${resource.title}`,
@@ -136,7 +139,7 @@ export default async function ResourcePage({
     notFound();
   }
 
-  const resourceUrl = `https://praxisnotes.com/resources/${slug}`;
+  const resourceUrl = `https://www.praxisnotes.com/resources/${slug}`;
 
   const blogPostingSchema = generateBlogPostingSchema({
     resource,
@@ -145,8 +148,8 @@ export default async function ResourcePage({
 
   const breadcrumbSchema = generateBreadcrumbSchema({
     items: [
-      { name: 'Home', url: 'https://praxisnotes.com' },
-      { name: 'Resources', url: 'https://praxisnotes.com/resources' },
+      { name: 'Home', url: 'https://www.praxisnotes.com' },
+      { name: 'Resources', url: 'https://www.praxisnotes.com/resources' },
       { name: resource.title, url: resourceUrl },
     ],
   });

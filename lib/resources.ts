@@ -1,7 +1,7 @@
 import { unstable_cache } from 'next/cache';
 import { db } from 'website/db/config';
 import { resources, resourceCategories, resourceTags } from 'website/db/schema';
-import { eq, desc, count, inArray } from 'drizzle-orm';
+import { eq, desc, count, inArray, sql } from 'drizzle-orm';
 import type { ResourceWithRelations } from './types';
 
 /**
@@ -108,7 +108,56 @@ export async function getAllResources(): Promise<ResourceWithRelations[]> {
 }
 
 /**
- * Gets a resource by its slug
+ * Gets a resource by its slug without incrementing view count (for metadata)
+ */
+export async function getResourceBySlugForMetadata(
+  slug: string | string[] | undefined
+): Promise<ResourceWithRelations | undefined> {
+  if (!slug) return undefined;
+
+  // Handle if slug is an array (for backward compatibility)
+  const slugValue = Array.isArray(slug) ? slug[0] : slug;
+
+  try {
+    const resource = await db.query.resources.findFirst({
+      where: eq(resources.slug, slugValue),
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
+
+    if (!resource) return undefined;
+
+    // Transform the data to match the expected structure (NO view increment)
+    const { resourceCategories, resourceTags, ...baseResource } = resource;
+
+    const transformedResource = {
+      ...baseResource,
+      readingTime: baseResource.readingTime || '',
+      categories: resourceCategories.map(rc => rc.category),
+      tags: resourceTags.map(rt => rt.tag),
+    };
+
+    return transformedResource as ResourceWithRelations;
+  } catch (error) {
+    console.error(`Error fetching resource with slug ${slugValue}:`, error);
+    return undefined;
+  }
+}
+
+/**
+ * Gets a resource by its slug and increments view count
  */
 export async function getResourceBySlug(
   slug: string | string[] | undefined
@@ -139,6 +188,23 @@ export async function getResourceBySlug(
 
     if (!resource) return undefined;
 
+    // Increment the view count for this resource
+    try {
+      await db
+        .update(resources)
+        .set({
+          views: sql`${resources.views} + 1`,
+          updatedAt: new Date(),
+        })
+        .where(eq(resources.id, resource.id));
+    } catch (viewUpdateError) {
+      // Log the error but don't fail the request if view update fails
+      console.error(
+        `Error updating view count for resource ${resource.id}:`,
+        viewUpdateError
+      );
+    }
+
     // Transform the data to match the expected structure
     const { resourceCategories, resourceTags, ...baseResource } = resource;
 
@@ -147,6 +213,8 @@ export async function getResourceBySlug(
       readingTime: baseResource.readingTime || '',
       categories: resourceCategories.map(rc => rc.category),
       tags: resourceTags.map(rt => rt.tag),
+      // Include the updated view count (we increment by 1 from the current value)
+      views: (baseResource.views || 0) + 1,
     };
 
     return transformedResource as ResourceWithRelations;
