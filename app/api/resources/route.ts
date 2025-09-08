@@ -20,6 +20,7 @@ import {
 } from 'website/lib/validations/api';
 import { calculateReadingTime } from 'website/lib/utils/reading-time';
 import { notifyGoogleResourceCreated } from 'website/lib/google-indexing';
+import { notifyIndexNowResourceCreated } from 'website/lib/indexnow';
 import {
   downloadAndUploadImage,
   handleFeaturedImageUpdate,
@@ -202,12 +203,24 @@ async function postHandler(request: NextRequest) {
       // Don't fail the request if revalidation fails
     }
 
-    // Notify Google about the new resource (async, non-blocking)
+    // Notify search engines about the new resource (async, non-blocking)
     // This runs after successful creation and revalidation
+
+    // Notify Google
     notifyGoogleResourceCreated(result.slug).catch(error => {
       // Log error but don't fail the request
       console.warn(
         'Google indexing notification failed for resource:',
+        result.slug,
+        error
+      );
+    });
+
+    // Notify IndexNow (Bing, Yandex, etc.)
+    notifyIndexNowResourceCreated(result.slug).catch(error => {
+      // Log error but don't fail the request
+      console.warn(
+        'IndexNow notification failed for resource:',
         result.slug,
         error
       );
@@ -499,12 +512,24 @@ async function patchHandler(request: NextRequest) {
       // Don't fail the request if revalidation fails
     }
 
-    // Notify Google about the new resource (async, non-blocking)
-    // This runs after successful creation and revalidation
+    // Notify search engines about the updated resource (async, non-blocking)
+    // This runs after successful update and revalidation
+
+    // Notify Google
     notifyGoogleResourceCreated(result.slug).catch(error => {
       // Log error but don't fail the request
       console.warn(
         'Google indexing notification failed for resource:',
+        result.slug,
+        error
+      );
+    });
+
+    // Notify IndexNow (Bing, Yandex, etc.)
+    notifyIndexNowResourceCreated(result.slug).catch(error => {
+      // Log error but don't fail the request
+      console.warn(
+        'IndexNow notification failed for resource:',
         result.slug,
         error
       );
