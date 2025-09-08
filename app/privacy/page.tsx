@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Data Protection & HIPAA Compliance',
@@ -246,9 +247,9 @@ export default function PrivacyPage() {
             <li>By email: privacy@praxisnotes.com</li>
             <li>
               By visiting the contact page on our website:{' '}
-              <a href="/contact" className="text-blue-600 hover:underline">
+              <Link href="/contact" className="text-blue-600 hover:underline">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </section>

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy - Website Cookies & Tracking Information',
@@ -277,9 +278,9 @@ export default function CookiesPage() {
             If you have any questions about our use of cookies or other
             technologies, please email us at privacy@praxisnotes.com or contact
             us via our website at{' '}
-            <a href="/contact" className="text-blue-600 hover:underline">
+            <Link href="/contact" className="text-blue-600 hover:underline">
               Contact Us
-            </a>
+            </Link>
             .
           </p>
         </section>

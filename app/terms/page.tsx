@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Terms of Service - Legal Terms & Conditions',
@@ -399,9 +400,9 @@ export default function TermsPage() {
             <li>By email: legal@praxisnotes.com</li>
             <li>
               By visiting the contact page on our website:{' '}
-              <a href="/contact" className="text-blue-600 hover:underline">
+              <Link href="/contact" className="text-blue-600 hover:underline">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </section>
