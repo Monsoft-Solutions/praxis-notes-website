@@ -14,6 +14,7 @@ import {
   SchemaPerformance,
   SchemaValidator,
 } from '../lib/jsonld';
+import { ClarityAnalytics } from 'website/components/ui/analytics/clarity-analytics';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -155,6 +156,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+  const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || '';
 
   // Generate base schemas for all pages
   const organizationSchema = generateOrganizationSchema();
@@ -179,6 +181,7 @@ export default function RootLayout({
         {GA_MEASUREMENT_ID && (
           <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         )}
+        {CLARITY_ID && <ClarityAnalytics clarityId={CLARITY_ID} />}
         <AnalyticsProvider />
         <ThemeProvider defaultTheme="light">
           <Header />
