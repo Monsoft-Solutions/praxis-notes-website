@@ -15,6 +15,7 @@ import {
   SchemaValidator,
 } from '../lib/jsonld';
 import { ClarityAnalytics } from 'website/components/ui/analytics/clarity-analytics';
+import { CrispChat } from 'website/components/ui/chat/crisp-chat';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -157,6 +158,9 @@ export default function RootLayout({
 }>) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
   const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || '';
+  const CRISP_CHAT_ID = process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID || '';
+
+  console.log('CRISP_CHAT_ID', CRISP_CHAT_ID);
 
   // Generate base schemas for all pages
   const organizationSchema = generateOrganizationSchema();
@@ -178,6 +182,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <JsonLdProvider schemas={optimizedBaseSchemas} />
+        {CRISP_CHAT_ID && <CrispChat CrispChatProps={CRISP_CHAT_ID} />}
+
         {GA_MEASUREMENT_ID && (
           <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         )}
