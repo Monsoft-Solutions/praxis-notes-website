@@ -12,14 +12,14 @@ import RelatedResources from 'website/components/sections/related-resources';
 import Breadcrumb from 'website/components/ui/breadcrumb';
 import ArticleNavigation from 'website/components/sections/article-navigation';
 import TableOfContents from 'website/components/sections/resources/table-of-contents';
-import ContinueReading from 'website/components/sections/resources/continue-reading';
 import ResourceSidebar from 'website/components/sections/resources/resource-sidebar';
+import SocialShare from 'website/components/ui/social-share';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
+import { ChevronLeft, ArrowRight, Clock, User } from 'lucide-react';
 import {
   generateBlogPostingSchema,
   generateBreadcrumbSchema,
@@ -338,6 +338,40 @@ export default async function ResourcePage({
                               },
                             ],
                           ]}
+                          components={{
+                            a: ({ href, children, ...props }) => {
+                              // Check if link is external
+                              const isExternal =
+                                href &&
+                                (href.startsWith('http://') ||
+                                  href.startsWith('https://') ||
+                                  href.startsWith('//'));
+
+                              const isInternalDomain =
+                                href && href.includes('praxisnotes.com');
+
+                              // External links open in new tab, internal links open in same tab
+                              if (isExternal && !isInternalDomain) {
+                                return (
+                                  <a
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    {...props}
+                                  >
+                                    {children}
+                                  </a>
+                                );
+                              }
+
+                              // Internal links or hash links
+                              return (
+                                <a href={href} {...props}>
+                                  {children}
+                                </a>
+                              );
+                            },
+                          }}
                         >
                           {resource.content}
                         </ReactMarkdown>
@@ -415,17 +449,6 @@ export default async function ResourcePage({
             </section>
           )}
 
-          {/* Continue Reading section */}
-          {next && (
-            <section className="py-8">
-              <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-                <div className="mx-auto max-w-4xl">
-                  <ContinueReading nextResource={next} />
-                </div>
-              </div>
-            </section>
-          )}
-
           {/* Related Resources */}
           <RelatedResources currentResource={resource} />
 
@@ -470,17 +493,12 @@ export default async function ResourcePage({
                       </Button>
                     </Link>
 
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="gap-2 text-gray-600 hover:text-gray-800 font-quicksand"
-                      style={{
-                        borderRadius: '10px 14px 12px 16px',
-                      }}
-                    >
-                      <Share className="h-4 w-4" />
-                      Share Article
-                    </Button>
+                    <SocialShare
+                      url={resourceUrl}
+                      title={resource.title}
+                      description={resource.metaDescription}
+                      hashtags={resource.tags.map(tag => tag.name)}
+                    />
                   </div>
                 </div>
               </div>
