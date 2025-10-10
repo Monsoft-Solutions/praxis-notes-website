@@ -10,7 +10,6 @@ export const ORGANIZATION_BASE_DATA = {
   url: 'https://praxisnotes.com',
   logo: 'https://praxisnotes.com/images/logo/praxis-note-logo-main.png',
   email: CONTACT_INFO.email,
-  telephone: CONTACT_INFO.phone.e164,
   address: {
     '@type': 'PostalAddress',
     addressLocality: CONTACT_INFO.address.city,

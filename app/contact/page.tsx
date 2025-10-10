@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import {
   Mail,
   MapPin,
-  Phone,
   Clock4,
   MessageSquare,
   Headphones,
@@ -253,24 +252,6 @@ export default function ContactPage() {
                             className="text-gray-600 hover:text-blue-500 font-nunito transition-colors"
                           >
                             {CONTACT_INFO.email}
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Phone */}
-                      <div className="flex items-start">
-                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-green-200 text-green-500 mt-0.5 mr-4 flex-shrink-0">
-                          <Phone className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h3 className="font-quicksand font-semibold text-lg text-gray-800 mb-1">
-                            Phone
-                          </h3>
-                          <a
-                            href={`tel:${CONTACT_INFO.phone.e164}`}
-                            className="text-gray-600 hover:text-green-500 font-nunito transition-colors"
-                          >
-                            {CONTACT_INFO.phone.display}
                           </a>
                         </div>
                       </div>
