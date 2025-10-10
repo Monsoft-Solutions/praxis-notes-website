@@ -3,6 +3,7 @@ import { getAllTagsWithCounts } from 'website/lib/tags';
 import CTAPlain from 'website/components/sections/cta-plain';
 import TagsHero from 'website/components/sections/resources/tags-hero';
 import TagsGrid from 'website/components/sections/resources/tags-grid';
+import ResourcesNavigation from 'website/components/sections/resources/resources-navigation';
 
 export const metadata: Metadata = {
   title: 'ABA Resource Tags | Browse by Keyword',
@@ -85,6 +86,13 @@ export default async function TagsPage() {
     <>
       {/* Hero section */}
       <TagsHero />
+
+      {/* Navigation section */}
+      <section className="py-8 bg-gradient-to-br from-blue-50 via-yellow-50/50 to-orange-50">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <ResourcesNavigation className="sticky top-4 z-10" />
+        </div>
+      </section>
 
       {/* Tags grid section */}
       <TagsGrid tags={tags} />

@@ -3,6 +3,7 @@ import { getAllCategoriesWithCounts } from 'website/lib/categories';
 import CTAPlain from 'website/components/sections/cta-plain';
 import CategoriesHero from 'website/components/sections/resources/categories-hero';
 import CategoriesGrid from 'website/components/sections/resources/categories-grid';
+import ResourcesNavigation from 'website/components/sections/resources/resources-navigation';
 
 export const metadata: Metadata = {
   title: 'ABA Resource Categories | Browse by Topic',
@@ -85,6 +86,13 @@ export default async function CategoriesPage() {
     <>
       {/* Hero section */}
       <CategoriesHero />
+
+      {/* Navigation section */}
+      <section className="py-8 bg-gradient-to-br from-blue-50 via-yellow-50/50 to-orange-50">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+          <ResourcesNavigation className="sticky top-4 z-10" />
+        </div>
+      </section>
 
       {/* Categories grid section */}
       <CategoriesGrid categories={categories} />

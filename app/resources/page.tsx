@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 import { getPaginatedResources } from 'website/lib/resources';
+import { getAllCategoriesWithCounts } from 'website/lib/categories';
 import CTAPlain from 'website/components/sections/cta-plain';
 import ResourcesHero from 'website/components/sections/resources/resources-hero';
 import ResourcesGrid from 'website/components/sections/resources/resources-grid';
+import ResourcesNavigation from 'website/components/sections/resources/resources-navigation';
+import QuickCategoryFilter from 'website/components/sections/resources/quick-category-filter';
 
 export const metadata: Metadata = {
   title: 'ABA Resources & Educational Content',
@@ -86,15 +89,27 @@ export default async function ResourcesPage({
   const currentPage = Number((await searchParams).page) || 1;
   const pageSize = 6; // Number of resources per page
 
-  const { resources, totalPages } = await getPaginatedResources(
-    currentPage,
-    pageSize
-  );
+  // Fetch resources and categories in parallel
+  const [{ resources, totalPages }, categories] = await Promise.all([
+    getPaginatedResources(currentPage, pageSize),
+    getAllCategoriesWithCounts(),
+  ]);
 
   return (
     <>
       {/* Hero section */}
       <ResourcesHero />
+
+      {/* Navigation and Quick Browse section */}
+      <section className="py-6 md:py-8 bg-gradient-to-br from-blue-50 via-yellow-50/50 to-orange-50">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 space-y-6">
+          {/* Navigation tabs */}
+          <ResourcesNavigation className="sticky top-4 z-10" />
+
+          {/* Quick category filter - condensed */}
+          <QuickCategoryFilter categories={categories} limit={4} />
+        </div>
+      </section>
 
       {/* Resources grid section */}
       <ResourcesGrid
