@@ -98,8 +98,13 @@ export default function ResourcesContainer({
     [router, searchParams]
   );
 
-  // Handle load more
+  // Intersection Observer ref for infinite scroll
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  // Handle load more (triggered by Intersection Observer)
   const handleLoadMore = useCallback(() => {
+    if (isLoadingMore) return;
+
     setIsLoadingMore(true);
 
     // Simulate async loading with a small delay for smooth UX
@@ -107,7 +112,7 @@ export default function ResourcesContainer({
       setDisplayedPages(prev => prev + 1);
       setIsLoadingMore(false);
     }, 300);
-  }, []);
+  }, [isLoadingMore]);
 
   // Handle search
   const handleSearchChange = useCallback(
@@ -204,6 +209,31 @@ export default function ResourcesContainer({
 
   const totalPages = Math.ceil(filteredAndSortedResources.length / pageSize);
   const hasMore = displayedPages < totalPages;
+
+  // Set up Intersection Observer for infinite scroll
+  useEffect(() => {
+    if (!loadMoreRef.current) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const target = entries[0];
+        if (target.isIntersecting && hasMore && !isLoadingMore) {
+          handleLoadMore();
+        }
+      },
+      {
+        // Trigger when the sentinel is 200px away from the viewport
+        rootMargin: '200px',
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(loadMoreRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasMore, isLoadingMore, handleLoadMore]);
 
   // Effect to restore scroll position after filter changes
   useEffect(() => {
@@ -314,7 +344,7 @@ export default function ResourcesContainer({
           onPageChange={handlePageChange}
           hasMore={hasMore}
           isLoadingMore={isLoadingMore}
-          onLoadMore={handleLoadMore}
+          loadMoreRef={loadMoreRef}
         />
       ) : (
         <section className="py-16 md:py-24 min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100">

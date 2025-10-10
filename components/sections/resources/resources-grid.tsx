@@ -1,11 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
 import ResourceCard from 'website/components/ui/resource-card';
 import ResourceCardSkeleton from './resource-card-skeleton';
-import LoadMoreButton from './load-more-button';
 import type { ResourceWithRelations } from '../../../lib/types';
 
 interface ResourcesGridProps {
@@ -15,7 +14,7 @@ interface ResourcesGridProps {
   onPageChange?: (page: number) => void;
   hasMore?: boolean;
   isLoadingMore?: boolean;
-  onLoadMore?: () => void;
+  loadMoreRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 // Helper component for pagination numbers
@@ -59,7 +58,7 @@ export default function ResourcesGrid({
   onPageChange,
   hasMore = false,
   isLoadingMore = false,
-  onLoadMore,
+  loadMoreRef,
 }: ResourcesGridProps) {
   const router = useRouter();
 
@@ -108,17 +107,20 @@ export default function ResourcesGrid({
               ))}
           </div>
 
-          {/* Load More Button (replaces pagination for infinite scroll) */}
-          {hasMore && onLoadMore && (
-            <LoadMoreButton
-              isLoading={isLoadingMore}
-              hasMore={hasMore}
-              onLoadMore={onLoadMore}
-            />
+          {/* Infinite scroll sentinel and loading indicator */}
+          {loadMoreRef && (
+            <div ref={loadMoreRef} className="mt-12 flex justify-center">
+              {isLoadingMore && (
+                <div className="flex items-center gap-3 text-blue-500 font-quicksand font-semibold text-lg">
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                  <span>Loading more resources...</span>
+                </div>
+              )}
+            </div>
           )}
 
           {/* Traditional Pagination (hidden when using infinite scroll) */}
-          {!hasMore && !onLoadMore && totalPages > 1 && (
+          {!hasMore && !loadMoreRef && totalPages > 1 && (
             <div className="mt-20 flex justify-center items-center gap-4">
               {/* Previous Page Button */}
               {currentPage > 1 ? (
