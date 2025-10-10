@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 import { getPaginatedResources } from 'website/lib/resources';
+import { getAllCategoriesWithCounts } from 'website/lib/categories';
 import CTAPlain from 'website/components/sections/cta-plain';
 import ResourcesHero from 'website/components/sections/resources/resources-hero';
-import ResourcesGrid from 'website/components/sections/resources/resources-grid';
+import ResourcesNavigation from 'website/components/sections/resources/resources-navigation';
+import QuickCategoryFilter from 'website/components/sections/resources/quick-category-filter';
+import ResourcesContainer from 'website/components/sections/resources/resources-container';
 
 export const metadata: Metadata = {
   title: 'ABA Resources & Educational Content',
@@ -81,26 +84,43 @@ export const revalidate = 43200;
 export default async function ResourcesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; search?: string; sort?: string }>;
 }) {
-  const currentPage = Number((await searchParams).page) || 1;
-  const pageSize = 6; // Number of resources per page
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
+  const pageSize = 12; // Number of resources per page (increased from 6 for better UX)
 
-  const { resources, totalPages } = await getPaginatedResources(
-    currentPage,
-    pageSize
-  );
+  // Fetch only the first page of resources server-side for initial render
+  // Additional pages will be loaded client-side via API on-demand
+  const [paginatedData, categories] = await Promise.all([
+    getPaginatedResources(1, pageSize),
+    getAllCategoriesWithCounts(),
+  ]);
 
   return (
     <>
       {/* Hero section */}
       <ResourcesHero />
 
-      {/* Resources grid section */}
-      <ResourcesGrid
-        resources={resources}
-        currentPage={currentPage}
-        totalPages={totalPages}
+      {/* Navigation and Quick Browse section */}
+      <section className="py-6 md:py-8 bg-gradient-to-br from-blue-50 via-yellow-50/50 to-orange-50">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 space-y-6">
+          {/* Navigation tabs */}
+          <ResourcesNavigation className="sticky top-4 z-10" />
+
+          {/* Quick category filter - condensed */}
+          <QuickCategoryFilter categories={categories} limit={4} />
+        </div>
+      </section>
+
+      {/* Interactive resources container with search, sort, and filters */}
+      <ResourcesContainer
+        initialResources={paginatedData.resources}
+        categories={categories}
+        initialPage={currentPage}
+        pageSize={pageSize}
+        totalCount={paginatedData.totalCount}
+        totalPages={paginatedData.totalPages}
       />
 
       {/* Add CTA section */}

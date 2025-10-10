@@ -24,20 +24,6 @@ export default function CategoriesGrid({ categories }: CategoriesGridProps) {
       </div>
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <h2
-            className="text-3xl md:text-4xl font-quicksand font-bold text-gray-800 mb-4"
-            style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}
-          >
-            Browse by <span className="text-green-500">Category</span>
-          </h2>
-          <p className="text-lg font-nunito text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Find resources tailored to your specific interests and professional
-            needs
-          </p>
-        </div>
-
         {categories.length === 0 ? (
           <div className="text-center py-20">
             <div
@@ -47,12 +33,6 @@ export default function CategoriesGrid({ categories }: CategoriesGridProps) {
                 borderStyle: 'solid',
               }}
             >
-              {/* Thumb tack */}
-              <div className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 transform">
-                <div className="h-full w-full rounded-full bg-gray-400 shadow-md"></div>
-                <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
-              </div>
-
               <div className="pt-2">
                 <FolderOpen className="w-16 h-16 text-gray-400 mx-auto mb-6" />
                 <h3 className="text-xl font-quicksand font-bold text-gray-600 mb-4">

@@ -1,7 +1,7 @@
 import { unstable_cache } from 'next/cache';
 import { db } from 'website/db/config';
 import { resources, resourceCategories, resourceTags } from 'website/db/schema';
-import { eq, desc, count, inArray, sql } from 'drizzle-orm';
+import { eq, desc, count, inArray, sql, and, lt, gt, ne } from 'drizzle-orm';
 import type { ResourceWithRelations } from './types';
 
 /**
@@ -225,17 +225,19 @@ export async function getResourceBySlug(
 }
 
 /**
- * Gets related resources based on shared categories or tags
+ * Gets related resources based on shared categories or tags with enhanced scoring
  * @param currentResourceId The ID of the current resource to exclude
  * @param categoryIds Array of category IDs to match
  * @param tagIds Array of tag IDs to match
  * @param limit Maximum number of results to return (default: 3)
+ * @param currentReadingTime Current resource reading time for similarity bonus
  */
 export async function getRelatedResources(
   currentResourceId: string,
   categoryIds: string[],
   tagIds: string[],
-  limit = 3
+  limit = 3,
+  currentReadingTime?: string
 ): Promise<ResourceWithRelations[]> {
   try {
     // If no categories or tags, return empty array
@@ -243,47 +245,53 @@ export async function getRelatedResources(
       return [];
     }
 
-    // Build a query to find resources that share categories or tags
-    const relatedResourceIds = new Set<string>();
+    // Map to track resource scores
+    const resourceScores = new Map<string, number>();
 
-    // Find resources with shared categories
+    // Find resources with shared categories (weight: 40%)
     if (categoryIds.length > 0) {
       const resourcesWithSharedCategories = await db
-        .select({ resourceId: resourceCategories.resourceId })
+        .select({
+          resourceId: resourceCategories.resourceId,
+          categoryId: resourceCategories.categoryId,
+        })
         .from(resourceCategories)
         .where(inArray(resourceCategories.categoryId, categoryIds));
 
       resourcesWithSharedCategories.forEach(row => {
         if (row.resourceId !== currentResourceId) {
-          relatedResourceIds.add(row.resourceId);
+          const currentScore = resourceScores.get(row.resourceId) || 0;
+          resourceScores.set(row.resourceId, currentScore + 0.4);
         }
       });
     }
 
-    // Find resources with shared tags
+    // Find resources with shared tags (weight: 30%)
     if (tagIds.length > 0) {
       const resourcesWithSharedTags = await db
-        .select({ resourceId: resourceTags.resourceId })
+        .select({
+          resourceId: resourceTags.resourceId,
+          tagId: resourceTags.tagId,
+        })
         .from(resourceTags)
         .where(inArray(resourceTags.tagId, tagIds));
 
       resourcesWithSharedTags.forEach(row => {
         if (row.resourceId !== currentResourceId) {
-          relatedResourceIds.add(row.resourceId);
+          const currentScore = resourceScores.get(row.resourceId) || 0;
+          resourceScores.set(row.resourceId, currentScore + 0.3);
         }
       });
     }
 
     // If no related resources found, return empty array
-    if (relatedResourceIds.size === 0) {
+    if (resourceScores.size === 0) {
       return [];
     }
 
     // Get the actual resources with their relations
     const relatedResources = await db.query.resources.findMany({
-      where: inArray(resources.id, Array.from(relatedResourceIds)),
-      orderBy: [desc(resources.date)],
-      limit: limit,
+      where: inArray(resources.id, Array.from(resourceScores.keys())),
       with: {
         author: true,
         featuredImage: true,
@@ -300,16 +308,53 @@ export async function getRelatedResources(
       },
     });
 
-    return relatedResources.map(resource => {
-      // Transform the data to match ResourceWithRelations structure
+    // Transform and calculate final scores
+    const transformedResources = relatedResources.map(resource => {
       const { resourceCategories, resourceTags, ...baseResource } = resource;
-      return {
+      const transformed = {
         ...baseResource,
         readingTime: baseResource.readingTime || '',
         categories: resourceCategories.map(rc => rc.category),
         tags: resourceTags.map(rt => rt.tag),
       };
+
+      let score = resourceScores.get(resource.id) || 0;
+
+      // Recency bonus (weight: 5%)
+      const daysSincePublished = Math.floor(
+        (Date.now() - new Date(resource.date).getTime()) / (1000 * 60 * 60 * 24)
+      );
+      const recencyScore = Math.max(0, 1 - daysSincePublished / 365) * 0.05;
+      score += recencyScore;
+
+      // Popularity bonus based on views (weight: 15%)
+      const viewsScore = Math.min(1, (resource.views || 0) / 1000) * 0.15;
+      score += viewsScore;
+
+      // Reading time similarity bonus (additional)
+      if (currentReadingTime && resource.readingTime) {
+        const currentMinutes = parseInt(
+          currentReadingTime.match(/\d+/)?.[0] || '0'
+        );
+        const resourceMinutes = parseInt(
+          resource.readingTime.match(/\d+/)?.[0] || '0'
+        );
+        const timeDiff = Math.abs(currentMinutes - resourceMinutes);
+
+        // Bonus if reading times are within 5 minutes of each other
+        if (timeDiff <= 5) {
+          score += 0.1;
+        }
+      }
+
+      return { resource: transformed, score };
     });
+
+    // Sort by score and return top results
+    return transformedResources
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map(item => item.resource);
   } catch (error) {
     console.error('Error fetching related resources:', error);
     return [];
@@ -354,6 +399,145 @@ async function _getLatestResources(
     });
   } catch (error) {
     console.error('Error fetching latest resources:', error);
+    return [];
+  }
+}
+
+/**
+ * Gets the previous and next resources for navigation
+ * @param currentDate The date of the current resource
+ * @param currentId The ID of the current resource
+ * @returns Object with previous and next resource info
+ */
+export async function getAdjacentResources(
+  currentDate: Date,
+  currentId: string
+): Promise<{
+  previous: { slug: string; title: string } | null;
+  next: { slug: string; title: string } | null;
+}> {
+  try {
+    const currentDateStr = currentDate.toISOString().slice(0, 10);
+    // Get previous resource (older, earlier date)
+    const previousResource = await db.query.resources.findFirst({
+      where: and(
+        lt(resources.date, currentDateStr),
+        eq(resources.status, 'published'),
+        ne(resources.id, currentId)
+      ),
+      orderBy: [desc(resources.date)],
+      columns: {
+        slug: true,
+        title: true,
+      },
+    });
+
+    // Get next resource (newer, later date)
+    const nextResource = await db.query.resources.findFirst({
+      where: and(
+        gt(resources.date, currentDateStr),
+        eq(resources.status, 'published'),
+        ne(resources.id, currentId)
+      ),
+      orderBy: [resources.date],
+      columns: {
+        slug: true,
+        title: true,
+      },
+    });
+
+    return {
+      previous: previousResource || null,
+      next: nextResource || null,
+    };
+  } catch (error) {
+    console.error('Error fetching adjacent resources:', error);
+    return {
+      previous: null,
+      next: null,
+    };
+  }
+}
+
+/**
+ * Gets popular resources by category based on view count
+ * @param categoryId The category ID to filter by (optional)
+ * @param limit Maximum number of results to return (default: 5)
+ */
+export async function getPopularResources(
+  categoryId?: string,
+  limit = 5
+): Promise<ResourceWithRelations[]> {
+  try {
+    let query;
+
+    if (categoryId) {
+      // Get resources with specific category, ordered by views
+      const resourcesInCategory = await db
+        .select({ resourceId: resourceCategories.resourceId })
+        .from(resourceCategories)
+        .where(eq(resourceCategories.categoryId, categoryId));
+
+      const resourceIds = resourcesInCategory.map(r => r.resourceId);
+
+      if (resourceIds.length === 0) {
+        return [];
+      }
+
+      query = db.query.resources.findMany({
+        where: inArray(resources.id, resourceIds),
+        orderBy: [desc(resources.views), desc(resources.date)],
+        limit: limit,
+        with: {
+          author: true,
+          featuredImage: true,
+          resourceCategories: {
+            with: {
+              category: true,
+            },
+          },
+          resourceTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      });
+    } else {
+      // Get all resources ordered by views
+      query = db.query.resources.findMany({
+        orderBy: [desc(resources.views), desc(resources.date)],
+        limit: limit,
+        with: {
+          author: true,
+          featuredImage: true,
+          resourceCategories: {
+            with: {
+              category: true,
+            },
+          },
+          resourceTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      });
+    }
+
+    const result = await query;
+
+    return result.map(resource => {
+      const { resourceCategories, resourceTags, ...baseResource } = resource;
+      return {
+        ...baseResource,
+        readingTime: baseResource.readingTime || '',
+        categories: resourceCategories.map(rc => rc.category),
+        tags: resourceTags.map(rt => rt.tag),
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching popular resources:', error);
     return [];
   }
 }

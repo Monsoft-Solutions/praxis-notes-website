@@ -1,15 +1,20 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
 import ResourceCard from 'website/components/ui/resource-card';
+import ResourceCardSkeleton from './resource-card-skeleton';
 import type { ResourceWithRelations } from '../../../lib/types';
 
 interface ResourcesGridProps {
   resources: ResourceWithRelations[];
   currentPage: number;
   totalPages: number;
+  onPageChange?: (page: number) => void;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+  loadMoreRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 // Helper component for pagination numbers
@@ -50,12 +55,22 @@ export default function ResourcesGrid({
   resources,
   currentPage,
   totalPages,
+  onPageChange,
+  hasMore = false,
+  isLoadingMore = false,
+  loadMoreRef,
 }: ResourcesGridProps) {
   const router = useRouter();
 
   const handlePageChange = (page: number) => {
-    router.replace(`/resources?page=${page}`, { scroll: false });
+    // Use provided handler if available, otherwise use default behavior
+    if (onPageChange) {
+      onPageChange(page);
+    } else {
+      router.replace(`/resources?page=${page}`, { scroll: false });
+    }
   };
+
   return (
     <>
       {/* Resources grid section */}
@@ -76,6 +91,7 @@ export default function ResourcesGrid({
 
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Render existing resources */}
             {resources.map((resource, index) => (
               <ResourceCard
                 key={resource.slug}
@@ -83,10 +99,28 @@ export default function ResourcesGrid({
                 index={index}
               />
             ))}
+
+            {/* Show skeleton cards while loading more */}
+            {isLoadingMore &&
+              Array.from({ length: 12 }).map((_, index) => (
+                <ResourceCardSkeleton key={`skeleton-${index}`} />
+              ))}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
+          {/* Infinite scroll sentinel and loading indicator */}
+          {loadMoreRef && (
+            <div ref={loadMoreRef} className="mt-12 flex justify-center">
+              {isLoadingMore && (
+                <div className="flex items-center gap-3 text-blue-500 font-quicksand font-semibold text-lg">
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                  <span>Loading more resources...</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Traditional Pagination (hidden when using infinite scroll) */}
+          {!hasMore && !loadMoreRef && totalPages > 1 && (
             <div className="mt-20 flex justify-center items-center gap-4">
               {/* Previous Page Button */}
               {currentPage > 1 ? (

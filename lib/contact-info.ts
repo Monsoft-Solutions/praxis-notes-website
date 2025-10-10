@@ -1,9 +1,5 @@
 export const CONTACT_INFO = {
   email: 'support@praxisnotes.com',
-  phone: {
-    e164: '+13057974357',
-    display: '+1 (305) 797-4357',
-  },
   address: {
     city: 'Cape Coral',
     state: 'FL',

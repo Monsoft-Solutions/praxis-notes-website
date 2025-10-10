@@ -80,67 +80,13 @@ export async function getCategoryBySlugWithResources(
       };
     }
 
-    // Get total count of resources in this category
-    const countResult = await db
-      .select({ count: count() })
-      .from(resources)
-      .innerJoin(
-        resourceCategories,
-        eq(resources.id, resourceCategories.resourceId)
-      )
-      .where(
-        sql`${resourceCategories.categoryId} = ${categoryResult.id} AND ${resources.status} = 'published'`
-      );
+    // Use the helper function to get server-side filtered and paginated resources
+    const resourcesData = await _getResourcesByCategory(slug, page, pageSize);
 
-    const totalCount = Number(countResult[0].count);
-    const totalPages = Math.ceil(totalCount / pageSize);
-
-    // Get paginated resources for this category
-    const offset = (page - 1) * pageSize;
-
-    const resourcesResult = await db.query.resources.findMany({
-      where: sql`${resources.status} = 'published'`,
-      orderBy: [desc(resources.date)],
-      limit: pageSize,
-      offset: offset,
-      with: {
-        author: true,
-        featuredImage: true,
-        resourceCategories: {
-          with: {
-            category: true,
-          },
-          where: eq(resourceCategories.categoryId, categoryResult.id),
-        },
-        resourceTags: {
-          with: {
-            tag: true,
-          },
-        },
-      },
-    });
-
-    // Filter resources to only include those that have the specified category
-    const filteredResources = resourcesResult.filter(resource =>
-      resource.resourceCategories.some(
-        rc => rc.categoryId === categoryResult.id
-      )
-    );
-
-    // Transform the data
-    const transformedResources = filteredResources.map(resource => {
-      const { resourceCategories, resourceTags, ...baseResource } = resource;
-      return {
-        ...baseResource,
-        readingTime: baseResource.readingTime || '',
-        categories: resourceCategories.map(rc => rc.category),
-        tags: resourceTags.map(rt => rt.tag),
-      };
-    });
-
+    // Build the CategoryWithResources structure from the helper's result
     const categoryWithResources: CategoryWithResources = {
       ...categoryResult,
-      resources: transformedResources.map(resource => ({
+      resources: resourcesData.resources.map(resource => ({
         id: resource.id,
         slug: resource.slug,
         title: resource.title,
@@ -152,8 +98,8 @@ export async function getCategoryBySlugWithResources(
 
     return {
       category: categoryWithResources,
-      totalCount,
-      totalPages,
+      totalCount: resourcesData.totalCount,
+      totalPages: resourcesData.totalPages,
     };
   } catch (error) {
     console.error('Error fetching category with resources:', error);
@@ -324,14 +270,20 @@ export const getAllCategoriesWithCounts = unstable_cache(
  * @param pageSize Number of resources per page
  * @returns Paginated resources and category info
  */
-export const getResourcesByCategory = unstable_cache(
-  _getResourcesByCategory,
-  ['resources-by-category'],
-  {
-    tags: ['categories', 'resources'],
-    revalidate: 43200, // 12 hours
-  }
-);
+export const getResourcesByCategory = (
+  slug: string,
+  page = 1,
+  pageSize = 6
+) => {
+  return unstable_cache(
+    async () => _getResourcesByCategory(slug, page, pageSize),
+    ['resources-by-category', slug, String(page), String(pageSize)],
+    {
+      tags: ['categories', 'resources'],
+      revalidate: 43200, // 12 hours
+    }
+  )();
+};
 
 /**
  * Gets all categories for navigation and listing (cached)

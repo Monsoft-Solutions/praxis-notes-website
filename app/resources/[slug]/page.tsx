@@ -6,11 +6,20 @@ import { Button } from 'website/components/ui/button';
 import {
   getResourceBySlug,
   getResourceBySlugForMetadata,
+  getAdjacentResources,
 } from 'website/lib/resources';
 import RelatedResources from 'website/components/sections/related-resources';
+import Breadcrumb from 'website/components/ui/breadcrumb';
+import ArticleNavigation from 'website/components/sections/article-navigation';
+import TableOfContents from 'website/components/sections/resources/table-of-contents';
+import ResourceSidebar from 'website/components/sections/resources/resource-sidebar';
+import { SocialShare } from 'website/components/ui/social-share';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
+import { ChevronLeft, ArrowRight, Clock, User } from 'lucide-react';
 import {
   generateBlogPostingSchema,
   generateBreadcrumbSchema,
@@ -139,6 +148,12 @@ export default async function ResourcePage({
     notFound();
   }
 
+  // Get adjacent resources for navigation
+  const { previous, next } = await getAdjacentResources(
+    new Date(resource.date),
+    resource.id
+  );
+
   const resourceUrl = `https://www.praxisnotes.com/resources/${slug}`;
 
   const blogPostingSchema = generateBlogPostingSchema({
@@ -157,6 +172,12 @@ export default async function ResourcePage({
   SchemaValidator.validateInDevelopment(blogPostingSchema, 'BlogPosting');
   SchemaValidator.validateInDevelopment(breadcrumbSchema, 'BreadcrumbList');
 
+  // Prepare breadcrumb items for component
+  const breadcrumbItems = [
+    { label: 'Resources', href: '/resources' },
+    { label: resource.title },
+  ];
+
   return (
     <>
       <JsonLdScript data={blogPostingSchema} id="blog-posting-schema" />
@@ -174,7 +195,14 @@ export default async function ResourcePage({
 
         {/* Main content */}
         <div className="relative z-10">
-          {/* Header with breadcrumb */}
+          {/* Breadcrumb navigation */}
+          <section className="pb-6">
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="mx-auto max-w-4xl">
+                <Breadcrumb items={breadcrumbItems} />
+              </div>
+            </div>
+          </section>
 
           {/* Hero section with article info */}
           <section className="pb-12">
@@ -272,25 +300,96 @@ export default async function ResourcePage({
 
           {/* Content section */}
           <section className="py-12">
-            <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-              <div className="mx-auto max-w-4xl">
-                <div
-                  className="relative rounded-3xl border-2 border-orange-200 bg-white p-8 md:p-12 shadow-lg"
-                  style={{
-                    borderRadius: '28px 35px 22px 38px',
-                  }}
-                >
-                  {/* Triangle thumb tack */}
-                  <div className="absolute -top-2 left-8">
-                    <div className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400" />
-                  </div>
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
+              {/* Mobile TOC */}
+              <div className="mx-auto max-w-4xl lg:hidden">
+                <TableOfContents content={resource.content} />
+              </div>
 
-                  <div className="pt-2">
-                    <div className="prose prose-lg max-w-none">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {resource.content}
-                      </ReactMarkdown>
+              {/* Desktop layout with sticky TOC */}
+              <div className="mx-auto max-w-7xl lg:flex lg:gap-8">
+                {/* Main content */}
+                <div className="mx-auto max-w-4xl w-full lg:flex-1">
+                  <div
+                    className="relative rounded-3xl border-2 border-orange-200 bg-white p-8 md:p-12 shadow-lg"
+                    style={{
+                      borderRadius: '28px 35px 22px 38px',
+                    }}
+                  >
+                    {/* Triangle thumb tack */}
+                    <div className="absolute -top-2 left-8">
+                      <div className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400" />
                     </div>
+
+                    <div className="pt-2">
+                      <div className="prose prose-lg max-w-none">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          rehypePlugins={[
+                            rehypeSlug,
+                            [
+                              rehypeAutolinkHeadings,
+                              {
+                                behavior: 'append',
+                                properties: {
+                                  className: ['heading-anchor'],
+                                  'aria-label': 'Link to this section',
+                                },
+                              },
+                            ],
+                          ]}
+                          components={{
+                            a: ({ href, children, ...props }) => {
+                              // Check if link is external
+                              const isExternal =
+                                href &&
+                                (href.startsWith('http://') ||
+                                  href.startsWith('https://') ||
+                                  href.startsWith('//'));
+
+                              const isInternalDomain =
+                                href && href.includes('praxisnotes.com');
+
+                              // External links open in new tab, internal links open in same tab
+                              if (isExternal && !isInternalDomain) {
+                                return (
+                                  <a
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    {...props}
+                                  >
+                                    {children}
+                                  </a>
+                                );
+                              }
+
+                              // Internal links or hash links
+                              return (
+                                <a href={href} {...props}>
+                                  {children}
+                                </a>
+                              );
+                            },
+                          }}
+                        >
+                          {resource.content}
+                        </ReactMarkdown>
+                      </div>
+
+                      {/* Resource Sidebar - inline for mobile, will be in sidebar on desktop */}
+                      <div className="lg:hidden mt-8">
+                        <ResourceSidebar currentResource={resource} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Desktop TOC Sidebar - positioned outside content flow */}
+                <div className="hidden lg:block lg:w-72 lg:flex-shrink-0">
+                  <div className="sticky top-24 space-y-6">
+                    <TableOfContents content={resource.content} />
+                    <ResourceSidebar currentResource={resource} />
                   </div>
                 </div>
               </div>
@@ -353,6 +452,20 @@ export default async function ResourcePage({
           {/* Related Resources */}
           <RelatedResources currentResource={resource} />
 
+          {/* Article Navigation (Previous/Next) */}
+          {(previous || next) && (
+            <section className="py-8">
+              <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="mx-auto max-w-4xl">
+                  <ArticleNavigation
+                    previousResource={previous || undefined}
+                    nextResource={next || undefined}
+                  />
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* Bottom navigation */}
           <section className="py-16 pb-24">
             <div className="container mx-auto max-w-7xl px-4 sm:px-6">
@@ -380,17 +493,12 @@ export default async function ResourcePage({
                       </Button>
                     </Link>
 
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="gap-2 text-gray-600 hover:text-gray-800 font-quicksand"
-                      style={{
-                        borderRadius: '10px 14px 12px 16px',
-                      }}
-                    >
-                      <Share className="h-4 w-4" />
-                      Share Article
-                    </Button>
+                    <SocialShare
+                      url={resourceUrl}
+                      title={resource.title}
+                      description={resource.metaDescription}
+                      hashtags={resource.tags.map(tag => tag.name)}
+                    />
                   </div>
                 </div>
               </div>
