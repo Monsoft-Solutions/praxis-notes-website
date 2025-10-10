@@ -38,10 +38,10 @@ const CATEGORY_THEMES = [
     hover: 'hover:bg-yellow-200 hover:border-yellow-400',
   },
   {
-    bg: 'bg-purple-100',
-    text: 'text-purple-700',
-    border: 'border-purple-300',
-    hover: 'hover:bg-purple-200 hover:border-purple-400',
+    bg: 'bg-teal-100',
+    text: 'text-teal-700',
+    border: 'border-teal-300',
+    hover: 'hover:bg-teal-200 hover:border-teal-400',
   },
 ];
 

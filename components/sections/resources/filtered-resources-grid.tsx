@@ -33,6 +33,12 @@ export default function FilteredResourcesGrid({
   // Intersection Observer ref for infinite scroll
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  // Reset pagination when resources or pageSize change
+  useEffect(() => {
+    setDisplayedPages(1);
+    setIsLoadingMore(false);
+  }, [resources, pageSize]);
+
   // Calculate hasMore based on whether we have totalCount or just resources length
   const totalPages = totalCount
     ? Math.ceil(totalCount / pageSize)

@@ -16,6 +16,10 @@ export default function ResourcesSearch({
 }: ResourcesSearchProps) {
   const [searchQuery, setSearchQuery] = useState(initialValue);
 
+  useEffect(() => {
+    setSearchQuery(initialValue);
+  }, [initialValue]);
+
   // Debounce search to avoid too many updates
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -13,7 +13,7 @@ import Breadcrumb from 'website/components/ui/breadcrumb';
 import ArticleNavigation from 'website/components/sections/article-navigation';
 import TableOfContents from 'website/components/sections/resources/table-of-contents';
 import ResourceSidebar from 'website/components/sections/resources/resource-sidebar';
-import SocialShare from 'website/components/ui/social-share';
+import { SocialShare } from 'website/components/ui/social-share';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';

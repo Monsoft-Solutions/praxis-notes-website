@@ -34,12 +34,6 @@ export default async function PopularResources({
         borderRadius: '22px 28px 18px 32px',
       }}
     >
-      {/* Small decorative thumb tack */}
-      <div className="absolute -mt-8 right-8 h-4 w-4 -translate-x-1/2 transform">
-        <div className="h-full w-full rounded-full bg-orange-400 shadow-sm" />
-        <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-      </div>
-
       <div className="pt-2">
         {/* Header */}
         <div className="flex items-center gap-2 mb-4">

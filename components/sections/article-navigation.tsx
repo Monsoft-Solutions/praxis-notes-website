@@ -3,15 +3,11 @@
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
-
-interface NavigationResource {
-  slug: string;
-  title: string;
-}
+import { AdjacentResource } from 'website/lib/types';
 
 interface ArticleNavigationProps {
-  previousResource?: NavigationResource;
-  nextResource?: NavigationResource;
+  previousResource?: AdjacentResource;
+  nextResource?: AdjacentResource;
 }
 
 export default function ArticleNavigation({
