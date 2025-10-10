@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getAllResources } from 'website/lib/resources';
+import { getPaginatedResources } from 'website/lib/resources';
 import { getAllCategoriesWithCounts } from 'website/lib/categories';
 import CTAPlain from 'website/components/sections/cta-plain';
 import ResourcesHero from 'website/components/sections/resources/resources-hero';
@@ -90,10 +90,10 @@ export default async function ResourcesPage({
   const currentPage = Number(params.page) || 1;
   const pageSize = 12; // Number of resources per page (increased from 6 for better UX)
 
-  // Fetch all resources and categories in parallel
-  // We fetch all resources for client-side filtering/sorting
-  const [resources, categories] = await Promise.all([
-    getAllResources(),
+  // Fetch only the first page of resources server-side for initial render
+  // Additional pages will be loaded client-side via API on-demand
+  const [paginatedData, categories] = await Promise.all([
+    getPaginatedResources(1, pageSize),
     getAllCategoriesWithCounts(),
   ]);
 
@@ -115,10 +115,12 @@ export default async function ResourcesPage({
 
       {/* Interactive resources container with search, sort, and filters */}
       <ResourcesContainer
-        initialResources={resources}
+        initialResources={paginatedData.resources}
         categories={categories}
         initialPage={currentPage}
         pageSize={pageSize}
+        totalCount={paginatedData.totalCount}
+        totalPages={paginatedData.totalPages}
       />
 
       {/* Add CTA section */}

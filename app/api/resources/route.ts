@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from 'website/db/config';
 import {
@@ -25,7 +25,110 @@ import {
   downloadAndUploadImage,
   handleFeaturedImageUpdate,
 } from 'website/lib/utils/image-management';
-import { eq, inArray } from 'drizzle-orm';
+import { eq, inArray, desc, count, like } from 'drizzle-orm';
+import type { ResourceWithRelations } from 'website/lib/types';
+
+/**
+ * GET handler for fetching paginated resources
+ * Public endpoint - no authentication required
+ */
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const pageSize = parseInt(searchParams.get('pageSize') || '12', 10);
+    const search = searchParams.get('search') || '';
+    const sort = searchParams.get('sort') || 'newest';
+
+    // Validate pagination parameters
+    if (page < 1 || pageSize < 1 || pageSize > 100) {
+      return NextResponse.json(
+        { error: 'Invalid pagination parameters' },
+        { status: 400 }
+      );
+    }
+
+    const offset = (page - 1) * pageSize;
+
+    // Build the where clause for search
+    let whereClause;
+    if (search.trim()) {
+      const searchTerm = `%${search.trim()}%`;
+      whereClause = like(resources.title, searchTerm);
+      // Note: For more complex search across multiple fields, you'd need to join and use OR conditions
+    }
+
+    // Get the resources for the current page with relations
+    const result = await db.query.resources.findMany({
+      where: whereClause,
+      orderBy: resources => {
+        switch (sort) {
+          case 'popular':
+            return [desc(resources.views), desc(resources.date)];
+          case 'alphabetical':
+            return [resources.title];
+          case 'newest':
+          default:
+            return [desc(resources.date)];
+        }
+      },
+      limit: pageSize,
+      offset: offset,
+      with: {
+        author: true,
+        featuredImage: true,
+        resourceCategories: {
+          with: {
+            category: true,
+          },
+        },
+        resourceTags: {
+          with: {
+            tag: true,
+          },
+        },
+      },
+    });
+
+    // Get the total count of resources for pagination
+    const countResult = await db
+      .select({ count: count() })
+      .from(resources)
+      .where(whereClause);
+    const totalCount = Number(countResult[0].count);
+    const totalPages = Math.ceil(totalCount / pageSize);
+
+    // Transform the data to match ResourceWithRelations structure
+    const transformedResources: ResourceWithRelations[] = result.map(
+      resource => {
+        const { resourceCategories, resourceTags, ...baseResource } = resource;
+        return {
+          ...baseResource,
+          readingTime: baseResource.readingTime || '',
+          categories: resourceCategories.map(rc => rc.category),
+          tags: resourceTags.map(rt => rt.tag),
+        };
+      }
+    );
+
+    return NextResponse.json({
+      resources: transformedResources,
+      pagination: {
+        page,
+        pageSize,
+        totalCount,
+        totalPages,
+        hasMore: page < totalPages,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching resources:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch resources' },
+      { status: 500 }
+    );
+  }
+}
 
 async function postHandler(request: NextRequest) {
   try {
