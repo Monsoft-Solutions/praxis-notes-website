@@ -6,8 +6,11 @@ import { Button } from 'website/components/ui/button';
 import {
   getResourceBySlug,
   getResourceBySlugForMetadata,
+  getAdjacentResources,
 } from 'website/lib/resources';
 import RelatedResources from 'website/components/sections/related-resources';
+import Breadcrumb from 'website/components/ui/breadcrumb';
+import ArticleNavigation from 'website/components/sections/article-navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
@@ -139,6 +142,12 @@ export default async function ResourcePage({
     notFound();
   }
 
+  // Get adjacent resources for navigation
+  const { previous, next } = await getAdjacentResources(
+    new Date(resource.date),
+    resource.id
+  );
+
   const resourceUrl = `https://www.praxisnotes.com/resources/${slug}`;
 
   const blogPostingSchema = generateBlogPostingSchema({
@@ -157,6 +166,12 @@ export default async function ResourcePage({
   SchemaValidator.validateInDevelopment(blogPostingSchema, 'BlogPosting');
   SchemaValidator.validateInDevelopment(breadcrumbSchema, 'BreadcrumbList');
 
+  // Prepare breadcrumb items for component
+  const breadcrumbItems = [
+    { label: 'Resources', href: '/resources' },
+    { label: resource.title },
+  ];
+
   return (
     <>
       <JsonLdScript data={blogPostingSchema} id="blog-posting-schema" />
@@ -174,7 +189,14 @@ export default async function ResourcePage({
 
         {/* Main content */}
         <div className="relative z-10">
-          {/* Header with breadcrumb */}
+          {/* Breadcrumb navigation */}
+          <section className="pb-6">
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+              <div className="mx-auto max-w-4xl">
+                <Breadcrumb items={breadcrumbItems} />
+              </div>
+            </div>
+          </section>
 
           {/* Hero section with article info */}
           <section className="pb-12">
@@ -352,6 +374,20 @@ export default async function ResourcePage({
 
           {/* Related Resources */}
           <RelatedResources currentResource={resource} />
+
+          {/* Article Navigation (Previous/Next) */}
+          {(previous || next) && (
+            <section className="py-8">
+              <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="mx-auto max-w-4xl">
+                  <ArticleNavigation
+                    previousResource={previous || undefined}
+                    nextResource={next || undefined}
+                  />
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Bottom navigation */}
           <section className="py-16 pb-24">

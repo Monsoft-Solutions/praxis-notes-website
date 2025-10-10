@@ -3,20 +3,22 @@ import { unstable_cache } from 'next/cache';
 import { db } from '../db/config';
 import { resources } from '../db/schema/resources';
 import { categories } from '../db/schema/resource-category.table';
+import { tags } from '../db/schema/tag.table';
 import { eq } from 'drizzle-orm';
 
 // Cache sitemap data for better performance
 const getCachedSitemapData = unstable_cache(
   async () => {
-    const [allResources, allCategories] = await Promise.all([
+    const [allResources, allCategories, allTags] = await Promise.all([
       db.select().from(resources).where(eq(resources.status, 'published')),
       db.select().from(categories),
+      db.select().from(tags),
     ]);
-    return { allResources, allCategories };
+    return { allResources, allCategories, allTags };
   },
   ['sitemap-data'],
   {
-    tags: ['sitemap', 'resources', 'categories'],
+    tags: ['sitemap', 'resources', 'categories', 'tags'],
     revalidate: 3600, // 1 hour - good balance between freshness and performance
   }
 );
@@ -25,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const requestStart = performance.now();
 
   // Fetch cached sitemap data
-  const { allResources, allCategories } = await getCachedSitemapData();
+  const { allResources, allCategories, allTags } = await getCachedSitemapData();
 
   // Base URL from environment or default
   const baseUrl = process.env.SITE_URL || 'https://praxisnotes.com';
@@ -99,6 +101,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/resources/tags`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/design-system`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -146,15 +154,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Dynamic routes for tags
+  const tagRoutes = allTags.map(tag => ({
+    url: `${baseUrl}/resources/tags/${tag.slug}`,
+    lastModified: tag.createdAt || new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
   const requestEnd = performance.now();
   console.log(`Sitemap generation took ${requestEnd - requestStart}ms`);
   console.log(
-    `Generated sitemap with ${staticRoutes.length} static routes, ${resourceRoutes.length} resource routes, and ${categoryRoutes.length} category routes`
+    `Generated sitemap with ${staticRoutes.length} static routes, ${resourceRoutes.length} resource routes, ${categoryRoutes.length} category routes, and ${tagRoutes.length} tag routes`
   );
 
   return [
     ...staticRoutes,
     ...resourceRoutes,
     ...categoryRoutes,
+    ...tagRoutes,
   ] as MetadataRoute.Sitemap;
 }

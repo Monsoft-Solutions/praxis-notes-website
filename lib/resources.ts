@@ -1,7 +1,7 @@
 import { unstable_cache } from 'next/cache';
 import { db } from 'website/db/config';
 import { resources, resourceCategories, resourceTags } from 'website/db/schema';
-import { eq, desc, count, inArray, sql } from 'drizzle-orm';
+import { eq, desc, count, inArray, sql, and, lt, gt, ne } from 'drizzle-orm';
 import type { ResourceWithRelations } from './types';
 
 /**
@@ -355,6 +355,61 @@ async function _getLatestResources(
   } catch (error) {
     console.error('Error fetching latest resources:', error);
     return [];
+  }
+}
+
+/**
+ * Gets the previous and next resources for navigation
+ * @param currentDate The date of the current resource
+ * @param currentId The ID of the current resource
+ * @returns Object with previous and next resource info
+ */
+export async function getAdjacentResources(
+  currentDate: Date,
+  currentId: string
+): Promise<{
+  previous: { slug: string; title: string } | null;
+  next: { slug: string; title: string } | null;
+}> {
+  try {
+    // Get previous resource (older, earlier date)
+    const previousResource = await db.query.resources.findFirst({
+      where: and(
+        lt(resources.date, currentDate.toISOString()),
+        eq(resources.status, 'published'),
+        ne(resources.id, currentId)
+      ),
+      orderBy: [desc(resources.date)],
+      columns: {
+        slug: true,
+        title: true,
+      },
+    });
+
+    // Get next resource (newer, later date)
+    const nextResource = await db.query.resources.findFirst({
+      where: and(
+        gt(resources.date, currentDate.toISOString()),
+        eq(resources.status, 'published'),
+        ne(resources.id, currentId)
+      ),
+      orderBy: [resources.date],
+      columns: {
+        slug: true,
+        title: true,
+      },
+    });
+
+    return {
+      previous: previousResource || null,
+      next: nextResource || null,
+    };
+  } catch (error) {
+    console.error('Error fetching adjacent resources:', error);
+    return {
+      previous: null,
+      next: null,
+    };
   }
 }
 
