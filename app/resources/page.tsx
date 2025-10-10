@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { getPaginatedResources } from 'website/lib/resources';
+import { getAllResources } from 'website/lib/resources';
 import { getAllCategoriesWithCounts } from 'website/lib/categories';
 import CTAPlain from 'website/components/sections/cta-plain';
 import ResourcesHero from 'website/components/sections/resources/resources-hero';
-import ResourcesGrid from 'website/components/sections/resources/resources-grid';
 import ResourcesNavigation from 'website/components/sections/resources/resources-navigation';
 import QuickCategoryFilter from 'website/components/sections/resources/quick-category-filter';
+import ResourcesContainer from 'website/components/sections/resources/resources-container';
 
 export const metadata: Metadata = {
   title: 'ABA Resources & Educational Content',
@@ -84,14 +84,16 @@ export const revalidate = 43200;
 export default async function ResourcesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; search?: string; sort?: string }>;
 }) {
-  const currentPage = Number((await searchParams).page) || 1;
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
   const pageSize = 6; // Number of resources per page
 
-  // Fetch resources and categories in parallel
-  const [{ resources, totalPages }, categories] = await Promise.all([
-    getPaginatedResources(currentPage, pageSize),
+  // Fetch all resources and categories in parallel
+  // We fetch all resources for client-side filtering/sorting
+  const [resources, categories] = await Promise.all([
+    getAllResources(),
     getAllCategoriesWithCounts(),
   ]);
 
@@ -111,11 +113,12 @@ export default async function ResourcesPage({
         </div>
       </section>
 
-      {/* Resources grid section */}
-      <ResourcesGrid
-        resources={resources}
-        currentPage={currentPage}
-        totalPages={totalPages}
+      {/* Interactive resources container with search, sort, and filters */}
+      <ResourcesContainer
+        initialResources={resources}
+        categories={categories}
+        initialPage={currentPage}
+        pageSize={pageSize}
       />
 
       {/* Add CTA section */}

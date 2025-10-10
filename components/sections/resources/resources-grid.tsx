@@ -10,6 +10,7 @@ interface ResourcesGridProps {
   resources: ResourceWithRelations[];
   currentPage: number;
   totalPages: number;
+  onPageChange?: (page: number) => void;
 }
 
 // Helper component for pagination numbers
@@ -50,11 +51,17 @@ export default function ResourcesGrid({
   resources,
   currentPage,
   totalPages,
+  onPageChange,
 }: ResourcesGridProps) {
   const router = useRouter();
 
   const handlePageChange = (page: number) => {
-    router.replace(`/resources?page=${page}`, { scroll: false });
+    // Use provided handler if available, otherwise use default behavior
+    if (onPageChange) {
+      onPageChange(page);
+    } else {
+      router.replace(`/resources?page=${page}`, { scroll: false });
+    }
   };
   return (
     <>
