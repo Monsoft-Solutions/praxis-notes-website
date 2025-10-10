@@ -11,8 +11,12 @@ import {
 import RelatedResources from 'website/components/sections/related-resources';
 import Breadcrumb from 'website/components/ui/breadcrumb';
 import ArticleNavigation from 'website/components/sections/article-navigation';
+import TableOfContents from 'website/components/sections/resources/table-of-contents';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
 import { ChevronLeft, ArrowRight, Clock, Share, User } from 'lucide-react';
 import {
   generateBlogPostingSchema,
@@ -294,25 +298,56 @@ export default async function ResourcePage({
 
           {/* Content section */}
           <section className="py-12">
-            <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-              <div className="mx-auto max-w-4xl">
-                <div
-                  className="relative rounded-3xl border-2 border-orange-200 bg-white p-8 md:p-12 shadow-lg"
-                  style={{
-                    borderRadius: '28px 35px 22px 38px',
-                  }}
-                >
-                  {/* Triangle thumb tack */}
-                  <div className="absolute -top-2 left-8">
-                    <div className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400" />
-                  </div>
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
+              {/* Mobile TOC */}
+              <div className="mx-auto max-w-4xl lg:hidden">
+                <TableOfContents content={resource.content} />
+              </div>
 
-                  <div className="pt-2">
-                    <div className="prose prose-lg max-w-none">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {resource.content}
-                      </ReactMarkdown>
+              {/* Desktop layout with sticky TOC */}
+              <div className="mx-auto max-w-7xl lg:flex lg:gap-8">
+                {/* Main content */}
+                <div className="mx-auto max-w-4xl w-full lg:flex-1">
+                  <div
+                    className="relative rounded-3xl border-2 border-orange-200 bg-white p-8 md:p-12 shadow-lg"
+                    style={{
+                      borderRadius: '28px 35px 22px 38px',
+                    }}
+                  >
+                    {/* Triangle thumb tack */}
+                    <div className="absolute -top-2 left-8">
+                      <div className="h-0 w-0 border-l-2 border-r-2 border-b-4 border-l-transparent border-r-transparent border-b-orange-400" />
                     </div>
+
+                    <div className="pt-2">
+                      <div className="prose prose-lg max-w-none">
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          rehypePlugins={[
+                            rehypeSlug,
+                            [
+                              rehypeAutolinkHeadings,
+                              {
+                                behavior: 'append',
+                                properties: {
+                                  className: ['heading-anchor'],
+                                  ariaLabel: 'Link to this section',
+                                },
+                              },
+                            ],
+                          ]}
+                        >
+                          {resource.content}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Desktop TOC Sidebar - positioned outside content flow */}
+                <div className="hidden lg:block lg:w-72 lg:flex-shrink-0">
+                  <div className="sticky top-24">
+                    <TableOfContents content={resource.content} />
                   </div>
                 </div>
               </div>
