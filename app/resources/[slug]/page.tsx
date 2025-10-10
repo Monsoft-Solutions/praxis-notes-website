@@ -333,7 +333,7 @@ export default async function ResourcePage({
                                 behavior: 'append',
                                 properties: {
                                   className: ['heading-anchor'],
-                                  ariaLabel: 'Link to this section',
+                                  'aria-label': 'Link to this section',
                                 },
                               },
                             ],

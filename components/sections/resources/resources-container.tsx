@@ -15,6 +15,8 @@ interface ResourcesContainerProps {
   categories: (Category & { resourceCount: number })[];
   initialPage?: number;
   pageSize?: number;
+  totalCount: number;
+  totalPages: number;
 }
 
 export default function ResourcesContainer({
@@ -22,6 +24,8 @@ export default function ResourcesContainer({
   categories,
   initialPage = 1,
   pageSize = 12,
+  totalCount: initialTotalCount,
+  totalPages: initialTotalPages,
 }: ResourcesContainerProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -35,9 +39,14 @@ export default function ResourcesContainer({
   // State
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [sortOption, setSortOption] = useState<SortOption>(initialSort);
+  const [resources, setResources] =
+    useState<ResourceWithRelations[]>(initialResources);
   const [currentPage, setCurrentPage] = useState(initialPage);
-  const [displayedPages, setDisplayedPages] = useState(initialPage); // Track how many pages to display for infinite scroll
+  const [displayedPages, setDisplayedPages] = useState(1); // Track how many pages to display for infinite scroll
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [totalCount, setTotalCount] = useState(initialTotalCount);
+  const [totalPages, setTotalPages] = useState(initialTotalPages);
+  const [hasMore, setHasMore] = useState(displayedPages < initialTotalPages);
 
   // Refs for scroll position preservation
   const scrollPositionRef = useRef<number>(0);
@@ -68,6 +77,32 @@ export default function ResourcesContainer({
       router.replace(`/resources?${newParams.toString()}`, { scroll: false });
     },
     [router, searchParams]
+  );
+
+  // Fetch resources from API
+  const fetchResources = useCallback(
+    async (page: number, search: string, sort: SortOption) => {
+      try {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          pageSize: pageSize.toString(),
+          ...(search && { search }),
+          sort,
+        });
+
+        const response = await fetch(`/api/resources?${params.toString()}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch resources');
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching resources:', error);
+        return null;
+      }
+    },
+    [pageSize]
   );
 
   // Handle page change
@@ -102,113 +137,129 @@ export default function ResourcesContainer({
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   // Handle load more (triggered by Intersection Observer)
-  const handleLoadMore = useCallback(() => {
-    if (isLoadingMore) return;
+  const handleLoadMore = useCallback(async () => {
+    if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
 
-    // Simulate async loading with a small delay for smooth UX
-    setTimeout(() => {
-      setDisplayedPages(prev => prev + 1);
+    try {
+      const nextPage = displayedPages + 1;
+      const data = await fetchResources(nextPage, searchQuery, sortOption);
+
+      if (data && data.resources.length > 0) {
+        setResources(prev => [...prev, ...data.resources]);
+        setDisplayedPages(nextPage);
+        setHasMore(data.pagination.hasMore);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more resources:', error);
+      setHasMore(false);
+    } finally {
       setIsLoadingMore(false);
-    }, 300);
-  }, [isLoadingMore]);
+    }
+  }, [
+    isLoadingMore,
+    hasMore,
+    displayedPages,
+    searchQuery,
+    sortOption,
+    fetchResources,
+  ]);
 
   // Handle search
   const handleSearchChange = useCallback(
-    (query: string) => {
+    async (query: string) => {
       // Reset to first page when search changes
       setDisplayedPages(1);
+      setIsLoadingMore(true);
+
       // Save scroll position for filter changes
       scrollPositionRef.current = window.scrollY;
       shouldRestoreScrollRef.current = true;
 
       setSearchQuery(query);
       updateURL({ search: query, sort: sortOption });
+
+      // Fetch new results
+      const data = await fetchResources(1, query, sortOption);
+      if (data) {
+        setResources(data.resources);
+        setTotalCount(data.pagination.totalCount);
+        setTotalPages(data.pagination.totalPages);
+        setHasMore(data.pagination.hasMore);
+      }
+
+      setIsLoadingMore(false);
     },
-    [sortOption, updateURL]
+    [sortOption, updateURL, fetchResources]
   );
 
   // Handle sort
   const handleSortChange = useCallback(
-    (sort: SortOption) => {
+    async (sort: SortOption) => {
       // Reset to first page when sort changes
       setDisplayedPages(1);
+      setIsLoadingMore(true);
+
       // Save scroll position for filter changes
       scrollPositionRef.current = window.scrollY;
       shouldRestoreScrollRef.current = true;
 
       setSortOption(sort);
       updateURL({ search: searchQuery, sort });
+
+      // Fetch new results
+      const data = await fetchResources(1, searchQuery, sort);
+      if (data) {
+        setResources(data.resources);
+        setTotalCount(data.pagination.totalCount);
+        setTotalPages(data.pagination.totalPages);
+        setHasMore(data.pagination.hasMore);
+      }
+
+      setIsLoadingMore(false);
     },
-    [searchQuery, updateURL]
+    [searchQuery, updateURL, fetchResources]
   );
 
   // Handle clear search
-  const handleClearSearch = useCallback(() => {
+  const handleClearSearch = useCallback(async () => {
     setDisplayedPages(1);
     setSearchQuery('');
     updateURL({ search: '', sort: sortOption });
-  }, [sortOption, updateURL]);
+
+    // Fetch new results
+    setIsLoadingMore(true);
+    const data = await fetchResources(1, '', sortOption);
+    if (data) {
+      setResources(data.resources);
+      setTotalCount(data.pagination.totalCount);
+      setTotalPages(data.pagination.totalPages);
+      setHasMore(data.pagination.hasMore);
+    }
+    setIsLoadingMore(false);
+  }, [sortOption, updateURL, fetchResources]);
 
   // Handle clear filters
-  const handleClearFilters = useCallback(() => {
+  const handleClearFilters = useCallback(async () => {
     setDisplayedPages(1);
     setSearchQuery('');
     setSortOption('newest');
     router.replace('/resources', { scroll: false });
-  }, [router]);
 
-  // Filter and sort resources
-  const filteredAndSortedResources = useMemo(() => {
-    let filtered = [...initialResources];
-
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(resource => {
-        const titleMatch = resource.title.toLowerCase().includes(query);
-        const descriptionMatch = resource.excerpt
-          ?.toLowerCase()
-          .includes(query);
-        const tagMatch = resource.tags.some(tag =>
-          tag.name.toLowerCase().includes(query)
-        );
-        const categoryMatch = resource.categories.some(cat =>
-          cat.name.toLowerCase().includes(query)
-        );
-
-        return titleMatch || descriptionMatch || tagMatch || categoryMatch;
-      });
+    // Fetch new results
+    setIsLoadingMore(true);
+    const data = await fetchResources(1, '', 'newest');
+    if (data) {
+      setResources(data.resources);
+      setTotalCount(data.pagination.totalCount);
+      setTotalPages(data.pagination.totalPages);
+      setHasMore(data.pagination.hasMore);
     }
-
-    // Apply sorting
-    switch (sortOption) {
-      case 'popular':
-        filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
-        break;
-      case 'alphabetical':
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      case 'newest':
-      default:
-        filtered.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-        break;
-    }
-
-    return filtered;
-  }, [initialResources, searchQuery, sortOption]);
-
-  // Paginate resources for infinite scroll (show all pages up to displayedPages)
-  const paginatedResources = useMemo(() => {
-    const end = displayedPages * pageSize;
-    return filteredAndSortedResources.slice(0, end);
-  }, [filteredAndSortedResources, displayedPages, pageSize]);
-
-  const totalPages = Math.ceil(filteredAndSortedResources.length / pageSize);
-  const hasMore = displayedPages < totalPages;
+    setIsLoadingMore(false);
+  }, [router, fetchResources]);
 
   // Set up Intersection Observer for infinite scroll
   useEffect(() => {
@@ -310,13 +361,8 @@ export default function ResourcesContainer({
 
             {/* Results count */}
             <div className="text-sm text-gray-600 font-nunito">
-              <span className="font-semibold text-gray-900">
-                {filteredAndSortedResources.length}
-              </span>{' '}
-              {filteredAndSortedResources.length === 1
-                ? 'resource'
-                : 'resources'}{' '}
-              found
+              <span className="font-semibold text-gray-900">{totalCount}</span>{' '}
+              {totalCount === 1 ? 'resource' : 'resources'} found
             </div>
           </div>
 
@@ -336,9 +382,9 @@ export default function ResourcesContainer({
       </section>
 
       {/* Resources grid or empty state */}
-      {paginatedResources.length > 0 ? (
+      {resources.length > 0 ? (
         <ResourcesGrid
-          resources={paginatedResources}
+          resources={resources}
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}

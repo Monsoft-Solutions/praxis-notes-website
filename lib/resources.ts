@@ -417,10 +417,11 @@ export async function getAdjacentResources(
   next: { slug: string; title: string } | null;
 }> {
   try {
+    const currentDateStr = currentDate.toISOString().slice(0, 10);
     // Get previous resource (older, earlier date)
     const previousResource = await db.query.resources.findFirst({
       where: and(
-        lt(resources.date, currentDate.toISOString()),
+        lt(resources.date, currentDateStr),
         eq(resources.status, 'published'),
         ne(resources.id, currentId)
       ),
@@ -434,7 +435,7 @@ export async function getAdjacentResources(
     // Get next resource (newer, later date)
     const nextResource = await db.query.resources.findFirst({
       where: and(
-        gt(resources.date, currentDate.toISOString()),
+        gt(resources.date, currentDateStr),
         eq(resources.status, 'published'),
         ne(resources.id, currentId)
       ),
