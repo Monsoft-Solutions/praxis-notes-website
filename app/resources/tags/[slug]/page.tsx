@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { BookOpen, Tag as TagIcon } from 'lucide-react';
 import { getResourcesByTag, getAllTags } from 'website/lib/tags';
 import TagHero from 'website/components/sections/resources/tag-hero';
-import TagResourcesGrid from 'website/components/sections/resources/tag-resources-grid';
+import FilteredResourcesGrid from 'website/components/sections/resources/filtered-resources-grid';
 import CTAPlain from 'website/components/sections/cta-plain';
+import { Button } from 'website/components/ui/button';
 
 interface TagPageProps {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ page?: string }>;
 }
 
 // Generate metadata for the tag page
@@ -104,32 +106,132 @@ export async function generateStaticParams() {
 // On-demand revalidation via API ensures immediate updates when content is added
 export const revalidate = 43200;
 
-export default async function TagPage({ params, searchParams }: TagPageProps) {
+export default async function TagPage({ params }: TagPageProps) {
   const { slug } = await params;
-  const currentPage = Number((await searchParams).page) || 1;
-  const pageSize = 6; // Number of resources per page
 
-  const { resources, tag, totalCount, totalPages } = await getResourcesByTag(
+  // Fetch all resources for this tag (not paginated)
+  // We'll handle pagination on the client with infinite scroll
+  const { resources, tag, totalCount } = await getResourcesByTag(
     slug,
-    currentPage,
-    pageSize
+    1,
+    10000 // Fetch all resources
   );
 
   if (!tag) {
     notFound();
   }
 
+  // Empty state component
+  const emptyState = (
+    <div className="text-center py-20">
+      <div
+        className="max-w-md mx-auto bg-white p-12 shadow-xl border-2 border-gray-200"
+        style={{
+          borderRadius: '25px 30px 20px 35px',
+          borderStyle: 'solid',
+        }}
+      >
+        {/* Thumb tack */}
+        <div className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 transform">
+          <div className="h-full w-full rounded-full bg-gray-400 shadow-md"></div>
+          <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"></div>
+        </div>
+
+        <div className="pt-2">
+          <TagIcon className="w-16 h-16 text-gray-400 mx-auto mb-6" />
+          <h3 className="text-xl font-quicksand font-bold text-gray-600 mb-4">
+            No Resources Available
+          </h3>
+          <p className="text-gray-500 font-nunito leading-relaxed mb-6">
+            This tag is being developed. Check back soon for specialized
+            resources.
+          </p>
+          <Button
+            asChild
+            className="h-10 px-6 bg-purple-400 hover:bg-purple-500 text-white font-quicksand font-semibold transition-all duration-200"
+            style={{ borderRadius: '12px 14px 10px 16px' }}
+          >
+            <Link href="/resources/tags">Browse Other Tags</Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Related actions component
+  const relatedActions = (
+    <div
+      className="max-w-4xl mx-auto bg-white p-10 shadow-2xl border-2 border-purple-200"
+      style={{
+        borderRadius: '28px 35px 22px 38px',
+        borderStyle: 'solid',
+      }}
+    >
+      <div className="pt-6">
+        <h3
+          className="text-2xl font-quicksand font-bold text-gray-800 mb-6"
+          style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.05)' }}
+        >
+          Explore More Resources
+        </h3>
+        <p className="text-lg font-nunito text-gray-600 mb-8 leading-relaxed">
+          Discover more ABA resources across different tags or browse our
+          complete collection.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            asChild
+            className="h-12 px-8 bg-purple-400 hover:bg-purple-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+            style={{ borderRadius: '14px 18px 12px 16px' }}
+          >
+            <Link href="/resources/tags">
+              <TagIcon className="w-5 h-5 mr-2" />
+              Browse Tags
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            className="h-12 px-8 bg-pink-400 hover:bg-pink-500 text-white font-quicksand font-semibold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+            style={{ borderRadius: '14px 18px 12px 16px' }}
+          >
+            <Link href="/resources">
+              <BookOpen className="w-5 h-5 mr-2" />
+              All Resources
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Background decorations
+  const backgroundDecorations = (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div
+        className="absolute left-10 top-20 h-12 w-12 rounded-full border-2 border-purple-200 opacity-30"
+        style={{ transform: 'rotate(0.1deg)' }}
+      ></div>
+      <div className="absolute right-16 top-1/4 h-8 w-8 rounded border border-pink-200 opacity-40"></div>
+      <div className="absolute left-1/4 bottom-20 h-2 w-2 rounded-full bg-yellow-200 opacity-50"></div>
+      <div className="absolute right-1/3 bottom-32 h-6 w-6 rounded border-2 border-orange-200 opacity-35"></div>
+    </div>
+  );
+
   return (
     <>
       {/* Hero section */}
       <TagHero tag={tag} totalResources={totalCount} />
 
-      {/* Resources grid section */}
-      <TagResourcesGrid
+      {/* Resources grid section with infinite scroll */}
+      <FilteredResourcesGrid
         resources={resources}
-        tag={tag}
-        currentPage={currentPage}
-        totalPages={totalPages}
+        pageSize={12}
+        emptyState={emptyState}
+        relatedActions={relatedActions}
+        backgroundGradient="from-purple-50 via-pink-50 to-yellow-50"
+        backgroundDecorations={backgroundDecorations}
       />
 
       {/* CTA section */}
