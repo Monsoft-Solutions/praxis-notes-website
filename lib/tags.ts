@@ -252,14 +252,16 @@ export const getAllTagsWithCounts = unstable_cache(
  * @param pageSize Number of resources per page
  * @returns Paginated resources and tag info
  */
-export const getResourcesByTag = unstable_cache(
-  _getResourcesByTag,
-  ['resources-by-tag'],
-  {
-    tags: ['tags', 'resources'],
-    revalidate: 43200, // 12 hours
-  }
-);
+export const getResourcesByTag = (slug: string, page = 1, pageSize = 6) => {
+  return unstable_cache(
+    async () => _getResourcesByTag(slug, page, pageSize),
+    ['resources-by-tag', slug, String(page), String(pageSize)],
+    {
+      tags: ['tags', 'resources'],
+      revalidate: 43200, // 12 hours
+    }
+  )();
+};
 
 /**
  * Gets all tags for navigation and listing (cached)

@@ -270,14 +270,20 @@ export const getAllCategoriesWithCounts = unstable_cache(
  * @param pageSize Number of resources per page
  * @returns Paginated resources and category info
  */
-export const getResourcesByCategory = unstable_cache(
-  _getResourcesByCategory,
-  ['resources-by-category'],
-  {
-    tags: ['categories', 'resources'],
-    revalidate: 43200, // 12 hours
-  }
-);
+export const getResourcesByCategory = (
+  slug: string,
+  page = 1,
+  pageSize = 6
+) => {
+  return unstable_cache(
+    async () => _getResourcesByCategory(slug, page, pageSize),
+    ['resources-by-category', slug, String(page), String(pageSize)],
+    {
+      tags: ['categories', 'resources'],
+      revalidate: 43200, // 12 hours
+    }
+  )();
+};
 
 /**
  * Gets all categories for navigation and listing (cached)
