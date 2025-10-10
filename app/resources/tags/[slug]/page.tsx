@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { BookOpen, Tag as TagIcon } from 'lucide-react';
 import { getResourcesByTag, getAllTags } from 'website/lib/tags';
 import TagHero from 'website/components/sections/resources/tag-hero';
-import FilteredResourcesGrid from 'website/components/sections/resources/filtered-resources-grid';
+import TagResourcesContainer from 'website/components/sections/resources/tag-resources-container';
 import CTAPlain from 'website/components/sections/cta-plain';
 import { Button } from 'website/components/ui/button';
 
@@ -109,12 +109,13 @@ export const revalidate = 43200;
 export default async function TagPage({ params }: TagPageProps) {
   const { slug } = await params;
 
-  // Fetch all resources for this tag (not paginated)
-  // We'll handle pagination on the client with infinite scroll
+  // Fetch first page of resources for this tag
+  // Additional pages will be loaded client-side with infinite scroll
+  const pageSize = 12;
   const { resources, tag, totalCount } = await getResourcesByTag(
     slug,
     1,
-    10000 // Fetch all resources
+    pageSize
   );
 
   if (!tag) {
@@ -225,9 +226,11 @@ export default async function TagPage({ params }: TagPageProps) {
       <TagHero tag={tag} totalResources={totalCount} />
 
       {/* Resources grid section with infinite scroll */}
-      <FilteredResourcesGrid
-        resources={resources}
-        pageSize={12}
+      <TagResourcesContainer
+        slug={slug}
+        initialResources={resources}
+        pageSize={pageSize}
+        totalCount={totalCount}
         emptyState={emptyState}
         relatedActions={relatedActions}
         backgroundGradient="from-purple-50 via-pink-50 to-yellow-50"

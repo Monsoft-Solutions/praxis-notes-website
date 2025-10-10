@@ -68,62 +68,13 @@ export async function getTagBySlugWithResources(
       };
     }
 
-    // Get total count of resources with this tag
-    const countResult = await db
-      .select({ count: count() })
-      .from(resources)
-      .innerJoin(resourceTags, eq(resources.id, resourceTags.resourceId))
-      .where(
-        sql`${resourceTags.tagId} = ${tagResult.id} AND ${resources.status} = 'published'`
-      );
+    // Use the helper function to get server-side filtered and paginated resources
+    const resourcesData = await _getResourcesByTag(slug, page, pageSize);
 
-    const totalCount = Number(countResult[0].count);
-    const totalPages = Math.ceil(totalCount / pageSize);
-
-    // Get paginated resources for this tag
-    const offset = (page - 1) * pageSize;
-
-    const resourcesResult = await db.query.resources.findMany({
-      where: sql`${resources.status} = 'published'`,
-      orderBy: [desc(resources.date)],
-      limit: pageSize,
-      offset: offset,
-      with: {
-        author: true,
-        featuredImage: true,
-        resourceCategories: {
-          with: {
-            category: true,
-          },
-        },
-        resourceTags: {
-          with: {
-            tag: true,
-          },
-          where: eq(resourceTags.tagId, tagResult.id),
-        },
-      },
-    });
-
-    // Filter resources to only include those that have the specified tag
-    const filteredResources = resourcesResult.filter(resource =>
-      resource.resourceTags.some(rt => rt.tagId === tagResult.id)
-    );
-
-    // Transform the data
-    const transformedResources = filteredResources.map(resource => {
-      const { resourceCategories, resourceTags, ...baseResource } = resource;
-      return {
-        ...baseResource,
-        readingTime: baseResource.readingTime || '',
-        categories: resourceCategories.map(rc => rc.category),
-        tags: resourceTags.map(rt => rt.tag),
-      };
-    });
-
+    // Build the TagWithResources structure from the helper's result
     const tagWithResources: TagWithResources = {
       ...tagResult,
-      resources: transformedResources.map(resource => ({
+      resources: resourcesData.resources.map(resource => ({
         id: resource.id,
         slug: resource.slug,
         title: resource.title,
@@ -135,8 +86,8 @@ export async function getTagBySlugWithResources(
 
     return {
       tag: tagWithResources,
-      totalCount,
-      totalPages,
+      totalCount: resourcesData.totalCount,
+      totalPages: resourcesData.totalPages,
     };
   } catch (error) {
     console.error('Error fetching tag with resources:', error);

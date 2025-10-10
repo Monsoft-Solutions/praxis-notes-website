@@ -7,7 +7,7 @@ import {
   getAllCategories,
 } from 'website/lib/categories';
 import CategoryHero from 'website/components/sections/resources/category-hero';
-import FilteredResourcesGrid from 'website/components/sections/resources/filtered-resources-grid';
+import CategoryResourcesContainer from 'website/components/sections/resources/category-resources-container';
 import CTAPlain from 'website/components/sections/cta-plain';
 import { Button } from 'website/components/ui/button';
 
@@ -118,12 +118,13 @@ export const revalidate = 43200;
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
-  // Fetch all resources for this category (not paginated)
-  // We'll handle pagination on the client with infinite scroll
+  // Fetch first page of resources for this category
+  // Additional pages will be loaded client-side with infinite scroll
+  const pageSize = 12;
   const { resources, category, totalCount } = await getResourcesByCategory(
     slug,
     1,
-    10000 // Fetch all resources
+    pageSize
   );
 
   if (!category) {
@@ -234,9 +235,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <CategoryHero category={category} totalResources={totalCount} />
 
       {/* Resources grid section with infinite scroll */}
-      <FilteredResourcesGrid
-        resources={resources}
-        pageSize={12}
+      <CategoryResourcesContainer
+        slug={slug}
+        initialResources={resources}
+        pageSize={pageSize}
+        totalCount={totalCount}
         emptyState={emptyState}
         relatedActions={relatedActions}
         backgroundGradient="from-green-50 via-blue-50 to-yellow-50"

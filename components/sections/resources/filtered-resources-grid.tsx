@@ -11,44 +11,72 @@ interface FilteredResourcesGridProps {
   relatedActions?: React.ReactNode;
   backgroundGradient?: string;
   backgroundDecorations?: React.ReactNode;
+  totalCount?: number;
+  onLoadMore?: (page: number) => Promise<ResourceWithRelations[]>;
 }
 
 export default function FilteredResourcesGrid({
-  resources,
+  resources: initialResources,
   pageSize = 12,
   emptyState,
   relatedActions,
   backgroundGradient = 'from-blue-50 via-yellow-50/50 to-orange-50',
   backgroundDecorations,
+  totalCount,
+  onLoadMore,
 }: FilteredResourcesGridProps) {
   // State for infinite scroll
+  const [resources, setResources] = useState(initialResources);
   const [displayedPages, setDisplayedPages] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // Intersection Observer ref for infinite scroll
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  // Calculate hasMore based on whether we have totalCount or just resources length
+  const totalPages = totalCount
+    ? Math.ceil(totalCount / pageSize)
+    : Math.ceil(resources.length / pageSize);
+  const hasMore = displayedPages < totalPages;
+
   // Handle load more (triggered by Intersection Observer)
-  const handleLoadMore = useCallback(() => {
-    if (isLoadingMore) return;
+  const handleLoadMore = useCallback(async () => {
+    if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
 
-    // Simulate async loading with a small delay for smooth UX
-    setTimeout(() => {
-      setDisplayedPages(prev => prev + 1);
+    try {
+      // If onLoadMore is provided, use it to fetch more data
+      if (onLoadMore) {
+        const nextPage = displayedPages + 1;
+        const newResources = await onLoadMore(nextPage);
+        if (newResources.length > 0) {
+          setResources(prev => [...prev, ...newResources]);
+          setDisplayedPages(nextPage);
+        }
+      } else {
+        // Otherwise, just increment displayed pages (client-side pagination)
+        setTimeout(() => {
+          setDisplayedPages(prev => prev + 1);
+        }, 300);
+      }
+    } catch (error) {
+      console.error('Error loading more resources:', error);
+    } finally {
       setIsLoadingMore(false);
-    }, 300);
-  }, [isLoadingMore]);
+    }
+  }, [isLoadingMore, hasMore, displayedPages, onLoadMore]);
 
-  // Paginate resources for infinite scroll
+  // Paginate resources for display (only used if not using API pagination)
   const paginatedResources = useMemo(() => {
+    if (onLoadMore) {
+      // When using API pagination, show all loaded resources
+      return resources;
+    }
+    // When using client-side pagination, slice based on displayedPages
     const end = displayedPages * pageSize;
     return resources.slice(0, end);
-  }, [resources, displayedPages, pageSize]);
-
-  const totalPages = Math.ceil(resources.length / pageSize);
-  const hasMore = displayedPages < totalPages;
+  }, [resources, displayedPages, pageSize, onLoadMore]);
 
   // Set up Intersection Observer for infinite scroll
   useEffect(() => {
@@ -75,6 +103,14 @@ export default function FilteredResourcesGrid({
     };
   }, [hasMore, isLoadingMore, handleLoadMore]);
 
+  // Update resources when initialResources changes
+  useEffect(() => {
+    setResources(initialResources);
+    setDisplayedPages(1);
+  }, [initialResources]);
+
+  const displayCount = totalCount || resources.length;
+
   return (
     <section
       className={`py-16 md:py-24 relative min-h-screen bg-gradient-to-br ${backgroundGradient}`}
@@ -93,7 +129,7 @@ export default function FilteredResourcesGrid({
       )}
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
-        {resources.length === 0 ? (
+        {paginatedResources.length === 0 ? (
           // Empty state
           emptyState || (
             <div className="text-center py-20">
@@ -141,10 +177,10 @@ export default function FilteredResourcesGrid({
             )}
 
             {/* Show total loaded count */}
-            {!hasMore && resources.length > pageSize && (
+            {!hasMore && displayCount > pageSize && (
               <div className="mt-12 text-center">
                 <p className="text-gray-600 font-nunito">
-                  Showing all {resources.length} resources
+                  Showing all {displayCount} resources
                 </p>
               </div>
             )}
