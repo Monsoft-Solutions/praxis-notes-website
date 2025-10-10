@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useRef, useEffect } from 'react';
 import ResourcesSearch from './resources-search';
 import ResourcesSort, { type SortOption } from './resources-sort';
 import ActiveFilters from './active-filters';
@@ -21,7 +21,7 @@ export default function ResourcesContainer({
   initialResources,
   categories,
   initialPage = 1,
-  pageSize = 6,
+  pageSize = 12,
 }: ResourcesContainerProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -36,6 +36,12 @@ export default function ResourcesContainer({
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [sortOption, setSortOption] = useState<SortOption>(initialSort);
   const [currentPage, setCurrentPage] = useState(initialPage);
+  const [displayedPages, setDisplayedPages] = useState(initialPage); // Track how many pages to display for infinite scroll
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  // Refs for scroll position preservation
+  const scrollPositionRef = useRef<number>(0);
+  const shouldRestoreScrollRef = useRef(false);
 
   // Update URL when filters change
   const updateURL = useCallback(
@@ -66,7 +72,24 @@ export default function ResourcesContainer({
 
   // Handle page change
   const handlePageChange = useCallback(
-    (page: number) => {
+    (page: number, preserveScroll = false) => {
+      if (!preserveScroll) {
+        // Smooth scroll to top of resources section
+        const resourcesSection = document.getElementById('resources');
+        if (resourcesSection) {
+          resourcesSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      } else {
+        // Save current scroll position for restoration
+        scrollPositionRef.current = window.scrollY;
+        shouldRestoreScrollRef.current = true;
+      }
+
       setCurrentPage(page);
       const newParams = new URLSearchParams(searchParams.toString());
       newParams.set('page', page.toString());
@@ -75,9 +98,26 @@ export default function ResourcesContainer({
     [router, searchParams]
   );
 
+  // Handle load more
+  const handleLoadMore = useCallback(() => {
+    setIsLoadingMore(true);
+
+    // Simulate async loading with a small delay for smooth UX
+    setTimeout(() => {
+      setDisplayedPages(prev => prev + 1);
+      setIsLoadingMore(false);
+    }, 300);
+  }, []);
+
   // Handle search
   const handleSearchChange = useCallback(
     (query: string) => {
+      // Reset to first page when search changes
+      setDisplayedPages(1);
+      // Save scroll position for filter changes
+      scrollPositionRef.current = window.scrollY;
+      shouldRestoreScrollRef.current = true;
+
       setSearchQuery(query);
       updateURL({ search: query, sort: sortOption });
     },
@@ -87,6 +127,12 @@ export default function ResourcesContainer({
   // Handle sort
   const handleSortChange = useCallback(
     (sort: SortOption) => {
+      // Reset to first page when sort changes
+      setDisplayedPages(1);
+      // Save scroll position for filter changes
+      scrollPositionRef.current = window.scrollY;
+      shouldRestoreScrollRef.current = true;
+
       setSortOption(sort);
       updateURL({ search: searchQuery, sort });
     },
@@ -95,12 +141,14 @@ export default function ResourcesContainer({
 
   // Handle clear search
   const handleClearSearch = useCallback(() => {
+    setDisplayedPages(1);
     setSearchQuery('');
     updateURL({ search: '', sort: sortOption });
   }, [sortOption, updateURL]);
 
   // Handle clear filters
   const handleClearFilters = useCallback(() => {
+    setDisplayedPages(1);
     setSearchQuery('');
     setSortOption('newest');
     router.replace('/resources', { scroll: false });
@@ -148,14 +196,29 @@ export default function ResourcesContainer({
     return filtered;
   }, [initialResources, searchQuery, sortOption]);
 
-  // Paginate resources
+  // Paginate resources for infinite scroll (show all pages up to displayedPages)
   const paginatedResources = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
-    return filteredAndSortedResources.slice(start, end);
-  }, [filteredAndSortedResources, currentPage, pageSize]);
+    const end = displayedPages * pageSize;
+    return filteredAndSortedResources.slice(0, end);
+  }, [filteredAndSortedResources, displayedPages, pageSize]);
 
   const totalPages = Math.ceil(filteredAndSortedResources.length / pageSize);
+  const hasMore = displayedPages < totalPages;
+
+  // Effect to restore scroll position after filter changes
+  useEffect(() => {
+    if (shouldRestoreScrollRef.current && scrollPositionRef.current > 0) {
+      // Use requestAnimationFrame to ensure DOM has updated
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: scrollPositionRef.current,
+          behavior: 'instant' as ScrollBehavior,
+        });
+        shouldRestoreScrollRef.current = false;
+        scrollPositionRef.current = 0;
+      });
+    }
+  }, [searchQuery, sortOption]);
 
   // Build active filters
   const activeFilters = useMemo(() => {
@@ -249,6 +312,9 @@ export default function ResourcesContainer({
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          hasMore={hasMore}
+          isLoadingMore={isLoadingMore}
+          onLoadMore={handleLoadMore}
         />
       ) : (
         <section className="py-16 md:py-24 min-h-screen bg-gradient-to-br from-blue-100 via-yellow-50 to-orange-100">

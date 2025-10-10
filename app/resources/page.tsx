@@ -88,7 +88,7 @@ export default async function ResourcesPage({
 }) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
-  const pageSize = 6; // Number of resources per page
+  const pageSize = 12; // Number of resources per page (increased from 6 for better UX)
 
   // Fetch all resources and categories in parallel
   // We fetch all resources for client-side filtering/sorting

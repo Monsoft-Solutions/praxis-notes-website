@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from 'website/components/ui/button';
 import ResourceCard from 'website/components/ui/resource-card';
+import ResourceCardSkeleton from './resource-card-skeleton';
+import LoadMoreButton from './load-more-button';
 import type { ResourceWithRelations } from '../../../lib/types';
 
 interface ResourcesGridProps {
@@ -11,6 +13,9 @@ interface ResourcesGridProps {
   currentPage: number;
   totalPages: number;
   onPageChange?: (page: number) => void;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+  onLoadMore?: () => void;
 }
 
 // Helper component for pagination numbers
@@ -52,6 +57,9 @@ export default function ResourcesGrid({
   currentPage,
   totalPages,
   onPageChange,
+  hasMore = false,
+  isLoadingMore = false,
+  onLoadMore,
 }: ResourcesGridProps) {
   const router = useRouter();
 
@@ -63,6 +71,7 @@ export default function ResourcesGrid({
       router.replace(`/resources?page=${page}`, { scroll: false });
     }
   };
+
   return (
     <>
       {/* Resources grid section */}
@@ -83,6 +92,7 @@ export default function ResourcesGrid({
 
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Render existing resources */}
             {resources.map((resource, index) => (
               <ResourceCard
                 key={resource.slug}
@@ -90,10 +100,25 @@ export default function ResourcesGrid({
                 index={index}
               />
             ))}
+
+            {/* Show skeleton cards while loading more */}
+            {isLoadingMore &&
+              Array.from({ length: 12 }).map((_, index) => (
+                <ResourceCardSkeleton key={`skeleton-${index}`} />
+              ))}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
+          {/* Load More Button (replaces pagination for infinite scroll) */}
+          {hasMore && onLoadMore && (
+            <LoadMoreButton
+              isLoading={isLoadingMore}
+              hasMore={hasMore}
+              onLoadMore={onLoadMore}
+            />
+          )}
+
+          {/* Traditional Pagination (hidden when using infinite scroll) */}
+          {!hasMore && !onLoadMore && totalPages > 1 && (
             <div className="mt-20 flex justify-center items-center gap-4">
               {/* Previous Page Button */}
               {currentPage > 1 ? (
