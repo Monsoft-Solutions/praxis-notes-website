@@ -18,7 +18,8 @@ export default async function RelatedResources({
     currentResource.id,
     categoryIds,
     tagIds,
-    3
+    3,
+    currentResource.readingTime || undefined
   );
 
   // Don't render anything if no related resources found

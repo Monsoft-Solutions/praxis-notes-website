@@ -105,3 +105,11 @@ export type ResourceSort = {
   field: ResourceSortField;
   order: ResourceSortOrder;
 };
+
+/**
+ * Adjacent resource type for navigation (previous/next)
+ */
+export type AdjacentResource = {
+  slug: string;
+  title: string;
+};

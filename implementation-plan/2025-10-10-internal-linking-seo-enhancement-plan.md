@@ -232,7 +232,7 @@ None required - existing tag schema sufficient
 
 \
 
-### **Phase 3: Table of Contents for Long Articles** (Week 3-4)
+### **Phase 3: Table of Contents for Long Articles** (Week 3-4) (DONE)
 
 **Effort:** Medium | **Complexity:** Medium | **Priority:** Medium
 
@@ -287,96 +287,6 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 ---
 
-### **Phase 4: Pillar Pages & Topic Clusters** (Week 4-6)
-
-**Effort:** High | **Complexity:** High | **Priority:** High
-
-**Objectives:**
-
-- Define 4-6 primary topic clusters
-- Create comprehensive pillar pages (2,500-5,000 words each)
-- Build hub page structure and components
-- Link all related resources to appropriate hubs
-- Implement visual cluster representation
-
-**Deliverables:**
-
-1. `/app/resources/hubs/page.tsx` - All topic hubs listing
-2. `/app/resources/hubs/[slug]/page.tsx` - Individual hub page
-3. `/components/sections/resources/hub-hero.tsx` - Hub page hero
-4. `/components/sections/resources/cluster-visualization.tsx` - Visual topic map
-5. 4-6 comprehensive pillar page content files
-6. Database schema for hub relationships
-7. Updated resource metadata to include hub associations
-
-**Topic Hub Structure:**
-
-**Hub 1: ABA Fundamentals**
-
-- Pillar: "The Complete Guide to Applied Behavior Analysis"
-- Target keyword: "applied behavior analysis guide"
-- Cluster articles: intro-to-ABA, functional-assessment, ABA-alternative-therapies
-- New articles needed: 3-4 additional pieces
-
-**Hub 2: Documentation & Session Notes**
-
-- Pillar: "Mastering ABA Session Documentation: Complete Guide"
-- Target keyword: "ABA session notes"
-- Cluster articles: effective-aba-session-notes, cpt-code-97153
-- New articles needed: 4-5 additional pieces
-
-**Hub 3: Billing & Compliance**
-
-- Pillar: "ABA Therapy Billing & Compliance Handbook"
-- Target keyword: "ABA therapy billing compliance"
-- Cluster articles: cpt-code-97153
-- New articles needed: 5-6 additional pieces
-
-**Hub 4: Clinical Techniques**
-
-- Pillar: "Evidence-Based ABA Clinical Techniques"
-- Target keyword: "ABA therapy techniques"
-- Cluster articles: maladaptive-behavior, functional-assessment
-- New articles needed: 4-5 additional pieces
-
-**Database Schema Updates:**
-
-```sql
--- New table for topic hubs
-CREATE TABLE topic_hubs (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug VARCHAR(255) NOT NULL UNIQUE,
-  title VARCHAR(255) NOT NULL,
-  description TEXT,
-  pillar_resource_id UUID REFERENCES resources(id),
-  icon VARCHAR(100), -- lucide icon name
-  color VARCHAR(50), -- theme color
-  display_order INTEGER,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-
--- Junction table for hub-resource relationships
-CREATE TABLE hub_resources (
-  hub_id UUID REFERENCES topic_hubs(id) ON DELETE CASCADE,
-  resource_id UUID REFERENCES resources(id) ON DELETE CASCADE,
-  display_order INTEGER,
-  is_pillar BOOLEAN DEFAULT false,
-  created_at TIMESTAMP DEFAULT NOW(),
-  PRIMARY KEY (hub_id, resource_id)
-);
-```
-
-**Testing Criteria:**
-
-- Hub pages render with all cluster content
-- Bi-directional linking works (hub ↔ cluster)
-- Visual cluster representation is clear
-- Mobile responsive design
-- SEO metadata optimized
-- Pillar page content is comprehensive
-- Internal linking density is appropriate
-
 ---
 
 ### **Phase 5: Enhanced Related Resources** (Week 6-7)
@@ -404,9 +314,8 @@ CREATE TABLE hub_resources (
 
 - Shared categories (weight: 40%)
 - Shared tags (weight: 30%)
-- Same hub/cluster (weight: 20%)
 - Recency (weight: 5%)
-- Popularity/views (weight: 5%)
+- Popularity/views (weight: 15%)
 - Reading time similarity (bonus)
 
 **New Components:**

@@ -12,6 +12,8 @@ import RelatedResources from 'website/components/sections/related-resources';
 import Breadcrumb from 'website/components/ui/breadcrumb';
 import ArticleNavigation from 'website/components/sections/article-navigation';
 import TableOfContents from 'website/components/sections/resources/table-of-contents';
+import ContinueReading from 'website/components/sections/resources/continue-reading';
+import ResourceSidebar from 'website/components/sections/resources/resource-sidebar';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
@@ -340,14 +342,20 @@ export default async function ResourcePage({
                           {resource.content}
                         </ReactMarkdown>
                       </div>
+
+                      {/* Resource Sidebar - inline for mobile, will be in sidebar on desktop */}
+                      <div className="lg:hidden mt-8">
+                        <ResourceSidebar currentResource={resource} />
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Desktop TOC Sidebar - positioned outside content flow */}
                 <div className="hidden lg:block lg:w-72 lg:flex-shrink-0">
-                  <div className="sticky top-24">
+                  <div className="sticky top-24 space-y-6">
                     <TableOfContents content={resource.content} />
+                    <ResourceSidebar currentResource={resource} />
                   </div>
                 </div>
               </div>
@@ -402,6 +410,17 @@ export default async function ResourcePage({
                       </Link>
                     </div>
                   </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Continue Reading section */}
+          {next && (
+            <section className="py-8">
+              <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="mx-auto max-w-4xl">
+                  <ContinueReading nextResource={next} />
                 </div>
               </div>
             </section>

@@ -24,6 +24,7 @@ export type {
   ResourceSortField,
   ResourceSortOrder,
   ResourceSort,
+  AdjacentResource,
 } from './resource';
 
 // Author types
