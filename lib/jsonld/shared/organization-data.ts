@@ -22,7 +22,6 @@ export const ORGANIZATION_BASE_DATA = {
     CONTACT_INFO.social.tiktok,
   ],
   foundingDate: '2023',
-  industryIdentifier: 'Healthcare Technology',
   keywords: [
     'ABA notes',
     'ABA session notes',
